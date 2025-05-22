@@ -8,7 +8,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a84ec409-3332-4aca-9b29-a60e61eaf7a3" name="Changes" comment="add backend" />
+    <list default="true" id="a84ec409-3332-4aca-9b29-a60e61eaf7a3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Worky/Contracts/GetVacanciesRequest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Controllers/WorkerController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/DTO/CompanyDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/QRcode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Worky/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Worky/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Controllers/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/CompanyController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/DTO/CompanyProfileDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/CompanyProfileDtos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/DTO/VacancyDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/VacancyDtos.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Worky.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Worky.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/ref/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/ref/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/refint/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/refint/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/rider.project.restore.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,10 +57,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
+        <entry key="$PROJECT_DIR$" value="main" />
         <entry key="$PROJECT_DIR$/Worky" value="main" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Worky" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -72,6 +105,9 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
+    ],
     &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
       &quot;directory&quot;,
       &quot;repository&quot;
@@ -123,6 +159,13 @@
       <workItem from="1746830585460" duration="167000" />
       <workItem from="1746830867285" duration="14000" />
       <workItem from="1746830903524" duration="427000" />
+      <workItem from="1746832335918" duration="409000" />
+      <workItem from="1746832785141" duration="11000" />
+      <workItem from="1746969777853" duration="5952000" />
+      <workItem from="1747032654093" duration="5516000" />
+      <workItem from="1747073787445" duration="892000" />
+      <workItem from="1747119618339" duration="11148000" />
+      <workItem from="1747205840574" duration="6620000" />
     </task>
     <task id="LOCAL-00001" summary="backend add">
       <option name="closed" value="true" />
@@ -132,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746831024271</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add backend">
+      <option name="closed" value="true" />
+      <created>1746832476404</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746832476404</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +209,7 @@
     </ignored-roots>
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="backend add" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend add" />
+    <MESSAGE value="add backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="add backend" />
   </component>
 </project>

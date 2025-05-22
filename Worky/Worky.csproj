@@ -18,7 +18,9 @@
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.NetTopologySuite" Version="8.0.3" />
+        <PackageReference Include="QuestPDF" Version="2025.4.3" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
+        <PackageReference Include="ZXing.Net" Version="0.16.10" />
     </ItemGroup>
 
     <ItemGroup>

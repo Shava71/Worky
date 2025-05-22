@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OJEOmGD4YvU=",
+  "dgSpecHash": "6e+HaY+1iZY=",
   "success": true,
   "projectFilePath": "/Users/mac/Desktop/Worky/backend/workybackend/Worky/Worky.csproj",
   "expectedPackageFiles": [
@@ -139,6 +139,7 @@
     "/Users/mac/.nuget/packages/nuget.versioning/6.11.0/nuget.versioning.6.11.0.nupkg.sha512",
     "/Users/mac/.nuget/packages/pomelo.entityframeworkcore.mysql/8.0.3/pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512",
     "/Users/mac/.nuget/packages/pomelo.entityframeworkcore.mysql.nettopologysuite/8.0.3/pomelo.entityframeworkcore.mysql.nettopologysuite.8.0.3.nupkg.sha512",
+    "/Users/mac/.nuget/packages/questpdf/2025.4.3/questpdf.2025.4.3.nupkg.sha512",
     "/Users/mac/.nuget/packages/swashbuckle.aspnetcore/8.1.1/swashbuckle.aspnetcore.8.1.1.nupkg.sha512",
     "/Users/mac/.nuget/packages/swashbuckle.aspnetcore.swagger/8.1.1/swashbuckle.aspnetcore.swagger.8.1.1.nupkg.sha512",
     "/Users/mac/.nuget/packages/swashbuckle.aspnetcore.swaggergen/8.1.1/swashbuckle.aspnetcore.swaggergen.8.1.1.nupkg.sha512",
@@ -179,7 +180,8 @@
     "/Users/mac/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
     "/Users/mac/.nuget/packages/system.threading.tasks.dataflow/7.0.0/system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "/Users/mac/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "/Users/mac/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512"
+    "/Users/mac/.nuget/packages/system.windows.extensions/7.0.0/system.windows.extensions.7.0.0.nupkg.sha512",
+    "/Users/mac/.nuget/packages/zxing.net/0.16.10/zxing.net.0.16.10.nupkg.sha512"
   ],
   "logs": []
 }

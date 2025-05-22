@@ -17,6 +17,14 @@ using Worky.DTO;
 using Worky.Migrations;
 using Worky.Models;
 
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using Worky.Services;
+using ZXing;
+using ZXing.QrCode;
+using ZXing.Rendering;
+
 namespace Worky.Controllers;
 
 [Authorize(Roles = "Company", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -29,12 +37,14 @@ public class CompanyController : Controller
     private readonly WorkyDbContext _dbContext;
     UserManager<Users> _userManager;
     ILogger<CompanyController> _logger;
+    QRcode _qrCode;
 
-    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager)
+    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager, QRcode qrCode)
     {
         _dbContext = dbContext;
         _logger = logger;
         _userManager = userManager;
+        _qrCode = qrCode;
     }
     // GET
     // [HttpGet]
@@ -56,7 +66,7 @@ public class CompanyController : Controller
         {
             var resumesQuery = _dbContext.Resumes
                 .Where(resume =>
-                    !_dbContext.Feedbacks
+                    _dbContext.Feedbacks
                         .Any(f => f.resume_id == resume.id && f.status == FeedbackStatus.Accepted))
                 .Join(_dbContext.Resume_filters, // добавляем фильтры
                     resume => resume.id,
@@ -830,4 +840,251 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
+    
+    
+    [HttpGet("receipt/{dealId}")]
+    public async Task<IActionResult> GetDealReceipt(ulong dealId)
+    {
+        try
+        {
+            var deal = await _dbContext.Deals
+                .Join(_dbContext.companies,
+                    d => d.company_id,
+                    c => c.id,
+                    (d, c) => new { Deal = d, Company = c })
+                .Where(x => x.Deal.id == dealId)
+                .Select(x => new
+                {
+                    x.Deal,
+                    x.Company,
+                    Tariff = _dbContext.Tarrifs.FirstOrDefault(t => t.id == x.Deal.tariff_id)
+                })
+                .FirstOrDefaultAsync();
+
+            if (deal == null)
+                return NotFound("Договор не найден");
+
+            // 2. Проверить, что это договор текущего пользователя
+            Guid userId = Guid.Parse(User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)!);
+            if (deal.Company.id != userId.ToString())
+                return BadRequest("Вы не можете получить чек по чужому договору");
+
+            // 3. Генерация PDF
+            byte[] pdfBytes = Document.Create(container =>
+                    {
+                        container.Page(page =>
+                        {
+                            page.Size(PageSizes.A4);
+                            page.Margin(2, Unit.Centimetre);
+                            page.DefaultTextStyle(x => x.FontSize(12).FontFamily("DejaVu"));
+
+                            page.Header()
+                                .Text($"Worky - Чек об оплате договора №{deal.Deal.id}")
+                                .FontSize(18).Bold().AlignCenter();
+
+                            page.Content()
+                                .PaddingVertical(1)
+                                .Stack(stack =>
+                                {
+                                    stack.Item().Text("Информация о компании").Bold();
+                                    stack.Item().Text($"Название: {deal.Company.name ?? "Неизвестная компания"}");
+                                    stack.Item().Text($"Email: {deal.Company.email ?? "—"}");
+                
+                                    stack.Item().PaddingTop(10).Text("Детали договора").Bold();
+                                    stack.Item().Text($"Дата начала: {deal.Deal.date_start:dd.MM.yyyy}");
+                                    stack.Item().Text($"Дата окончания: {deal.Deal.date_end:dd.MM.yyyy}");
+                                    stack.Item().Text($"Статус: {(deal.Deal.status ? "Оплачен" : "Не оплачен")}")
+                                        .FontColor(deal.Deal.status ? Colors.Green.Darken2 : Colors.Red.Darken2);
+
+                                    stack.Item().PaddingTop(10).LineHorizontal(1);
+
+                                    stack.Item().Text("Тариф").Bold();
+                                    stack.Item().Text($"Название: {deal.Tariff?.name ?? "—"}");
+                                    stack.Item().Text($"Описание: {deal.Tariff?.description ?? "—"}");
+                                    stack.Item().Text($"Количество вакансий: {deal.Tariff?.vacancy_count}");
+                                    stack.Item().Text($"Цена за месяц: {deal.Tariff?.price} ₽");
+                                    stack.Item().Text($"Общая сумма: {deal.Deal.sum} ₽")
+                                        .FontSize(14).Bold().AlignCenter();
+                                });
+
+                            page.Footer()
+                                .AlignCenter()
+                                .Text("Спасибо за сотрудничество!")
+                                .Italic()
+                                .FontSize(10);
+                        });
+                    })
+                    .GeneratePdf();
+        
+
+            var fileName = $"deal_{dealId}_receipt.pdf";
+            return File(pdfBytes, "application/pdf", fileName);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Ошибка генерации чека");
+        }
+    }
+
+    [HttpGet("Vacancy/flyer/")]
+    public async Task<IActionResult> GetVacancyFlyer(ulong vacancyId, string url)
+    {
+        try
+        {
+            Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            Users userDB = _dbContext.Users.FirstOrDefault(u => u.Id == currentIdUser.ToString())!;
+            var user = new
+            {
+                UserName = userDB.UserName,
+                PasswordHash = userDB.PasswordHash,
+            };
+
+            var vacanciesQuery = _dbContext.Vacancies
+                .Join(_dbContext.Vacancy_filters, // добавляем фильтры
+                    vacancy => vacancy.id,
+                    filter => filter.vacancy_id,
+                    (vacancy, filter) => new { vacancy, filter })
+                .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
+                    arg => arg.filter.typeOfActivity_id,
+                    activity => activity.id,
+                    (arg, activity) => new { arg.vacancy, arg.filter, activity }
+                )
+                .Join(_dbContext.companies,
+                    arg => arg.vacancy.company_id,
+                    company =>  company.id,
+                    (arg, company) => new { arg.vacancy, arg.filter, arg.activity, company }
+                )
+                .Where(r => r.vacancy.id == vacancyId)
+                .AsNoTracking()
+                .AsQueryable(); //Коллекция резюме
+            
+            string? userId = vacanciesQuery.AsEnumerable().Select(r => r.company.id).FirstOrDefault();
+            if (userId != currentIdUser.ToString())
+            {
+                return NotFound("That's not your vacancy for create flyer");
+            }
+
+
+            var groupedResumesDtos = vacanciesQuery
+                .AsEnumerable()
+                .GroupBy(x => x.vacancy.id)
+                .Select(group => new VacancyDtos
+                {
+                    id = group.First().vacancy.id,
+                    company_id = group.First().vacancy.company_id,
+                    post = group.First().vacancy.post,
+                    experience = group.First().vacancy.experience,
+                    income_date = group.First().vacancy.income_date,
+                    education_id = group.First().vacancy.education_id,
+                    description = group.First().vacancy.description,
+                    min_salary = group.First().vacancy.min_salary,
+                    max_salary = group.First().vacancy.max_salary,
+                    activities = group.Select(g => new ActivityDtos
+                    {
+                        id = g.activity.id,
+                        direction = g.activity.direction,
+                        type = g.activity.type,
+                    }).Distinct().ToList(),
+                    company = new CompanyDto
+                    {
+                        id = group.First().company.id,
+                        name = group.First().company.name,
+                        email = group.First().company.email,
+                        phoneNumber = group.First().company?.phoneNumber,
+                        website = group.First().company?.website,
+                        latitude = group.First().company.office_coord?.Y.ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
+                        longitude =  group.First().company.office_coord?.X.ToString(CultureInfo.InvariantCulture)!  // Долгота (X)
+                    }
+
+                }).First()!;
+            
+            // byte[] qrBytes = await _qrCode.CreateQRcode($"https://worky.ru/vacancies/Info?vacancyId={vacancyId}");
+            
+            byte[] flyer = Document.Create(container =>
+                {
+                    container.Page(page =>
+                    {
+                        page.Size(PageSizes.A4);
+                        page.Margin(2, Unit.Centimetre);
+                        page.DefaultTextStyle(x => x.FontSize(12).FontFamily("DejaVu"));
+
+                        page.Header()
+                            .Text(
+                                $"Worky - Флайер на ваканцию \"{groupedResumesDtos.post}\" от компании \"{groupedResumesDtos.company.name}\"")
+                            .AlignCenter().FontSize(18).Bold();
+                        
+                        page.Content().PaddingVertical(1).Column(descriptor =>
+                        {
+                            // Информация о компании
+                            descriptor.Item().Text("Информация о компании").SemiBold().FontSize(14);
+                            descriptor.Item().Text($"Название: {groupedResumesDtos.company.name}");
+                            descriptor.Item().Text($"Email: {groupedResumesDtos.company.email ?? "—"}");
+                            descriptor.Item().Text($"Телефон: {groupedResumesDtos.company.phoneNumber ?? "—"}");
+                            descriptor.Item().Text($"Сайт: {groupedResumesDtos.company.website ?? "—"}");
+                            descriptor.Item().Text($"Адрес офиса: {groupedResumesDtos.company.latitude}, {groupedResumesDtos.company.longitude}");
+
+                            // Детали вакансии
+                            descriptor.Item().PaddingTop(15).LineHorizontal(1); // разделитель
+                            descriptor.Item().Text("Детали вакансии").SemiBold().FontSize(14);
+                            descriptor.Item().Text($"Должность: {groupedResumesDtos.post}");
+                            descriptor.Item().Text($"Описание: {groupedResumesDtos.description}");
+                            descriptor.Item().Text($"Минимальная зарплата: {groupedResumesDtos.min_salary} ₽");
+                            descriptor.Item().Text($"Максимальная зарплата: {groupedResumesDtos.max_salary?.ToString() ?? "Не указана"} ₽");
+                            descriptor.Item().Text($"Опыт работы: {groupedResumesDtos.experience} лет");
+                            
+                            descriptor.Item().PaddingTop(15).LineHorizontal(1);
+                            descriptor.Item().Text("Фильтры по направлениям").SemiBold().FontSize(14);
+
+                            if (groupedResumesDtos.activities != null && groupedResumesDtos.activities.Count > 0)
+                            {
+                                foreach (var activity in groupedResumesDtos.activities)
+                                {
+                                    descriptor.Item().Text($"• {activity.direction} ({activity.type})");
+                                }
+                            }
+
+                            // descriptor.Item().Image(qrBytes);
+                            
+                            descriptor.Item().Row(row =>
+                            {
+                                row.ConstantItem(5, Unit.Centimetre)
+                                    .AspectRatio(1)
+                                    .Background(Colors.White)
+                                    .Svg(size =>
+                                    {
+                                        var writer = new QRCodeWriter();
+                                        var qrCode = writer.encode(url, BarcodeFormat.QR_CODE, (int)size.Width, (int)size.Height);
+                                        var renderer = new SvgRenderer { FontName = "Lato" };
+                                        return renderer.Render(qrCode, BarcodeFormat.EAN_13, null).Content;
+                                    });
+                            });
+                            
+                            // descriptor.Item()
+                            //     .Image(data => data.Bytes(qrBytes))
+                            //     .Width(150)
+                            //     .Height(150)
+                            //     .AlignCenter();
+                        
+
+                        });
+                        
+                        page.Footer()
+                            .AlignCenter()
+                            .Text("Created by Worky.ru")
+                            .Italic()
+                            .FontSize(10);
+                    });
+                })
+                .GeneratePdf();
+            
+            var fileName = $"flyer_{vacancyId}.pdf";
+            return File(flyer, "application/pdf", fileName);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occured while get flyer by company");
+            return BadRequest(500);
+        }
+    }
+    
 }

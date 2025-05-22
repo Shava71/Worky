@@ -26,5 +26,5 @@ public class VacancyDtos
     [Required]
     public List<ActivityDtos>? activities { get; set; }
     [Required]
-    public company? company { get; set; }
+    public CompanyDto? company { get; set; }
 }

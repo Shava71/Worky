@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QuestPDF.Infrastructure;
 using Worky.Context;
 using Worky.Migrations;
 using Worky.Services;
 
-
+QuestPDF.Settings.License = LicenseType.Community; // или Commercial
+// QuestPDF.Settings.Fonts.LocationMode = FontLocationMode.FileSystem;
+// QuestPDF.Settings.Fonts.RootDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Fonts");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,6 +75,7 @@ builder.Services.AddScoped<WorkyDbContext>();
 builder.Logging.AddConsole();
 builder.Logging.AddDebug();
 // builder.Services.AddRazorPages();
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
