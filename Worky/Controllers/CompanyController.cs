@@ -37,14 +37,12 @@ public class CompanyController : Controller
     private readonly WorkyDbContext _dbContext;
     UserManager<Users> _userManager;
     ILogger<CompanyController> _logger;
-    QRcode _qrCode;
 
-    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager, QRcode qrCode)
+    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager)
     {
         _dbContext = dbContext;
         _logger = logger;
         _userManager = userManager;
-        _qrCode = qrCode;
     }
     // GET
     // [HttpGet]
@@ -258,7 +256,7 @@ public class CompanyController : Controller
                 .AsNoTracking()
                 .AsQueryable(); //Коллекция резюме
 
-            // Достаём фото профиля
+            //фото профиля
             string? userId = resumesQuery.AsEnumerable().Select(r => r.worker.id).FirstOrDefault();
             byte[]? image = await _dbContext.Users.Where(u => u.Id == userId).Select(u => u.image)
                 .FirstOrDefaultAsync();
@@ -290,7 +288,7 @@ public class CompanyController : Controller
                         second_name = group.First().worker.second_name,
                         surname = group.First().worker.surname,
                         image = image,
-                        age = group.First().worker.age,
+                        birthday = group.First().worker.birthday,
                     }
 
                 }).ToList();
@@ -864,12 +862,10 @@ public class CompanyController : Controller
             if (deal == null)
                 return NotFound("Договор не найден");
 
-            // 2. Проверить, что это договор текущего пользователя
             Guid userId = Guid.Parse(User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier)!);
             if (deal.Company.id != userId.ToString())
                 return BadRequest("Вы не можете получить чек по чужому договору");
 
-            // 3. Генерация PDF
             byte[] pdfBytes = Document.Create(container =>
                     {
                         container.Page(page =>
@@ -940,11 +936,11 @@ public class CompanyController : Controller
             };
 
             var vacanciesQuery = _dbContext.Vacancies
-                .Join(_dbContext.Vacancy_filters, // добавляем фильтры
+                .Join(_dbContext.Vacancy_filters, 
                     vacancy => vacancy.id,
                     filter => filter.vacancy_id,
                     (vacancy, filter) => new { vacancy, filter })
-                .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
+                .Join(_dbContext.typeOfActivities, 
                     arg => arg.filter.typeOfActivity_id,
                     activity => activity.id,
                     (arg, activity) => new { arg.vacancy, arg.filter, activity }
@@ -956,7 +952,7 @@ public class CompanyController : Controller
                 )
                 .Where(r => r.vacancy.id == vacancyId)
                 .AsNoTracking()
-                .AsQueryable(); //Коллекция резюме
+                .AsQueryable();
             
             string? userId = vacanciesQuery.AsEnumerable().Select(r => r.company.id).FirstOrDefault();
             if (userId != currentIdUser.ToString())
@@ -1015,7 +1011,6 @@ public class CompanyController : Controller
                         
                         page.Content().PaddingVertical(1).Column(descriptor =>
                         {
-                            // Информация о компании
                             descriptor.Item().Text("Информация о компании").SemiBold().FontSize(14);
                             descriptor.Item().Text($"Название: {groupedResumesDtos.company.name}");
                             descriptor.Item().Text($"Email: {groupedResumesDtos.company.email ?? "—"}");
@@ -1023,8 +1018,7 @@ public class CompanyController : Controller
                             descriptor.Item().Text($"Сайт: {groupedResumesDtos.company.website ?? "—"}");
                             descriptor.Item().Text($"Адрес офиса: {groupedResumesDtos.company.latitude}, {groupedResumesDtos.company.longitude}");
 
-                            // Детали вакансии
-                            descriptor.Item().PaddingTop(15).LineHorizontal(1); // разделитель
+                            descriptor.Item().PaddingTop(15).LineHorizontal(1);
                             descriptor.Item().Text("Детали вакансии").SemiBold().FontSize(14);
                             descriptor.Item().Text($"Должность: {groupedResumesDtos.post}");
                             descriptor.Item().Text($"Описание: {groupedResumesDtos.description}");

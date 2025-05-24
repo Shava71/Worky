@@ -12,6 +12,7 @@ public class ResumeDtos
     [Required]
     public string? skill { get; set; }
     [Required]
+    [RegularExpression("^[^0-9]*$", ErrorMessage = "Название города не должно содержать цифры")]
     public string? city { get; set; }
     [Required]
     public short? experience { get; set; }

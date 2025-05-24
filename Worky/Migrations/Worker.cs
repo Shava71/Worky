@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Worky.Migrations;
 
 [Table("Worker")]
-[Index("email", Name = "email", IsUnique = true)]
 public partial class Worker
 {
     [Key]
@@ -23,14 +22,8 @@ public partial class Worker
     [StringLength(50)]
     public string surname { get; set; } = null!;
 
-    [Column(TypeName = "smallint(6)")]
-    public short age { get; set; }
-
-    [StringLength(20)]
-    public string? phoneNumber { get; set; }
-
-    [Column(TypeName = "text")]
-    public string email { get; set; } = null!;
+    [Column(TypeName = "date")]
+    public DateOnly birthday { get; set; }
 
     [InverseProperty("worker")]
     public virtual ICollection<Resume> Resumes { get; set; } = new List<Resume>();

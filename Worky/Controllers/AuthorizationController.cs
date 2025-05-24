@@ -141,14 +141,16 @@ public class AuthorizationController : Controller
                         first_name = registerRequest.first_name,
                         second_name = registerRequest.second_name,
                         surname = registerRequest.surname,
-                        age = registerRequest.age.Value
+                        birthday = registerRequest.birthday.Value
                     };
                     try
                     {
                         await _dbContext.Workers.AddAsync(newWorker);
+                        await _dbContext.SaveChangesAsync();
 
                         string sqlQuery = @"UPDATE Worker set createdBy = @CreatedBy where id = @id;";
                         await db.ExecuteAsync(sqlQuery, new { Createdby = user.UserName, id = user.Id });
+                        
                     }
                     catch (Exception ex)
                     {

@@ -1,6 +1,7 @@
 namespace Worky.Contracts;
 
-public record CreateVacancy(
+public record 
+    CreateVacancy(
     string post,
     int min_salary,
     int? max_salary,
