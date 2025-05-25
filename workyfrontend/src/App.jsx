@@ -1,4 +1,5 @@
 import './App.css'
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";import {Box, Button, Container} from "@mui/material";
 import HomeIndex from "./Pages/HomeIndex.jsx";
 import Company from "./Pages/Company.jsx";
@@ -15,6 +16,11 @@ import Resumes from "./Pages/Resumes.jsx";
 import ResumeDetailsPage from "./Pages/Details/ResumeDetails.jsx";
 import CompanyFeedbackPage from "./Pages/Feedback/CompanyFeedbacks.jsx";
 import CompanyRegister from "./Pages/Register/CompanyRegister.jsx";
+import WorkerRegister from "./Pages/Register/WorkerRegister.jsx";
+import VacanciesPage from "./Pages/Vacancies.jsx";
+import VacancyDetailsPage from "./Pages/Details/VacancyDetails.jsx";
+import MyResume from "./Pages/MyResume.jsx";
+import CreateResume from "./Pages/Create/CreateResume.jsx";
 function App() {
 
     const [userRole, setUserRole] = useState(() => {
@@ -42,8 +48,11 @@ function App() {
                   <Route path="/Company/Resumes/Info/:resumeId" element={<ResumeDetailsPage />} />
                   <Route path="/Company/Feedbacks" element={<CompanyFeedbackPage/>} />
 
+                  <Route path="/Worker/Vacancies" element={<VacanciesPage/>}/>
+                  <Route path="/Worker/Vacancies/Info/:vacancyId" element={<VacancyDetailsPage />} />
+
                   <Route path="/CompanyRegister" element={<CompanyRegister/>}/>
-                  <Route path="/WorkerRegister" element={<Worker/>}/>
+                  <Route path="/WorkerRegister" element={<WorkerRegister/>}/>
                   <Route path="/Login" element={<LoginForm setUserRole={setUserRole}/>}/>
 
                   <Route path="/Company/Profile" element={<CompanyProfile company={companyProfile?.company} deals={companyProfile?.deals} />} />
@@ -51,6 +60,8 @@ function App() {
 
                   <Route path="/CreateVacancy" element={<CreateVacancy />}/>
                   <Route path="/MyVacancy" element={<MyVacancy />}/>
+                  <Route path="/CreateResume" element={<CreateResume />}/>
+                  <Route path="/MyResume" element={<MyResume />}/>
               </Routes>
           </Router>
       </div>

@@ -76,7 +76,7 @@ export default function CompanyProfile() {
     const handleDownloadReceipt = async (dealId) => {
         try {
             const token = localStorage.getItem('jwt');
-            const response = await axios.get(`https://localhost:7106/api/v1/Deals/${dealId}/receipt`, {
+            const response = await axios.get(`https://localhost:7106/api/v1/Company/receipt/${dealId}`, {
                 headers: { Authorization: `Bearer ${token}` },
                 responseType: 'blob',
             });

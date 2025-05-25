@@ -38,6 +38,20 @@ export default function ResumeDetailsPage() {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('jwt');
+                if (!token) {
+                    return (
+                        <Container maxWidth="sm" sx={{ py: 6 }}>
+                            <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
+                                <Typography align="center" color="text.secondary">
+                                    Необходимо зарегистрироваться с ролью компании.
+                                </Typography>
+                                <Button fullWidth onClick={() => navigate('/login')} sx={{ mt: 2 }}>
+                                    Перейти к входу
+                                </Button>
+                            </Paper>
+                        </Container>
+                    );
+                }
                 const [resumeResponse, vacanciesResponse, educationResponse] = await Promise.all([
                     axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info`, {
                         headers: { Authorization: `Bearer ${token}` },
@@ -78,6 +92,7 @@ export default function ResumeDetailsPage() {
         if (!selectedVacancyId) return;
         try {
             const token = localStorage.getItem('jwt');
+
             await axios.post('https://localhost:7106/api/v1/Company/MakeFeedback', {
                 resume_id: resume.id,
                 vacancy_id: selectedVacancyId

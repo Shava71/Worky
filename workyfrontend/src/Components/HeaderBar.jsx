@@ -14,7 +14,8 @@ const pages = ['Соискателям', 'Компаниям'];
 export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
-    const [companyName, setCompanyName] = useState(null); // <--- Добавлено
+    const [companyName, setCompanyName] = useState(null);
+    const [workerName, setWorkerName] = useState(null);
 
     const navigate = useNavigate();
 
@@ -36,12 +37,17 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
         switch (setting) {
             case 'Профиль':
                 if (userRole === 'Company') navigate('/Company/Profile');
+                else if(userRole === 'Worker') navigate('/Worker/Profile');
                 break;
             case 'Отклики':
-                navigate('/Company/Feedbacks');
+                if (userRole === 'Company') navigate('/Company/Feedbacks');
+                else if(userRole === 'Worker') navigate('/Worker/Feedbacks');
                 break;
             case 'Мои вакансии':
                 navigate('/MyVacancy');
+                break;
+            case 'Мои резюме':
+                navigate('/MyResume');
                 break;
             case 'Выйти':
                 handleLogout();
@@ -53,30 +59,41 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
 
     const getMenuItems = () => {
         if (userRole === 'Company') return ['Профиль', 'Отклики', 'Мои вакансии', 'Выйти'];
-        if (userRole) return ['Профиль', 'Выйти'];
+        if (userRole === 'Worker') return ['Профиль', 'Отклики', 'Мои резюме', 'Выйти'];
         return [];
     };
 
     useEffect(() => {
-        const fetchCompanyProfile = async () => {
+        const fetchProfile = async () => {
             try {
                 const token = localStorage.getItem('jwt');
-                if (!token || userRole !== 'Company') return;
+                if (!token) return;
 
-                const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
+                if(userRole === 'Company'){
+                    const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    const profile = response.data;
+                    setCompanyProfile(profile);
+                    setCompanyName(profile.company?.name);
+                }
+                else if (userRole === 'Worker') {
+                    const response = await axios.get('https://localhost:7106/api/v1/Worker/GetProfile', {
+                        headers: { Authorization: `Bearer ${token}` }
+                    });
+                    const profile = response.data;
+                    const worker = profile.worker?.second_name + ' ' + profile.worker?.first_name + ' ' + profile.worker?.surname;
+                    setWorkerName(worker);
+                }
 
-                const profile = response.data;
-                setCompanyProfile(profile);
-                setCompanyName(profile.company?.name); // <--- Сохраняем имя
             } catch (error) {
-                console.error('Ошибка при получении профиля компании:', error);
+                console.error('Ошибка при получении профиля:', error);
                 handleLogout();
             }
         };
 
-        fetchCompanyProfile();
+
+        fetchProfile();
     }, [userRole]);
 
     return (
@@ -120,7 +137,7 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
                                             console.log(page);
                                             if (page === 'Компаниям') {
                                                 navigate("/Company/Resumes");
-                                            } else {
+                                            } else if( page === 'Соискателям') {
                                                 navigate("/Worker/Vacancies");
                                             }
                                         }
@@ -171,10 +188,12 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
 
                     {userRole ? (
                         <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', gap: 1 }}>
-                            {userRole === 'Company' ? (
+                            {userRole === 'Company' && (
                                 <Button color="inherit" onClick={() => navigate('/CreateVacancy')}>
                                     Выложить вакансию
-                                </Button> ) : (
+                                </Button> )
+                            }
+                            {userRole === 'Worker' && (
 
                                 <Button color="inherit" onClick={() => navigate('/CreateResume')}>
                                     Выложить резюме
@@ -193,6 +212,11 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
                             {userRole === 'Company' && companyName && (
                                 <Typography variant="body1" sx={{ color: 'white', mr: 1 }}>
                                     {companyName}
+                                </Typography>
+                            )}
+                            {userRole === 'Worker' && workerName &&(
+                                <Typography variant="body1" sx={{ color: 'white', mr: 1 }}>
+                                    {workerName}
                                 </Typography>
                             )}
                             <Menu

@@ -116,7 +116,7 @@ export default function MyVacancy() {
 
             // 2. Удаляем старые фильтры
             if (editingVacancy.activities?.length > 0) {
-                const oldFilterIds = editingVacancy.activities.map(a => a.filter_id); // ❗ Теперь по `filter_id`
+                const oldFilterIds = editingVacancy.activities.map(a => a.filter_id);
                 for (const id of oldFilterIds) {
                     await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancyFilter', {
                         params: { filterId: id },
@@ -224,6 +224,31 @@ export default function MyVacancy() {
         );
     }
 
+    const handleDownloadFlyer = async (vacancyId) => {
+        try {
+            const token = localStorage.getItem('jwt');
+            const urlParam = 'someaddress';
+
+            const response = await axios.get(`https://localhost:7106/api/v1/Company/Vacancy/flyer`, {
+                headers: { Authorization: `Bearer ${token}` },
+                responseType: 'blob',
+                params: {
+                    vacancyId: vacancyId,
+                    url: urlParam
+                }
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `flyer_${vacancyId}.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Ошибка при скачивании чека:', error);
+        }
+    };
+
     return (
         <Container maxWidth="lg" sx={{ py: 6 }}>
             <Typography variant="h4" fontWeight="bold" gutterBottom align="center">
@@ -304,14 +329,22 @@ export default function MyVacancy() {
                                 </Box>
 
                                 {/* Правая часть: действия */}
-                                <Box sx={{ flex: 1, ml: 2, textAlign: 'right' }}>
-                                    <Button size="small" onClick={() => handleOpenEditModal(vacancy)}>
-                                        Редактировать
-                                    </Button>
-                                    <Button size="small" color="error" onClick={() => handleDeleteVacancy(vacancy.id)}>
-                                        Удалить
-                                    </Button>
-                                </Box>
+                                <Stack direction="column">
+                                    <Box sx={{ flex: 1, ml: 2, textAlign: 'right' }}>
+
+                                        <Button size="small" onClick={() => handleOpenEditModal(vacancy)}>
+                                            Редактировать
+                                        </Button>
+                                        <Button size="small" color="error" onClick={() => handleDeleteVacancy(vacancy.id)}>
+                                            Удалить
+                                        </Button>
+                                    </Box>
+                                    <Box sx={{flex : 1, textAlign: 'right'}}>
+                                        <Button size="small" color="secondary" onClick={() => handleDownloadFlyer(vacancy.id)}>
+                                            Создать флайер
+                                        </Button>
+                                    </Box>
+                                </Stack>
                             </Box>
                         </Paper>
                     );
@@ -402,7 +435,7 @@ export default function MyVacancy() {
                                             <Chip
                                                 key={activity.id}
                                                 label={activity.direction}
-                                                onDelete={() => handleDeleteFilter(activity.filter_id)} // ❗ Здесь тоже по `filter_id`
+                                                onDelete={() => handleDeleteFilter(activity.filter_id)}
                                                 sx={{
                                                     bgcolor: '#e3f2fd',
                                                     color: '#1976d2',

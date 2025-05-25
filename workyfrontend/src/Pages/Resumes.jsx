@@ -24,12 +24,13 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 
 export default function ResumesPage() {
+    const userRole = localStorage.getItem('role');
     const [resumes, setResumes] = useState([]);
     const [vacancies, setVacancies] = useState([]);
     const [filters, setFilters] = useState({
         city: '',
         min_experience: 0,
-        max_experience: 30,
+        max_experience: 100,
         education: '',
         min_wantedSalary: 0,
         max_wantedSalary: 1000000,
@@ -124,7 +125,7 @@ export default function ResumesPage() {
         setFilters({
             city: '',
             min_experience: 0,
-            max_experience: 30,
+            max_experience: 100,
             education: '',
             min_wantedSalary: 0,
             max_wantedSalary: 1000000,
@@ -239,10 +240,10 @@ export default function ResumesPage() {
                                     onChange={handleExperienceSliderChange}
                                     valueLabelDisplay="auto"
                                     min={0}
-                                    max={30}
+                                    max={100}
                                     marks={[
                                         { value: 0, label: '0 лет' },
-                                        { value: 30, label: '30+' },
+                                        { value: 100, label: '100' },
                                     ]}
                                 />
                             </Box>
@@ -413,7 +414,7 @@ export default function ResumesPage() {
 
                                         {/* Правая часть: выбор вакансии и кнопки */}
                                         <Box sx={{ flex: 1, ml: 2, minWidth: 200 }}>
-                                            <FormControl fullWidth>
+                                            {userRole == 'Company' && (<FormControl fullWidth>
                                                 <InputLabel id={`vacancy-select-label-${resume.id}`}>
                                                     Выберите вакансию
                                                 </InputLabel>
@@ -448,10 +449,11 @@ export default function ResumesPage() {
                                                         );
                                                     })}
                                                 </Select>
-                                            </FormControl>
+                                            </FormControl>)
+                                            }
 
                                             <Button
-                                                variant="outlined"
+                                                variant="contained"
                                                 color="secondary"
                                                 fullWidth
                                                 sx={{ mt: 2, py: 1.2 }}
@@ -459,7 +461,7 @@ export default function ResumesPage() {
                                             >
                                                 Посмотреть подробнее
                                             </Button>
-
+                                            {userRole == 'Company' && (
                                             <Button
                                                 variant="contained"
                                                 color="primary"
@@ -469,7 +471,8 @@ export default function ResumesPage() {
                                                 sx={{ mt: 1, py: 1.2 }}
                                             >
                                                 Откликнуться
-                                            </Button>
+                                            </Button>)
+                                            }
                                         </Box>
                                     </Box>
                                 </Paper>
