@@ -8,5 +8,5 @@ public class UpdateResume
     public short? experience { get; set; }
     public ulong? education_id { get; set; }
     public int? wantedSalary { get; set; }
-    public string post { get; set; }
+    public string? post { get; set; }
 }

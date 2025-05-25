@@ -64,7 +64,7 @@ public class CompanyController : Controller
         {
             var resumesQuery = _dbContext.Resumes
                 .Where(resume =>
-                    _dbContext.Feedbacks
+                    !_dbContext.Feedbacks
                         .Any(f => f.resume_id == resume.id && f.status == FeedbackStatus.Accepted))
                 .Join(_dbContext.Resume_filters, // добавляем фильтры
                     resume => resume.id,

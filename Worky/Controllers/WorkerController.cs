@@ -42,7 +42,7 @@ public class WorkerController : Controller
         {
             var vacanciesQuery = _dbContext.Vacancies
                 .Where(vacancy =>
-                    _dbContext.Feedbacks
+                    !_dbContext.Feedbacks
                         .Any(f => f.vacancy_id == vacancy.id && f.status == FeedbackStatus.Accepted))
                 .Join(_dbContext.Vacancy_filters, // добавляем фильтры
                     vacancy => vacancy.id,
@@ -262,7 +262,7 @@ public class WorkerController : Controller
                     }
 
                 }).ToList();
-            return Ok(new { resume = groupedResumesDtos });
+            return Ok(new { vacancy = groupedResumesDtos });
         }
         catch (Exception ex)
         {
