@@ -10,7 +10,7 @@ import {
     Chip,
     CircularProgress,
     Snackbar,
-    Alert
+    Alert, FormControl, InputLabel, Select, MenuItem
 } from '@mui/material';
 import axios from 'axios';
 import dayjs from 'dayjs';
@@ -24,6 +24,9 @@ export default function VacancyDetailsPage() {
     const [educationList, setEducationList] = useState([]); // Список образований
     const navigate = useNavigate();
     const { vacancyId } = useParams();
+
+    const [myResumes, setMyResumes] = useState([]);
+    const [selectedResume, setSelectedResume] = useState('');
 
     // Получение данных о вакансии и образовании
     useEffect(() => {
@@ -68,6 +71,27 @@ export default function VacancyDetailsPage() {
         fetchData();
     }, [vacancyId]);
 
+    useEffect(() => {
+        const fetchMyResumes = async () => {
+            try {
+                const token = localStorage.getItem('jwt');
+                const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setMyResumes(response.data || []);
+            } catch (err) {
+                console.error('Ошибка при загрузке резюме:', err);
+                setSnackbar({
+                    open: true,
+                    message: 'Не удалось загрузить ваши резюме',
+                    severity: 'error'
+                });
+            }
+        };
+
+        fetchMyResumes();
+    }, []);
+
     // Функция для получения названия образования по ID
     const getEducationName = (id) => {
         const education = educationList.find(edu => edu.id === id);
@@ -75,18 +99,24 @@ export default function VacancyDetailsPage() {
     };
 
     // Отправка отклика
-    const handleRespond = async () => {
+    const handleRespond = async (selectedResume, vacancyId) => {
+        if (!selectedResume || !vacancyId) return;
+
         try {
             const token = localStorage.getItem('jwt');
-            await axios.post('https://localhost:7106/api/v1/Worker/MakeFeedback', {
-                vacancy_id: vacancy.id
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
+            await axios.post(
+                'https://localhost:7106/api/v1/Worker/MakeFeedback',
+                {
+                    resume_id: selectedResume,
+                    vacancy_id: vacancyId
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
                 }
-            });
-
+            );
             setSnackbar({
                 open: true,
                 message: 'Отклик успешно отправлен!',
@@ -101,7 +131,6 @@ export default function VacancyDetailsPage() {
             });
         }
     };
-
     if (loading) {
         return (
             <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -178,22 +207,51 @@ export default function VacancyDetailsPage() {
             </Paper>
 
             {/* Кнопка "Откликнуться" только для Worker */}
-            {userRole === 'Worker' && (
-                <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
-                    <Typography variant="h6" gutterBottom fontWeight="bold">
-                        📝 Откликнуться
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        fullWidth
-                        onClick={handleRespond}
-                        sx={{ py: 1.2 }}
-                    >
-                        Отправить отклик
-                    </Button>
-                </Paper>
-            )}
+            {userRole === 'Worker' &&
+                (
+
+                    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
+                        <Typography variant="h6" gutterBottom fontWeight="bold">
+                            📝 Откликнуться
+                        </Typography>
+                        <FormControl fullWidth>
+                            <InputLabel id="resume-select-label">Выберите резюме</InputLabel>
+                            <Select
+                                labelId="resume-select-label"
+                                value={selectedResume}
+                                onChange={(e) => setSelectedResume(e.target.value)}
+                                label="Выберите резюме"
+                            >
+                                {myResumes.map(resume => (
+                                    <MenuItem key={resume.id} value={resume.id}>
+                                        <Box>
+                                            <Typography variant="body2" fontWeight="bold">
+                                                {resume.post || 'Без названия'}
+                                            </Typography>
+                                            <Typography variant="caption">
+                                                Опыт: {resume.experience ?? '—'} лет
+                                            </Typography>
+                                            <Typography variant="caption">
+                                                Желаемая зарплата: {resume.wantedSalary ?? '—'} ₽
+                                            </Typography>
+                                        </Box>
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            onClick={() => handleRespond(selectedResume, vacancy.id)}
+                            sx={{ py: 1.2 }}
+                            disabled={!selectedResume}
+                        >
+                            Отправить отклик
+                        </Button>
+                    </Paper>
+                )
+            }
 
             <Button onClick={() => navigate(-1)}>← Назад</Button>
 

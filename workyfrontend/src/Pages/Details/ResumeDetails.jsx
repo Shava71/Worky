@@ -118,6 +118,22 @@ export default function ResumeDetailsPage() {
         }
     };
 
+    const calculateAge = (birthday) => {
+        if (!birthday) return '—';
+
+        const birthDate = dayjs(birthday);
+        const today = dayjs();
+
+        let age = today.year() - birthDate.year();
+
+        if (today.month() < birthDate.month() ||
+            (today.month() === birthDate.month() && today.date() < birthDate.date())) {
+            age--;
+        }
+
+        return `${age} лет`;
+    };
+
     if (loading) {
         return (
             <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -191,7 +207,7 @@ export default function ResumeDetailsPage() {
                             {/*    Телефон: {worker.phoneNumber || '—'}*/}
                             {/*</Typography>*/}
                             <Typography variant="body2" align="center" color="text.secondary">
-                                Возраст: {worker.age || '—'}
+                                Возраст: {calculateAge(worker.birthday)}
                             </Typography>
 
                             <Typography variant="body2" align="center" color="text.secondary">

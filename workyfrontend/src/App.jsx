@@ -21,6 +21,7 @@ import VacanciesPage from "./Pages/Vacancies.jsx";
 import VacancyDetailsPage from "./Pages/Details/VacancyDetails.jsx";
 import MyResume from "./Pages/MyResume.jsx";
 import CreateResume from "./Pages/Create/CreateResume.jsx";
+import WorkerFeedbackPage from "./Pages/Feedback/WorkerFeedbacks.jsx";
 function App() {
 
     const [userRole, setUserRole] = useState(() => {
@@ -50,6 +51,8 @@ function App() {
 
                   <Route path="/Worker/Vacancies" element={<VacanciesPage/>}/>
                   <Route path="/Worker/Vacancies/Info/:vacancyId" element={<VacancyDetailsPage />} />
+                  <Route path="/Worker/Feedbacks" element={<WorkerFeedbackPage/>} />
+
 
                   <Route path="/CompanyRegister" element={<CompanyRegister/>}/>
                   <Route path="/WorkerRegister" element={<WorkerRegister/>}/>

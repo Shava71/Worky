@@ -123,7 +123,7 @@ export default function MyResume() {
 
             // 2. Удаляем старые фильтры
             if (editingResume.activities?.length > 0) {
-                const oldFilterIds = editingResume.activities.map(a => a.id);
+                const oldFilterIds = editingResume.activities.map(a => a.filter_id);
                 for (const id of oldFilterIds) {
                     await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResumeFilter', {
                         params: { filterId: id },
@@ -396,7 +396,7 @@ export default function MyResume() {
                                             <Chip
                                                 key={activity.id}
                                                 label={activity.direction}
-                                                onDelete={() => handleDeleteFilter(id)}
+                                                onDelete={() => handleDeleteFilter(activity.filter_id)}
                                                 deleteIcon={<span>&times;</span>}
                                                 sx={{
                                                     bgcolor: '#e3f2fd',

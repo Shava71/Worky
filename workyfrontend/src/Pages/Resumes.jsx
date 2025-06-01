@@ -17,11 +17,12 @@ import {
     Chip,
     Slider,
     CircularProgress,
-    TextField,
+    TextField, ButtonGroup,
 } from '@mui/material';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import qs from "qs";
 
 export default function ResumesPage() {
     const userRole = localStorage.getItem('role');
@@ -72,7 +73,8 @@ export default function ResumesPage() {
                     direction: filters.direction.length > 0 ? filters.direction : undefined,
                     SortItem: filters.sortItem || undefined,
                     Order: filters.order || undefined,
-                }
+                },
+                paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
             });
             setResumes(response.data.resumes || []);
         } catch (err) {
@@ -451,28 +453,26 @@ export default function ResumesPage() {
                                                 </Select>
                                             </FormControl>)
                                             }
+                                            <ButtonGroup orientation={"vertical"} fullWidth  sx={{ mt: 1, py: 1.2 }}>
+                                                {userRole == 'Company' && (
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    disabled={!selectedVacancy}
+                                                    onClick={() => handleRespond(resume.id, selectedVacancy)}
+                                                >
+                                                    Откликнуться
+                                                </Button>)
+                                                }
 
-                                            <Button
-                                                variant="contained"
-                                                color="secondary"
-                                                fullWidth
-                                                sx={{ mt: 2, py: 1.2 }}
-                                                onClick={() => navigate(`/Company/Resumes/Info/${resume.id}`)}
-                                            >
-                                                Посмотреть подробнее
-                                            </Button>
-                                            {userRole == 'Company' && (
-                                            <Button
-                                                variant="contained"
-                                                color="primary"
-                                                fullWidth
-                                                disabled={!selectedVacancy}
-                                                onClick={() => handleRespond(resume.id, selectedVacancy)}
-                                                sx={{ mt: 1, py: 1.2 }}
-                                            >
-                                                Откликнуться
-                                            </Button>)
-                                            }
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => navigate(`/Company/Resumes/Info/${resume.id}`)}
+                                                >
+                                                    Посмотреть подробнее
+                                                </Button>
+                                            </ButtonGroup>
                                         </Box>
                                     </Box>
                                 </Paper>

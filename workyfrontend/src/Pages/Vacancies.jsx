@@ -17,10 +17,11 @@ import {
     Grid,
     Snackbar,
     Alert,
-    CircularProgress,
+    CircularProgress, ButtonGroup,
 } from '@mui/material';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import qs from 'qs';
 
 export default function VacanciesPage() {
     const [vacancies, setVacancies] = useState([]);
@@ -41,6 +42,11 @@ export default function VacanciesPage() {
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
     const [educationList, setEducationList] = useState([]); // Список образований
     const [availableFilters, setAvailableFilters] = useState([]);
+    const userRole = localStorage.getItem('role');
+
+    // const [vacancy, setVacancy] = useState(null);
+    const [myResumes, setMyResumes] = useState([]);
+    const [selectedResume, setSelectedResume] = useState('');
 
 
 
@@ -49,6 +55,7 @@ export default function VacanciesPage() {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('jwt');
+
                 const response = await axios.get('https://localhost:7106/api/v1/Worker/Vacancies', {
                     headers: { Authorization: `Bearer ${token}` },
                     params: {
@@ -59,10 +66,12 @@ export default function VacanciesPage() {
                         education: filters.education || undefined,
                         type: filters.type || undefined,
                         direction: filters.direction.length > 0 ? filters.direction : undefined,
+                        // direction: ['Backend', 'Django'],
                         SortItem: filters.sortItem || undefined,
                         Order: filters.order || undefined,
                         search: filters.search || undefined
-                    }
+                    },
+                    paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
                 });
                 setVacancies(response.data.resumes || []);
 
@@ -73,12 +82,12 @@ export default function VacanciesPage() {
                 setEducationList(educationResponse.data.education || []);
 
             } catch (err) {
-                console.error('Ошибка при загрузке вакансий:', err);
-                setSnackbar({
-                    open: true,
-                    message: 'Не удалось загрузить список вакансий',
-                    severity: 'error'
-                });
+                console.error('Ошибка при загрузке ваших вакансий:', err);
+                // setSnackbar({
+                //     open: true,
+                //     message: 'Не удалось загрузить список вакансий',
+                //     severity: 'error'
+                // });
             } finally {
                 setLoading(false);
             }
@@ -86,6 +95,27 @@ export default function VacanciesPage() {
         fetchData();
         fetchAvailableFilters();
     }, [filters]);
+
+    useEffect(() => {
+        const fetchMyResumes = async () => {
+            try {
+                const token = localStorage.getItem('jwt');
+                const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setMyResumes(response.data || []);
+            } catch (err) {
+                console.error('Ошибка при загрузке резюме:', err);
+                setSnackbar({
+                    open: true,
+                    message: 'Не удалось загрузить ваши резюме',
+                    severity: 'error'
+                });
+            }
+        };
+
+        fetchMyResumes();
+    }, []);
 
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
@@ -127,6 +157,7 @@ export default function VacanciesPage() {
     };
 
     const applyFilters = () => {
+        console.log('Отправляемые фильтры:', filters);
         setFilters(filters);
     };
 
@@ -144,6 +175,40 @@ export default function VacanciesPage() {
             search: ''
         });
     };
+
+    const handleRespond = async (selectedResume, vacancyId) => {
+        if (!selectedResume || !vacancyId) return;
+
+        try {
+            const token = localStorage.getItem('jwt');
+            await axios.post(
+                'https://localhost:7106/api/v1/Worker/MakeFeedback',
+                {
+                    resume_id: selectedResume,
+                    vacancy_id: vacancyId
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            setSnackbar({
+                open: true,
+                message: 'Отклик успешно отправлен!',
+                severity: 'success'
+            });
+        } catch (err) {
+            console.error('Ошибка при отправке отклика:', err.response?.data || err.message);
+            setSnackbar({
+                open: true,
+                message: 'Ошибка при отправке отклика',
+                severity: 'error'
+            });
+        }
+    };
+
     if (loading) {
         return (
             <Box sx={{ p: 3, textAlign: 'center' }}>
@@ -314,7 +379,7 @@ export default function VacanciesPage() {
                     <Stack spacing={3}>
                         {vacancies.map(vacancy => (
                             <Paper key={vacancy.id} elevation={3} sx={{ p: 3, borderRadius: 3 }}>
-                                <Box display="flex" justifyContent="space-between" alignItems="start">
+                                <Box  display="flex" justifyContent="space-between" alignItems="start">
                                     {/* Левая часть: информация о вакансии */}
                                     <Box sx={{ flex: 1, mr: 2 }}>
                                         <Typography variant="h6" fontWeight="bold">
@@ -368,14 +433,53 @@ export default function VacanciesPage() {
 
                                     {/* Правая часть: действия */}
                                     <Box sx={{ flex: 1, ml: 2, minWidth: 200, textAlign: 'right' }}>
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            onClick={() => window.location.href = `/Worker/Vacancies/Info/${vacancy.id}`}
-                                            sx={{ py: 1.2 }}
-                                        >
-                                            Посмотреть подробнее
-                                        </Button>
+
+                                        {userRole == 'Worker' && (<FormControl fullWidth>
+                                            <InputLabel id="resume-select-label">Выберите резюме</InputLabel>
+                                            <Select
+                                                labelId="resume-select-label"
+                                                value={selectedResume}
+                                                onChange={(e) => setSelectedResume(e.target.value)}
+                                                label="Выберите резюме"
+                                            >
+                                                {myResumes.map(resume => (
+                                                    <MenuItem key={resume.id} value={resume.id}>
+                                                        <Box>
+                                                            <Typography variant="body2" fontWeight="bold">
+                                                                {resume.post || 'Без названия'}
+                                                            </Typography>
+                                                            <Typography variant="caption">
+                                                                Опыт: {resume.experience ?? '—'} лет
+                                                            </Typography>
+                                                            <Typography variant="caption">
+                                                                Желаемая зарплата: {resume.wantedSalary ?? '—'} ₽
+                                                            </Typography>
+                                                        </Box>
+                                                    </MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>)
+                                        }
+                                        <ButtonGroup orientation={"vertical"}  fullWidth sx={{ mt: 1, py: 1.2 }}>
+                                            {userRole == 'Worker' && (
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    disabled={!selectedResume}
+                                                    onClick={() => handleRespond(selectedResume, vacancy.id)}
+                                                >
+                                                    Откликнуться
+                                                </Button>)
+                                            }
+
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => window.location.href = `/Worker/Vacancies/Info/${vacancy.id}`}
+                                            >
+                                                Посмотреть подробнее
+                                            </Button>
+                                        </ButtonGroup>
                                     </Box>
                                 </Box>
                             </Paper>
