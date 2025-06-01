@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace Worky.Migrations;
@@ -23,11 +24,16 @@ public partial class Feedback
     
     [Column(TypeName = "enum")]
     public FeedbackStatus status { get; set; } = FeedbackStatus.InProgress;
+    [Column(TypeName = "date")]
+    public DateOnly income_date { get; set; }
 
+    [Newtonsoft.Json.JsonIgnore]
+    [JsonIgnore]
     [ForeignKey("resume_id")]
     [InverseProperty("Feedbacks")]
     public virtual Resume resume { get; set; } = null!;
-
+    [Newtonsoft.Json.JsonIgnore]
+    [JsonIgnore]
     [ForeignKey("vacancy_id")]
     [InverseProperty("Feedbacks")]
     public virtual Vacancy vacancy { get; set; } = null!;

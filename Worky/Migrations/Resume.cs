@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Worky.Migrations;
 
@@ -41,6 +42,7 @@ public partial class Resume
     public string post { get; set; } = null!;
 
     [InverseProperty("resume")]
+    [JsonIgnore]
     public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
     [InverseProperty("resume")]
@@ -52,5 +54,6 @@ public partial class Resume
 
     [ForeignKey("worker_id")]
     [InverseProperty("Resumes")]
+    [JsonIgnore]
     public virtual Worker? worker { get; set; }
 }

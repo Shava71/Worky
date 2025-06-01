@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Worky.Migrations;
 
@@ -24,7 +25,8 @@ public partial class Worker
 
     [Column(TypeName = "date")]
     public DateOnly birthday { get; set; }
-
+    
+    [JsonIgnore]
     [InverseProperty("worker")]
     public virtual ICollection<Resume> Resumes { get; set; } = new List<Resume>();
 }

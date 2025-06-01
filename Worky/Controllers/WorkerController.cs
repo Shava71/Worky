@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using Worky.Context;
@@ -22,16 +23,17 @@ namespace Worky.Controllers;
 [Route("api/v1/[controller]")]
 public class WorkerController : Controller
 {
-    
+    private readonly IConfiguration _configuration;
     private readonly WorkyDbContext _dbContext;
     UserManager<Users> _userManager;
     ILogger<CompanyController> _logger;
 
-    public WorkerController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager)
+    public WorkerController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager, IConfiguration configuration)
     {
         _dbContext = dbContext;
         _logger = logger;
         _userManager = userManager;
+        _configuration = configuration;
     }
     
     [AllowAnonymous]
@@ -666,15 +668,15 @@ public class WorkerController : Controller
             string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
-                var req = _dbContext.Resumes
-                    .Where(req => req.id == request.resume_id)
-                    .Select(req => req.worker_id).FirstOrDefault();
-                var worker = await _userManager.FindByIdAsync(req);
+                var req = _dbContext.Vacancies
+                    .Where(req => req.id == request.vacancy_id)
+                    .Select(req => req.company_id).FirstOrDefault();
+                var company = await _userManager.FindByIdAsync(req);
 
                 string username;
-                if (worker != null)
+                if (company != null)
                 {
-                    username = worker.UserName;
+                    username = company.UserName;
                 }
                 else
                 {
@@ -699,7 +701,48 @@ public class WorkerController : Controller
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occured while make feedbacks by company");
+            _logger.LogError(ex, "An error occured while make feedbacks by worker");
+            return BadRequest(500);
+        }
+    }
+
+    [HttpDelete("DeleteFeedback")]
+    public async Task<IActionResult> DeleteFeedback([FromQuery] ulong id)
+    {
+        // try
+        // {
+        //     string connectionString = _configuration.GetConnectionString("DefaultConnection");
+        //     using (IDbConnection db = new SqlConnection(connectionString))
+        //     {
+        //         string query = @"DELETE FROM Feedbacks WHERE id=@id";
+        //         await db.ExecuteAsync(query);
+        //         
+        //     }
+        //     return Ok($"Feedback id = {id} deleted");
+        // }
+        if (id == 0)
+            return BadRequest(new { Message = "Fail id." });
+
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var feedback = await _dbContext.Feedbacks
+            .Join(_dbContext.Resumes, feedback => feedback.resume_id, resume => resume.id , (feedback, resume) => new {feedback, resume})
+            .Where(f => f.feedback.id == id &&
+                        f.resume.worker_id == userId)
+            .FirstOrDefaultAsync();
+
+        if (feedback.feedback == null)
+            return NotFound(new { Message = "Feedback not found." });
+
+        try
+        {
+            _dbContext.Feedbacks.Remove(feedback.feedback);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occured while delete feedbacks by worker");
             return BadRequest(500);
         }
     }

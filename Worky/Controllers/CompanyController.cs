@@ -237,24 +237,40 @@ public class CompanyController : Controller
     {
         try
         {
-            var resumesQuery = _dbContext.Resumes
-                .Join(_dbContext.Resume_filters, // добавляем фильтры
-                    resume => resume.id,
-                    filter => filter.resume_id,
-                    (resume, filter) => new { resume, filter })
-                .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
-                    arg => arg.filter.typeOfActivity_id,
-                    activity => activity.id,
-                    (arg, activity) => new { arg.resume, arg.filter, activity }
-                )
-                .Join(_dbContext.Workers,
-                    arg => arg.resume.worker_id,
-                    worker => worker.id,
-                    (arg, worker) => new { arg.resume, arg.filter, arg.activity, worker }
-                )
-                .Where(r => r.resume.id == resumeId)
-                .AsNoTracking()
-                .AsQueryable(); //Коллекция резюме
+            // var resumesQuery = _dbContext.Resumes
+            //     .Join(_dbContext.Resume_filters, // добавляем фильтры
+            //         resume => resume.id,
+            //         filter => filter.resume_id,
+            //         (resume, filter) => new { resume, filter })
+            //     .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
+            //         arg => arg.filter.typeOfActivity_id,
+            //         activity => activity.id,
+            //         (arg, activity) => new { arg.resume, arg.filter, activity }
+            //     )
+            //     .Join(_dbContext.Workers,
+            //         arg => arg.resume.worker_id,
+            //         worker => worker.id,
+            //         (arg, worker) => new { arg.resume, arg.filter, arg.activity, worker }
+            //     )
+            //     .Where(r => r.resume.id == resumeId)
+            //     .AsNoTracking()
+            //     .AsQueryable(); //Коллекция резюме
+            
+            var resumesQuery = //перепись под left join
+                from resume in _dbContext.Resumes
+                where resume.id == resumeId
+                join worker in _dbContext.Workers
+                    on resume.worker_id equals worker.id
+                    
+                join filter in _dbContext.Resume_filters
+                    on resume.id equals filter.resume_id into filterGroup
+                from filter in filterGroup.DefaultIfEmpty()
+                
+                join activity in _dbContext.typeOfActivities
+                    on filter.typeOfActivity_id equals activity.id into activityGroup
+                from activity in activityGroup.DefaultIfEmpty()
+
+                select new { resume, filter, activity, worker };
 
             //фото профиля
             string? userId = resumesQuery.AsEnumerable().Select(r => r.worker.id).FirstOrDefault();
@@ -275,7 +291,7 @@ public class CompanyController : Controller
                     post = group.First().resume.post,
                     skill = group.First().resume.skill,
                     wantedSalary = group.First().resume.wantedSalary,
-                    activities = group.Select(g => new ActivityDtos
+                    activities = group.Where(g => g.activity != null).Select(g => new ActivityDtos
                     {
                         id = g.activity.id,
                         direction = g.activity.direction,
@@ -1081,4 +1097,212 @@ public class CompanyController : Controller
         }
     }
     
+    
+    
+    
+    [HttpGet("Statistics/json")]
+    public async Task<IActionResult> GetCompanyStatisticsJson([FromQuery] int start_year, [FromQuery] int start_month,[FromQuery] int end_year, [FromQuery] int end_month)
+    {
+        try
+        {
+            Guid currentUserId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            string companyId = currentUserId.ToString();
+
+            var startDate = new DateTime(start_year, start_month, 1);
+            var endDay = DateTime.DaysInMonth(end_year, end_month);
+            var endDate = new DateTime(end_year, end_month, endDay);
+
+            // Получаем все вакансии компании за период
+            var companyVacancies = await _dbContext.Vacancies
+                .Where(v => v.company_id == companyId)
+                .Select(v => v.id)
+                .ToListAsync();
+
+            if (!companyVacancies.Any())
+            {
+                return Ok(new
+                {
+                    VacancyCount = 0,
+                    TotalFeedbacks = 0,
+                    AcceptedFeedbacks = 0,
+                    RejectedFeedbacks = 0,
+                    AvgFeedbackPerVacancy = 0.0,
+                    Period = $"{startDate:MMMM yyyy} - {endDate:MMMM yyyy}",
+                    AcceptedWorkers = new List<WorkerDtos>()
+                });
+            }
+
+            // Все отклики по этим вакансиям
+            var feedbacks = await (
+                from f in _dbContext.Feedbacks
+                join v in _dbContext.Vacancies on f.vacancy_id equals v.id
+                join r in _dbContext.Resumes on f.resume_id equals r.id
+                join w in _dbContext.Workers on r.worker_id equals w.id
+                join u in _dbContext.Users on w.id equals u.Id
+                where companyVacancies.Contains(f.vacancy_id) 
+                      && f.income_date >= DateOnly.FromDateTime(startDate) && f.income_date <= DateOnly.FromDateTime(endDate)
+                select new
+                {
+                    Feedback = f,
+                    Vacancy = v,
+                    Resume = r,
+                    Worker = w,
+                    User = u
+                }
+            ).ToListAsync();
+            
+            DateTime today = DateTime.Now;
+            DateOnly dateOnly = new DateOnly(today.Year, today.Month, today.Day);
+            
+            // Собираем список принятых кандидатов (работников)
+            var acceptedWorkers = feedbacks
+                .Where(f => f.Feedback.status == FeedbackStatus.Accepted)
+                .Select(f => new WorkerDtos()
+                {
+                    id = f.Resume.worker.id,
+                    first_name = f.Resume.worker.first_name,
+                    second_name = f.Resume.worker.second_name,
+                    surname = f.Resume.worker.surname,
+                    
+                    email = f.User.Email,
+                    phone = f.User.PhoneNumber,
+                    age = (dateOnly.Year - f.Worker.birthday.Year)
+                    
+                })
+                .DistinctBy(w => w.id)
+                .ToList();
+
+            var totalFeedbacks = feedbacks.Count;
+            var acceptedFeedbacks = feedbacks.Count(f => f.Feedback.status == FeedbackStatus.Accepted);
+            var rejectedFeedbacks = feedbacks.Count(f => f.Feedback.status == FeedbackStatus.Cancelled); 
+
+            double avgFeedbackPerVacancy = Math.Round((double)totalFeedbacks / companyVacancies.Count, 2);
+            
+            return Ok(new
+            {
+                // fed = feedbacks.Select(f => f.Feedback),
+                // vac = companyVacancies
+                VacancyCount = companyVacancies.Count,
+                TotalFeedbacks = totalFeedbacks,
+                AcceptedFeedbacks = acceptedFeedbacks,
+                RejectedFeedbacks = rejectedFeedbacks,
+                AvgFeedbackPerVacancy = avgFeedbackPerVacancy,
+                Period = $"{startDate:MMMM yyyy} - {endDate:MMMM yyyy}",
+                AcceptedWorkers = acceptedWorkers,
+                
+                // log = feedbacks
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Ошибка при получении JSON-статистики компании");
+            return BadRequest("Произошла ошибка при загрузке статистики.");
+        }
+    }
+
+    [HttpGet("Statistics/pdf")]
+    public async Task<IActionResult> GetCompanyStatisticsPdf([FromQuery] int start_year, [FromQuery] int start_month,[FromQuery] int end_year, [FromQuery] int end_month)
+    {
+        try
+        {
+            // Вызываем JSON-метод для получения данных
+            var jsonResult = await GetCompanyStatisticsJson(start_year, start_month, end_year, end_month) as OkObjectResult;
+
+            if (jsonResult?.Value == null)
+            {
+                return StatusCode(500, "Не удалось получить данные статистики");
+            }
+
+            dynamic data = jsonResult.Value;
+
+            byte[] pdfBytes = Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Size(PageSizes.A4);
+                    page.Margin(2, Unit.Centimetre);
+                    page.DefaultTextStyle(x => x.FontSize(12));
+
+                    // Заголовок
+                    page.Header()
+                        .Text($"Статистика компании за {data.Period}")
+                        .FontSize(18).Bold().AlignCenter();
+
+                    // Содержание
+                    page.Content()
+                        .Column(column =>
+                        {
+                            column.Item().Text($"Количество опубликованных вакансий: {data.VacancyCount}")
+                                .FontSize(14);
+
+                            column.Item().Text($"Общее количество откликов: {data.TotalFeedbacks}")
+                                .FontSize(14);
+
+                            column.Item().Text($"Принятые отклики: {data.AcceptedFeedbacks}")
+                                .FontSize(14);
+
+                            column.Item().Text($"Отклоненные отклики: {data.RejectedFeedbacks}")
+                                .FontSize(14);
+
+                            column.Item().Text($"Среднее количество откликов на вакансию: {data.AvgFeedbackPerVacancy}")
+                                .FontSize(14);
+
+                            column.Item().PaddingTop(20).Text("Принятые сотрудники:")
+                                .FontSize(16).Bold();
+
+                            if (data.AcceptedWorkers.Count > 0)
+                            {
+                                column.Item().Table(table =>
+                                {
+                                    table.ColumnsDefinition(columns =>
+                                    {
+                                        columns.RelativeColumn(3);
+                                        columns.RelativeColumn(2);
+                                        columns.RelativeColumn(2);
+                                        columns.RelativeColumn(1);
+                                    });
+
+                                    table.Header(header =>
+                                    {
+                                        header.Cell().Text("ФИО").SemiBold().FontSize(12);
+                                        header.Cell().Text("Email").SemiBold().FontSize(12);
+                                        header.Cell().Text("Телефон").SemiBold().FontSize(12);
+                                        header.Cell().Text("Возраст").SemiBold().FontSize(12);
+                                    });
+                                    
+                                    foreach (var worker in data.AcceptedWorkers)
+                                    {
+                                        table.Cell().Text($"{worker.first_name} {worker.second_name} {worker.surname}");
+                                        table.Cell().Text($"{worker.email}");
+                                        table.Cell().Text($"{worker.phone}");
+                                        table.Cell().Text($"{worker.age.ToString()}");
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                column.Item().PaddingTop(10)
+                                    .Text("За этот период никто не был принят.")
+                                    .Italic()
+                                    .FontSize(12);
+                            }
+                        });
+
+                    // Футер
+                    page.Footer()
+                        .AlignCenter()
+                        .Text("Worky - платформа трудоустройства")
+                        .FontSize(10)
+                        .Italic();
+                });
+            }).GeneratePdf();
+
+            return File(pdfBytes, "application/pdf", $"statistics_{data.Period}.pdf");
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Ошибка при генерации PDF-статистики");
+            return StatusCode(500, "Внутренняя ошибка сервера при генерации PDF.");
+        }
+    }
 }

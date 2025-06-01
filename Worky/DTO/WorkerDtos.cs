@@ -15,4 +15,8 @@ public class WorkerDtos
     [Required] public DateOnly birthday { get; set; }
     [Required]
     public byte[]? image { get; set; }
+    
+    public string? email { get; set; }
+    public string? phone { get; set; }
+    public int? age { get; set; }
 }
