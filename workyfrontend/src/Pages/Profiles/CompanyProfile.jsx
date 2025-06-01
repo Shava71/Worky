@@ -16,6 +16,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from 'dayjs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import SelectDateCompanyFeedbackStatistics from "../../Components/SelectDateCompanyFeedbackStatistics.jsx";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -300,6 +301,7 @@ export default function CompanyProfile() {
                         size="large"
                     />
                 </Box>
+                <SelectDateCompanyFeedbackStatistics></SelectDateCompanyFeedbackStatistics>
             </Box>
         </Box>
     );
