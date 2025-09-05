@@ -27,5 +27,5 @@ public partial class Manager_filter
 
     [ForeignKey("typeOfActivity_id")]
     [InverseProperty("Manager_filters")]
-    public virtual typeOfActivity typeOfActivity { get; set; } = null!;
+    public virtual TypeOfActivity typeOfActivity { get; set; } = null!;
 }

@@ -6,13 +6,9 @@ namespace Worky.DTO;
 
 public class CompanyProfileDtos
 {
-    [Required]
-    public Users user { get; set; }
-    [Required]
-    public CompanyDto company { get; set; }
-    [Required]
-
-    public List<DealDto> deals { get; set; }
+    [Required] public Users user { get; set; }
+    [Required] public CompanyDto company { get; set; }
+    [Required] public List<DealDto> deals { get; set; }
 }
 
 public class DealDto

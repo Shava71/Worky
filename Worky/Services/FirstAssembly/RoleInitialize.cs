@@ -27,7 +27,6 @@ public static class RoleInitialize
                     Id = Guid.NewGuid().ToString(),
                     Name = role,
                     NormalizedName = role.ToUpper(),
-                    
                 };
                 logger.LogInformation($"RoleID: {newRole.Id}");
 

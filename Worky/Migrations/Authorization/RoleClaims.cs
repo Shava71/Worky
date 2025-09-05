@@ -10,20 +10,16 @@ namespace Worky.Migrations;
 [Index("RoleId", Name = "IX_AspNetRoleClaims_RoleId")]
 public partial class RoleClaims : IdentityRoleClaim<string>
 {
-    [Key]
-    [Column(TypeName = "int(11)")]
-    public int Id { get; set; }
+    [Key] [Column(TypeName = "int(11)")] public int Id { get; set; }
 
     [StringLength(450)]
     [MySqlCharSet("utf8mb3")]
     [MySqlCollation("utf8mb3_uca1400_ai_ci")]
     public string RoleId { get; set; } = null!;
 
-    [Column(TypeName = "text")]
-    public string? ClaimType { get; set; }
+    [Column(TypeName = "text")] public string? ClaimType { get; set; }
 
-    [Column(TypeName = "text")]
-    public string? ClaimValue { get; set; }
+    [Column(TypeName = "text")] public string? ClaimValue { get; set; }
 
     [ForeignKey("RoleId")]
     [InverseProperty("AspNetRoleClaims")]

@@ -17,39 +17,31 @@ public partial class Vacancy
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong id { get; set; }
 
-    [StringLength(450)]
-    public string? company_id { get; set; }
+    [StringLength(450)] public string? company_id { get; set; }
 
-    [StringLength(100)]
-    public string post { get; set; } = null!;
+    [StringLength(100)] public string post { get; set; } = null!;
 
-    [Column(TypeName = "int(11)")]
-    public int min_salary { get; set; }
+    [Column(TypeName = "int(11)")] public int min_salary { get; set; }
 
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong education_id { get; set; }
 
-    [Column(TypeName = "smallint(6)")]
-    public short? experience { get; set; }
+    [Column(TypeName = "smallint(6)")] public short? experience { get; set; }
 
-    [Column(TypeName = "text")]
-    public string? description { get; set; }
+    [Column(TypeName = "text")] public string? description { get; set; }
 
-    [Column(TypeName = "datetime")]
-    public DateTime income_date { get; set; }
+    [Column(TypeName = "datetime")] public DateTime income_date { get; set; }
 
-    [Column(TypeName = "int(11)")]
-    public int? max_salary { get; set; }
+    [Column(TypeName = "int(11)")] public int? max_salary { get; set; }
 
-    [InverseProperty("vacancy")]
-    public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
+    [InverseProperty("vacancy")] public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
     [InverseProperty("vacancy")]
     public virtual ICollection<Vacancy_filter> Vacancy_filters { get; set; } = new List<Vacancy_filter>();
 
     [ForeignKey("company_id")]
     [InverseProperty("Vacancies")]
-    public virtual company? company { get; set; }
+    public virtual Company? company { get; set; }
 
     [ForeignKey("education_id")]
     [InverseProperty("Vacancies")]

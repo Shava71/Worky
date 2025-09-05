@@ -11,7 +11,6 @@ namespace Worky.Migrations;
 [Index("RoleId", Name = "IX_AspNetUserRoles_RoleId")]
 public partial class UserRoles : IdentityUserRole<string>
 {
-    
     // [Key]
     // [StringLength(450)]
     // [MySqlCharSet("utf8mb3")]
@@ -23,12 +22,8 @@ public partial class UserRoles : IdentityUserRole<string>
     // [MySqlCharSet("utf8mb3")]
     // [MySqlCollation("utf8mb3_uca1400_ai_ci")]
     // public string RoleId { get; set; } = null!;
-    
-    [ForeignKey("UserId")]
-    public virtual Users User { get; set; } = null!;
-    
-    [ForeignKey("RoleId")]
-    public virtual Roles Role { get; set; } = null!;
 
-   
+    [ForeignKey("UserId")] public virtual Users User { get; set; } = null!;
+
+    [ForeignKey("RoleId")] public virtual Roles Role { get; set; } = null!;
 }

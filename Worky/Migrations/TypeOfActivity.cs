@@ -8,17 +8,15 @@ namespace Worky.Migrations;
 
 [Table("typeOfActivity")]
 [Index("direction", "type", Name = "idx_direction_type")]
-public partial class typeOfActivity
+public partial class TypeOfActivity
 {
     [Key]
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong id { get; set; }
 
-    [StringLength(100)]
-    public string direction { get; set; } = null!;
+    [StringLength(100)] public string direction { get; set; } = null!;
 
-    [StringLength(100)]
-    public string type { get; set; } = null!;
+    [StringLength(100)] public string type { get; set; } = null!;
 
     [InverseProperty("typeOfActivity")]
     public virtual ICollection<Manager_filter> Manager_filters { get; set; } = new List<Manager_filter>();

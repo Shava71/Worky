@@ -15,18 +15,18 @@ public class GetInfo : Controller
         _dbContext = dbContext;
         _logger = logger;
     }
-    
+
     [HttpGet("Education")]
     public async Task<IActionResult> GetEducation()
     {
         try
         {
             var edu = _dbContext.Educations.ToList();
-            return Ok(new {education = edu});
+            return Ok(new { education = edu });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex,"An error occured while show resumes by company");
+            _logger.LogError(ex, "An error occured while show resumes by company");
             return BadRequest(500);
         }
     }
@@ -37,13 +37,12 @@ public class GetInfo : Controller
         try
         {
             var fil = _dbContext.typeOfActivities.OrderBy(f => f.type).ToList();
-            return Ok(new {filters = fil});
+            return Ok(new { filters = fil });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex,"An error occured while show resumes by company");
+            _logger.LogError(ex, "An error occured while show resumes by company");
             return BadRequest(500);
         }
     }
-    
 }

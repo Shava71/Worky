@@ -7,6 +7,6 @@ public class UpdateVacancy
     public decimal? MinSalary { get; set; }
     public decimal? MaxSalary { get; set; }
     public int? EducationId { get; set; }
-    public string? Experience { get; set; }  
+    public string? Experience { get; set; }
     public string? Description { get; set; }
 }

@@ -19,23 +19,20 @@ public partial class Deal
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong tariff_id { get; set; }
 
-    [StringLength(450)]
-    public string? company_id { get; set; }
+    [StringLength(450)] public string? company_id { get; set; }
 
     public bool status { get; set; }
-    
+
     public DateOnly date_start { get; set; }
-    
+
     public DateOnly date_end { get; set; }
 
-    [Column(TypeName = "int(11)")]
-
-    public int sum { get; set; }
+    [Column(TypeName = "int(11)")] public int sum { get; set; }
 
     [ForeignKey("company_id")]
     [InverseProperty("Deals")]
     [JsonIgnore]
-    public virtual company? company { get; set; }
+    public virtual Company? company { get; set; }
 
     [ForeignKey("tariff_id")]
     [InverseProperty("Deals")]

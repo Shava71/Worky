@@ -28,8 +28,7 @@ public partial class UserTokens : IdentityUserToken<string>
     [MySqlCollation("utf8mb3_uca1400_ai_ci")]
     public string Name { get; set; } = null!;
 
-    [Column(TypeName = "text")]
-    public string? Value { get; set; }
+    [Column(TypeName = "text")] public string? Value { get; set; }
 
     [ForeignKey("UserId")]
     [InverseProperty("AspNetUserTokens")]

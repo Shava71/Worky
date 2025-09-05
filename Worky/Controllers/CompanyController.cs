@@ -16,7 +16,6 @@ using Worky.Contracts;
 using Worky.DTO;
 using Worky.Migrations;
 using Worky.Models;
-
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -38,7 +37,8 @@ public class CompanyController : Controller
     UserManager<Users> _userManager;
     ILogger<CompanyController> _logger;
 
-    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager)
+    public CompanyController(WorkyDbContext dbContext, ILogger<CompanyController> logger,
+        UserManager<Users> userManager)
     {
         _dbContext = dbContext;
         _logger = logger;
@@ -51,7 +51,7 @@ public class CompanyController : Controller
     //     var Resumes = _db.Resumes.ToList();
     //     return Ok(Resumes);
     // }
-    
+
     [AllowAnonymous]
     [HttpGet("Resumes")]
     public async Task<IActionResult> FilterResume([FromQuery] GetResumesRequest? request)
@@ -69,12 +69,12 @@ public class CompanyController : Controller
                 .Join(_dbContext.Resume_filters, // добавляем фильтры
                     resume => resume.id,
                     filter => filter.resume_id,
-                    (resume, filter) => new {resume, filter})
+                    (resume, filter) => new { resume, filter })
                 .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
                     arg => arg.filter.typeOfActivity_id,
                     activity => activity.id,
-                    (arg, activity) => new {arg.resume, arg.filter, activity}
-                    )
+                    (arg, activity) => new { arg.resume, arg.filter, activity }
+                )
                 .AsNoTracking()
                 .AsQueryable(); //Коллекция резюме
             // Поиск по id
@@ -83,36 +83,42 @@ public class CompanyController : Controller
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.id == request.id);
             }
+
             // Минимальный опыт работы
             if ((bool)request?.min_experience.HasValue)
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.experience >= request.min_experience);
             }
+
             // Максимальный опыт работы
             if ((bool)request?.max_experience.HasValue)
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.experience <= request.max_experience);
             }
+
             // Сортировка по городу
             if (!string.IsNullOrWhiteSpace(request?.city))
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.city.ToLower().Contains(request.city.ToLower()));
             }
+
             // Сортировка по минимальной желаемой зарплате
-            if((bool)request?.min_wantedSalary.HasValue)
+            if ((bool)request?.min_wantedSalary.HasValue)
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.wantedSalary >= request.min_wantedSalary);
             }
+
             // Сортировка по максимальной желаемой зарплате
             if ((bool)request?.max_wantedSalary.HasValue)
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.wantedSalary <= request.max_wantedSalary);
             }
+
             // Сортировка по дате
             if (!string.IsNullOrWhiteSpace(request?.income_date.ToString()))
             {
@@ -122,18 +128,21 @@ public class CompanyController : Controller
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.income_date >= date && r.resume.income_date < nextDate);
             }
+
             // Сортировка по образованию
             if ((bool)request?.education.HasValue)
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.resume.education_id == (ulong?)request.education);
             }
+
             // Сортировка по виду деятельности
             if (!string.IsNullOrWhiteSpace(request?.type))
             {
                 resumesQuery = resumesQuery
                     .Where(r => r.activity.type == request.type);
             }
+
             // Сортировка по направлению вида деятельности
             if (request?.direction is { Count: > 0 })
             {
@@ -144,6 +153,7 @@ public class CompanyController : Controller
                 resumesQuery = resumesQuery
                     .Where(r => resumesIdDirection.Contains(r.resume.id));
             }
+
             // Столбец сортировки
             // Expression<Func<Resume, object>> selectorKey = request.SortItem?.ToLower() switch
             // {
@@ -174,7 +184,7 @@ public class CompanyController : Controller
                         _ => resumesQuery.OrderBy(x => x.resume.id)
                     };
             }
-            
+
             // var groupedResumesDtos = resumesQuery
             //     .AsEnumerable()
             //     .GroupBy(x => x.resume.id)
@@ -183,7 +193,7 @@ public class CompanyController : Controller
             //         resume = group.Select(g => g.resume).FirstOrDefault(),
             //         activity = group.Select(g => g.activity).Distinct().OrderBy(g => g.direction).ToList()
             //     }).ToList();
-            
+
             var groupedResumesDtos = resumesQuery
                 .AsEnumerable()
                 .GroupBy(x => x.resume.id)
@@ -205,7 +215,7 @@ public class CompanyController : Controller
                         type = g.activity.type,
                     }).Distinct().ToList()
                 }).ToList();
-            
+
             // var groupedResumesDtos = resumesQuery.Select(r => new ResumeDtos
             // {
             //     id = r.resume.id,
@@ -220,17 +230,17 @@ public class CompanyController : Controller
             //     activities = 
             //     
             // })
-    
-            return Ok(new {resumes = groupedResumesDtos});
+
+            return Ok(new { resumes = groupedResumesDtos });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex,"An error occured while show resumes by company");
+            _logger.LogError(ex, "An error occured while show resumes by company");
             return BadRequest(500);
         }
     }
-    
-    
+
+
     [AllowAnonymous]
     [HttpGet("Resumes/Info")]
     public async Task<ActionResult> GetResumeInfo([FromQuery] ulong resumeId)
@@ -255,21 +265,18 @@ public class CompanyController : Controller
             //     .Where(r => r.resume.id == resumeId)
             //     .AsNoTracking()
             //     .AsQueryable(); //Коллекция резюме
-            
+
             var resumesQuery = //перепись под left join
                 from resume in _dbContext.Resumes
                 where resume.id == resumeId
                 join worker in _dbContext.Workers
                     on resume.worker_id equals worker.id
-                    
                 join filter in _dbContext.Resume_filters
                     on resume.id equals filter.resume_id into filterGroup
                 from filter in filterGroup.DefaultIfEmpty()
-                
                 join activity in _dbContext.typeOfActivities
                     on filter.typeOfActivity_id equals activity.id into activityGroup
                 from activity in activityGroup.DefaultIfEmpty()
-
                 select new { resume, filter, activity, worker };
 
             //фото профиля
@@ -306,7 +313,6 @@ public class CompanyController : Controller
                         image = image,
                         birthday = group.First().worker.birthday,
                     }
-
                 }).ToList();
             return Ok(new { resume = groupedResumesDtos });
         }
@@ -330,7 +336,8 @@ public class CompanyController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
@@ -349,7 +356,7 @@ public class CompanyController : Controller
                 foreach (var row in result)
                 {
                     ulong id = (ulong)row.id;
-                    
+
                     if (!vacancyDict.TryGetValue(id, out var vacancy))
                     {
                         vacancy = new VacancyDtos
@@ -376,7 +383,6 @@ public class CompanyController : Controller
                             type = row.a_type,
                             direction = row.a_direction,
                             filter_id = row.filter_id,
-                            
                         };
                         vacancy.activities!.Add(activity);
                     }
@@ -387,6 +393,7 @@ public class CompanyController : Controller
                 {
                     vacancyDto = vacancyDto.Where(v => v.id == vacancyId).ToList();
                 }
+
                 return Ok(vacancyDto);
             }
         }
@@ -396,14 +403,12 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpPost("CreateVacancy")]
     public async Task<ActionResult> CreateVacancy([FromBody] CreateVacancy newVacancy)
     {
         try
         {
-           
-            
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             Users userDB = _dbContext.Users.FirstOrDefault(u => u.Id == currentIdUser.ToString())!;
             var user = new
@@ -411,35 +416,42 @@ public class CompanyController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            
+
             DateTime dateTime = DateTime.UtcNow.Date;
             DateOnly curDate = DateOnly.FromDateTime(dateTime);
             var curDeal = _dbContext.Deals.FirstOrDefault(d => d.status == true &&
-                curDate >= d.date_start&&
-                curDate <= d.date_end &&
-                d.company_id == currentIdUser.ToString());
+                                                               curDate >= d.date_start &&
+                                                               curDate <= d.date_end &&
+                                                               d.company_id == currentIdUser.ToString());
             if (curDeal == null)
             {
                 return NotFound("No current deal");
             }
-            
-            int vacancyCountTarrif = _dbContext.Tarrifs.Where(t => t.id == curDeal.tariff_id).Select(t => t.vacancy_count).FirstOrDefault();
+
+            int vacancyCountTarrif = _dbContext.Tarrifs.Where(t => t.id == curDeal.tariff_id)
+                .Select(t => t.vacancy_count).FirstOrDefault();
             int vacancyCountUser = _dbContext.Vacancies.Count(v => v.company_id == currentIdUser.ToString());
             if (vacancyCountUser >= vacancyCountTarrif)
             {
                 return BadRequest("Vacancy count is too big");
             }
-            
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery =
                     "INSERT INTO vacancy_cur_user(company_id, post, min_salary, max_salary, education_id, experience, description,income_date,createdBy)" +
                     "values(@company_id,@post,@min_salary,@max_salary,@education_id,@experience,@description,CURRENT_TIMESTAMP(),substring_index(user(),'@',1));" +
                     "SELECT LAST_INSERT_ID();";
-                ulong id = await db.ExecuteScalarAsync<ulong>(sqlQuery, new {company_id = currentIdUser, newVacancy.post, newVacancy.min_salary, newVacancy.max_salary, newVacancy.education_id, newVacancy.experience,newVacancy.description});
-                
+                ulong id = await db.ExecuteScalarAsync<ulong>(sqlQuery,
+                    new
+                    {
+                        company_id = currentIdUser, newVacancy.post, newVacancy.min_salary, newVacancy.max_salary,
+                        newVacancy.education_id, newVacancy.experience, newVacancy.description
+                    });
+
                 return Ok(new { id = id });
             }
         }
@@ -449,7 +461,7 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpPut("UpdateVacancy")]
     public async Task<ActionResult> UpdateVacancy([FromBody] UpdateVacancy updatedVacancy)
     {
@@ -465,11 +477,11 @@ public class CompanyController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
 
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
-
                 string updateSql = @"
                     UPDATE vacancy_cur_user 
                     SET 
@@ -506,7 +518,7 @@ public class CompanyController : Controller
             return StatusCode(500, "Internal server error");
         }
     }
-    
+
     [HttpDelete("DeleteVacancy")]
     public async Task<ActionResult> DeleteVacancy([FromQuery] ulong vacancyId)
     {
@@ -514,15 +526,16 @@ public class CompanyController : Controller
         {
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             Users userDB = _dbContext.Users.FirstOrDefault(u => u.Id == currentIdUser.ToString())!;
-        
+
             var user = new
             {
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
-        
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 // Удаляем вакансию
@@ -554,7 +567,8 @@ public class CompanyController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 List<ulong> id = new List<ulong>();
@@ -568,13 +582,16 @@ public class CompanyController : Controller
                     );
                     SELECT LAST_INSERT_ID();
                     ";
-                    ulong cur_id = await db.ExecuteScalarAsync<ulong>(sqlQuery, new {vacancy_id = newFilter.id, typeOfActivity_id = activity_id});
+                    ulong cur_id = await db.ExecuteScalarAsync<ulong>(sqlQuery,
+                        new { vacancy_id = newFilter.id, typeOfActivity_id = activity_id });
                     id.Add(cur_id);
                 }
-               
-                
+
+
                 return Ok(new { id = id });
-            };
+            }
+
+            ;
         }
         catch (Exception ex)
         {
@@ -595,14 +612,15 @@ public class CompanyController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
                 DELETE FROM Vacancy_filter WHERE filter_id = @filterId;
                 ";
-                int rowCount = await db.ExecuteAsync(sqlQuery, new {filterId = filterId});
-                
+                int rowCount = await db.ExecuteAsync(sqlQuery, new { filterId = filterId });
+
                 if (rowCount == 0)
                     return StatusCode(500, "Failed to delete vacancy");
                 return Ok("filter deleted");
@@ -614,7 +632,7 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [AllowAnonymous]
     [HttpGet("Tarrif")]
     public async Task<IActionResult> GetTarrif([FromQuery] ulong? tariffId)
@@ -627,7 +645,8 @@ public class CompanyController : Controller
             {
                 tarrifs = tarrifs.Where(t => t.id == tariffId).ToList();
             }
-            return Ok(new { tarrifs = tarrifs});
+
+            return Ok(new { tarrifs = tarrifs });
         }
         catch (Exception ex)
         {
@@ -644,7 +663,7 @@ public class CompanyController : Controller
             DateTime dateTime = DateTime.UtcNow.Date;
             DateOnly curDate = DateOnly.FromDateTime(dateTime);
             int sum = _dbContext.Tarrifs.Where(t => t.id == request.tarrif_id).Select(t => t.price).FirstOrDefault();
-            
+
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             Deal newDeal = new Deal()
             {
@@ -657,7 +676,7 @@ public class CompanyController : Controller
             };
             await _dbContext.Deals.AddAsync(newDeal);
             await _dbContext.SaveChangesAsync();
-            return Ok(new { id = newDeal.id});
+            return Ok(new { id = newDeal.id });
         }
         catch (Exception ex)
         {
@@ -673,7 +692,7 @@ public class CompanyController : Controller
         {
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             Users user = _userManager.FindByIdAsync(currentIdUser.ToString()).Result!;
-            company company = _dbContext.companies.FirstOrDefault(c => c.id == currentIdUser.ToString())!;
+            Company company = _dbContext.companies.FirstOrDefault(c => c.id == currentIdUser.ToString())!;
             CompanyDto companyDto = new CompanyDto
             {
                 id = company.id,
@@ -682,8 +701,7 @@ public class CompanyController : Controller
                 phoneNumber = company.phoneNumber,
                 website = company.website,
                 latitude = company.office_coord?.Y.ToString(CultureInfo.InvariantCulture), // Широта (Y)
-                longitude = company.office_coord?.X.ToString(CultureInfo.InvariantCulture)  // Долгота (X)
-               
+                longitude = company.office_coord?.X.ToString(CultureInfo.InvariantCulture) // Долгота (X)
             };
             List<DealDto> dealsDto = _dbContext.Deals
                 .Where(d => d.company_id == currentIdUser.ToString())
@@ -697,7 +715,7 @@ public class CompanyController : Controller
                     date_end = d.date_end,
                     sum = d.sum
                 }).ToList();
-            
+
             return Ok(new CompanyProfileDtos
             {
                 company = companyDto,
@@ -711,7 +729,7 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpGet("GetFeedback")]
     public async Task<IActionResult> GetFeedback([FromQuery] ulong? vacancyId)
     {
@@ -732,13 +750,14 @@ public class CompanyController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
                 SELECT * FROM feedback_cur_user;
                  ";
-                
+
                 var feedbacks = await db.QueryAsync<Feedback>(sqlQuery);
 
                 // var newfeedbackDto = feedbacks.Select(f => new FeedbackDtos()
@@ -753,6 +772,7 @@ public class CompanyController : Controller
                     feedbacks = feedbacks
                         .Where(f => f.vacancy_id == vacancyId);
                 }
+
                 var newfeedbackDto = feedbacks.Select(f => new FeedbackDtos()
                 {
                     id = f.id,
@@ -761,7 +781,7 @@ public class CompanyController : Controller
                     status = f.status,
                 }).ToList();
 
-                return Ok(new {feedbacks = newfeedbackDto});
+                return Ok(new { feedbacks = newfeedbackDto });
             }
         }
         catch (Exception ex)
@@ -770,7 +790,7 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpPost("MakeFeedback")]
     public async Task<IActionResult> MakeFeedback([FromBody] MakeFeedbackRequest request)
     {
@@ -784,7 +804,8 @@ public class CompanyController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 var req = _dbContext.Resumes
@@ -801,7 +822,7 @@ public class CompanyController : Controller
                 {
                     username = "mac";
                 }
-                
+
                 string sqlQuery = @"
                 INSERT INTO feedback_cur_user(resume_id, vacancy_id, status, createdBy1, createdBy2)
                 values (@resume_id, @vacancy_id, @status, substring_index(USER(), '@',1), @createdBy2);
@@ -814,8 +835,8 @@ public class CompanyController : Controller
                     status = FeedbackStatus.InProgress.ToString(),
                     createdBy2 = username
                 });
-                
-                return Ok(new {id = id});    
+
+                return Ok(new { id = id });
             }
         }
         catch (Exception ex)
@@ -824,6 +845,7 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
+
     [HttpPost("ChangeFeedbackStatus")]
     public async Task<IActionResult> AcceptFeedback([FromBody] FeedbackStatusRequest request)
     {
@@ -844,7 +866,7 @@ public class CompanyController : Controller
                 string sqlQuery = @"
                     UPDATE feedback_cur_user SET status = @status WHERE id = @id;
                     ";
-                await db.ExecuteAsync(sqlQuery, new {status = request.status, id = request.feedback_id });
+                await db.ExecuteAsync(sqlQuery, new { status = request.status, id = request.feedback_id });
                 return Ok(new { id = request.feedback_id });
             }
         }
@@ -854,8 +876,8 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
-    
+
+
     [HttpGet("receipt/{dealId}")]
     public async Task<IActionResult> GetDealReceipt(ulong dealId)
     {
@@ -883,51 +905,51 @@ public class CompanyController : Controller
                 return BadRequest("Вы не можете получить чек по чужому договору");
 
             byte[] pdfBytes = Document.Create(container =>
+                {
+                    container.Page(page =>
                     {
-                        container.Page(page =>
-                        {
-                            page.Size(PageSizes.A4);
-                            page.Margin(2, Unit.Centimetre);
-                            page.DefaultTextStyle(x => x.FontSize(12).FontFamily("DejaVu"));
+                        page.Size(PageSizes.A4);
+                        page.Margin(2, Unit.Centimetre);
+                        page.DefaultTextStyle(x => x.FontSize(12).FontFamily("DejaVu"));
 
-                            page.Header()
-                                .Text($"Worky - Чек об оплате договора №{deal.Deal.id}")
-                                .FontSize(18).Bold().AlignCenter();
+                        page.Header()
+                            .Text($"Worky - Чек об оплате договора №{deal.Deal.id}")
+                            .FontSize(18).Bold().AlignCenter();
 
-                            page.Content()
-                                .PaddingVertical(1)
-                                .Stack(stack =>
-                                {
-                                    stack.Item().Text("Информация о компании").Bold();
-                                    stack.Item().Text($"Название: {deal.Company.name ?? "Неизвестная компания"}");
-                                    stack.Item().Text($"Email: {deal.Company.email ?? "—"}");
-                
-                                    stack.Item().PaddingTop(10).Text("Детали договора").Bold();
-                                    stack.Item().Text($"Дата начала: {deal.Deal.date_start:dd.MM.yyyy}");
-                                    stack.Item().Text($"Дата окончания: {deal.Deal.date_end:dd.MM.yyyy}");
-                                    stack.Item().Text($"Статус: {(deal.Deal.status ? "Оплачен" : "Не оплачен")}")
-                                        .FontColor(deal.Deal.status ? Colors.Green.Darken2 : Colors.Red.Darken2);
+                        page.Content()
+                            .PaddingVertical(1)
+                            .Stack(stack =>
+                            {
+                                stack.Item().Text("Информация о компании").Bold();
+                                stack.Item().Text($"Название: {deal.Company.name ?? "Неизвестная компания"}");
+                                stack.Item().Text($"Email: {deal.Company.email ?? "—"}");
 
-                                    stack.Item().PaddingTop(10).LineHorizontal(1);
+                                stack.Item().PaddingTop(10).Text("Детали договора").Bold();
+                                stack.Item().Text($"Дата начала: {deal.Deal.date_start:dd.MM.yyyy}");
+                                stack.Item().Text($"Дата окончания: {deal.Deal.date_end:dd.MM.yyyy}");
+                                stack.Item().Text($"Статус: {(deal.Deal.status ? "Оплачен" : "Не оплачен")}")
+                                    .FontColor(deal.Deal.status ? Colors.Green.Darken2 : Colors.Red.Darken2);
 
-                                    stack.Item().Text("Тариф").Bold();
-                                    stack.Item().Text($"Название: {deal.Tariff?.name ?? "—"}");
-                                    stack.Item().Text($"Описание: {deal.Tariff?.description ?? "—"}");
-                                    stack.Item().Text($"Количество вакансий: {deal.Tariff?.vacancy_count}");
-                                    stack.Item().Text($"Цена за месяц: {deal.Tariff?.price} ₽");
-                                    stack.Item().Text($"Общая сумма: {deal.Deal.sum} ₽")
-                                        .FontSize(14).Bold().AlignCenter();
-                                });
+                                stack.Item().PaddingTop(10).LineHorizontal(1);
 
-                            page.Footer()
-                                .AlignCenter()
-                                .Text("Спасибо за сотрудничество!")
-                                .Italic()
-                                .FontSize(10);
-                        });
-                    })
-                    .GeneratePdf();
-        
+                                stack.Item().Text("Тариф").Bold();
+                                stack.Item().Text($"Название: {deal.Tariff?.name ?? "—"}");
+                                stack.Item().Text($"Описание: {deal.Tariff?.description ?? "—"}");
+                                stack.Item().Text($"Количество вакансий: {deal.Tariff?.vacancy_count}");
+                                stack.Item().Text($"Цена за месяц: {deal.Tariff?.price} ₽");
+                                stack.Item().Text($"Общая сумма: {deal.Deal.sum} ₽")
+                                    .FontSize(14).Bold().AlignCenter();
+                            });
+
+                        page.Footer()
+                            .AlignCenter()
+                            .Text("Спасибо за сотрудничество!")
+                            .Italic()
+                            .FontSize(10);
+                    });
+                })
+                .GeneratePdf();
+
 
             var fileName = $"deal_{dealId}_receipt.pdf";
             return File(pdfBytes, "application/pdf", fileName);
@@ -952,24 +974,24 @@ public class CompanyController : Controller
             };
 
             var vacanciesQuery = _dbContext.Vacancies
-                .Join(_dbContext.Vacancy_filters, 
+                .Join(_dbContext.Vacancy_filters,
                     vacancy => vacancy.id,
                     filter => filter.vacancy_id,
                     (vacancy, filter) => new { vacancy, filter })
-                .Join(_dbContext.typeOfActivities, 
+                .Join(_dbContext.typeOfActivities,
                     arg => arg.filter.typeOfActivity_id,
                     activity => activity.id,
                     (arg, activity) => new { arg.vacancy, arg.filter, activity }
                 )
                 .Join(_dbContext.companies,
                     arg => arg.vacancy.company_id,
-                    company =>  company.id,
+                    company => company.id,
                     (arg, company) => new { arg.vacancy, arg.filter, arg.activity, company }
                 )
                 .Where(r => r.vacancy.id == vacancyId)
                 .AsNoTracking()
                 .AsQueryable();
-            
+
             string? userId = vacanciesQuery.AsEnumerable().Select(r => r.company.id).FirstOrDefault();
             if (userId != currentIdUser.ToString())
             {
@@ -1004,14 +1026,15 @@ public class CompanyController : Controller
                         email = group.First().company.email,
                         phoneNumber = group.First().company?.phoneNumber,
                         website = group.First().company?.website,
-                        latitude = group.First().company.office_coord?.Y.ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
-                        longitude =  group.First().company.office_coord?.X.ToString(CultureInfo.InvariantCulture)!  // Долгота (X)
+                        latitude = group.First().company.office_coord?.Y
+                            .ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
+                        longitude = group.First().company.office_coord?.X
+                            .ToString(CultureInfo.InvariantCulture)! // Долгота (X)
                     }
-
                 }).First()!;
-            
+
             // byte[] qrBytes = await _qrCode.CreateQRcode($"https://worky.ru/vacancies/Info?vacancyId={vacancyId}");
-            
+
             byte[] flyer = Document.Create(container =>
                 {
                     container.Page(page =>
@@ -1024,7 +1047,7 @@ public class CompanyController : Controller
                             .Text(
                                 $"Worky - Флайер на ваканцию \"{groupedResumesDtos.post}\" от компании \"{groupedResumesDtos.company.name}\"")
                             .AlignCenter().FontSize(18).Bold();
-                        
+
                         page.Content().PaddingVertical(1).Column(descriptor =>
                         {
                             descriptor.Item().Text("Информация о компании").SemiBold().FontSize(14);
@@ -1032,16 +1055,20 @@ public class CompanyController : Controller
                             descriptor.Item().Text($"Email: {groupedResumesDtos.company.email ?? "—"}");
                             descriptor.Item().Text($"Телефон: {groupedResumesDtos.company.phoneNumber ?? "—"}");
                             descriptor.Item().Text($"Сайт: {groupedResumesDtos.company.website ?? "—"}");
-                            descriptor.Item().Text($"Адрес офиса: {groupedResumesDtos.company.latitude}, {groupedResumesDtos.company.longitude}");
+                            descriptor.Item()
+                                .Text(
+                                    $"Адрес офиса: {groupedResumesDtos.company.latitude}, {groupedResumesDtos.company.longitude}");
 
                             descriptor.Item().PaddingTop(15).LineHorizontal(1);
                             descriptor.Item().Text("Детали вакансии").SemiBold().FontSize(14);
                             descriptor.Item().Text($"Должность: {groupedResumesDtos.post}");
                             descriptor.Item().Text($"Описание: {groupedResumesDtos.description}");
                             descriptor.Item().Text($"Минимальная зарплата: {groupedResumesDtos.min_salary} ₽");
-                            descriptor.Item().Text($"Максимальная зарплата: {groupedResumesDtos.max_salary?.ToString() ?? "Не указана"} ₽");
+                            descriptor.Item()
+                                .Text(
+                                    $"Максимальная зарплата: {groupedResumesDtos.max_salary?.ToString() ?? "Не указана"} ₽");
                             descriptor.Item().Text($"Опыт работы: {groupedResumesDtos.experience} лет");
-                            
+
                             descriptor.Item().PaddingTop(15).LineHorizontal(1);
                             descriptor.Item().Text("Фильтры по направлениям").SemiBold().FontSize(14);
 
@@ -1054,7 +1081,7 @@ public class CompanyController : Controller
                             }
 
                             // descriptor.Item().Image(qrBytes);
-                            
+
                             descriptor.Item().Row(row =>
                             {
                                 row.ConstantItem(5, Unit.Centimetre)
@@ -1063,21 +1090,20 @@ public class CompanyController : Controller
                                     .Svg(size =>
                                     {
                                         var writer = new QRCodeWriter();
-                                        var qrCode = writer.encode(url, BarcodeFormat.QR_CODE, (int)size.Width, (int)size.Height);
+                                        var qrCode = writer.encode(url, BarcodeFormat.QR_CODE, (int)size.Width,
+                                            (int)size.Height);
                                         var renderer = new SvgRenderer { FontName = "Lato" };
                                         return renderer.Render(qrCode, BarcodeFormat.EAN_13, null).Content;
                                     });
                             });
-                            
+
                             // descriptor.Item()
                             //     .Image(data => data.Bytes(qrBytes))
                             //     .Width(150)
                             //     .Height(150)
                             //     .AlignCenter();
-                        
-
                         });
-                        
+
                         page.Footer()
                             .AlignCenter()
                             .Text("Created by Worky.ru")
@@ -1086,7 +1112,7 @@ public class CompanyController : Controller
                     });
                 })
                 .GeneratePdf();
-            
+
             var fileName = $"flyer_{vacancyId}.pdf";
             return File(flyer, "application/pdf", fileName);
         }
@@ -1096,12 +1122,11 @@ public class CompanyController : Controller
             return BadRequest(500);
         }
     }
-    
-    
-    
-    
+
+
     [HttpGet("Statistics/json")]
-    public async Task<IActionResult> GetCompanyStatisticsJson([FromQuery] int start_year, [FromQuery] int start_month,[FromQuery] int end_year, [FromQuery] int end_month)
+    public async Task<IActionResult> GetCompanyStatisticsJson([FromQuery] int start_year, [FromQuery] int start_month,
+        [FromQuery] int end_year, [FromQuery] int end_month)
     {
         try
         {
@@ -1139,8 +1164,9 @@ public class CompanyController : Controller
                 join r in _dbContext.Resumes on f.resume_id equals r.id
                 join w in _dbContext.Workers on r.worker_id equals w.id
                 join u in _dbContext.Users on w.id equals u.Id
-                where companyVacancies.Contains(f.vacancy_id) 
-                      && f.income_date >= DateOnly.FromDateTime(startDate) && f.income_date <= DateOnly.FromDateTime(endDate)
+                where companyVacancies.Contains(f.vacancy_id)
+                      && f.income_date >= DateOnly.FromDateTime(startDate) &&
+                      f.income_date <= DateOnly.FromDateTime(endDate)
                 select new
                 {
                     Feedback = f,
@@ -1150,10 +1176,10 @@ public class CompanyController : Controller
                     User = u
                 }
             ).ToListAsync();
-            
+
             DateTime today = DateTime.Now;
             DateOnly dateOnly = new DateOnly(today.Year, today.Month, today.Day);
-            
+
             // Собираем список принятых кандидатов (работников)
             var acceptedWorkers = feedbacks
                 .Where(f => f.Feedback.status == FeedbackStatus.Accepted)
@@ -1163,21 +1189,20 @@ public class CompanyController : Controller
                     first_name = f.Resume.worker.first_name,
                     second_name = f.Resume.worker.second_name,
                     surname = f.Resume.worker.surname,
-                    
+
                     email = f.User.Email,
                     phone = f.User.PhoneNumber,
                     age = (dateOnly.Year - f.Worker.birthday.Year)
-                    
                 })
                 .DistinctBy(w => w.id)
                 .ToList();
 
             var totalFeedbacks = feedbacks.Count;
             var acceptedFeedbacks = feedbacks.Count(f => f.Feedback.status == FeedbackStatus.Accepted);
-            var rejectedFeedbacks = feedbacks.Count(f => f.Feedback.status == FeedbackStatus.Cancelled); 
+            var rejectedFeedbacks = feedbacks.Count(f => f.Feedback.status == FeedbackStatus.Cancelled);
 
             double avgFeedbackPerVacancy = Math.Round((double)totalFeedbacks / companyVacancies.Count, 2);
-            
+
             return Ok(new
             {
                 // fed = feedbacks.Select(f => f.Feedback),
@@ -1189,7 +1214,7 @@ public class CompanyController : Controller
                 AvgFeedbackPerVacancy = avgFeedbackPerVacancy,
                 Period = $"{startDate:MMMM yyyy} - {endDate:MMMM yyyy}",
                 AcceptedWorkers = acceptedWorkers,
-                
+
                 // log = feedbacks
             });
         }
@@ -1201,12 +1226,14 @@ public class CompanyController : Controller
     }
 
     [HttpGet("Statistics/pdf")]
-    public async Task<IActionResult> GetCompanyStatisticsPdf([FromQuery] int start_year, [FromQuery] int start_month,[FromQuery] int end_year, [FromQuery] int end_month)
+    public async Task<IActionResult> GetCompanyStatisticsPdf([FromQuery] int start_year, [FromQuery] int start_month,
+        [FromQuery] int end_year, [FromQuery] int end_month)
     {
         try
         {
             // Вызываем JSON-метод для получения данных
-            var jsonResult = await GetCompanyStatisticsJson(start_year, start_month, end_year, end_month) as OkObjectResult;
+            var jsonResult =
+                await GetCompanyStatisticsJson(start_year, start_month, end_year, end_month) as OkObjectResult;
 
             if (jsonResult?.Value == null)
             {
@@ -1269,7 +1296,7 @@ public class CompanyController : Controller
                                         header.Cell().Text("Телефон").SemiBold().FontSize(12);
                                         header.Cell().Text("Возраст").SemiBold().FontSize(12);
                                     });
-                                    
+
                                     foreach (var worker in data.AcceptedWorkers)
                                     {
                                         table.Cell().Text($"{worker.first_name} {worker.second_name} {worker.surname}");

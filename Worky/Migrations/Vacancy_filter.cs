@@ -23,7 +23,7 @@ public partial class Vacancy_filter
 
     [ForeignKey("typeOfActivity_id")]
     [InverseProperty("Vacancy_filters")]
-    public virtual typeOfActivity typeOfActivity { get; set; } = null!;
+    public virtual TypeOfActivity typeOfActivity { get; set; } = null!;
 
     [ForeignKey("vacancy_id")]
     [InverseProperty("Vacancy_filters")]

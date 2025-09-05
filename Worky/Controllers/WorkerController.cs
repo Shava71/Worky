@@ -16,7 +16,6 @@ using Worky.Migrations;
 
 namespace Worky.Controllers;
 
-
 [Authorize(Roles = "Worker", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
@@ -28,14 +27,15 @@ public class WorkerController : Controller
     UserManager<Users> _userManager;
     ILogger<CompanyController> _logger;
 
-    public WorkerController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager, IConfiguration configuration)
+    public WorkerController(WorkyDbContext dbContext, ILogger<CompanyController> logger, UserManager<Users> userManager,
+        IConfiguration configuration)
     {
         _dbContext = dbContext;
         _logger = logger;
         _userManager = userManager;
         _configuration = configuration;
     }
-    
+
     [AllowAnonymous]
     [HttpGet("Vacancies")]
     public async Task<IActionResult> FilterVacancy([FromQuery] GetVacanciesRequest? request)
@@ -49,16 +49,16 @@ public class WorkerController : Controller
                 .Join(_dbContext.Vacancy_filters, // добавляем фильтры
                     vacancy => vacancy.id,
                     filter => filter.vacancy_id,
-                    (vacancy, filter) => new {vacancy, filter})
+                    (vacancy, filter) => new { vacancy, filter })
                 .Join(_dbContext.typeOfActivities, // добавляем имена к фильтрам
                     arg => arg.filter.typeOfActivity_id,
                     activity => activity.id,
-                    (arg, activity) => new {arg.vacancy, arg.filter, activity}
-                    )
+                    (arg, activity) => new { arg.vacancy, arg.filter, activity }
+                )
                 .Join(_dbContext.companies,
                     arg => arg.vacancy.company_id,
                     company => company.id,
-                    (arg, company) => new {arg.vacancy, arg.filter, arg.activity, company})
+                    (arg, company) => new { arg.vacancy, arg.filter, arg.activity, company })
                 .AsNoTracking()
                 .AsQueryable(); //Коллекция резюме
             // Поиск по id
@@ -67,12 +67,14 @@ public class WorkerController : Controller
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.id == request.id);
             }
+
             // Минимальный опыт работы
             if ((bool)request?.min_experience.HasValue)
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.experience >= request.min_experience);
             }
+
             // Максимальный опыт работы
             if ((bool)request?.max_experience.HasValue)
             {
@@ -85,23 +87,25 @@ public class WorkerController : Controller
             //     resumesQuery = resumesQuery
             //         .Where(r => r.resume.city.ToLower().Contains(request.city.ToLower()));
             // }
-            
+
             // Сортировка по минимальной желаемой зарплате
-            if((bool)request?.min_wantedSalary.HasValue)
+            if ((bool)request?.min_wantedSalary.HasValue)
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.min_salary >= request.min_wantedSalary
-                    || r.vacancy.max_salary >= request.min_wantedSalary
+                                || r.vacancy.max_salary >= request.min_wantedSalary
                     );
             }
+
             // Сортировка по максимальной желаемой зарплате
             if ((bool)request?.max_wantedSalary.HasValue)
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.min_salary <= request.max_wantedSalary
-                    || r.vacancy.max_salary <= request.max_wantedSalary
+                                || r.vacancy.max_salary <= request.max_wantedSalary
                     );
             }
+
             // Сортировка по дате
             if (!string.IsNullOrWhiteSpace(request?.income_date.ToString()))
             {
@@ -111,28 +115,33 @@ public class WorkerController : Controller
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.income_date >= date && r.vacancy.income_date < nextDate);
             }
+
             // Сортировка по образованию
             if ((bool)request?.education.HasValue)
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.vacancy.education_id == (ulong?)request.education);
             }
+
             // Сортировка по виду деятельности
             if (!string.IsNullOrWhiteSpace(request?.type))
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(r => r.activity.type == request.type);
             }
+
             // Сортировка по направлению вида деятельности
             if (request?.direction is { Count: > 0 })
             {
                 var vacanciesIdDirection = vacanciesQuery
-                    .Where(r => request.direction!.Contains(r.activity.direction)).Select(r => r.vacancy.id).ToHashSet();
+                    .Where(r => request.direction!.Contains(r.activity.direction)).Select(r => r.vacancy.id)
+                    .ToHashSet();
                 // resumesQuery = resumesQuery
                 //     .Where(r => request.direction!.Contains(r.activity.direction));
                 vacanciesQuery = vacanciesQuery
                     .Where(r => vacanciesIdDirection.Contains(r.vacancy.id));
             }
+
             if (!string.IsNullOrEmpty(request.SortItem))
             {
                 vacanciesQuery = request.Order?.ToLower() == "desc"
@@ -151,15 +160,17 @@ public class WorkerController : Controller
                         _ => vacanciesQuery.OrderBy(x => x.vacancy.id)
                     };
             }
+
             // Сортировка по имени компании, описанию, должности
             if (!string.IsNullOrEmpty(request.search))
             {
                 vacanciesQuery = vacanciesQuery
                     .Where(v => v.company.name.ToLower().Contains(request.search.ToLower())
-                    || v.vacancy.description.ToLower().Contains(request.search.ToLower())
-                    || v.vacancy.post.Contains(request.search.ToLower())
+                                || v.vacancy.description.ToLower().Contains(request.search.ToLower())
+                                || v.vacancy.post.Contains(request.search.ToLower())
                     );
             }
+
             var groupedResumesDtos = vacanciesQuery
                 .AsEnumerable()
                 .GroupBy(x => x.vacancy.id)
@@ -187,21 +198,23 @@ public class WorkerController : Controller
                         email = group.First().company.email,
                         phoneNumber = group.First().company?.phoneNumber,
                         website = group.First().company?.website,
-                        latitude = group.First().company.office_coord?.Y.ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
-                        longitude =  group.First().company.office_coord?.X.ToString(CultureInfo.InvariantCulture)!  // Долгота (X)
+                        latitude = group.First().company.office_coord?.Y
+                            .ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
+                        longitude = group.First().company.office_coord?.X
+                            .ToString(CultureInfo.InvariantCulture)! // Долгота (X)
                     }
                 }).ToList();
-    
-            return Ok(new {resumes = groupedResumesDtos});
+
+            return Ok(new { resumes = groupedResumesDtos });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex,"An error occured while show resumes by company");
+            _logger.LogError(ex, "An error occured while show resumes by company");
             return BadRequest(500);
         }
     }
-    
-    
+
+
     [AllowAnonymous]
     [HttpGet("Vacancies/Info")]
     public async Task<ActionResult> GetVacancyInfo([FromQuery] ulong vacancyId)
@@ -220,7 +233,7 @@ public class WorkerController : Controller
                 )
                 .Join(_dbContext.companies,
                     arg => arg.vacancy.company_id,
-                    company =>  company.id,
+                    company => company.id,
                     (arg, company) => new { arg.vacancy, arg.filter, arg.activity, company }
                 )
                 .Where(r => r.vacancy.id == vacancyId)
@@ -259,10 +272,11 @@ public class WorkerController : Controller
                         email = group.First().company.email,
                         phoneNumber = group.First().company?.phoneNumber,
                         website = group.First().company?.website,
-                        latitude = group.First().company.office_coord?.Y.ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
-                        longitude =  group.First().company.office_coord?.X.ToString(CultureInfo.InvariantCulture)!  // Долгота (X)
+                        latitude = group.First().company.office_coord?.Y
+                            .ToString(CultureInfo.InvariantCulture)!, // Широта (Y)
+                        longitude = group.First().company.office_coord?.X
+                            .ToString(CultureInfo.InvariantCulture)! // Долгота (X)
                     }
-
                 }).ToList();
             return Ok(new { vacancy = groupedResumesDtos });
         }
@@ -272,8 +286,8 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
-    
+
+
     [HttpGet("MyResume")]
     public async Task<ActionResult> GetMyResume([FromQuery] ulong? resumeId)
     {
@@ -287,7 +301,8 @@ public class WorkerController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
@@ -306,7 +321,7 @@ public class WorkerController : Controller
                 foreach (var row in result)
                 {
                     ulong id = (ulong)row.id;
-                    
+
                     if (!resumeDict.TryGetValue(id, out var resume))
                     {
                         resume = new ResumeDtos()
@@ -333,7 +348,6 @@ public class WorkerController : Controller
                             type = row.a_type,
                             direction = row.a_direction,
                             filter_id = row.filter_id,
-                            
                         };
                         resume.activities!.Add(activity);
                     }
@@ -344,6 +358,7 @@ public class WorkerController : Controller
                 {
                     resumeDto = resumeDto.Where(v => v.id == resumeId).ToList();
                 }
+
                 return Ok(resumeDto);
             }
         }
@@ -353,7 +368,7 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpPost("CreateResume")]
     public async Task<ActionResult> CreateResume([FromBody] CreateResume newResume)
     {
@@ -366,11 +381,12 @@ public class WorkerController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            
+
             DateTime dateTime = DateTime.UtcNow.Date;
             DateOnly curDate = DateOnly.FromDateTime(dateTime);
-            
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery =
@@ -382,7 +398,7 @@ public class WorkerController : Controller
                     worker_id = currentIdUser, newResume.post, newResume.skill, newResume.city, newResume.experience,
                     newResume.education_id, newResume.wantedSalary, income_date = dateTime
                 });
-                
+
                 return Ok(new { id = id });
             }
         }
@@ -392,8 +408,8 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
-     [HttpPut("UpdateResume")]
+
+    [HttpPut("UpdateResume")]
     public async Task<ActionResult> UpdateResume([FromBody] UpdateResume updatedResume)
     {
         try
@@ -408,11 +424,11 @@ public class WorkerController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
 
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
-
                 string updateSql = @"
                     UPDATE resume_cur_user 
                     SET 
@@ -449,23 +465,24 @@ public class WorkerController : Controller
             return StatusCode(500, "Internal server error");
         }
     }
-    
-     [HttpDelete("DeleteResume")]
+
+    [HttpDelete("DeleteResume")]
     public async Task<ActionResult> DeleteResume([FromQuery] ulong resumeId)
     {
         try
         {
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             Users userDB = _dbContext.Users.FirstOrDefault(u => u.Id == currentIdUser.ToString())!;
-        
+
             var user = new
             {
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
-        
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 // Удаляем вакансию
@@ -497,7 +514,8 @@ public class WorkerController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 List<ulong> id = new List<ulong>();
@@ -511,13 +529,16 @@ public class WorkerController : Controller
                     );
                     SELECT LAST_INSERT_ID();
                     ";
-                    ulong cur_id = await db.ExecuteScalarAsync<ulong>(sqlQuery, new {resume_id = newFilter.id, typeOfActivity_id = activity_id});
+                    ulong cur_id = await db.ExecuteScalarAsync<ulong>(sqlQuery,
+                        new { resume_id = newFilter.id, typeOfActivity_id = activity_id });
                     id.Add(cur_id);
                 }
-               
-                
+
+
                 return Ok(new { id = id });
-            };
+            }
+
+            ;
         }
         catch (Exception ex)
         {
@@ -538,14 +559,15 @@ public class WorkerController : Controller
                 UserName = userDB.UserName,
                 PasswordHash = userDB.PasswordHash,
             };
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
                 DELETE FROM Resume_filter WHERE filter_id = @filterId;
                 ";
-                int rowCount = await db.ExecuteAsync(sqlQuery, new {filterId = filterId});
-                
+                int rowCount = await db.ExecuteAsync(sqlQuery, new { filterId = filterId });
+
                 if (rowCount == 0)
                     return StatusCode(500, "Failed to delete resume-filter");
                 return Ok("filter deleted");
@@ -557,9 +579,9 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
-    
-     [HttpGet("GetProfile")]
+
+
+    [HttpGet("GetProfile")]
     public async Task<IActionResult> GetProfile()
     {
         try
@@ -567,19 +589,19 @@ public class WorkerController : Controller
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             byte[]? image = await _dbContext.Users.Where(u => u.Id == currentIdUser.ToString()).Select(u => u.image)
                 .FirstOrDefaultAsync();
-            
+
             Users user = _userManager.FindByIdAsync(currentIdUser.ToString()).Result!;
             Worker worker = _dbContext.Workers.FirstOrDefault(c => c.id == currentIdUser.ToString())!;
             WorkerDtos workerDto = new WorkerDtos
             {
                 id = worker.id,
                 second_name = worker.second_name,
-               first_name = worker.first_name,
-               surname = worker.surname,
-               birthday = worker.birthday,
-               image = image,
+                first_name = worker.first_name,
+                surname = worker.surname,
+                birthday = worker.birthday,
+                image = image,
             };
-            
+
             return Ok(new WorkerProfileDto
             {
                 worker = workerDto,
@@ -592,7 +614,7 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpGet("GetFeedback")]
     public async Task<IActionResult> GetFeedback([FromQuery] ulong? vacancyId)
     {
@@ -613,13 +635,14 @@ public class WorkerController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 string sqlQuery = @"
                 SELECT * FROM feedback_cur_user;
                  ";
-                
+
                 var feedbacks = await db.QueryAsync<Feedback>(sqlQuery);
 
                 // var newfeedbackDto = feedbacks.Select(f => new FeedbackDtos()
@@ -634,6 +657,7 @@ public class WorkerController : Controller
                     feedbacks = feedbacks
                         .Where(f => f.vacancy_id == vacancyId);
                 }
+
                 var newfeedbackDto = feedbacks.Select(f => new FeedbackDtos()
                 {
                     id = f.id,
@@ -642,7 +666,7 @@ public class WorkerController : Controller
                     status = f.status,
                 }).ToList();
 
-                return Ok(new {feedbacks = newfeedbackDto});
+                return Ok(new { feedbacks = newfeedbackDto });
             }
         }
         catch (Exception ex)
@@ -651,7 +675,7 @@ public class WorkerController : Controller
             return BadRequest(500);
         }
     }
-    
+
     [HttpPost("MakeFeedback")]
     public async Task<IActionResult> MakeFeedback([FromBody] MakeFeedbackRequest request)
     {
@@ -665,7 +689,8 @@ public class WorkerController : Controller
                 PasswordHash = userDB.PasswordHash,
             };
 
-            string connectionString = $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
+            string connectionString =
+                $"Server=localhost;Database=Worky;User={user.UserName};Password={user.PasswordHash};";
             using (IDbConnection db = new MySqlConnection(connectionString))
             {
                 var req = _dbContext.Vacancies
@@ -682,7 +707,7 @@ public class WorkerController : Controller
                 {
                     username = "mac";
                 }
-                
+
                 string sqlQuery = @"
                 INSERT INTO feedback_cur_user(resume_id, vacancy_id, status, createdBy1, createdBy2)
                 values (@resume_id, @vacancy_id, @status, substring_index(USER(), '@',1), @createdBy2);
@@ -695,8 +720,8 @@ public class WorkerController : Controller
                     status = FeedbackStatus.InProgress.ToString(),
                     createdBy2 = username
                 });
-                
-                return Ok(new {id = id});    
+
+                return Ok(new { id = id });
             }
         }
         catch (Exception ex)
@@ -725,7 +750,8 @@ public class WorkerController : Controller
 
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var feedback = await _dbContext.Feedbacks
-            .Join(_dbContext.Resumes, feedback => feedback.resume_id, resume => resume.id , (feedback, resume) => new {feedback, resume})
+            .Join(_dbContext.Resumes, feedback => feedback.resume_id, resume => resume.id,
+                (feedback, resume) => new { feedback, resume })
             .Where(f => f.feedback.id == id &&
                         f.resume.worker_id == userId)
             .FirstOrDefaultAsync();

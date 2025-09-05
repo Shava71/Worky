@@ -66,7 +66,7 @@ builder.Services.AddSwaggerGen(c =>
     }
     catch (Exception ex)
     {
-        Console.WriteLine("Swagger ex: "+ex.Message);
+        Console.WriteLine("Swagger ex: " + ex.Message);
         throw;
     }
 });
@@ -136,7 +136,7 @@ builder.Services.AddAuthentication(options =>
                 context.Response.Headers.Add("Trace-Id", context.HttpContext.TraceIdentifier);
                 return context.Response.WriteAsJsonAsync(new { message = "У вас нет доступа к данной странице" },
                     JsonSerializerOptions.Default);
-            } 
+            }
         };
     });
 builder.Services.AddAuthorization();

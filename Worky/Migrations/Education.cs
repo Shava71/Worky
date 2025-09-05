@@ -13,12 +13,9 @@ public partial class Education
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong id { get; set; }
 
-    [StringLength(50)]
-    public string name { get; set; } = null!;
+    [StringLength(50)] public string name { get; set; } = null!;
 
-    [InverseProperty("education")]
-    public virtual ICollection<Resume> Resumes { get; set; } = new List<Resume>();
+    [InverseProperty("education")] public virtual ICollection<Resume> Resumes { get; set; } = new List<Resume>();
 
-    [InverseProperty("education")]
-    public virtual ICollection<Vacancy> Vacancies { get; set; } = new List<Vacancy>();
+    [InverseProperty("education")] public virtual ICollection<Vacancy> Vacancies { get; set; } = new List<Vacancy>();
 }

@@ -17,29 +17,22 @@ public partial class Resume
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong id { get; set; }
 
-    [StringLength(450)]
-    public string? worker_id { get; set; }
+    [StringLength(450)] public string? worker_id { get; set; }
 
-    [Column(TypeName = "text")]
-    public string? skill { get; set; }
+    [Column(TypeName = "text")] public string? skill { get; set; }
 
-    [Column(TypeName = "text")]
-    public string? city { get; set; }
+    [Column(TypeName = "text")] public string? city { get; set; }
 
-    [Column(TypeName = "smallint(6)")]
-    public short? experience { get; set; }
+    [Column(TypeName = "smallint(6)")] public short? experience { get; set; }
 
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong? education_id { get; set; }
 
-    [Column(TypeName = "datetime")]
-    public DateTime income_date { get; set; }
+    [Column(TypeName = "datetime")] public DateTime income_date { get; set; }
 
-    [Column(TypeName = "int(11)")]
-    public int? wantedSalary { get; set; }
+    [Column(TypeName = "int(11)")] public int? wantedSalary { get; set; }
 
-    [StringLength(100)]
-    public string post { get; set; } = null!;
+    [StringLength(100)] public string post { get; set; } = null!;
 
     [InverseProperty("resume")]
     [JsonIgnore]

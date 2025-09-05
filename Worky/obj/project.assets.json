@@ -8836,11 +8836,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mac/Desktop/Worky/backend/workybackend/Worky/Worky.csproj",
+      "projectUniqueName": "/Users/mac/Desktop/Worky/backendRef/Worky/Worky.csproj",
       "projectName": "Worky",
-      "projectPath": "/Users/mac/Desktop/Worky/backend/workybackend/Worky/Worky.csproj",
+      "projectPath": "/Users/mac/Desktop/Worky/backendRef/Worky/Worky.csproj",
       "packagesPath": "/Users/mac/.nuget/packages/",
-      "outputPath": "/Users/mac/Desktop/Worky/backend/workybackend/Worky/obj/",
+      "outputPath": "/Users/mac/Desktop/Worky/backendRef/Worky/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mac/.nuget/NuGet/NuGet.Config"

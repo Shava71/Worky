@@ -7,13 +7,13 @@ using Worky.Models;
 
 namespace Worky.Services;
 
-public class JwtService:IJwtService
+public class JwtService : IJwtService
 {
     private readonly IConfiguration _configuration;
     private readonly SymmetricSecurityKey _key;
     private readonly string? _issuer;
     private readonly string? _audience;
-    
+
     public JwtService(IConfiguration config, SymmetricSecurityKey securityKey)
     {
         _configuration = config;
@@ -51,7 +51,7 @@ public class JwtService:IJwtService
     //     
     //     return token;
     // }
-    
+
     public string GenerateToken(Guid userId, IList<string> Roles)
     {
         var tokenLifetimeMins = _configuration.GetValue<int>("Jwt:ExpiresInMinutes");

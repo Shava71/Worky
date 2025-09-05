@@ -21,25 +21,21 @@ public partial class Feedback
 
     [Column(TypeName = "bigint(20) unsigned")]
     public ulong vacancy_id { get; set; }
-    
-    [Column(TypeName = "enum")]
-    public FeedbackStatus status { get; set; } = FeedbackStatus.InProgress;
-    [Column(TypeName = "date")]
-    public DateOnly income_date { get; set; }
+
+    [Column(TypeName = "enum")] public FeedbackStatus status { get; set; } = FeedbackStatus.InProgress;
+    [Column(TypeName = "date")] public DateOnly income_date { get; set; }
 
     [Newtonsoft.Json.JsonIgnore]
     [JsonIgnore]
     [ForeignKey("resume_id")]
     [InverseProperty("Feedbacks")]
     public virtual Resume resume { get; set; } = null!;
+
     [Newtonsoft.Json.JsonIgnore]
     [JsonIgnore]
     [ForeignKey("vacancy_id")]
     [InverseProperty("Feedbacks")]
     public virtual Vacancy vacancy { get; set; } = null!;
-
-
-    
 }
 
 public enum FeedbackStatus

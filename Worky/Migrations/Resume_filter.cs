@@ -27,5 +27,5 @@ public partial class Resume_filter
 
     [ForeignKey("typeOfActivity_id")]
     [InverseProperty("Resume_filters")]
-    public virtual typeOfActivity typeOfActivity { get; set; } = null!;
+    public virtual TypeOfActivity typeOfActivity { get; set; } = null!;
 }

@@ -15,6 +15,7 @@ public partial class Users : IdentityUser<string>
     {
         Id = Guid.NewGuid().ToString();
     }
+
     // [Key]
     // [StringLength(450)]
     // [MySqlCharSet("utf8mb3")]
@@ -71,6 +72,7 @@ public partial class Users : IdentityUser<string>
     // [Column(TypeName = "int(11)")]
     // public int AccessFailedCount { get; set; }
     public byte[]? image { get; set; }
+
     [InverseProperty("User")]
     public virtual ICollection<UserClaims> AspNetUserClaims { get; set; } = new List<UserClaims>();
 
@@ -83,7 +85,6 @@ public partial class Users : IdentityUser<string>
     [ForeignKey("UserId")]
     [InverseProperty("Users")]
     public virtual ICollection<Roles> Roles { get; set; } = new List<Roles>();
-    
-    [InverseProperty("User")]
-    public virtual ICollection<UserRoles> UserRoles { get; set; } = new List<UserRoles>();
+
+    [InverseProperty("User")] public virtual ICollection<UserRoles> UserRoles { get; set; } = new List<UserRoles>();
 }

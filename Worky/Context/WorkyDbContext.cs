@@ -10,7 +10,7 @@ using Worky.Migrations;
 namespace Worky.Context;
 
 public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
-    UserClaims, UserRoles, UserLogins,RoleClaims, UserTokens>
+    UserClaims, UserRoles, UserLogins, RoleClaims, UserTokens>
 {
     public WorkyDbContext()
     {
@@ -32,7 +32,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
     public virtual DbSet<UserLogins> AspNetUserLogins { get; set; }
 
     public virtual DbSet<UserTokens> AspNetUserTokens { get; set; }
-    
+
     public virtual DbSet<UserRoles> AspNetUserRoles { get; set; }
 
     public virtual DbSet<Deal> Deals { get; set; }
@@ -61,13 +61,14 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
 
     public virtual DbSet<__EFMigrationsHistory> __EFMigrationsHistories { get; set; }
 
-    public virtual DbSet<company> companies { get; set; }
+    public virtual DbSet<Company> companies { get; set; }
 
-    public virtual DbSet<typeOfActivity> typeOfActivities { get; set; }
+    public virtual DbSet<TypeOfActivity> typeOfActivities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseMySql("server=localhost;database=Worky;user=mac;password=123", Microsoft.EntityFrameworkCore.ServerVersion.Parse("11.6.2-mariadb"), x => x.UseNetTopologySuite());
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https: //go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseMySql("server=localhost;database=Worky;user=mac;password=123",
+            Microsoft.EntityFrameworkCore.ServerVersion.Parse("11.6.2-mariadb"), x => x.UseNetTopologySuite());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -79,7 +80,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
         {
             entity.ToTable("AspNetRoles");
             entity.HasKey(e => e.Id).HasName("PRIMARY");
-            
+
             entity.Property(e => e.Id)
                 .HasMaxLength(450)
                 .IsRequired();
@@ -135,7 +136,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
         modelBuilder.Entity<UserRoles>(entity =>
         {
             entity.ToTable("AspNetUserRoles");
-            
+
             entity.HasKey(e => new { e.UserId, e.RoleId });
 
             entity.HasOne(ur => ur.User)
@@ -158,10 +159,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
                 .HasConstraintName("deal_ibfk_1");
         });
 
-        modelBuilder.Entity<Education>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<Education>(entity => { entity.HasKey(e => e.id).HasName("PRIMARY"); });
 
         modelBuilder.Entity<Feedback>(entity =>
         {
@@ -172,10 +170,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
             entity.HasOne(d => d.vacancy).WithMany(p => p.Feedbacks).HasConstraintName("feedback_ibfk_2");
         });
 
-        modelBuilder.Entity<Manager>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<Manager>(entity => { entity.HasKey(e => e.id).HasName("PRIMARY"); });
 
         modelBuilder.Entity<Manager_filter>(entity =>
         {
@@ -219,10 +214,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
                 .HasConstraintName("resume_filter_ibfk_2");
         });
 
-        modelBuilder.Entity<Tarrif>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<Tarrif>(entity => { entity.HasKey(e => e.id).HasName("PRIMARY"); });
 
         modelBuilder.Entity<Vacancy>(entity =>
         {
@@ -248,17 +240,11 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
             entity.HasOne(d => d.vacancy).WithMany(p => p.Vacancy_filters).HasConstraintName("vacancy_filter_ibfk_1");
         });
 
-        modelBuilder.Entity<Worker>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<Worker>(entity => { entity.HasKey(e => e.id).HasName("PRIMARY"); });
 
-        modelBuilder.Entity<__EFMigrationsHistory>(entity =>
-        {
-            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<__EFMigrationsHistory>(entity => { entity.HasKey(e => e.MigrationId).HasName("PRIMARY"); });
 
-        modelBuilder.Entity<company>(entity =>
+        modelBuilder.Entity<Company>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PRIMARY");
 
@@ -269,10 +255,7 @@ public partial class WorkyDbContext : IdentityDbContext<Users, Roles, string,
             entity.HasIndex(e => e.name, "idx_name").HasAnnotation("MySql:FullTextIndex", true);
         });
 
-        modelBuilder.Entity<typeOfActivity>(entity =>
-        {
-            entity.HasKey(e => e.id).HasName("PRIMARY");
-        });
+        modelBuilder.Entity<TypeOfActivity>(entity => { entity.HasKey(e => e.id).HasName("PRIMARY"); });
 
         OnModelCreatingPartial(modelBuilder);
     }

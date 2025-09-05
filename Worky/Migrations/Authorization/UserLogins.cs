@@ -23,8 +23,7 @@ public partial class UserLogins : IdentityUserLogin<string>
     [MySqlCollation("utf8mb3_uca1400_ai_ci")]
     public string ProviderKey { get; set; } = null!;
 
-    [Column(TypeName = "text")]
-    public string? ProviderDisplayName { get; set; }
+    [Column(TypeName = "text")] public string? ProviderDisplayName { get; set; }
 
     [StringLength(450)]
     [MySqlCharSet("utf8mb3")]
