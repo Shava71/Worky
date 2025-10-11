@@ -1,5 +1,7 @@
 using System.Text;
 using System.Text.Json;
+using ApiGateway.DI;
+using ApiGateway.Middleware;
 using ApiGateway.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -69,6 +71,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddReverseProxy().
     LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
+builder.Services.AddJwtValidation(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -89,28 +93,29 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-string publicRoutesJson = File.ReadAllText("public_routes.json");
-PublicRoutesConfig? publicRoutesConfig = JsonSerializer.Deserialize<PublicRoutesConfig>(publicRoutesJson);
-app.Use(async (context, next) =>
-{
-    string? path = context.Request.Path.Value?.ToLower();
-
-    if (publicRoutesConfig.PublicRoutes.Any(p => path.StartsWith(p)))
-    {
-        await next();
-        return;
-    }
-
-    if (!context.User.Identity!.IsAuthenticated)
-    {
-        context.Response.StatusCode = 401;
-        await context.Response.WriteAsync("Unauthorized");
-        return;
-    }
-
-    await next();
-});
+//
+// string publicRoutesJson = File.ReadAllText("public_routes.json");
+// PublicRoutesConfig? publicRoutesConfig = JsonSerializer.Deserialize<PublicRoutesConfig>(publicRoutesJson);
+// app.Use(async (context, next) =>
+// {
+//     string? path = context.Request.Path.Value?.ToLower();
+//
+//     if (publicRoutesConfig.PublicRoutes.Any(p => path.StartsWith(p)))
+//     {
+//         await next();
+//         return;
+//     }
+//
+//     if (!context.User.Identity!.IsAuthenticated)
+//     {
+//         context.Response.StatusCode = 401;
+//         await context.Response.WriteAsync("Unauthorized");
+//         return;
+//     }
+//
+//     await next();
+// });
+app.UseMiddleware<JwtValidationMiddleware>();
 
 app.MapReverseProxy();
 
