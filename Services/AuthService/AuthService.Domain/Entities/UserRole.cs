@@ -8,6 +8,7 @@ public class UserRole
     public Guid RoleId { get; private set; }
     public Role Role { get; private set; }
 
+    public UserRole(){}
     public UserRole(User user, Role role)
     {
         User = user;

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.Domain.Entities;
 
@@ -38,7 +39,7 @@ public class User
     
     public ICollection<UserRole>? Roles { get; set; } = new List<UserRole>();
 
-    private User(){}
+    public User(){}
     public User(string _userName, string _email, string _passwordHash, string _phoneNumber)
     {
         UserName = _userName;

@@ -36,6 +36,8 @@ public class UserRepository : IUserRepository
     public async Task AddToRoleAsync(User user, Role role)
     {
         user.AddRole(role);
+        UserRole newUserRole = new UserRole(user, role);
+        await _dbContext.UserRole.AddAsync(newUserRole);
         await _dbContext.SaveChangesAsync();
     }
 
@@ -50,11 +52,16 @@ public class UserRepository : IUserRepository
         return user.CheckPassword(password);
     }
 
-    public async Task<IList<string>> GetRolesAsync(User user)
+    public async Task<List<string>> GetRolesAsync(User user)
     {
-        List<UserRole> UserRoles = user.Roles.ToList();
-        List<string> RoleNames = await _dbContext.Role.Where(r => UserRoles.Any(ur => ur.RoleId == r.Id)).Select(r => r.Name).ToListAsync();
-        return RoleNames;
+        List<Guid> roleIds = user.Roles.Select(ur => ur.RoleId).ToList();
+
+        List<string> roleNames = await _dbContext.Role
+            .Where(r => roleIds.Contains(r.Id))
+            .Select(r => r.Name)
+            .ToListAsync();
+
+        return roleNames;
     }
 
     public async Task<Role?> FindRoleByNameAsync(string roleName)
