@@ -7,13 +7,13 @@ using AuthService.Infrastructure.Repository.Interface;
 
 namespace AuthService.Application.Services;
 
-public class AuthService : IAuthService
+public class UserService : IUserService
 {
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
-        private readonly ILogger<AuthService> _logger;
+        private readonly ILogger<UserService> _logger;
 
-        public AuthService(IUserRepository authRepository, IJwtService jwtService, ILogger<AuthService> logger)
+        public UserService(IUserRepository authRepository, IJwtService jwtService, ILogger<UserService> logger)
         {
             _userRepository = authRepository;
             _jwtService = jwtService;
@@ -112,7 +112,7 @@ public class AuthService : IAuthService
             User user = await _userRepository.FindByEmailAsync(request.Email);
             if (user != null && await _userRepository.CheckPasswordAsync(user, request.Password))
             {
-                IList<string> roles = await _userRepository.GetRolesAsync(user);
+                List<string> roles = await _userRepository.GetRolesAsync(user);
                 var jwt = _jwtService.GenerateToken(user.Id, roles);
                 return new LoginResponse { Id = user.Id.ToString(), Token = jwt, Role = roles };
             }

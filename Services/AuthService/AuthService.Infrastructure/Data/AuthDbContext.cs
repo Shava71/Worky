@@ -22,14 +22,67 @@ public class AuthDbContext : DbContext
         modelBuilder.Entity<UserRole>() 
             .HasOne(ur => ur.Role)
             .WithMany(r => r.Users)
-            .HasForeignKey(ur => ur.RoleId);
-        modelBuilder.Entity<UserRole>()
-            .HasOne(ur => ur.Role)
-            .WithMany(r => r.Users)
-            .HasForeignKey(ur => ur.RoleId);
+            .HasForeignKey(ur => ur.RoleId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<UserRole>()
             .HasOne(ur => ur.User)
             .WithMany(r => r.Roles)
-            .HasForeignKey(ur => ur.UserId);
+            .HasForeignKey(ur => ur.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        // ddl
+        // ---------- USER ----------
+        var user = modelBuilder.Entity<User>();
+        user.ToTable("users");
+        
+        user.Property(u => u.Id)
+            .IsRequired();
+
+        user.Property(u => u.UserName)
+            .HasMaxLength(256)
+            .IsRequired();
+
+        user.Property(u => u.NormalizedUserName)
+            .HasMaxLength(256)
+            .IsRequired();
+
+        user.Property(u => u.Email)
+            .HasMaxLength(256)
+            .IsRequired();
+
+        user.Property(u => u.NormalizedEmail)
+            .HasMaxLength(256)
+            .IsRequired();
+
+        user.Property(u => u.PasswordHash)
+            .IsRequired();
+
+        user.Property(u => u.PhoneNumber)
+            .HasMaxLength(20);
+
+        user.Property(u => u.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        user.HasIndex(u => u.Email).IsUnique();
+        user.HasIndex(u => u.UserName).IsUnique();
+        user.HasIndex(u => u.NormalizedEmail).IsUnique();
+        user.HasIndex(u => u.NormalizedUserName).IsUnique();
+        
+
+        // ---------- ROLE ----------
+        var role = modelBuilder.Entity<Role>();
+
+        role.ToTable("roles");
+
+        role.HasKey(r => r.Id);
+
+        role.Property(r => r.Id)
+            .IsRequired();
+
+        role.Property(r => r.Name)
+            .HasMaxLength(100)
+            .IsRequired();
+        
     }
 }

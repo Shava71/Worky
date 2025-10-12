@@ -9,7 +9,7 @@ public interface IUserRepository
     Task AddToRoleAsync(User user, Role role);
     Task<User> FindByEmailAsync(string email);
     Task<bool> CheckPasswordAsync(User user, string password);
-    Task<IList<string>> GetRolesAsync(User user);
+    Task<List<string>> GetRolesAsync(User user);
     Task<Role> FindRoleByNameAsync(string roleName);
     Task ExecuteSqlAsync(string sql);
     Task ExecuteSqlWithParamAsync(string sql, object parameters);

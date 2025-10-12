@@ -1,7 +1,9 @@
+using System.Text;
 using System.Text.Json.Serialization;
 using AuthService.Api.Extentions;
 using AuthService.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,7 +57,11 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // DI
+var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+var signingKey = new SymmetricSecurityKey(key);
+builder.Services.AddSingleton(signingKey);
 builder.Services.AddAuthServices();
+
 
 builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
     p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
@@ -74,5 +80,11 @@ app.UseCors();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
