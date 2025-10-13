@@ -1,4 +1,5 @@
 using AuthService.Domain.Entities;
+using AuthService.Infrastructure.Outbox;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -9,6 +10,8 @@ public class AuthDbContext : DbContext
     public DbSet<User> User { get; set; }
     public DbSet<Role> Role { get; set; }
     public DbSet<UserRole> UserRole { get; set; }
+    
+    public DbSet<OutboxMessage> OutboxMessage { get; set; }
 
     public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options) { }
 
@@ -84,5 +87,13 @@ public class AuthDbContext : DbContext
             .HasMaxLength(100)
             .IsRequired();
         
+        // ---------- OUTBOX ----------
+        modelBuilder.Entity<OutboxMessage>(eb =>
+        {
+            eb.HasKey(o => o.Id);
+            eb.Property(o => o.Type).IsRequired();
+            eb.Property(o => o.Payload).IsRequired();
+            eb.Property(o => o.Sent).HasDefaultValue(false);
+        });
     }
 }

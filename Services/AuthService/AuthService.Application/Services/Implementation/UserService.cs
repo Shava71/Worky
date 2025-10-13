@@ -1,4 +1,7 @@
+using System.Text.Json;
+using AuthService.Application.Events;
 using AuthService.Domain.Entities;
+using AuthService.Infrastructure.Outbox;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -26,7 +29,47 @@ public class UserService : IUserService
             {
                 User user = new User(request.UserName, request.Email, request.PasswordHash, request.PhoneNumber);
 
-                await _userRepository.CreateUserAsync(user);
+                object @event;
+                string topic;
+                if (request.Role.Equals("Worker"))
+                {
+                    @event = new UserWorkerCreatedEvent()
+                    {
+                        UserId = user.Id.ToString(),
+                        second_name = request.second_name!,
+                        first_name = request.first_name!,
+                        surname = request.surname!,
+                        birthday = request.birthday!.Value,
+                    };
+                    topic = "user.worker.created";
+                }
+                else if (request.Role.Equals("Company"))
+                {
+                    @event = new UserCompanyCreatedEvent()
+                    {
+                        UserId = user.Id.ToString(),
+                        email_info = request.email_info!,
+                        latitude = request.latitude!,
+                        longitude = request.longitude!,
+                        name = request.name!,
+                        phone_info = request.phone_info!,
+                        website = request.website!,
+                    };
+                    topic = "user.company.created";
+                }
+                else
+                {
+                    throw new ArgumentException($"Unsupported role: {request.Role}");
+                }
+                
+                string JsonPayload = JsonSerializer.Serialize(@event);
+                
+                OutboxMessage outboxMessage = new OutboxMessage(_topic: topic, 
+                    _type:@event.GetType().Name, 
+                    _payload: JsonPayload);
+                
+                await _userRepository.CreateUserWithOutboxMessageAsync(user, message: outboxMessage);
+                //await _userRepository.CreateUserAsync(user);
 
                 Role role = await _userRepository.FindRoleByNameAsync(request.Role);
                 if (role == null) return new BadRequestObjectResult("user role doesn't exist");
