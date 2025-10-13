@@ -10,6 +10,7 @@
         "dependencies": {
           "AuthService.Domain": "1.0.0",
           "AuthService.Infrastructure": "1.0.0",
+          "Confluent.Kafka": "2.12.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.9",
           "Microsoft.EntityFrameworkCore.Design": "9.0.9"
         },
@@ -22,6 +23,17 @@
           "lib/net6.0/BCrypt.Net-Next.dll": {
             "assemblyVersion": "4.0.3.0",
             "fileVersion": "4.0.3.0"
+          }
+        }
+      },
+      "Confluent.Kafka/2.12.0": {
+        "dependencies": {
+          "librdkafka.redist": "2.12.0"
+        },
+        "runtime": {
+          "lib/net8.0/Confluent.Kafka.dll": {
+            "assemblyVersion": "2.12.0.0",
+            "fileVersion": "2.12.0.0"
           }
         }
       },
@@ -38,6 +50,130 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "librdkafka.redist/2.12.0": {
+        "runtimeTargets": {
+          "runtimes/linux-arm64/native/librdkafka.so": {
+            "rid": "linux-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/alpine-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/centos8-librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/librdkafka.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/librdkafka.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/librdkafka.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libcrypto-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libcurl.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/librdkafka.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/librdkafkacpp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libssl-3-x64.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/msvcp140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/vcruntime140.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/zlib1.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/zstd.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libcrypto-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libcurl.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/librdkafka.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/librdkafkacpp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libssl-3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/msvcp140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/vcruntime140.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/zlib1.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/zstd.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -434,6 +570,18 @@
           }
         }
       },
+      "Microsoft.Extensions.Configuration/9.0.9": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.9",
+          "Microsoft.Extensions.Primitives": "9.0.9"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Configuration.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.925.41916"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/9.0.9": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "9.0.9"
@@ -746,6 +894,7 @@
       "AuthService.Domain/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Confluent.Kafka": "2.12.0",
           "Dapper": "2.1.66",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.9",
           "Microsoft.EntityFrameworkCore": "9.0.9",
@@ -764,9 +913,11 @@
         "dependencies": {
           "AuthService.Domain": "1.0.0",
           "BCrypt.Net-Next": "4.0.3",
+          "Confluent.Kafka": "2.12.0",
           "Dapper": "2.1.66",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.9",
           "Microsoft.EntityFrameworkCore": "9.0.9",
+          "Microsoft.Extensions.Configuration": "9.0.9",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
           "Swashbuckle.AspNetCore.SwaggerGen": "9.0.6",
           "Swashbuckle.AspNetCore.SwaggerUI": "9.0.6"
@@ -793,6 +944,13 @@
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
+    "Confluent.Kafka/2.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UAiz9Xogy9Xqo6Y1ogKesH0tzk03ilw5UmwkVMFqZXQvf/1vFyTyVbzed22xS231UP43Z2aib6hzgruErM74lw==",
+      "path": "confluent.kafka/2.12.0",
+      "hashPath": "confluent.kafka.2.12.0.nupkg.sha512"
+    },
     "Dapper/2.1.66": {
       "type": "package",
       "serviceable": true,
@@ -806,6 +964,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "librdkafka.redist/2.12.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CZpY6RW/RVWtVUiwHIQCWHeyXHjt1cSlwdxJapx1jlr3z3T1Jwk/RdtEo2FyRL6PvELDO4NhZvaWs6BXdwCVDw==",
+      "path": "librdkafka.redist/2.12.0",
+      "hashPath": "librdkafka.redist.2.12.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/9.0.9": {
       "type": "package",
@@ -925,6 +1090,13 @@
       "sha512": "sha512-ln31BtsDsBQxykJgxuCtiUXWRET9FmqeEq0BpPIghkYtGpDDVs8ZcLHAjCCzbw6aGoLek4Z7JaDjSO/CjOD0iw==",
       "path": "microsoft.extensions.caching.memory/9.0.9",
       "hashPath": "microsoft.extensions.caching.memory.9.0.9.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration/9.0.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w87wF/90/VI0ZQBhf4rbMEeyEy0vi2WKjFmACsNAKNaorY+ZlVz7ddyXkbADvaWouMKffNmR0yQOGcrvSSvKGg==",
+      "path": "microsoft.extensions.configuration/9.0.9",
+      "hashPath": "microsoft.extensions.configuration.9.0.9.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.Abstractions/9.0.9": {
       "type": "package",

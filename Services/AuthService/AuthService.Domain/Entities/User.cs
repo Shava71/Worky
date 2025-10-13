@@ -43,6 +43,7 @@ public class User
     public User(string _userName, string _email, string _passwordHash, string _phoneNumber)
     {
         UserName = _userName;
+        NormalizedUserName = _userName.ToUpper();
         Email = _email;
         NormalizedEmail = _email.ToUpper();
         EmailConfirmed = false;

@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
@@ -149,6 +153,10 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.12.0, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
@@ -164,6 +172,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[9.0.9, )"
             },

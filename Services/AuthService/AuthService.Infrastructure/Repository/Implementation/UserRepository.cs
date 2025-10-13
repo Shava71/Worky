@@ -1,6 +1,7 @@
 using System.Data;
 using AuthService.Domain.Entities;
 using AuthService.Infrastructure.Data;
+using AuthService.Infrastructure.Outbox;
 using AuthService.Infrastructure.Repository.Interface;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +30,37 @@ public class UserRepository : IUserRepository
     
     public async Task CreateUserAsync(User user)
     {
-        await _dbContext.User.AddAsync(user);
-        await _dbContext.SaveChangesAsync();
+        await using var transaction = await _dbContext.Database.BeginTransactionAsync();
+        try
+        {
+            await _dbContext.User.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+        }
+    }
+
+    public async Task CreateUserWithOutboxMessageAsync(User user, OutboxMessage message)
+    {
+        await using var transaction = await _dbContext.Database.BeginTransactionAsync();
+        try
+        {
+            await _dbContext.User.AddAsync(user);
+            await _dbContext.OutboxMessage.AddAsync(message);
+            await _dbContext.SaveChangesAsync();
+            await transaction.CommitAsync();
+        }
+        catch
+        {
+            await transaction.RollbackAsync();
+        }
     }
 
     public async Task AddToRoleAsync(User user, Role role)
     {
-        user.AddRole(role);
         UserRole newUserRole = new UserRole(user, role);
         await _dbContext.UserRole.AddAsync(newUserRole);
         await _dbContext.SaveChangesAsync();
@@ -84,5 +109,18 @@ public class UserRepository : IUserRepository
         {
             await db.ExecuteAsync(sql, parameters);
         }
+    }
+    
+    // Получить ненаправленные outbox сообщения (batch)
+    public async Task<List<OutboxMessage>> GetPendingOutboxAsync(int limit = 50)
+        => await _dbContext.OutboxMessage.Where(o => !o.Sent).OrderBy(o => o.OccurredAt).Take(limit).ToListAsync();
+
+    public async Task MarkOutboxAsSentAsync(Guid outboxId)
+    {
+        OutboxMessage? o = await _dbContext.OutboxMessage.FindAsync(outboxId);
+        if (o == null) return;
+        o.Sent = true;
+        o.SentAt = DateTime.UtcNow;
+        await _dbContext.SaveChangesAsync();
     }
 }
