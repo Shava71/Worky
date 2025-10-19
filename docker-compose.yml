@@ -105,10 +105,40 @@ services:
     networks:
       - backend
   
+  
+  # --- WorkerService ----
+  workerservice:
+    build:
+      context: ./Services/WorkerService
+      dockerfile: WorkerService/Dockerfile
+    ports:
+      - "5002:8080"
+    depends_on:
+      - worker-db
+      - kafka
+    networks:
+      - backend
+  
+  # ---------- PostgreSQL для WorkerService ----------
+  worker-db:
+    image: postgres
+    container_name: worker-db
+    environment:
+      POSTGRES_USER: workeruser
+      POSTGRES_PASSWORD: workerpass
+      POSTGRES_DB: workerdb
+    ports:
+      - "5436:5432"
+    volumes:
+      - worker_data:/var/lib/postgresql/data
+    networks:
+      - backend
+  
 # ---- Volumes ----
 volumes:
   kafka_data:
   auth_data:
+  worker_data:
   
 # ---- Networks
 networks:
