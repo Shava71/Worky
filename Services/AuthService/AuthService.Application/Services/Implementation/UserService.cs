@@ -28,7 +28,13 @@ public class UserService : IUserService
             try
             {
                 User user = new User(request.UserName, request.Email, request.PasswordHash, request.PhoneNumber);
-
+                
+                User userExists = await _userRepository.FindByEmailAsync(request.Email);
+                if (userExists != null)
+                {
+                    return new BadRequestObjectResult("Email or username already exists");
+                }
+                
                 object @event;
                 string topic;
                 if (request.Role.Equals("Worker"))
