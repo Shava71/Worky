@@ -11,4 +11,6 @@ public partial class Education
     public int id { get; set; }
 
     public string name { get; set; } = null!;
+    
+    public ICollection<Resume> resumes { get; set; } 
 }

@@ -5,6 +5,6 @@ namespace WorkerService.DAL.DTO;
 
 public class WorkerProfileDto
 {
-    [Required] public User user { get; set; }
+    [Required] public UserResponse UserResponse { get; set; }
     [Required] public WorkerDtos worker { get; set; } 
 }

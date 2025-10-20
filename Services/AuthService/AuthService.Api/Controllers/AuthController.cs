@@ -1,4 +1,6 @@
 using AuthService.Application.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +8,9 @@ namespace AuthService.Application.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+//[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+[AllowAnonymous]
+
 public class AuthController : Controller
 {
     private readonly IUserService _userService;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WorkerService.DAL.Contracts;
 
 public record GetResumesRequest(
-    ulong? id,
+    Guid? id,
     int? min_experience,
     int? max_experience,
     [Range(1, 8)] int? education,
@@ -15,4 +15,10 @@ public record GetResumesRequest(
     string? SortItem,
     string? type,
     List<string>? direction
-);
+)
+{
+    public GetResumesRequest() : this(null,null,null,
+        null,null,null,
+        null,null,null,
+        null,null,null) { }
+}

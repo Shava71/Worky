@@ -2,6 +2,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WorkerService.BLL.Services.Interfaces;
+using WorkerService.DAL.Contracts;
 
 namespace WorkerService.Api.Controllers;
 
@@ -13,45 +15,77 @@ public class WorkerController : Controller
     private readonly IWorkerService _workerService;
     private readonly ILogger<WorkerController> _logger;
     
-    public WorkerController(ILogger<WorkerController> logger)
+    public WorkerController(ILogger<WorkerController> logger, IWorkerService workerService)
     {
         _logger = logger;
+        _workerService = workerService;
     }
     
-    [AllowAnonymous]
-        [HttpGet("Vacancies")]
-        public async Task<IActionResult> FilterVacancy([FromQuery] GetVacanciesRequest request)
+        // [AllowAnonymous]
+        // [HttpGet("Vacancies")]
+        // public async Task<IActionResult> FilterVacancy([FromQuery] GetVacanciesRequest request)
+        // {
+        //     try
+        //     {
+        //         var vacancies = await _workerService.FilterVacanciesAsync(request);
+        //         return Ok(new { vacancies });
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in FilterVacancy");
+        //         return BadRequest(500);
+        //     }
+        // }
+        //
+        // [AllowAnonymous]
+        // [HttpGet("Vacancies/Info")]
+        // public async Task<IActionResult> GetVacancyInfo([FromQuery] ulong vacancyId)
+        // {
+        //     try
+        //     {
+        //         var vacancy = await _workerService.GetVacancyInfoAsync(vacancyId);
+        //         return Ok(new { vacancy });
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in GetVacancyInfo");
+        //         return BadRequest(500);
+        //     }
+        // }
+        [AllowAnonymous]
+        [HttpGet("Resumes")]
+        public async Task<IActionResult> FilterResume([FromQuery] GetResumesRequest request)
         {
             try
             {
-                var vacancies = await _workerService.FilterVacanciesAsync(request);
-                return Ok(new { vacancies });
+                var resumes = await _workerService.FilterResumesAsync(request);
+                return Ok(new { resumes });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error in FilterVacancy");
+                _logger.LogError(ex, "Error in FilterResume");
                 return BadRequest(500);
             }
         }
 
         [AllowAnonymous]
-        [HttpGet("Vacancies/Info")]
-        public async Task<IActionResult> GetVacancyInfo([FromQuery] ulong vacancyId)
+        [HttpGet("Resumes/Info")]
+        public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
         {
             try
             {
-                var vacancy = await _workerService.GetVacancyInfoAsync(vacancyId);
-                return Ok(new { vacancy });
+                var resume = await _workerService.GetResumeInfoAsync(resumeId);
+                return Ok(new { resume });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error in GetVacancyInfo");
+                _logger.LogError(ex, "Error in GetResumeInfo");
                 return BadRequest(500);
             }
         }
 
         [HttpGet("MyResume")]
-        public async Task<IActionResult> GetMyResume([FromQuery] ulong? resumeId)
+        public async Task<IActionResult> GetMyResume([FromQuery] Guid? resumeId)
         {
             try
             {
@@ -72,7 +106,9 @@ public class WorkerController : Controller
             try
             {
                 string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _logger.LogInformation("Creating new resume for worker {workerId}", workerId);
                 var id = await _workerService.CreateResumeAsync(newResume, workerId);
+                _logger.LogInformation($"created new resume by id = {id}");
                 return Ok(new { id });
             }
             catch (Exception ex)
@@ -99,7 +135,7 @@ public class WorkerController : Controller
         }
 
         [HttpDelete("DeleteResume")]
-        public async Task<IActionResult> DeleteResume([FromQuery] ulong resumeId)
+        public async Task<IActionResult> DeleteResume([FromQuery] Guid resumeId)
         {
             try
             {
@@ -131,7 +167,7 @@ public class WorkerController : Controller
         }
 
         [HttpDelete("DeleteResumeFilter")]
-        public async Task<IActionResult> DeleteResumeFilter([FromQuery] ulong filterId)
+        public async Task<IActionResult> DeleteResumeFilter([FromQuery] Guid filterId)
         {
             try
             {
@@ -152,7 +188,9 @@ public class WorkerController : Controller
             try
             {
                 string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var profile = await _workerService.GetProfileAsync(workerId);
+                string token = Request.Headers["Authorization"].First();
+                
+                var profile = await _workerService.GetProfileAsync(workerId, token);
                 return Ok(profile);
             }
             catch (Exception ex)
@@ -162,51 +200,51 @@ public class WorkerController : Controller
             }
         }
 
-        [HttpGet("GetFeedback")]
-        public async Task<IActionResult> GetFeedback([FromQuery] ulong? vacancyId)
-        {
-            try
-            {
-                string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var feedbacks = await _workerService.GetFeedbacksAsync(workerId, vacancyId);
-                return Ok(new { feedbacks });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in GetFeedback");
-                return BadRequest(500);
-            }
-        }
-
-        [HttpPost("MakeFeedback")]
-        public async Task<IActionResult> MakeFeedback([FromBody] MakeFeedbackRequest request)
-        {
-            try
-            {
-                string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var id = await _workerService.MakeFeedbackAsync(request, workerId);
-                return Ok(new { id });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in MakeFeedback");
-                return BadRequest(500);
-            }
-        }
-
-        [HttpDelete("DeleteFeedback")]
-        public async Task<IActionResult> DeleteFeedback([FromQuery] ulong id)
-        {
-            try
-            {
-                string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                await _workerService.DeleteFeedbackAsync(id, workerId);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in DeleteFeedback");
-                return BadRequest(500);
-            }
-        }
+        // [HttpGet("GetFeedback")]
+        // public async Task<IActionResult> GetFeedback([FromQuery] Guid? vacancyId)
+        // {
+        //     try
+        //     {
+        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //         var feedbacks = await _workerService.GetFeedbacksAsync(workerId, vacancyId);
+        //         return Ok(new { feedbacks });
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in GetFeedback");
+        //         return BadRequest(500);
+        //     }
+        // }
+        //
+        // [HttpPost("MakeFeedback")]
+        // public async Task<IActionResult> MakeFeedback([FromBody] MakeFeedbackRequest request)
+        // {
+        //     try
+        //     {
+        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //         var id = await _workerService.MakeFeedbackAsync(request, workerId);
+        //         return Ok(new { id });
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in MakeFeedback");
+        //         return BadRequest(500);
+        //     }
+        // }
+        //
+        // [HttpDelete("DeleteFeedback")]
+        // public async Task<IActionResult> DeleteFeedback([FromQuery] ulong id)
+        // {
+        //     try
+        //     {
+        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //         await _workerService.DeleteFeedbackAsync(id, workerId);
+        //         return Ok();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in DeleteFeedback");
+        //         return BadRequest(500);
+        //     }
+        // }
 }

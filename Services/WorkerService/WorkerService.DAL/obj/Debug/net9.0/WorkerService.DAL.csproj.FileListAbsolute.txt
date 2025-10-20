@@ -1,0 +1,15 @@
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/bin/Debug/net9.0/WorkerService.DAL.deps.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/bin/Debug/net9.0/WorkerService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/bin/Debug/net9.0/WorkerService.DAL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.csproj.AssemblyReference.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.AssemblyInfoInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.AssemblyInfo.cs
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.sourcelink.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/refint/WorkerService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/ref/WorkerService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/bin/Debug/net9.0/WorkerService.DAL.runtimeconfig.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.DAL/obj/Debug/net9.0/WorkerService.DAL.genruntimeconfig.cache

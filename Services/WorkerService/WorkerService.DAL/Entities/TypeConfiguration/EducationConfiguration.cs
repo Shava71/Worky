@@ -16,8 +16,8 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
             new Education() { id = 5, name = "Бакалавриат" },
             new Education() { id = 6, name = "Специалитет" },
             new Education() { id = 7, name = "Магистратура" },
-            new Education() { id = 6, name = "Аспирантура" },
-            new Education() { id = 7, name = "Ординатура" },
+            new Education() { id = 8, name = "Аспирантура" },
+            new Education() { id = 9, name = "Ординатура" },
         });
     }
 }
