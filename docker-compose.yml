@@ -110,14 +110,15 @@ services:
   workerservice:
     build:
       context: ./Services/WorkerService
-      dockerfile: WorkerService/Dockerfile
+      dockerfile: WorkerService.Api/Dockerfile
     ports:
       - "5002:8080"
     depends_on:
       - worker-db
       - kafka
+      - worker-redis
     networks:
-      - backend
+      - backend 
   
   # ---------- PostgreSQL для WorkerService ----------
   worker-db:
@@ -134,11 +135,24 @@ services:
     networks:
       - backend
   
+  # ---- Redis для WorkerService ----
+  worker-redis:
+    image: redis:7.2
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+    volumes:
+      - redis_data:/data
+
+
 # ---- Volumes ----
 volumes:
   kafka_data:
   auth_data:
   worker_data:
+  redis_data:
   
 # ---- Networks
 networks:

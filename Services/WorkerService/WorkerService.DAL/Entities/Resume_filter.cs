@@ -13,7 +13,7 @@ public partial class Resume_filter
 
     public Guid resume_id { get; set; }
 
-    public ulong typeOfActivity_id { get; set; }
+    public int typeOfActivity_id { get; set; }
     
     public virtual Resume resume { get; set; } = null!;
     

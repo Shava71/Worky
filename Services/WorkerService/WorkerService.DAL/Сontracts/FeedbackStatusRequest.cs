@@ -2,6 +2,6 @@
 namespace WorkerService.DAL.Contracts;
 
 public record FeedbackStatusRequest(
-    ulong feedback_id,
+    int feedback_id,
     string status
 );

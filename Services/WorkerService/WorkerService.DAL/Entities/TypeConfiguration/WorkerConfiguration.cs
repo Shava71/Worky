@@ -12,7 +12,10 @@ public class WorkerConfiguration : IEntityTypeConfiguration<Worker>
             .HasMaxLength(450)
             .IsRequired();
         
-        builder.ComplexProperty(w => new {w.first_name, w.surname, w.second_name, w.birthday,}).IsRequired();
+        builder.Property(w => w.first_name).IsRequired();
+        builder.Property(w => w.surname).IsRequired();
+        builder.Property(w => w.second_name).IsRequired();
+        builder.Property(w => w.birthday).IsRequired();
         
     }
 }

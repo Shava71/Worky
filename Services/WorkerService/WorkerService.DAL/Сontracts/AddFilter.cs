@@ -1,6 +1,6 @@
 namespace WorkerService.DAL.Contracts;
 
 public record AddFilter(
-    ulong id,
-    List<ulong> typeOfActivity_id
+    Guid id,
+    List<int> typeOfActivity_id
 );

@@ -33,6 +33,10 @@ public class ResumeConfiguration : IEntityTypeConfiguration<Resume>
             .WithMany(w => w.Resumes)
             .HasForeignKey(r => r.worker_id)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
+        builder.HasOne(r => r.education)
+            .WithMany(e => e.resumes)
+            .HasForeignKey(r => r.education_id)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

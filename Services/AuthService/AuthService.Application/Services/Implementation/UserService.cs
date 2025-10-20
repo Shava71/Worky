@@ -168,6 +168,11 @@ public class UserService : IUserService
             return null;
         }
 
+        public async Task<User?> GetProfileByIdAsync(Guid userId)
+        {
+            User user = await _userRepository.FindByIdAsync(userId.ToString());
+            return user;
+        }
         // public async Task<object> GetClaimsAsync(string userId)
         // {
         //     // Assume claims from token or db
