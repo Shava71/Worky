@@ -20,6 +20,19 @@ public static class HttpClientRegistrationExtensions
         })
             .AddPolicyHandler(GetRetryPolicy())
             .AddPolicyHandler(GetCircuitBreakerPolicy());
+
+        services.AddHttpClient<IFilterClient, FilterClient>(client =>
+        {
+            string baseUrl = configuration["filterservice:Url"];
+            
+            if (string.IsNullOrEmpty(baseUrl))
+                throw new InvalidOperationException("authservice:Url is not configured.");
+
+            client.BaseAddress = new Uri(baseUrl);
+            client.Timeout = TimeSpan.FromSeconds(10);
+        })
+            .AddPolicyHandler(GetRetryPolicy())
+            .AddPolicyHandler(GetCircuitBreakerPolicy());;
             
         
         return services;

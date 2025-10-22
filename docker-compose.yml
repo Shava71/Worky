@@ -146,6 +146,32 @@ services:
     volumes:
       - redis_data:/data
 
+  # --- FilterService ----
+  filterservice:
+    build:
+      context: ./Services/FilterService
+      dockerfile: FilterService/Dockerfile
+    ports:
+      - "5003:8080"
+    depends_on:
+      - filter-db
+    networks:
+      - backend
+  
+  # ---------- PostgreSQL для FilterService ----------
+  filter-db:
+    image: postgres
+    container_name: filter-db
+    environment:
+      POSTGRES_USER: filteruser
+      POSTGRES_PASSWORD: filterpass
+      POSTGRES_DB: filterdb
+    ports:
+      - "5437:5432"
+    volumes:
+      - filter_data:/var/lib/postgresql/data
+    networks:
+      - backend
 
 # ---- Volumes ----
 volumes:
@@ -153,6 +179,7 @@ volumes:
   auth_data:
   worker_data:
   redis_data:
+  filter_data:
   
 # ---- Networks
 networks:

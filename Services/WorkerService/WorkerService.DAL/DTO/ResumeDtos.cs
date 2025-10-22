@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using WorkerService.DAL.HttpClients.Clients;
 
 namespace WorkerService.DAL.DTO;
 
@@ -18,6 +19,6 @@ public class ResumeDtos
     [Required] public DateTime income_date { get; set; }
     [Required] public int? wantedSalary { get; set; }
     [Required] public string? post { get; set; }
-    [Required] public List<ActivityDtos>? activities { get; set; }
+    [Required] public List<TypeOfActivityResponse>? activities { get; set; }
     [Required] public WorkerDtos? worker { get; set; }
 }

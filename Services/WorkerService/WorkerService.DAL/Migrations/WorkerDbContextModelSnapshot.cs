@@ -305,8 +305,8 @@ namespace WorkerService.DAL.Migrations
                     b.Property<Guid>("resume_id")
                         .HasColumnType("uuid");
 
-                    b.Property<decimal>("typeOfActivity_id")
-                        .HasColumnType("numeric(20,0)");
+                    b.Property<int>("typeOfActivity_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("filter_id");
 

@@ -5,6 +5,7 @@ using WorkerService.DAL.Clients;
 using WorkerService.DAL.Contracts;
 using WorkerService.DAL.DTO;
 using WorkerService.DAL.Entities;
+using WorkerService.DAL.HttpClients.Clients;
 using WorkerService.DAL.Repositories.Interfaces;
 
 
@@ -19,6 +20,7 @@ public class WorkerService : IWorkerService
         //private readonly IAuthRepository _authRepository;
         private readonly ILogger<WorkerService> _logger;
         private readonly IAuthClient _authClient;
+        private readonly IFilterClient _filterClient;
         private IWorkerService _workerServiceImplementation;
 
         public WorkerService(
@@ -28,7 +30,8 @@ public class WorkerService : IWorkerService
             IWorkerRepository workerRepository, 
            // IAuthRepository authRepository, 
             ILogger<WorkerService> logger,
-            IAuthClient authClient)
+            IAuthClient authClient,
+            IFilterClient filterClient)
         {
             //_vacancyRepository = vacancyRepository;
             _resumeRepository = resumeRepository;
@@ -37,6 +40,7 @@ public class WorkerService : IWorkerService
             //_authRepository = authRepository;
             _logger = logger;
             _authClient = authClient;
+            _filterClient = filterClient;
         }
 
         // public async Task<IEnumerable<VacancyDtos>> FilterVacanciesAsync(GetVacanciesRequest request)
@@ -50,18 +54,66 @@ public class WorkerService : IWorkerService
         // }
         public async Task<IEnumerable<ResumeDtos>> FilterResumesAsync(GetResumesRequest request)
         {
-            return await _resumeRepository.GetResumesAsync(request);
+            var resumes = await _resumeRepository.GetResumesAsync(request);
+            List<int> allIds = resumes.SelectMany(r => r.activities.Select(a => a.id)).Distinct().ToList();
+            
+            if(allIds.Any())
+            {
+                List<TypeOfActivityResponse> activities = await _filterClient.GetFiltersByIdAsync(allIds);
+                var activityDict = activities.ToDictionary(a => a.id, a => a);
+                
+                foreach (ResumeDtos resume in resumes)
+                {
+                    resume.activities = resume.activities.Where(a => activityDict.ContainsKey(a.id))
+                        .Select(a => activityDict[a.id]).ToList();
+                }
+            }
+            
+            return resumes;
         }
 
         public async Task<ResumeDtos> GetResumeInfoAsync(Guid resumeId)
         {
-            return await _resumeRepository.GetResumeByIdAsync(resumeId);
-            //допилить активити
+            var resume = await _resumeRepository.GetResumeByIdAsync(resumeId);
+            
+            List<int> allIds = resume.activities.Select(a => a.id).Distinct().ToList();
+            
+            if(allIds.Any())
+            {
+                List<TypeOfActivityResponse> activities = await _filterClient.GetFiltersByIdAsync(allIds);
+                var activityDict = activities.ToDictionary(a => a.id, a => a);
+                
+                
+                resume.activities = resume.activities
+                    .Where(a => activityDict.ContainsKey(a.id))
+                    .Select(a => activityDict[a.id])
+                    .ToList();
+                
+            }
+            
+            return resume;
         }
 
         public async Task<IEnumerable<ResumeDtos>> GetMyResumesAsync(string workerId, Guid? resumeId)
         {
-            return await _resumeRepository.GetMyResumesAsync(workerId, resumeId);
+            //return await _resumeRepository.GetMyResumesAsync(workerId, resumeId);
+            var resumes = await _resumeRepository.GetMyResumesAsync(workerId, resumeId);
+            
+            List<int> allIds = resumes.SelectMany(r => r.activities.Select(a => a.id)).Distinct().ToList();
+            
+            if(allIds.Any())
+            {
+                List<TypeOfActivityResponse> activities = await _filterClient.GetFiltersByIdAsync(allIds);
+                var activityDict = activities.ToDictionary(a => a.id, a => a);
+                
+                foreach (ResumeDtos resume in resumes)
+                {
+                    resume.activities = resume.activities.Where(a => activityDict.ContainsKey(a.id))
+                        .Select(a => activityDict[a.id]).ToList();
+                }
+            }
+            
+            return resumes;
         }
 
         public async Task<Guid> CreateResumeAsync(CreateResume resume, string workerId)
@@ -83,7 +135,10 @@ public class WorkerService : IWorkerService
 
         public async Task<IEnumerable<Guid>> AddResumeFilterAsync(AddFilter filter, string workerId)
         {
-            // Check ownership
+            if (!await WorkerHasResume(Guid.Parse(workerId), filter.id))
+            {
+                return [];
+            }
             return await _resumeRepository.AddResumeFiltersAsync(filter);
         }
 
@@ -109,6 +164,16 @@ public class WorkerService : IWorkerService
             };
             
             return new WorkerProfileDto { worker = workerDtos, UserResponse = user };
+        }
+
+        private async Task<bool> WorkerHasResume(Guid workerid, Guid resumeId)
+        {
+            var myResume = await _resumeRepository.GetMyResumesAsync(workerid.ToString(), resumeId);
+            if (myResume.Any())
+            {
+                return true;
+            }
+            return false;
         }
 
         // public async Task<IEnumerable<FeedbackDtos>> GetFeedbacksAsync(string workerId, ulong? vacancyId)
