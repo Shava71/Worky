@@ -15,9 +15,12 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         var activities = modelBuilder.Entity<TypeOfActivity>();
-        activities.HasKey(x => x.id);
-        activities.Property(x => x.direction).IsRequired();
-        activities.Property(x => x.type).IsRequired();
+        activities.Property(x => x.direction).IsRequired().HasColumnType("varchar(255)");
+        activities.Property(x => x.type).IsRequired().HasColumnType("varchar(255)");
         
+        activities.HasIndex(x => new { x.direction, x.type })
+            .HasDatabaseName("idx_direction_type");
+
+        base.OnModelCreating(modelBuilder);
     }
 }

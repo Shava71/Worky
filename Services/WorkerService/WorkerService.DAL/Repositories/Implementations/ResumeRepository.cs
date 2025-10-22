@@ -9,6 +9,7 @@ using WorkerService.DAL.Data;
 using WorkerService.DAL.Data.DbConnection.Interface;
 using WorkerService.DAL.DTO;
 using WorkerService.DAL.Entities;
+using WorkerService.DAL.HttpClients.Clients;
 using WorkerService.DAL.Models;
 using WorkerService.DAL.Repositories.Interfaces;
 
@@ -31,93 +32,94 @@ public class ResumeRepository : IResumeRepository
         }
 
         public async Task<IEnumerable<ResumeDtos>> GetResumesAsync(GetResumesRequest request)
-    {
-        try
         {
-            using IDbConnection _connection = _connectionFactory.CreateConnection();
-            
-            var sortItem = request.SortItem?.ToLower();
-            var order = request.Order?.ToLower() == "desc" ? "DESC" : "ASC";
-
-            // Определяем поле сортировки
-            string orderBy = sortItem switch
+            try
             {
-                "city" => "r.city",
-                "experience" => "r.experience",
-                "income_date" => "r.income_date",
-                _ => "r.id"
-            };
+                using IDbConnection _connection = _connectionFactory.CreateConnection();
+                
+                var sortItem = request.SortItem?.ToLower();
+                var order = request.Order?.ToLower() == "desc" ? "DESC" : "ASC";
 
-            var sql = $"""
-                SELECT 
-                    r.id AS resume_id,
-                    r.worker_id,
-                    r.city,
-                    r.experience,
-                    r.income_date,
-                    r.education_id,
-                    r.post,
-                    r.skill,
-                    r."wantedSalary",
-                    f.filter_id,
-                    f."typeOfActivity_id"
-                FROM "Resume" r
-                LEFT JOIN "Resume_filter" f ON r.id = f.resume_id
-                WHERE ( @id::uuid IS NULL OR r.id = @id )
-                  AND ( @min_experience::int IS NULL OR r.experience >= @min_experience )
-                  AND ( @max_experience::int IS NULL OR r.experience <= @max_experience )
-                  AND ( @city::text IS NULL OR LOWER(r.city) LIKE LOWER(CONCAT('%', @city, '%')) )
-                  AND ( @min_wantedSalary::int IS NULL OR r."wantedSalary" >= @min_wantedSalary )
-                  AND ( @max_wantedSalary::int IS NULL OR r."wantedSalary" <= @max_wantedSalary )
-                  AND ( @education::int IS NULL OR r.education_id = @education )
-                  AND ( @income_date::timestamp IS NULL OR DATE(r.income_date) = @income_date )
-                ORDER BY {orderBy} {order};
-            """;
-
-            var result = await _connection.QueryAsync(sql, new
-            {
-                id = request.id,
-                min_experience = request.min_experience,
-                max_experience = request.max_experience,
-                city = request.city,
-                min_wantedSalary = request.min_wantedSalary,
-                max_wantedSalary = request.max_wantedSalary,
-                education = request.education,
-                income_date = request.income_date?.Date
-            });
-
-            var grouped = result
-                .GroupBy(r => r.resume_id)
-                .Select(group => new ResumeDtos
+                // Определяем поле сортировки
+                string orderBy = sortItem switch
                 {
-                    id = group.Key,
-                    worker_id = group.First().worker_id?.ToString(),
-                    city = group.First().city,
-                    experience = group.First().experience,
-                    income_date = group.First().income_date,
-                    education_id = group.First().education_id,
-                    post = group.First().post,
-                    skill = group.First().skill,
-                    wantedSalary = group.First().wantedSalary,
-                    activities = group
-                        .Where(g => g.typeOfActivity_id != null)
-                        .Select(g => new ActivityDtos
-                        {
-                            id = g.typeOfActivity_id,
-                            direction = null,
-                            type = null
-                        }).ToList()
-                })
-                .ToList();
+                    "city" => "r.city",
+                    "experience" => "r.experience",
+                    "income_date" => "r.income_date",
+                    _ => "r.id"
+                };
 
-            return grouped;
+                var sql = $"""
+                    SELECT 
+                        r.id AS resume_id,
+                        r.worker_id,
+                        r.city,
+                        r.experience,
+                        r.income_date,
+                        r.education_id,
+                        r.post,
+                        r.skill,
+                        r."wantedSalary",
+                        f.filter_id,
+                        f."typeOfActivity_id"
+                    FROM "Resume" r
+                    LEFT JOIN "Resume_filter" f ON r.id = f.resume_id
+                    WHERE ( @id::uuid IS NULL OR r.id = @id )
+                      AND ( @min_experience::int IS NULL OR r.experience >= @min_experience )
+                      AND ( @max_experience::int IS NULL OR r.experience <= @max_experience )
+                      AND ( @city::text IS NULL OR LOWER(r.city) LIKE LOWER(CONCAT('%', @city, '%')) )
+                      AND ( @min_wantedSalary::int IS NULL OR r."wantedSalary" >= @min_wantedSalary )
+                      AND ( @max_wantedSalary::int IS NULL OR r."wantedSalary" <= @max_wantedSalary )
+                      AND ( @education::int IS NULL OR r.education_id = @education )
+                      AND ( @income_date::timestamp IS NULL OR DATE(r.income_date) = @income_date )
+                    ORDER BY {orderBy} {order};
+                """;
+
+                var result = await _connection.QueryAsync(sql, new
+                {
+                    id = request.id,
+                    min_experience = request.min_experience,
+                    max_experience = request.max_experience,
+                    city = request.city,
+                    min_wantedSalary = request.min_wantedSalary,
+                    max_wantedSalary = request.max_wantedSalary,
+                    education = request.education,
+                    income_date = request.income_date?.Date
+                });
+
+                var grouped = result
+                    .GroupBy(r => r.resume_id)
+                    .Select(group => new ResumeDtos
+                    {
+                        id = group.Key,
+                        worker_id = group.First().worker_id?.ToString(),
+                        city = group.First().city,
+                        experience = group.First().experience,
+                        income_date = group.First().income_date,
+                        education_id = group.First().education_id,
+                        post = group.First().post,
+                        skill = group.First().skill,
+                        wantedSalary = group.First().wantedSalary,
+                        activities = group
+                            .Where(g => g.typeOfActivity_id != null)
+                            .Select(g => new TypeOfActivityResponse()
+                            {
+                                id = g.typeOfActivity_id,
+                                direction = null, 
+                                type = null
+                            }).ToList()
+                        // activities = new List<TypeOfActivityResponse>()
+                    })
+                    .ToList();
+
+                return grouped;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in GetResumesAsync");
+                throw;
+            }
         }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error in GetResumesAsync");
-            throw;
-        }
-    }
 
         public async Task<ResumeDtos> GetResumeByIdAsync(Guid id)
         {
@@ -139,7 +141,7 @@ public class ResumeRepository : IResumeRepository
                     post = r.post,
                     skill = r.skill,
                     wantedSalary = r.wantedSalary,
-                    activities = r.resume_filters.Select(f => new ActivityDtos
+                    activities = r.resume_filters.Select(f => new TypeOfActivityResponse()
                     {
                         id = f.typeOfActivity_id,
                         direction = "", // допилить в bll
@@ -219,7 +221,7 @@ public class ResumeRepository : IResumeRepository
             using (IDbConnection db = new NpgsqlConnection(connectionString))
             {
                 List<Guid> ids = new List<Guid>();
-                foreach (ulong activityId in filter.typeOfActivity_id)
+                foreach (int activityId in filter.typeOfActivity_id)
                 {
                     string sql = """
                         INSERT INTO "Resume_filter" (filter_id, resume_id, "typeOfActivity_id") VALUES (@filter_id ,@resume_id, @typeOfActivity_id) Returning filter_id;
@@ -249,43 +251,43 @@ public class ResumeRepository : IResumeRepository
             using (IDbConnection db = new NpgsqlConnection(connectionString))
             {
                 string sql = """
-                    SELECT r.*, rf.*, rf.filter_id AS filter_id
-                    FROM "Resume" r
-                    LEFT JOIN "Resume_filter" rf ON r.id = rf.resume_id
-                    WHERE r.worker_id = @workerId;
-                """;
-                if (resumeId.HasValue) sql += " AND r.id = @resumeId";
-                
-                Guid parsedWorkerId = Guid.Parse(workerId);
-                var result = await db.QueryAsync(sql, new { workerId = parsedWorkerId });
-                var resumeDict = new Dictionary<Guid, ResumeDtos>();
+                                 SELECT r.*, rf."typeOfActivity_id"
+                                 FROM "Resume" r
+                                 LEFT JOIN "Resume_filter" rf ON r.id = rf.resume_id
+                                 WHERE r.worker_id = @workerId
+                                   AND (@resumeId IS NULL OR r.id = @resumeId);
+                             """;
 
-                foreach (var row in result)
+                Guid parsedWorkerId = Guid.Parse(workerId);
+                var rows = await db.QueryAsync(sql, new { workerId = parsedWorkerId, resumeId });
+
+                var grouped = rows.GroupBy(r => (Guid)r.id);
+
+                var resumes = grouped.Select(group => new ResumeDtos
                 {
-                    Guid id = row.id;
-                    if (!resumeDict.TryGetValue(id, out var res))
-                    {
-                        res = new ResumeDtos
+                    id = group.Key,
+                    worker_id = group.First().worker_id.ToString(),
+                    post = group.First().post,
+                    skill = group.First().skill,
+                    city = group.First().city,
+                    experience = group.First().experience,
+                    education_id = group.First().education_id,
+                    income_date = group.First().income_date,
+                    wantedSalary = group.First().wantedSalary,
+
+                    activities = group
+                        .Where(g => g.typeOfActivity_id != null)
+                        .Select(g => new TypeOfActivityResponse
                         {
-                            id = id,
-                            worker_id = row.worker_id.ToString(),
-                            post = row.post,
-                            skill = row.skill,
-                            city = row.city,
-                            experience = row.experience,
-                            education_id = row.education_id,
-                            income_date = row.income_date,
-                            wantedSalary = row.wantedSalary,
-                            activities = new List<ActivityDtos>()
-                        };
-                        resumeDict.Add(id, res);
-                    }
-                    // if (row.a_id != null)
-                    // {
-                    //     res.activities.Add(new ActivityDtos { id = row.a_id, type = row.a_type, direction = row.a_direction });
-                    // }
-                }
-                return resumeDict.Values;
+                            id = (int)g.typeOfActivity_id,
+                            direction = null,
+                            type = null
+                        })
+                        .DistinctBy(a => a.id)
+                        .ToList()
+                });
+
+                return resumes.ToList();
             }
         }
 }
