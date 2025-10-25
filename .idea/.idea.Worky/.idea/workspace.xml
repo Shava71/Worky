@@ -8,78 +8,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a84ec409-3332-4aca-9b29-a60e61eaf7a3" name="Changes" comment="add main functions for worker">
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/AuthRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/CompanyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/FeedbackRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/InfoRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/ResumeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/VacancyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/WorkerRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IAuthRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/ICompanyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IFeedbackRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IInfoRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IResumeRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IVacancyRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IWorkerRepository.cs" afterDir="false" />
+    <list default="true" id="a84ec409-3332-4aca-9b29-a60e61eaf7a3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Worky/Controllers/InfoController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Controllers/OldControllers/OldAuthorizationController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Controllers/OldControllers/OldCompanyController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Controllers/OldControllers/OldWorkerController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/DI/ServiceExtention.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Implementations/AuthService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Implementations/CompanyService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Implementations/InfoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Implementations/WorkerService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Interfaces/IAuthService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Interfaces/ICompnayService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Interfaces/IInfoService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Worky/Services/Interfaces/IWorkerService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Worky/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Worky/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Context/WorkyDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Context/WorkyDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/AddFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/AddFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/CreateResume.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/CreateResume.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/CreateVacancy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/CreateVacancy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/FeedbackStatusRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/FeedbackStatusRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/GetResumesRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/GetResumesRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/GetVacanciesRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/GetVacanciesRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/MakeDealRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/MakeDealRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/MakeFeedbackRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/MakeFeedbackRequest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/RegisterRequestContract.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/RegisterRequestContract.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Contracts/UpdateVacancy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Contracts/UpdateVacancy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/Controllers/AuthorizationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/AuthorizationController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/Controllers/CompanyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/CompanyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Controllers/GetInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/GetInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Controllers/GetInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/OldControllers/OldGetInfoController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/Controllers/WorkerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Controllers/WorkerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/ActivityDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/ActivityDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/CompanyProfileDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/CompanyProfileDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/FeedbackDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/FeedbackDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/ResumeDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/ResumeDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/VacancyDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/VacancyDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/WorkerDtos.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/WorkerDtos.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/DTO/WorkerProfileDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/DTO/WorkerProfileDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/RoleClaims.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/RoleClaims.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/Roles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/Roles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserClaims.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserClaims.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserLogins.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserLogins.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserRoles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserRoles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserTokens.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/UserTokens.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Authorization/Users.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Authorization/Users.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Deal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Deal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Education.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Education.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Feedback.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Feedback.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Manager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Manager_filter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Manager_filter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/RecruitManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/RecruitManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Resume.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Resume.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Resume_filter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Resume_filter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Tarrif.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Tarrif.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Vacancy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Vacancy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Vacancy_filter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Vacancy_filter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/Worker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Worker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/company.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/Company.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Migrations/typeOfActivity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Migrations/TypeOfActivity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Models/Roles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Models/Roles.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Services/IJwtService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Services/Interfaces/IJwtService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Services/JwtService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Services/Implementations/JwtService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/Services/RoleInitialize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Services/FirstAssembly/RoleInitialize.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/AuthRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/AuthRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/CompanyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/CompanyRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/FeedbackRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/FeedbackRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/InfoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/InfoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/ResumeRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/ResumeRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/VacancyRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/VacancyRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Implementations/WorkerRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Implementations/WorkerRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IAuthRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/Repositories/Interfaces/IAuthRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.staticwebassets.runtime.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/bin/Debug/net8.0/Worky.staticwebassets.runtime.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Worky.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Worky/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/Worky.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/ref/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/ref/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/refint/Worky.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/refint/Worky.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.pack.json" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/Debug/net8.0/staticwebassets.pack.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/rider.project.model.nuget.info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Worky/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Worky/obj/rider.project.restore.info" afterDir="false" />
     </list>
@@ -118,9 +90,15 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Users/mac/Desktop/Worky/backend/workybackend/Worky/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Worky/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/mac/Desktop/Worky/backendRef/Worky/obj/Debug/net8.0/Worky.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -131,32 +109,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.Worky: http.executor": "Run",
-    ".NET Launch Settings Profile.Worky: https.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "backendRef",
-    "last_opened_file_path": "/Users/mac/Desktop/Worky/backend/workybackend/Worky.sln",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.Worky: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.Worky: https.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;backendRef&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Desktop/Worky/backend/workybackend/Worky.sln&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ],
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "repository"
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.Worky: https">
     <configuration name="Worky: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Worky/Worky.csproj" />
@@ -212,6 +190,10 @@
       <workItem from="1747945116737" duration="723000" />
       <workItem from="1748075356548" duration="29913000" />
       <workItem from="1756720122293" duration="15251000" />
+      <workItem from="1757134497246" duration="6797000" />
+      <workItem from="1760134336156" duration="14495000" />
+      <workItem from="1760800582449" duration="4516000" />
+      <workItem from="1760816041479" duration="13981000" />
     </task>
     <task id="LOCAL-00001" summary="backend add">
       <option name="closed" value="true" />
@@ -274,6 +256,7 @@
     <MESSAGE value="add backend" />
     <MESSAGE value="add worker controller" />
     <MESSAGE value="add main functions for worker" />
-    <option name="LAST_COMMIT_MESSAGE" value="add main functions for worker" />
+    <MESSAGE value="Add repository" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add repository" />
   </component>
 </project>

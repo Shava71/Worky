@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using QuestPDF.Infrastructure;
 using Worky.Context;
+using Worky.DI;
 using Worky.Migrations;
 using Worky.Services;
 
@@ -142,8 +143,11 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization();
 builder.Services.AddIdentity<Users, Roles>().AddEntityFrameworkStores<WorkyDbContext>()
     .AddDefaultTokenProviders();
-builder.Services.AddSingleton<IJwtService, JwtService>();
-
+// builder.Services.AddSingleton<IJwtService, JwtService>();
+// Добавление репозиториев DI
+builder.Services.AddRepositories();
+// Добавление сервисов DI
+builder.Services.AddServices();
 
 builder.Services.AddCors(option =>
 {

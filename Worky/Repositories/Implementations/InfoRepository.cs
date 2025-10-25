@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Worky.Context;
 using Worky.Migrations;
+using Worky.Repositories.Interfaces;
 
 namespace Worky.Repositories.Implementations;
 
-public class InfoRepository
+public class InfoRepository : IInfoRepository
 {
     private readonly WorkyDbContext _dbContext;
 

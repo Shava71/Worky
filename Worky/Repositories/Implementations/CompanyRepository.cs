@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Worky.Context;
 using Worky.Migrations;
+using Worky.Repositories.Interfaces;
 
 namespace Worky.Repositories.Implementations;
 
-public class CompanyRepository
+public class CompanyRepository : ICompanyRepository
 {
     private readonly WorkyDbContext _dbContext;
     private readonly string _connectionString;

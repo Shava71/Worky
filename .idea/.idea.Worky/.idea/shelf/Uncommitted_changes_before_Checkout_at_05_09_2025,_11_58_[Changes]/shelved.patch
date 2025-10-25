@@ -1,0 +1,15 @@
+Index: Worky/obj/rider.project.model.nuget.info
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>17471236790020358
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Worky/obj/rider.project.model.nuget.info b/Worky/obj/rider.project.model.nuget.info
+--- a/Worky/obj/rider.project.model.nuget.info	(revision 7ddb39ac6455014d3749e282853b452ea3e10b7b)
++++ b/Worky/obj/rider.project.model.nuget.info	(date 1757062536545)
+@@ -1,1 +1,1 @@
+-17471236790020358
+\ No newline at end of file
++17570625363270693
+\ No newline at end of file

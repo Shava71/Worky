@@ -1,13 +1,15 @@
 using System.Data;
 using Dapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 using MySqlConnector;
 using Worky.Context;
 using Worky.Migrations;
+using Worky.Repositories.Interfaces;
 
 namespace Worky.Repositories.Implementations;
 
-public class AuthRepository
+public class AuthRepository : IAuthRepository
 {
     private readonly UserManager<Users> _userManager;
     private readonly RoleManager<Roles> _roleManager;
@@ -20,6 +22,11 @@ public class AuthRepository
         _roleManager = roleManager;
         _dbContext = dbContext;
         _connectionString = configuration.GetConnectionString("DefaultConnection");
+    }
+    
+    public async Task<Users> FindByIdAsync(string userId)
+    {
+        return await _userManager.FindByIdAsync(userId);
     }
 
     public async Task<IdentityResult> CreateUserAsync(Users user, string password)
@@ -57,6 +64,15 @@ public class AuthRepository
         using (IDbConnection db = new MySqlConnection(_connectionString))
         {
             await db.ExecuteAsync(sql);
+        }
+    }
+
+    public async Task ExecuteSqlWithParamAsync(string sql, object parameters)
+    {
+        if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+        using (IDbConnection db = new MySqlConnection(_connectionString))
+        {
+            await db.ExecuteAsync(sql, parameters);
         }
     }
 }

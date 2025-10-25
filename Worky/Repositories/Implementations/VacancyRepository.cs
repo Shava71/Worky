@@ -7,10 +7,11 @@ using Worky.Context;
 using Worky.Contracts;
 using Worky.DTO;
 using Worky.Migrations;
+using Worky.Repositories.Interfaces;
 
 namespace Worky.Repositories.Implementations;
 
-public class VacancyRepository
+public class VacancyRepository : IVacancyRepository
 {
     private readonly WorkyDbContext _dbContext;
         private readonly IConfiguration _configuration;
