@@ -22,7 +22,7 @@
 - Kafka
 - MassTransit 
 - BackGroundServices
-- HttClient (typed client by IHttpClientFactory) + Polly
+- HttpClient (typed client by IHttpClientFactory) + Polly
 - EF (+ Code First), Dapper
 - SignalR
 - JWT Bearer
