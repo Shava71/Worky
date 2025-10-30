@@ -1,0 +1,187 @@
+version: '3.8'
+
+services:
+  # ---- ApiGateway (YARP) ----
+  apigateway:
+    build:
+      context: ./Services/ApiGateway
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - authservice
+    networks:
+      - backend
+  
+  # ---------- Kafka ----------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - backend
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:29092,PLAINTEXT_INTERNAL://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_INTERNAL://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_LOG_RETENTION_HOURS: 24
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - backend
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.6.1
+    container_name: schema-registry
+    depends_on:
+      - kafka
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://kafka:9092
+    ports:
+      - "8081:8081"
+    networks:
+      - backend
+
+  # ---------- Kafka UI ----------
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8082:8080"
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - backend
+  
+  # ---- AuthService ----
+  authservice:
+    build:
+      context: ./Services/AuthService
+      dockerfile: AuthService.Api/Dockerfile
+    ports:
+      - "5001:8080"
+    depends_on:
+      - auth-db
+      - kafka
+    networks:
+      - backend 
+  
+  # ---------- PostgreSQL для AuthService ----------
+  auth-db:
+    image: postgres
+    container_name: auth-db
+    environment:
+      POSTGRES_USER: authuser
+      POSTGRES_PASSWORD: authpass
+      POSTGRES_DB: authdb
+    ports:
+      - "5435:5432"
+    volumes:
+      - auth_data:/var/lib/postgresql
+    networks:
+      - backend
+  
+  
+  # --- WorkerService ----
+  workerservice:
+    build:
+      context: ./Services/WorkerService
+      dockerfile: WorkerService.Api/Dockerfile
+    ports:
+      - "5002:8080"
+    depends_on:
+      - worker-db
+      - kafka
+      - worker-redis
+    networks:
+      - backend 
+  
+  # ---------- PostgreSQL для WorkerService ----------
+  worker-db:
+    image: postgres
+    container_name: worker-db
+    environment:
+      POSTGRES_USER: workeruser
+      POSTGRES_PASSWORD: workerpass
+      POSTGRES_DB: workerdb
+    ports:
+      - "5436:5432"
+    volumes:
+      - worker_data:/var/lib/postgresql
+    networks:
+      - backend
+  
+  # ---- Redis для WorkerService ----
+  worker-redis:
+    image: redis:7.2
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+    volumes:
+      - redis_data:/data
+
+  # --- FilterService ----
+  filterservice:
+    build:
+      context: ./Services/FilterService
+      dockerfile: FilterService/Dockerfile
+    ports:
+      - "5003:8080"
+    depends_on:
+      - filter-db
+    networks:
+      - backend
+  
+  # ---------- PostgreSQL для FilterService ----------
+  filter-db:
+    image: postgres
+    container_name: filter-db
+    environment:
+      POSTGRES_USER: filteruser
+      POSTGRES_PASSWORD: filterpass
+      POSTGRES_DB: filterdb
+    ports:
+      - "5437:5432"
+    volumes:
+      - filter_data:/var/lib/postgresql
+    networks:
+      - backend
+
+# ---- Volumes ----
+volumes:
+  kafka_data:
+  auth_data:
+  worker_data:
+  redis_data:
+  filter_data:
+  
+# ---- Networks
+networks:
+  backend:
+    driver: bridge
