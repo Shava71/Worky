@@ -101,7 +101,7 @@ services:
     ports:
       - "5435:5432"
     volumes:
-      - auth_data:/var/lib/postgresql/data
+      - auth_data:/var/lib/postgresql
     networks:
       - backend
   
@@ -131,7 +131,7 @@ services:
     ports:
       - "5436:5432"
     volumes:
-      - worker_data:/var/lib/postgresql/data
+      - worker_data:/var/lib/postgresql
     networks:
       - backend
   
@@ -169,7 +169,7 @@ services:
     ports:
       - "5437:5432"
     volumes:
-      - filter_data:/var/lib/postgresql/data
+      - filter_data:/var/lib/postgresql
     networks:
       - backend
 

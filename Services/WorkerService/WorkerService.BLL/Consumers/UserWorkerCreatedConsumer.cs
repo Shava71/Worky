@@ -10,12 +10,12 @@ public class UserWorkerCreatedConsumer : IConsumer<UserWorkerCreatedEvent>
 {
     private readonly ILogger<UserWorkerCreatedConsumer> _logger;
     private readonly IWorkerRepository _workerRepository;
-    private readonly IPublishEndpoint _publishEndpoint;
+    private readonly ITopicProducer<UserWorkerCreateFailedEvent> _publishEndpoint;
 
     public UserWorkerCreatedConsumer(
         ILogger<UserWorkerCreatedConsumer> logger,
         IWorkerRepository workerRepository,
-        IPublishEndpoint publishEndpoint
+        ITopicProducer<UserWorkerCreateFailedEvent> publishEndpoint
         )
     {
         _logger = logger;
@@ -51,7 +51,7 @@ public class UserWorkerCreatedConsumer : IConsumer<UserWorkerCreatedEvent>
         catch (Exception ex)
         {
             _logger.LogError(ex, ex.Message);
-            await _publishEndpoint.Publish(new UserWorkerCreateFailedEvent //rollback
+            await _publishEndpoint.Produce(new UserWorkerCreateFailedEvent //rollback
             {
                 UserId = message.UserId,
                 Reason = ex.Message
