@@ -18,6 +18,8 @@ public partial class Worker
     public string surname { get; set; } = null!;
 
     public DateOnly birthday { get; set; }
-
+    
+    public string? PhoneNumber { get; set; }
+    public string? Email { get; set; }
     public virtual ICollection<Resume> Resumes { get; set; } = new List<Resume>();
 }

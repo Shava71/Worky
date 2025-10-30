@@ -1799,6 +1799,7 @@
           "Dapper": "2.1.66",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
+          "MassTransit.Kafka": "8.5.5",
           "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.10",
           "Polly": "8.6.4",
           "Swashbuckle.AspNetCore.SwaggerUI": "9.0.6",
@@ -4933,5 +4934,16 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: MassTransit.Kafka from 8.5.5 to 8.5.4. Reference the package directly from the project to select a different version. \n WorkerService.Api -> WorkerService.BLL -> MassTransit.Kafka (>= 8.5.5) \n WorkerService.Api -> MassTransit.Kafka (>= 8.5.4)",
+      "libraryId": "MassTransit.Kafka",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

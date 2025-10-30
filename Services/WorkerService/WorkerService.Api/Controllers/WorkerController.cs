@@ -22,83 +22,52 @@ public class WorkerController : Controller
     }
     
         // [AllowAnonymous]
-        // [HttpGet("Vacancies")]
-        // public async Task<IActionResult> FilterVacancy([FromQuery] GetVacanciesRequest request)
+        // [HttpGet("Resumes")]
+        // public async Task<IActionResult> FilterResume([FromQuery] GetResumesRequest request)
         // {
         //     try
         //     {
-        //         var vacancies = await _workerService.FilterVacanciesAsync(request);
-        //         return Ok(new { vacancies });
+        //         var resumes = await _workerService.FilterResumesAsync(request);
+        //         return Ok(new { resumes });
         //     }
         //     catch (Exception ex)
         //     {
-        //         _logger.LogError(ex, "Error in FilterVacancy");
+        //         _logger.LogError(ex, "Error in FilterResume");
         //         return BadRequest(500);
         //     }
         // }
         //
         // [AllowAnonymous]
-        // [HttpGet("Vacancies/Info")]
-        // public async Task<IActionResult> GetVacancyInfo([FromQuery] ulong vacancyId)
+        // [HttpGet("Resumes/Info")]
+        // public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
         // {
         //     try
         //     {
-        //         var vacancy = await _workerService.GetVacancyInfoAsync(vacancyId);
-        //         return Ok(new { vacancy });
+        //         var resume = await _workerService.GetResumeInfoAsync(resumeId);
+        //         return Ok(new { resume });
         //     }
         //     catch (Exception ex)
         //     {
-        //         _logger.LogError(ex, "Error in GetVacancyInfo");
+        //         _logger.LogError(ex, "Error in GetResumeInfo");
         //         return BadRequest(500);
         //     }
         // }
-        [AllowAnonymous]
-        [HttpGet("Resumes")]
-        public async Task<IActionResult> FilterResume([FromQuery] GetResumesRequest request)
-        {
-            try
-            {
-                var resumes = await _workerService.FilterResumesAsync(request);
-                return Ok(new { resumes });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in FilterResume");
-                return BadRequest(500);
-            }
-        }
-
-        [AllowAnonymous]
-        [HttpGet("Resumes/Info")]
-        public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
-        {
-            try
-            {
-                var resume = await _workerService.GetResumeInfoAsync(resumeId);
-                return Ok(new { resume });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in GetResumeInfo");
-                return BadRequest(500);
-            }
-        }
-
-        [HttpGet("MyResume")]
-        public async Task<IActionResult> GetMyResume([FromQuery] Guid? resumeId)
-        {
-            try
-            {
-                string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var resumes = await _workerService.GetMyResumesAsync(workerId, resumeId);
-                return Ok(new { resumes });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error in GetMyResume");
-                return BadRequest(500);
-            }
-        }
+        //
+        // [HttpGet("MyResume")]
+        // public async Task<IActionResult> GetMyResume([FromQuery] Guid? resumeId)
+        // {
+        //     try
+        //     {
+        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //         var resumes = await _workerService.GetMyResumesAsync(workerId, resumeId);
+        //         return Ok(new { resumes });
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError(ex, "Error in GetMyResume");
+        //         return BadRequest(500);
+        //     }
+        // }
 
         [HttpPost("CreateResume")]
         public async Task<IActionResult> CreateResume([FromBody] CreateResume newResume)
