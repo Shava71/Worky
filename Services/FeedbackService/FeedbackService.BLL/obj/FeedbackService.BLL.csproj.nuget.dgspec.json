@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj": {}
+    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj": {}
   },
   "projects": {
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj": {
+    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj",
-        "projectName": "FeedbackService.Api",
-        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj",
+        "projectName": "FeedbackService.BLL",
+        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj",
         "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.Api/obj/",
+        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.BLL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/mac/.nuget/NuGet/NuGet.Config"
@@ -136,9 +136,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
