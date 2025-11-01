@@ -7,6 +7,7 @@ public class EducationConfiguration : IEntityTypeConfiguration<Education>
 {
     public void Configure(EntityTypeBuilder<Education> builder)
     {
+        builder.HasKey(e => e.id);
         builder.HasData(new Education[]
         {
             new Education() { id = 1, name = "Начальное общее образование" },

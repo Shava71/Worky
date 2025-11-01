@@ -18,7 +18,7 @@ namespace WorkerService.DAL.Repositories.Implementations;
 
 public class ResumeRepository : IResumeRepository
 {
-    private readonly IDbConnectionFactory _connectionFactory;
+        private readonly IDbConnectionFactory _connectionFactory;
         private readonly WorkerDbContext _dbContext;
         private readonly IConfiguration _configuration;
         private readonly ILogger<ResumeRepository> _logger;

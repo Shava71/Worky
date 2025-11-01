@@ -31,4 +31,8 @@
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FeedbackService.DAL\FeedbackService.DAL.csproj" />
+    </ItemGroup>
+
 </Project>
