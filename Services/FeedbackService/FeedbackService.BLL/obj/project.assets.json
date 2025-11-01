@@ -1709,6 +1709,36 @@
         "build": {
           "buildTransitive/net6.0/_._": {}
         }
+      },
+      "FeedbackService.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Dapper": "2.1.66",
+          "MassTransit": "8.5.4",
+          "MassTransit.AspNetCore": "7.3.1",
+          "MassTransit.EntityFrameworkCore": "8.5.4",
+          "MassTransit.Kafka": "8.5.4",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.10",
+          "Microsoft.AspNetCore.OpenApi": "9.0.9",
+          "Microsoft.EntityFrameworkCore": "9.0.10",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "9.0.10",
+          "Microsoft.Extensions.Http.Polly": "9.0.10",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
+          "Polly": "8.6.4",
+          "Polly.Contrib.WaitAndRetry": "1.1.1",
+          "Polly.Extensions": "8.6.4",
+          "Polly.Extensions.Http": "3.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "9.0.6",
+          "Swashbuckle.AspNetCore.SwaggerGen": "9.0.6",
+          "Swashbuckle.AspNetCore.SwaggerUI": "9.0.6"
+        },
+        "compile": {
+          "bin/placeholder/FeedbackService.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FeedbackService.DAL.dll": {}
+        }
       }
     }
   },
@@ -4503,11 +4533,17 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "FeedbackService.DAL/1.0.0": {
+      "type": "project",
+      "path": "../FeedbackService.DAL/FeedbackService.DAL.csproj",
+      "msbuildProject": "../FeedbackService.DAL/FeedbackService.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Dapper >= 2.1.66",
+      "FeedbackService.DAL >= 1.0.0",
       "MassTransit >= 8.5.4",
       "MassTransit.AspNetCore >= 7.3.1",
       "MassTransit.EntityFrameworkCore >= 8.5.4",
@@ -4553,7 +4589,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj": {
+              "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
