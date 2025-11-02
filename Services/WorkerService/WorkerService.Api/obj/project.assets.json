@@ -148,10 +148,10 @@
           }
         }
       },
-      "MassTransit/8.5.4": {
+      "MassTransit/8.5.5": {
         "type": "package",
         "dependencies": {
-          "MassTransit.Abstractions": "8.5.4",
+          "MassTransit.Abstractions": "8.5.5",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "9.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
@@ -169,7 +169,7 @@
           }
         }
       },
-      "MassTransit.Abstractions/8.5.4": {
+      "MassTransit.Abstractions/8.5.5": {
         "type": "package",
         "compile": {
           "lib/net9.0/MassTransit.Abstractions.dll": {
@@ -236,11 +236,11 @@
           }
         }
       },
-      "MassTransit.Kafka/8.5.4": {
+      "MassTransit.Kafka/8.5.5": {
         "type": "package",
         "dependencies": {
           "Confluent.Kafka": "2.11.1",
-          "MassTransit": "8.5.4"
+          "MassTransit": "8.5.5"
         },
         "compile": {
           "lib/net9.0/MassTransit.KafkaIntegration.dll": {
@@ -1797,6 +1797,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dapper": "2.1.66",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
           "MassTransit.Kafka": "8.5.5",
@@ -1817,6 +1818,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dapper": "2.1.66",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
           "Microsoft.EntityFrameworkCore": "9.0.10",
@@ -1943,10 +1945,10 @@
         "runtimes/win-x86/native/zstd.dll"
       ]
     },
-    "MassTransit/8.5.4": {
-      "sha512": "uNmFkIICpCZ6AWSJfWfQJc4jjVhQygdPY4/yFEiOZkIVbwEbpFrJTjThzSSinbZFCtyYQMBN6RqHghVMwQy7pA==",
+    "MassTransit/8.5.5": {
+      "sha512": "bSg8k5q+rP1s+dIGXLLbctqDGdIkfDjdxwNWtCUH7xNCN9ZuM7mqSPQPIFgaYIi34e81m4FqAqo4CAHuWPkhRA==",
       "type": "package",
-      "path": "masstransit/8.5.4",
+      "path": "masstransit/8.5.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1959,15 +1961,15 @@
         "lib/net9.0/MassTransit.xml",
         "lib/netstandard2.0/MassTransit.dll",
         "lib/netstandard2.0/MassTransit.xml",
-        "masstransit.8.5.4.nupkg.sha512",
+        "masstransit.8.5.5.nupkg.sha512",
         "masstransit.nuspec",
         "mt-logo-small.png"
       ]
     },
-    "MassTransit.Abstractions/8.5.4": {
-      "sha512": "6rIDZNr+mldYiIyiFXY4l4p3BsUDVQDtHpRwoZOQY7/T6TboAqCV4fbLM4tDwZqV8OOWbJHs1a4wQyyAOYwHGA==",
+    "MassTransit.Abstractions/8.5.5": {
+      "sha512": "0mn2Ay17dD6z5tgSLjbVRlldSbL9iowzFEfVgVfBXVG5ttz9dSWeR4TrdD6pqH93GWXp4CvSmF8i1HqxLX7DZw==",
       "type": "package",
-      "path": "masstransit.abstractions/8.5.4",
+      "path": "masstransit.abstractions/8.5.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1980,7 +1982,7 @@
         "lib/net9.0/MassTransit.Abstractions.xml",
         "lib/netstandard2.0/MassTransit.Abstractions.dll",
         "lib/netstandard2.0/MassTransit.Abstractions.xml",
-        "masstransit.abstractions.8.5.4.nupkg.sha512",
+        "masstransit.abstractions.8.5.5.nupkg.sha512",
         "masstransit.abstractions.nuspec",
         "mt-logo-small.png"
       ]
@@ -2030,10 +2032,10 @@
         "mt-logo-small.png"
       ]
     },
-    "MassTransit.Kafka/8.5.4": {
-      "sha512": "2XNZ1c5AoibJRav4sXsdR5EXfCoPH/PmghtNu0CQmBkY1TuO6USEKrGGrldk6d6BvEAAQlynfhaSoYMsfgqTfQ==",
+    "MassTransit.Kafka/8.5.5": {
+      "sha512": "0SH70OM/eVdMvSt+y36BzEJKY6hKgy2wsl+PSUn9PjDhVHYZi2qo+VeqJ9zXUkk5a0NroB05XDAatwcD2L6sTQ==",
       "type": "package",
-      "path": "masstransit.kafka/8.5.4",
+      "path": "masstransit.kafka/8.5.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2046,7 +2048,7 @@
         "lib/net9.0/MassTransit.KafkaIntegration.xml",
         "lib/netstandard2.0/MassTransit.KafkaIntegration.dll",
         "lib/netstandard2.0/MassTransit.KafkaIntegration.xml",
-        "masstransit.kafka.8.5.4.nupkg.sha512",
+        "masstransit.kafka.8.5.5.nupkg.sha512",
         "masstransit.kafka.nuspec",
         "mt-logo-small.png"
       ]
@@ -4760,10 +4762,10 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Dapper >= 2.1.66",
-      "MassTransit >= 8.5.4",
+      "MassTransit >= 8.5.5",
       "MassTransit.AspNetCore >= 7.3.1",
       "MassTransit.EntityFrameworkCore >= 8.5.4",
-      "MassTransit.Kafka >= 8.5.4",
+      "MassTransit.Kafka >= 8.5.5",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.10",
       "Microsoft.AspNetCore.OpenApi >= 9.0.9",
       "Microsoft.EntityFrameworkCore >= 9.0.10",
@@ -4839,7 +4841,7 @@
           },
           "MassTransit": {
             "target": "Package",
-            "version": "[8.5.4, )"
+            "version": "[8.5.5, )"
           },
           "MassTransit.AspNetCore": {
             "target": "Package",
@@ -4851,7 +4853,7 @@
           },
           "MassTransit.Kafka": {
             "target": "Package",
-            "version": "[8.5.4, )"
+            "version": "[8.5.5, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -4934,16 +4936,5 @@
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: MassTransit.Kafka from 8.5.5 to 8.5.4. Reference the package directly from the project to select a different version. \n WorkerService.Api -> WorkerService.BLL -> MassTransit.Kafka (>= 8.5.5) \n WorkerService.Api -> MassTransit.Kafka (>= 8.5.4)",
-      "libraryId": "MassTransit.Kafka",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

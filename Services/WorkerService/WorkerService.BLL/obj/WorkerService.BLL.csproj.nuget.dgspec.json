@@ -53,6 +53,10 @@
               "target": "Package",
               "version": "[2.1.66, )"
             },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
+            },
             "MassTransit.AspNetCore": {
               "target": "Package",
               "version": "[7.3.1, )"
@@ -148,6 +152,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
             },
             "MassTransit.AspNetCore": {
               "target": "Package",

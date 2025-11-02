@@ -1,0 +1,15 @@
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/bin/Debug/net9.0/FeedbackService.DAL.deps.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/bin/Debug/net9.0/FeedbackService.DAL.runtimeconfig.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/bin/Debug/net9.0/FeedbackService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/bin/Debug/net9.0/FeedbackService.DAL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.csproj.AssemblyReference.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.AssemblyInfoInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.AssemblyInfo.cs
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.sourcelink.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/refint/FeedbackService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/FeedbackService.DAL.genruntimeconfig.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FeedbackService/FeedbackService.DAL/obj/Debug/net9.0/ref/FeedbackService.DAL.dll

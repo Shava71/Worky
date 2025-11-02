@@ -8,6 +8,8 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["FeedbackService.Api/FeedbackService.Api.csproj", "FeedbackService.Api/"]
+COPY ["FeedbackService.BLL/FeedbackService.BLL.csproj", "FeedbackService.BLL/"]
+COPY ["FeedbackService.DAL/FeedbackService.DAL.csproj", "FeedbackService.DAL/"]
 RUN dotnet restore "FeedbackService.Api/FeedbackService.Api.csproj"
 COPY . .
 WORKDIR "/src/FeedbackService.Api"

@@ -69,8 +69,64 @@ public class FeedbackController : ControllerBase
     [HttpGet("GetFeedback")]
     public async Task<IActionResult> GetFeedback([FromQuery] Guid? Id)
     {
-        Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-        var feedbacks = await feedbackService.GetAllFeedbacksAsync(currentIdUser, Id);
+        try
+        {
+            Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            IEnumerable<Feedback?> feedbacks = await feedbackService.GetAllFeedbacksAsync(currentIdUser, Id);
+            if (!feedbacks.Any())
+            {
+                return NotFound();
+            }
+            return Ok(feedbacks);
+        }
+        catch (Exception ex)
+        {
+            this.logger.LogError(ex, ex.Message);
+            return BadRequest(500);
+        }
+    }
+    
+    [Authorize(Roles = "Company",AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpPost("AcceptFeedback")]
+    public async Task<IActionResult> AcceptFeedback(Guid feedbackId)
+    {
+        try
+        {
+            Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
+            await feedbackService.ChangeStatusAsync(feedbackId, FeedbackStatus.Accepted, currentIdUser);
+            return Ok(new {feedbackId = feedbackId});
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            this.logger.LogError(ex, ex.Message);
+            return BadRequest(500);
+        }
+    }
+    
+    [Authorize(Roles = "Company",AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpPost("RejectFeedback")]
+    public async Task<IActionResult> RejectFeedback(Guid feedbackId)
+    {
+        try
+        {
+            Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            await feedbackService.ChangeStatusAsync(feedbackId, FeedbackStatus.Cancelled, currentIdUser);
+            return Ok(new {feedbackId = feedbackId});
+        }
+        catch (KeyNotFoundException ex)
+        {
+            return NotFound();
+        }
+        catch (Exception ex)
+        {
+            this.logger.LogError(ex, ex.Message);
+            return BadRequest(500);
+        }
     }
 }

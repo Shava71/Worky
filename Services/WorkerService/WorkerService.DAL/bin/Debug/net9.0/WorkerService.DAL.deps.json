@@ -9,6 +9,7 @@
       "WorkerService.DAL/1.0.0": {
         "dependencies": {
           "Dapper": "2.1.66",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
           "Microsoft.EntityFrameworkCore": "9.0.10",
@@ -41,9 +42,9 @@
           }
         }
       },
-      "MassTransit/8.5.4": {
+      "MassTransit/8.5.5": {
         "dependencies": {
-          "MassTransit.Abstractions": "8.5.4",
+          "MassTransit.Abstractions": "8.5.5",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "9.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "9.0.0",
@@ -52,22 +53,22 @@
         },
         "runtime": {
           "lib/net9.0/MassTransit.dll": {
-            "assemblyVersion": "8.5.4.0",
-            "fileVersion": "8.5.4.0"
+            "assemblyVersion": "8.5.5.0",
+            "fileVersion": "8.5.5.0"
           }
         }
       },
-      "MassTransit.Abstractions/8.5.4": {
+      "MassTransit.Abstractions/8.5.5": {
         "runtime": {
           "lib/net9.0/MassTransit.Abstractions.dll": {
-            "assemblyVersion": "8.5.4.0",
-            "fileVersion": "8.5.4.0"
+            "assemblyVersion": "8.5.5.0",
+            "fileVersion": "8.5.5.0"
           }
         }
       },
       "MassTransit.AspNetCore/7.3.1": {
         "dependencies": {
-          "MassTransit": "8.5.4",
+          "MassTransit": "8.5.5",
           "MassTransit.Extensions.DependencyInjection": "7.3.1",
           "Microsoft.Extensions.Diagnostics.HealthChecks": "9.0.0",
           "Microsoft.Extensions.Hosting.Abstractions": "9.0.0"
@@ -81,7 +82,7 @@
       },
       "MassTransit.EntityFrameworkCore/8.5.4": {
         "dependencies": {
-          "MassTransit": "8.5.4",
+          "MassTransit": "8.5.5",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.10",
           "Microsoft.Extensions.Caching.Memory": "9.0.10"
         },
@@ -94,7 +95,7 @@
       },
       "MassTransit.Extensions.DependencyInjection/7.3.1": {
         "dependencies": {
-          "MassTransit": "8.5.4",
+          "MassTransit": "8.5.5",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.10"
         },
         "runtime": {
@@ -871,19 +872,19 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
-    "MassTransit/8.5.4": {
+    "MassTransit/8.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uNmFkIICpCZ6AWSJfWfQJc4jjVhQygdPY4/yFEiOZkIVbwEbpFrJTjThzSSinbZFCtyYQMBN6RqHghVMwQy7pA==",
-      "path": "masstransit/8.5.4",
-      "hashPath": "masstransit.8.5.4.nupkg.sha512"
+      "sha512": "sha512-bSg8k5q+rP1s+dIGXLLbctqDGdIkfDjdxwNWtCUH7xNCN9ZuM7mqSPQPIFgaYIi34e81m4FqAqo4CAHuWPkhRA==",
+      "path": "masstransit/8.5.5",
+      "hashPath": "masstransit.8.5.5.nupkg.sha512"
     },
-    "MassTransit.Abstractions/8.5.4": {
+    "MassTransit.Abstractions/8.5.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6rIDZNr+mldYiIyiFXY4l4p3BsUDVQDtHpRwoZOQY7/T6TboAqCV4fbLM4tDwZqV8OOWbJHs1a4wQyyAOYwHGA==",
-      "path": "masstransit.abstractions/8.5.4",
-      "hashPath": "masstransit.abstractions.8.5.4.nupkg.sha512"
+      "sha512": "sha512-0mn2Ay17dD6z5tgSLjbVRlldSbL9iowzFEfVgVfBXVG5ttz9dSWeR4TrdD6pqH93GWXp4CvSmF8i1HqxLX7DZw==",
+      "path": "masstransit.abstractions/8.5.5",
+      "hashPath": "masstransit.abstractions.8.5.5.nupkg.sha512"
     },
     "MassTransit.AspNetCore/7.3.1": {
       "type": "package",
