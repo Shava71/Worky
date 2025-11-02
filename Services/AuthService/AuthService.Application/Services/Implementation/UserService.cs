@@ -74,11 +74,13 @@ public class UserService : IUserService
                     _type:@event.GetType().Name, 
                     _payload: JsonPayload);
                 
-                await _userRepository.CreateUserWithOutboxMessageAsync(user, message: outboxMessage);
                 //await _userRepository.CreateUserAsync(user);
 
                 Role role = await _userRepository.FindRoleByNameAsync(request.Role);
                 if (role == null) return new BadRequestObjectResult("user role doesn't exist");
+                
+                await _userRepository.CreateUserWithOutboxMessageAsync(user, message: outboxMessage);
+
 
                 await _userRepository.AddToRoleAsync(user, role);
 
