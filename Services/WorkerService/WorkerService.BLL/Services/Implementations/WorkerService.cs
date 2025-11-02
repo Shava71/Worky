@@ -47,6 +47,7 @@ public class WorkerService : IWorkerService
             _filterClient = filterClient;
             _resumeCreatedTopicProducer = resumeCreatedTopicProducer;
             _resumeUpdatedTopicProducer = resumeUpdatedTopicProducer;
+            _resumeDeletedTopicProducer = resumeDeletedTopicProducer;
         }
 
         // public async Task<IEnumerable<VacancyDtos>> FilterVacanciesAsync(GetVacanciesRequest request)
