@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using WorkerService.BLL.Events;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -121,6 +122,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // --- DI ---
 builder.Services.AddResumeDI();
+builder.Services.AddFeedbackDI();
 
 builder.Services.AddMassTransit(config =>
 {
@@ -160,7 +162,7 @@ builder.Services.AddMassTransit(config =>
                 e.ConfigureConsumer<ResumeCreatedEventConsumer>(context);
                 
             });
-            k.TopicEndpoint<ResumeCreatedEvent>("resume.deleted", "feedback-service-group", e =>
+            k.TopicEndpoint<ResumeDeletedEvent>("resume.deleted", "feedback-service-group", e =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<ResumeDeletedEventConsumer>(context);

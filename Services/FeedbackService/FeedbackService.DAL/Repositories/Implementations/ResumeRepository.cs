@@ -38,6 +38,10 @@ public class ResumeRepository : IResumeRepository
         try
         {
             Resume? resume = await GetResumeAsync(resumeId);
+            if (resume == null)
+            {
+                return;
+            }
             _dbcontext.resume.Remove(resume);
             await _dbcontext.SaveChangesAsync();
         }
