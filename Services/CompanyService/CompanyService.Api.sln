@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService.Api", "CompanyService.Api\CompanyService.Api.csproj", "{1C9C7992-5368-4683-ACAD-B08C2EB924CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService.DAL", "CompanyService.DAL\CompanyService.DAL.csproj", "{DCEE93CA-0612-4403-BEAF-D0E9CDA30AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyService.BLL", "CompanyService.BLL\CompanyService.BLL.csproj", "{38BBC752-48C9-42C2-9FE7-9140882C309E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C9C7992-5368-4683-ACAD-B08C2EB924CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C9C7992-5368-4683-ACAD-B08C2EB924CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C9C7992-5368-4683-ACAD-B08C2EB924CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C9C7992-5368-4683-ACAD-B08C2EB924CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCEE93CA-0612-4403-BEAF-D0E9CDA30AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCEE93CA-0612-4403-BEAF-D0E9CDA30AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCEE93CA-0612-4403-BEAF-D0E9CDA30AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCEE93CA-0612-4403-BEAF-D0E9CDA30AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BBC752-48C9-42C2-9FE7-9140882C309E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BBC752-48C9-42C2-9FE7-9140882C309E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BBC752-48C9-42C2-9FE7-9140882C309E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BBC752-48C9-42C2-9FE7-9140882C309E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
