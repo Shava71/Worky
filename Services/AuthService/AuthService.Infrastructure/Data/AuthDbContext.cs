@@ -87,8 +87,8 @@ public class AuthDbContext : DbContext
             .HasMaxLength(100)
             .IsRequired();
 
-        role.HasData(new Role { Name = "Worker" });
-        role.HasData(new Role { Name = "Company" });
+        role.HasData(new Role { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"), Name = "Worker" });
+        role.HasData(new Role { Id = Guid.Parse("22222222-2222-2222-2222-222222222222") , Name = "Company" });
         
         // ---------- OUTBOX ----------
         modelBuilder.Entity<OutboxMessage>(eb =>
