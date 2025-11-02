@@ -86,6 +86,9 @@ public class AuthDbContext : DbContext
         role.Property(r => r.Name)
             .HasMaxLength(100)
             .IsRequired();
+
+        role.HasData(new Role { Name = "Worker" });
+        role.HasData(new Role { Name = "Company" });
         
         // ---------- OUTBOX ----------
         modelBuilder.Entity<OutboxMessage>(eb =>

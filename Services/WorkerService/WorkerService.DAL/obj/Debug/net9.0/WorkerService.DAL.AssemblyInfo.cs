@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkerService.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac0e3bf8c8b6777efec02ed5cbdf91c8defbe4af")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b0c2fc95ae8dbab7209f6318d33df118bad18f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkerService.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkerService.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
