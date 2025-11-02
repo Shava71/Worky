@@ -33,14 +33,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+      <ProjectReference Include="..\FeedbackService.BLL\FeedbackService.BLL.csproj" />
+      <ProjectReference Include="..\FeedbackService.DAL\FeedbackService.DAL.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FeedbackService.BLL\FeedbackService.BLL.csproj" />
-      <ProjectReference Include="..\FeedbackService.DAL\FeedbackService.DAL.csproj" />
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

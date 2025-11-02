@@ -3129,10 +3129,10 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dapper": "2.1.66",
-          "MassTransit": "8.5.4",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
-          "MassTransit.Kafka": "8.5.4",
+          "MassTransit.Kafka": "8.5.5",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.10",
           "Microsoft.AspNetCore.OpenApi": "9.0.9",
           "Microsoft.EntityFrameworkCore": "9.0.10",
@@ -3164,6 +3164,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dapper": "2.1.66",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
           "MassTransit.Kafka": "8.5.5",
@@ -3184,6 +3185,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Dapper": "2.1.66",
+          "MassTransit": "8.5.5",
           "MassTransit.AspNetCore": "7.3.1",
           "MassTransit.EntityFrameworkCore": "8.5.4",
           "Microsoft.EntityFrameworkCore": "9.0.10",
@@ -8753,6 +8755,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "FluentAssertions >= 8.7.1",
+      "MassTransit >= 8.5.5",
       "Microsoft.Data.Sqlite >= 9.0.10",
       "Microsoft.EntityFrameworkCore >= 9.0.10",
       "Microsoft.EntityFrameworkCore.InMemory >= 9.0.10",
@@ -8823,6 +8826,10 @@
           "FluentAssertions": {
             "target": "Package",
             "version": "[8.7.1, )"
+          },
+          "MassTransit": {
+            "target": "Package",
+            "version": "[8.5.5, )"
           },
           "Microsoft.Data.Sqlite": {
             "target": "Package",

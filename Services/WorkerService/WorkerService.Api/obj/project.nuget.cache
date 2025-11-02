@@ -1,19 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "mwSpeqoIGM4=",
-  "success": false,
+  "dgSpecHash": "kbFMI+EwT4I=",
+  "success": true,
   "projectFilePath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/WorkerService/WorkerService.Api/WorkerService.Api.csproj",
   "expectedPackageFiles": [
     "/Users/mac/.nuget/packages/confluent.kafka/2.11.1/confluent.kafka.2.11.1.nupkg.sha512",
     "/Users/mac/.nuget/packages/dapper/2.1.66/dapper.2.1.66.nupkg.sha512",
     "/Users/mac/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/mac/.nuget/packages/librdkafka.redist/2.11.1/librdkafka.redist.2.11.1.nupkg.sha512",
-    "/Users/mac/.nuget/packages/masstransit/8.5.4/masstransit.8.5.4.nupkg.sha512",
-    "/Users/mac/.nuget/packages/masstransit.abstractions/8.5.4/masstransit.abstractions.8.5.4.nupkg.sha512",
+    "/Users/mac/.nuget/packages/masstransit/8.5.5/masstransit.8.5.5.nupkg.sha512",
+    "/Users/mac/.nuget/packages/masstransit.abstractions/8.5.5/masstransit.abstractions.8.5.5.nupkg.sha512",
     "/Users/mac/.nuget/packages/masstransit.aspnetcore/7.3.1/masstransit.aspnetcore.7.3.1.nupkg.sha512",
     "/Users/mac/.nuget/packages/masstransit.entityframeworkcore/8.5.4/masstransit.entityframeworkcore.8.5.4.nupkg.sha512",
     "/Users/mac/.nuget/packages/masstransit.extensions.dependencyinjection/7.3.1/masstransit.extensions.dependencyinjection.7.3.1.nupkg.sha512",
-    "/Users/mac/.nuget/packages/masstransit.kafka/8.5.4/masstransit.kafka.8.5.4.nupkg.sha512",
+    "/Users/mac/.nuget/packages/masstransit.kafka/8.5.5/masstransit.kafka.8.5.5.nupkg.sha512",
     "/Users/mac/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.10/microsoft.aspnetcore.authentication.jwtbearer.9.0.10.nupkg.sha512",
     "/Users/mac/.nuget/packages/microsoft.aspnetcore.openapi/9.0.9/microsoft.aspnetcore.openapi.9.0.9.nupkg.sha512",
     "/Users/mac/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -91,15 +91,5 @@
     "/Users/mac/.nuget/packages/system.text.json/9.0.10/system.text.json.9.0.10.nupkg.sha512",
     "/Users/mac/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: MassTransit.Kafka from 8.5.5 to 8.5.4. Reference the package directly from the project to select a different version. \n WorkerService.Api -> WorkerService.BLL -> MassTransit.Kafka (>= 8.5.5) \n WorkerService.Api -> MassTransit.Kafka (>= 8.5.4)",
-      "libraryId": "MassTransit.Kafka",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }

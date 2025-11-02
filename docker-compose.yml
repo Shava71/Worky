@@ -173,31 +173,31 @@ services:
     networks:
       - backend
   
-# --- FeedbackService ----
-feedbackservice:
+  # --- FeedbackService ----
+  feedbackservice:
     build:
       context: ./Services/FeedbackService
-      dockerfile: FeedbackService/Dockerfile
+      dockerfile: FeedbackService.Api/Dockerfile
     ports:
       - "5004:8080"
     depends_on:
       - feedback-db
     networks:
-      - backend
+      - backend 
   
-# ---------- PostgreSQL для FeedbackService ----------
-feedback-db:
-  image: postgres
-  container_name: feedback-db
-  environment:
-    POSTGRES_USER: feedbackuser
-    POSTGRES_PASSWORD: feedbackpass
-    POSTGRES_DB: feedbackdb
-  ports:
-    - "5438:5432"
-  volumes:
-    - feedback_data:/var/lib/postgresql
-  networks:
+  # ---------- PostgreSQL для FeedbackService ----------
+  feedback-db:
+    image: postgres
+    container_name: feedback-db
+    environment:
+      POSTGRES_USER: feedbackuser
+      POSTGRES_PASSWORD: feedbackpass
+      POSTGRES_DB: feedbackdb
+    ports:
+      - "5438:5432"
+    volumes:
+      - feedback_data:/var/lib/postgresql
+    networks:
       - backend
 
 

@@ -145,6 +145,7 @@ builder.Services.AddMassTransit(config =>
         // rider.AddProducer<ResumeDeletedEvent>("resume.deleted");
         
         rider.AddConsumer<ResumeCreatedEventConsumer>();
+        rider.AddConsumer<ResumeDeletedEventConsumer>();
         
         rider.UsingKafka((context, k) =>
         {
@@ -157,6 +158,12 @@ builder.Services.AddMassTransit(config =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<ResumeCreatedEventConsumer>(context);
+                
+            });
+            k.TopicEndpoint<ResumeCreatedEvent>("resume.deleted", "feedback-service-group", e =>
+            {
+                e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
+                e.ConfigureConsumer<ResumeDeletedEventConsumer>(context);
                 
             });
         });

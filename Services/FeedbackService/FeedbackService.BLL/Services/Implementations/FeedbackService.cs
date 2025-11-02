@@ -44,8 +44,8 @@ public class FeedbackService : IFeedbackService
 
     public async Task ChangeStatusAsync(Guid feedbackId, FeedbackStatus status, Guid userId)
     {
-        Feedback feedback = await _repository.GetFeedbackByIdAsync(feedbackId, userId);
-        if (feedback == null)
+        Feedback? feedback = await _repository.GetFeedbackByIdAsync(feedbackId, userId);
+        if (feedback is not { status: FeedbackStatus.InProgress } || feedback == null)
         {
             throw new KeyNotFoundException($"Feedback with id {feedbackId} not found");
         }

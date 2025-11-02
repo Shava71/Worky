@@ -58,7 +58,7 @@
             },
             "MassTransit": {
               "target": "Package",
-              "version": "[8.5.4, )"
+              "version": "[8.5.5, )"
             },
             "MassTransit.AspNetCore": {
               "target": "Package",
@@ -70,7 +70,7 @@
             },
             "MassTransit.Kafka": {
               "target": "Package",
-              "version": "[8.5.4, )"
+              "version": "[8.5.5, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -203,6 +203,10 @@
               "target": "Package",
               "version": "[2.1.66, )"
             },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
+            },
             "MassTransit.AspNetCore": {
               "target": "Package",
               "version": "[7.3.1, )"
@@ -298,6 +302,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
             },
             "MassTransit.AspNetCore": {
               "target": "Package",
@@ -420,6 +428,10 @@
             "FluentAssertions": {
               "target": "Package",
               "version": "[8.7.1, )"
+            },
+            "MassTransit": {
+              "target": "Package",
+              "version": "[8.5.5, )"
             },
             "Microsoft.Data.Sqlite": {
               "target": "Package",
