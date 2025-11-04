@@ -22,7 +22,8 @@ public class WorkerService : IWorkerService
         //private readonly IAuthRepository _authRepository;
         private readonly ILogger<WorkerService> _logger;
         private readonly IAuthClient _authClient;
-        private readonly IFilterClient _filterClient;
+        // private readonly IFilterClient _filterClient;
+        private readonly IFilterCacheService _filterCacheService;
         private IWorkerService _workerServiceImplementation;
         
         private readonly ITopicProducer<ResumeCreatedEvent> _resumeCreatedTopicProducer;
@@ -35,7 +36,8 @@ public class WorkerService : IWorkerService
             IWorkerRepository workerRepository, 
             ILogger<WorkerService> logger,
             IAuthClient authClient,
-            IFilterClient filterClient,
+            // IFilterClient filterClient,
+            IFilterCacheService filterCacheService,
             ITopicProducer<ResumeCreatedEvent> resumeCreatedTopicProducer,
             ITopicProducer<ResumeUpdatedEvent> resumeUpdatedTopicProducer,
             ITopicProducer<ResumeDeletedEvent> resumeDeletedTopicProducer)
@@ -44,7 +46,8 @@ public class WorkerService : IWorkerService
             _workerRepository = workerRepository;
             _logger = logger;
             _authClient = authClient;
-            _filterClient = filterClient;
+            // _filterClient = filterClient;
+            _filterCacheService = filterCacheService;
             _resumeCreatedTopicProducer = resumeCreatedTopicProducer;
             _resumeUpdatedTopicProducer = resumeUpdatedTopicProducer;
             _resumeDeletedTopicProducer = resumeDeletedTopicProducer;
@@ -204,8 +207,9 @@ public class WorkerService : IWorkerService
             List<int> allIds = resume.activities.Select(a => a.id).Distinct().ToList();
             if (allIds.Any())
             {
-                var activities = await _filterClient.GetFiltersByIdAsync(allIds);
-                var activityDict = activities.ToDictionary(a => a.id, a => a);
+                // var activities = await _filterClient.GetFiltersByIdAsync(allIds);
+                List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(allIds);
+                Dictionary<int, TypeOfActivityResponse> activityDict = activities.ToDictionary(a => a.id, a => a);
 
                 resume.activities = resume.activities
                     .Where(a => activityDict.ContainsKey(a.id))

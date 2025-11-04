@@ -135,7 +135,7 @@ services:
     networks:
       - backend
   
-  # ---- Redis для WorkerService ----
+  # ---- Redis для WorkerService и CompanyService ----
   worker-redis:
     image: redis:7.2
     container_name: redis
