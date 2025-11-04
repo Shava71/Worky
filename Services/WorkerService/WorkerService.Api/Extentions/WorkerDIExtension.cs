@@ -17,7 +17,9 @@ public static class WorkerDIExtension
         services.AddScoped<IResumeRepository, ResumeRepository>();
         services.AddScoped<IWorkerRepository, WorkerRepository>();
         //services.AddScoped<IFilterRedisRepository, FilterRedisRepository>();
+        services.AddScoped<IRedisRepository, RedisRepository>();
         services.AddScoped<IWorkerService, BLL.Services.Implementations.WorkerService>();
+        services.AddScoped<IFilterCacheService, FilterCacheService>();
         return services;
     }
 }
