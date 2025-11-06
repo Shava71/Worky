@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using CompanyService.DAL.Data;
+using CompanyService.DAL.Events;
 using MassTransit;
 using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -145,7 +146,7 @@ builder.Services.AddMassTransit(config =>
             k.Host(bootstrapServers);
             
             
-            k.TopicEndpoint<UserWorkerCreatedEvent>("user.worker.created", "worker-service-group", e =>
+            k.TopicEndpoint<UserCompanyCreatedEvent>("user.company.created", "company-service-group", e =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<UserWorkerCreatedConsumer>(context);
@@ -159,7 +160,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     string con = builder.Configuration.GetConnectionString("Redis");
     options.Configuration = con;
-    options.InstanceName = "WorkerService";
+    options.InstanceName = "СompanyService";
 });
 
 

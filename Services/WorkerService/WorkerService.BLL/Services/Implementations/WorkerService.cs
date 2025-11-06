@@ -82,27 +82,12 @@ public class WorkerService : IWorkerService
         //     return resumes;
         // }
         //
-        // public async Task<ResumeDtos> GetResumeInfoAsync(Guid resumeId)
-        // {
-        //     var resume = await _resumeRepository.GetResumeByIdAsync(resumeId);
-        //     
-        //     List<int> allIds = resume.activities.Select(a => a.id).Distinct().ToList();
-        //     
-        //     if(allIds.Any())
-        //     {
-        //         List<TypeOfActivityResponse> activities = await _filterClient.GetFiltersByIdAsync(allIds);
-        //         var activityDict = activities.ToDictionary(a => a.id, a => a);
-        //         
-        //         
-        //         resume.activities = resume.activities
-        //             .Where(a => activityDict.ContainsKey(a.id))
-        //             .Select(a => activityDict[a.id])
-        //             .ToList();
-        //         
-        //     }
-        //     
-        //     return resume;
-        // }
+        public async Task<ResumeDtos> GetResumeInfoAsync(Guid resumeId)
+        {
+            ResumeDtos resume = BuildFullResumeAsync()
+            
+            return resume;
+        }
         //
         // public async Task<IEnumerable<ResumeDtos>> GetMyResumesAsync(string workerId, Guid? resumeId)
         // {

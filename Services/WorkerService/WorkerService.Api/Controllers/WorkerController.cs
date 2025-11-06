@@ -37,37 +37,37 @@ public class WorkerController : Controller
         //     }
         // }
         //
-        // [AllowAnonymous]
-        // [HttpGet("Resumes/Info")]
-        // public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
-        // {
-        //     try
-        //     {
-        //         var resume = await _workerService.GetResumeInfoAsync(resumeId);
-        //         return Ok(new { resume });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in GetResumeInfo");
-        //         return BadRequest(500);
-        //     }
-        // }
-        //
-        // [HttpGet("MyResume")]
-        // public async Task<IActionResult> GetMyResume([FromQuery] Guid? resumeId)
-        // {
-        //     try
-        //     {
-        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //         var resumes = await _workerService.GetMyResumesAsync(workerId, resumeId);
-        //         return Ok(new { resumes });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in GetMyResume");
-        //         return BadRequest(500);
-        //     }
-        // }
+        [AllowAnonymous]
+        [HttpGet("Resumes/Info")]
+        public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
+        {
+            try
+            {
+                var resume = await _workerService.GetResumeInfoAsync(resumeId);
+                return Ok(new { resume });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in GetResumeInfo");
+                return BadRequest(500);
+            }
+        }
+        
+        [HttpGet("MyResume")]
+        public async Task<IActionResult> GetMyResume([FromQuery] Guid? resumeId)
+        {
+            try
+            {
+                string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var resumes = await _workerService.GetMyResumesAsync(workerId, resumeId);
+                return Ok(new { resumes });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error in GetMyResume");
+                return BadRequest(500);
+            }
+        }
 
         [HttpPost("CreateResume")]
         public async Task<IActionResult> CreateResume([FromBody] CreateResume newResume)
