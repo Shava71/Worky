@@ -115,46 +115,46 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-builder.Services.AddMassTransit(config =>
-{
-    config.AddConsumer<UserWorkerCreatedConsumer>();
-    
-    config.AddEntityFrameworkOutbox<WorkerDbContext>(o =>
-    {
-        // o.QueryDelay = TimeSpan.FromSeconds(30);
-        o.UsePostgres().UseBusOutbox();
-    });
-    
-    config.UsingInMemory((context, cfg) =>
-    {
-        cfg.ConfigureEndpoints(context);
-    });
-    
-    config.AddRider(rider =>
-    {
-        rider.AddProducer<UserWorkerCreateFailedEvent>("user.worker.createfailed");
-        rider.AddProducer<ResumeCreatedEvent>("resume.created");
-        rider.AddProducer<ResumeUpdatedEvent>("resume.updated");
-        rider.AddProducer<ResumeDeletedEvent>("resume.deleted");
-        
-        rider.AddConsumer<UserWorkerCreatedConsumer>();
-        
-        rider.UsingKafka((context, k) =>
-        {
-            IConfigurationSection kafkaSettings = builder.Configuration.GetSection("Kafka");
-            string bootstrapServers = kafkaSettings["BootstrapServers"];
-            k.Host(bootstrapServers);
-            
-            
-            k.TopicEndpoint<UserCompanyCreatedEvent>("user.company.created", "company-service-group", e =>
-            {
-                e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
-                e.ConfigureConsumer<UserWorkerCreatedConsumer>(context);
-                
-            });
-        });
-    });
-});
+// builder.Services.AddMassTransit(config =>
+// {
+//     config.AddConsumer<UserWorkerCreatedConsumer>();
+//     
+//     config.AddEntityFrameworkOutbox<WorkerDbContext>(o =>
+//     {
+//         // o.QueryDelay = TimeSpan.FromSeconds(30);
+//         o.UsePostgres().UseBusOutbox();
+//     });
+//     
+//     config.UsingInMemory((context, cfg) =>
+//     {
+//         cfg.ConfigureEndpoints(context);
+//     });
+//     
+//     config.AddRider(rider =>
+//     {
+//         rider.AddProducer<UserWorkerCreateFailedEvent>("user.worker.createfailed");
+//         rider.AddProducer<ResumeCreatedEvent>("resume.created");
+//         rider.AddProducer<ResumeUpdatedEvent>("resume.updated");
+//         rider.AddProducer<ResumeDeletedEvent>("resume.deleted");
+//         
+//         rider.AddConsumer<UserWorkerCreatedConsumer>();
+//         
+//         rider.UsingKafka((context, k) =>
+//         {
+//             IConfigurationSection kafkaSettings = builder.Configuration.GetSection("Kafka");
+//             string bootstrapServers = kafkaSettings["BootstrapServers"];
+//             k.Host(bootstrapServers);
+//             
+//             
+//             k.TopicEndpoint<UserCompanyCreatedEvent>("user.company.created", "company-service-group", e =>
+//             {
+//                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
+//                 e.ConfigureConsumer<UserWorkerCreatedConsumer>(context);
+//                 
+//             });
+//         });
+//     });
+// });
     
 builder.Services.AddStackExchangeRedisCache(options =>
 {

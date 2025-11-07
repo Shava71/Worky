@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using CompanyService.DAL.Clients;
-using WorkerService.DAL.DTO;
 
 namespace CompanyService.DAL.DTO;
 

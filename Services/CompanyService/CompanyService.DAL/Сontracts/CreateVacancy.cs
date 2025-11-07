@@ -11,6 +11,6 @@ public record
         ulong? education_id,
         short? experience,
         string? description,
-        WorkFormat? format,
+        WorkFormat? work_format,
         WorkHour? work_hour
     );

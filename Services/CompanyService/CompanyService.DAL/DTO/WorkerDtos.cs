@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WorkerService.DAL.DTO;
+namespace CompanyService.DAL.DTO;
 
 public class WorkerDtos
 {

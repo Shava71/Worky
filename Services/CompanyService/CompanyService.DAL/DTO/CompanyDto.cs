@@ -2,7 +2,7 @@ namespace CompanyService.DAL.DTO;
 
 public class CompanyDto
 {
-    public string id { get; set; }
+    public Guid id { get; set; }
     public string name { get; set; }
     public string email { get; set; }
     public string phoneNumber { get; set; }

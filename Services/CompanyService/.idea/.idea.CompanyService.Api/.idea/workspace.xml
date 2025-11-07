@@ -8,56 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="157de4e9-8e5d-40bf-8d21-790087cb7aca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CompanyService.DAL/Data/CompanyDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CompanyService.Api/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CompanyService.Api/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CompanyService.Api/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CompanyService.Api/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api.sln" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/CompanyService.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/CompanyService.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/CompanyService.Api.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/Debug/net9.0/CompanyService.Api.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.Api/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.Api/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/CompanyService.BLL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/CompanyService.BLL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/CompanyService.BLL.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/Debug/net9.0/CompanyService.BLL.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.BLL/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.BLL/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/CompanyService.DAL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/CompanyService.DAL.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/CompanyService.DAL.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CompanyService.DAL/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/CompanyService.DAL/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WorkerService/.idea/.idea.WorkerService/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../WorkerService/.idea/.idea.WorkerService/.idea/dataSources.xml" afterDir="false" />
-    </list>
+    <list default="true" id="157de4e9-8e5d-40bf-8d21-790087cb7aca" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762119340447</updated>
-      <workItem from="1762119343427" duration="2455000" />
+      <workItem from="1762119343427" duration="16548000" />
     </task>
     <servers />
   </component>

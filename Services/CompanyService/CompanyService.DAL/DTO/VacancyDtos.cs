@@ -5,16 +5,16 @@ using CompanyService.DAL.Entities.TypeConfiguration;
 using CompanyService.DAL.HttpClients.Clients;
 
 
-namespace WorkerService.DAL.DTO;
+namespace CompanyService.DAL.DTO;
 
 public class VacancyDtos
 {
-    [Required] public ulong id { get; set; }
-    [Required] public string? company_id { get; set; }
+    [Required] public Guid id { get; set; }
+    [Required] public Guid? company_id { get; set; }
     [Required] public string post { get; set; } = null!;
     [Required] public int min_salary { get; set; }
-    [Required] public ulong education_id { get; set; }
-    [Required] public short? experience { get; set; }
+    [Required] public int education_id { get; set; }
+    [Required] public int? experience { get; set; }
     [Required] public string? description { get; set; }
     [Required] public DateTime income_date { get; set; }
     [Required] public int? max_salary { get; set; }
