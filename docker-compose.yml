@@ -200,6 +200,34 @@ services:
     networks:
       - backend
 
+  # --- CompanyService ----
+  companyservice:
+    build:
+      context: ./Services/CompanyService
+      dockerfile: CompanyService.Api/Dockerfile
+    ports:
+      - "5005:8080"
+    depends_on:
+      - company-db
+      - kafka
+      - worker-redis
+    networks:
+      - backend 
+  
+  # ---------- PostgreSQL для WorkerService ----------
+  company-db:
+    image: postgres
+    container_name: company-db
+    environment:
+      POSTGRES_USER: companyuser
+      POSTGRES_PASSWORD: companypass
+      POSTGRES_DB: companydb
+    ports:
+      - "5439:5432"
+    volumes:
+      - company_data:/var/lib/postgresql
+    networks:
+      - backend
 
 # ---- Volumes ----
 volumes:
@@ -209,6 +237,7 @@ volumes:
   redis_data:
   filter_data:
   feedback_data:
+  company_data:
   
 # ---- Networks ----
 networks:

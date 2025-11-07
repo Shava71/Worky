@@ -12,8 +12,6 @@
 
     <ItemGroup>
       <Folder Include="Consumers\" />
-      <Folder Include="Services\Implementations\" />
-      <Folder Include="Services\Interfaces\" />
     </ItemGroup>
 
     <ItemGroup>

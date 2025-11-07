@@ -2,8 +2,8 @@
 
 using CompanyService.DAL.Data.DbConnection.Implementation;
 using CompanyService.DAL.Data.DbConnection.Interface;
+using CompanyService.DAL.Repositories.Interfaces;
 using Worky.Repositories.Implementations;
-using Worky.Repositories.Interfaces;
 
 namespace CompanyService.Api.Extentions;
 

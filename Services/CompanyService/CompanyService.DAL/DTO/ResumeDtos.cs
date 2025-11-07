@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using CompanyService.DAL.HttpClients.Clients;
 
-namespace WorkerService.DAL.DTO;
+namespace CompanyService.DAL.DTO;
 
 public class ResumeDtos
 {
