@@ -15,16 +15,11 @@ namespace WorkerService.BLL.Services.Implementations;
 
 public class WorkerService : IWorkerService
 {
-        //private readonly IVacancyRepository _vacancyRepository;
         private readonly IResumeRepository _resumeRepository;
-       // private readonly IFeedbackRepository _feedbackRepository;
         private readonly IWorkerRepository _workerRepository;
-        //private readonly IAuthRepository _authRepository;
         private readonly ILogger<WorkerService> _logger;
         private readonly IAuthClient _authClient;
-        // private readonly IFilterClient _filterClient;
         private readonly IFilterCacheService _filterCacheService;
-        private IWorkerService _workerServiceImplementation;
         
         private readonly ITopicProducer<ResumeCreatedEvent> _resumeCreatedTopicProducer;
         private readonly ITopicProducer<ResumeUpdatedEvent> _resumeUpdatedTopicProducer;
@@ -161,7 +156,6 @@ public class WorkerService : IWorkerService
 
         public async Task DeleteResumeFilterAsync(Guid filterId, string workerId)
         {
-            // Check ownership
             await _resumeRepository.DeleteResumeFilterAsync(filterId);
         }
 
@@ -229,20 +223,3 @@ public class WorkerService : IWorkerService
         }
 }
 
-        // public async Task<IEnumerable<FeedbackDtos>> GetFeedbacksAsync(string workerId, ulong? vacancyId)
-        // {
-        //     return await _feedbackRepository.GetFeedbacksAsync(workerId, vacancyId: vacancyId);
-        // }
-        //
-        // public async Task<ulong> MakeFeedbackAsync(MakeFeedbackRequest request, string workerId)
-        // {
-        //     string creator1 = "worker_user"; // Adapt
-        //     string creator2 = "company_user"; // Adapt from request
-        //     return await _feedbackRepository.CreateFeedbackAsync(request, creator1, creator2);
-        // }
-        //
-        // public async Task DeleteFeedbackAsync(ulong id, string workerId)
-        // {
-        //     // Check ownership
-        //     await _feedbackRepository.DeleteFeedbackAsync(id);
-        // }

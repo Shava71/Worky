@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BnwHocJPsDc=",
+  "dgSpecHash": "S153eL1Qc1U=",
   "success": true,
   "projectFilePath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj",
   "expectedPackageFiles": [
@@ -85,7 +85,8 @@
     "/Users/mac/.nuget/packages/system.reflection.metadata/7.0.0/system.reflection.metadata.7.0.0.nupkg.sha512",
     "/Users/mac/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/mac/.nuget/packages/system.text.json/9.0.10/system.text.json.9.0.10.nupkg.sha512",
-    "/Users/mac/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
+    "/Users/mac/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
+    "/Users/mac/.nuget/packages/zxing.net/0.16.11/zxing.net.0.16.11.nupkg.sha512"
   ],
   "logs": []
 }
