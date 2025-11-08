@@ -1,5 +1,6 @@
 
 
+using CompanyService.BLL.Services.Implementations;
 using CompanyService.BLL.Services.Interfaces;
 using CompanyService.DAL.Data.DbConnection.Implementation;
 using CompanyService.DAL.Data.DbConnection.Interface;
@@ -15,6 +16,7 @@ public static class CompanyDIExtensions
         services.AddSingleton<IDbConnectionFactory, NpsqlDbConnectionFactory>();
         services.AddScoped<ICompanyRepository, CompanyRepository>();
         services.AddScoped<IVacancyRepository, VacancyRepository>();
+        services.AddScoped<IFilterCacheService, FilterCacheService>();
         services.AddScoped<ICompnayService, BLL.Services.Implementations.CompanyService>();
         
         return services;
