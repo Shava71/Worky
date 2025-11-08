@@ -214,7 +214,7 @@ services:
     networks:
       - backend 
   
-  # ---------- PostgreSQL для WorkerService ----------
+  # ---------- PostgreSQL для CompanyService ----------
   company-db:
     image: postgres
     container_name: company-db

@@ -5,7 +5,7 @@ namespace CompanyService.DAL.Contracts;
 
 public class UpdateVacancy
 {
-    public ulong Id { get; set; }
+    public Guid Id { get; set; }
     public string? Post { get; set; }
     public decimal? MinSalary { get; set; }
     public decimal? MaxSalary { get; set; }

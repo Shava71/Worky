@@ -6,7 +6,7 @@ namespace CompanyService.DAL.Repositories.Interfaces;
 public interface ICompanyRepository
 {
     Task CreateCompanyAsync(Company company);
-    Task<Company> GetCompanyByIdAsync(string id);
+    Task<Company> GetCompanyByIdAsync(Guid id);
     Task UpdateCompanyAsync(Company company);
    
 }

@@ -23,7 +23,7 @@ public class CompanyRepository : ICompanyRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<Company> GetCompanyByIdAsync(string id)
+    public async Task<Company> GetCompanyByIdAsync(Guid id)
     {
         return await _dbContext.company.FindAsync(id);
     }
