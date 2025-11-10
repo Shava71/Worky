@@ -8,8 +8,8 @@ public interface IVacancyRepository
     // Task<IEnumerable<VacancyDtos>> GetVacanciesAsync(GetVacanciesRequest request);
     Task<VacancyDtos> GetVacancyByIdAsync(Guid id);
     Task<Guid> CreateVacancyAsync(CreateVacancy vacancy, string companyId);
-    Task UpdateVacancyAsync(UpdateVacancy vacancy);
-    Task DeleteVacancyAsync(Guid id);
+    Task UpdateVacancyAsync(UpdateVacancy vacancy, Guid companyId);
+    Task DeleteVacancyAsync(Guid id, Guid companyId);
     Task<IEnumerable<Guid>> AddVacancyFiltersAsync(AddFilter filter);
     Task DeleteVacancyFilterAsync(Guid filterId);
     Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId);

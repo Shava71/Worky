@@ -38,13 +38,21 @@ public class CompanyService : ICompnayService
             ICompanyRepository companyRepository, 
             ILogger<CompanyService> logger,
             IAuthClient authClient,
-            IFilterCacheService filterCacheService)
+            IFilterCacheService filterCacheService,
+            
+            ITopicProducer<VacancyCreatedEvent> vacancyCreatedTopicProducer,
+            ITopicProducer<VacancyUpdatedEvent> vacancyUpdatedTopicProducer,
+            ITopicProducer<VacancyDeletedEvent> vacancyDeletedTopicProducer)
         {
             _vacancyRepository = vacancyRepository;
             _companyRepository = companyRepository;
             _logger = logger;
             _authClient = authClient;
             _filterCacheService = filterCacheService;
+            
+            _vacancyCreatedTopicProducer = vacancyCreatedTopicProducer;
+            _vacancyUpdatedTopicProducer = vacancyUpdatedTopicProducer;
+            _vacancyDeletedTopicProducer = vacancyDeletedTopicProducer;
         }
 
         public async Task<VacancyDtos> GetVacancyInfoAsync(Guid vacancyId)
@@ -54,32 +62,50 @@ public class CompanyService : ICompnayService
 
         public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(Guid companyId, Guid? vacancyId)
         {
-            // return await _vacancyRepository.GetMyVacanciesAsync(companyId, vacancyId);
             IEnumerable<VacancyDtos> vacancies = await _vacancyRepository.GetMyVacanciesAsync(companyId.ToString(), vacancyId);
+            List<VacancyDtos> vacancyList = vacancies.ToList();
 
-            List<Guid>? vacancyIds = vacancies.Select(r => r.id).ToList();
-            if (vacancyIds == null || !vacancyIds.Any())
-            {
-                return null;
-            }
-        
-            SemaphoreSlim semaphore = new SemaphoreSlim(5);
-            IEnumerable<Task<VacancyDtos>> tasks = vacancyIds.Select(async id =>
-            {
-                await semaphore.WaitAsync();
-                try
-                {
-                    return await BuildFullVacancyAsync(id);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-               
-            });
-            VacancyDtos[] result = await Task.WhenAll(tasks);
+            if (!vacancyList.Any())
+                return vacancyList;
             
-            return result;
+            List<int> allActivityIds = vacancyList
+                .SelectMany(v => v.activities.Select(a => a.id))
+                .Distinct()
+                .ToList();
+
+            if (allActivityIds.Any())
+            {
+                List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(allActivityIds);
+
+                Dictionary<int , TypeOfActivityResponse> activityDict = activities.ToDictionary(a => a.id, a => a);
+
+                foreach (VacancyDtos vacancy in vacancyList)
+                {
+                    vacancy.activities = vacancy.activities
+                        .Where(a => activityDict.ContainsKey(a.id))
+                        .Select(a => activityDict[a.id])
+                        .ToList();
+                }
+            }
+
+            Company company = await _companyRepository.GetCompanyByIdAsync(companyId);
+            CompanyDto companyDto = new CompanyDto
+            {
+                id = company.UserId,
+                email = company.email,
+                longitude = company.longitude,
+                latitude = company.latitude,
+                name = company.name,
+                phoneNumber = company.phoneNumber,
+                website = company.website,
+            };
+
+            foreach (VacancyDtos vacancy in vacancyList)
+            {
+                vacancy.company = companyDto;
+            }
+
+            return vacancyList;
         }
 
         public async Task<Guid> CreateVacancyAsync(CreateVacancy vacancy, string companyId)
@@ -105,7 +131,7 @@ public class CompanyService : ICompnayService
                     return;
                 }
 
-                await _vacancyRepository.UpdateVacancyAsync(vacancy);
+                await _vacancyRepository.UpdateVacancyAsync(vacancy, Guid.Parse(companyId));
 
                 VacancyDtos fullResume = await BuildFullVacancyAsync(vacancy.Id);
                 await _vacancyUpdatedTopicProducer.Produce(new VacancyUpdatedEvent(fullResume));
@@ -126,7 +152,7 @@ public class CompanyService : ICompnayService
                 // throw KeyNotFoundException("");
                 return;
             }
-            await _vacancyRepository.DeleteVacancyAsync(id);
+            await _vacancyRepository.DeleteVacancyAsync(id, Guid.Parse(companyId));
             
             await _vacancyDeletedTopicProducer.Produce(new VacancyDeletedEvent(id));
             _logger.LogInformation("VacancyDeletedEvent published for vacancy {VacancyId}", id);

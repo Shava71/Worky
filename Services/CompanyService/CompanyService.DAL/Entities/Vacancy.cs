@@ -19,7 +19,7 @@ public partial class Vacancy
 
     public int education_id { get; set; }
 
-    public short? experience { get; set; }
+    public int? experience { get; set; }
 
     public string? description { get; set; }
 

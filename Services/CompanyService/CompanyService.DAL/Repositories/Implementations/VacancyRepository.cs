@@ -4,6 +4,8 @@ using CompanyService.DAL.Contracts;
 using CompanyService.DAL.Data;
 using CompanyService.DAL.Data.DbConnection.Interface;
 using CompanyService.DAL.DTO;
+using CompanyService.DAL.Entities;
+using CompanyService.DAL.Entities.TypeConfiguration;
 using CompanyService.DAL.HttpClients.Clients;
 using CompanyService.DAL.Models;
 using CompanyService.DAL.Repositories.Interfaces;
@@ -123,6 +125,8 @@ public class VacancyRepository : IVacancyRepository
                     description = v.description,
                     min_salary = v.min_salary,
                     max_salary = v.max_salary,
+                    work_format = v.work_format,
+                    work_hour = v.work_hour,
 
                     activities = v.Vacancy_filters.Select(f => new TypeOfActivityResponse()
                     {
@@ -152,14 +156,14 @@ public class VacancyRepository : IVacancyRepository
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
                 string sql = """
-                    INSERT INTO "vacancy" (company_id, post, min_salary, max_salary, experience, education_id, description, income_date, work_format, work_hour) 
-                    VALUES (@company_id, @post, @min_salary, @max_salary, @experience, @education_id, @description, @income_date, @work_format, @work_hour); 
-
-                    SELECT LAST_INSERT_ID();
+                    INSERT INTO "vacancy" (id,company_id, post, min_salary, max_salary, experience, education_id, description, income_date, work_format, work_hour) 
+                    VALUES (@id, @company_id, @post, @min_salary, @max_salary, @experience, @education_id, @description, @income_date, @work_format, @work_hour)
+                    returning id;
                     """;
                 return await db.ExecuteScalarAsync<Guid>(sql, new
                 {
-                    company_id = companyId,
+                    id = Guid.NewGuid(),
+                    company_id = Guid.Parse(companyId),
                     post = vacancy.post,
                     min_salary = vacancy.min_salary,
                     max_salary = vacancy.max_salary,
@@ -173,17 +177,18 @@ public class VacancyRepository : IVacancyRepository
             }
         }
 
-        public async Task UpdateVacancyAsync(UpdateVacancy vacancy)
+        public async Task UpdateVacancyAsync(UpdateVacancy vacancy, Guid companyId)
         {
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
                 string sql = """
                     UPDATE "vacancy" SET post = @post, min_salary = @min_salary, max_salary = @max_salary, experience = @experience, education_id = @education_id, description = @description,
                                          work_format = @work_format, work_hour = @work_hour
-                                     WHERE id = @id
+                                     WHERE id = @id AND company_id = @company_id;
                     """;
                 await db.ExecuteAsync(sql, new
                 {
+                    id = vacancy.Id,
                     post = vacancy.Post,
                     min_salary = vacancy.MinSalary,
                     max_salary = vacancy.MaxSalary,
@@ -191,17 +196,19 @@ public class VacancyRepository : IVacancyRepository
                     education_id = vacancy.EducationId,
                     description = vacancy.Description,
                     work_format = vacancy.WorkFormat,
-                    work_hour = vacancy.WorkHour
+                    work_hour = vacancy.WorkHour,
+                    
+                    company_id = companyId
                 });
             }
         }
 
-        public async Task DeleteVacancyAsync(Guid id)
+        public async Task DeleteVacancyAsync(Guid id, Guid companyId)
         {
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
-                string sql = """ DELETE FROM "vacancy" WHERE id = @id """;
-                await db.ExecuteAsync(sql, new { id });
+                string sql = """ DELETE FROM "vacancy" WHERE id = @id and company_id = @company_id """;
+                await db.ExecuteAsync(sql, new { id = id, company_id = companyId });
             }
         }
 
@@ -210,14 +217,14 @@ public class VacancyRepository : IVacancyRepository
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
                 List<Guid> ids = new List<Guid>();
-                foreach (ulong activityId in filter.typeOfActivity_id)
+                foreach (int activityId in filter.typeOfActivity_id)
                 {
                     string sql = """
-                        INSERT INTO "vacancy_filter" (vacancy_id, typeOfActivity_id) 
-                        VALUES (@vacancy_id, @typeOfActivity_id) 
-                        RETURNING id; 
+                        INSERT INTO "vacancy_filter" (filter_id, vacancy_id, "typeOfActivity_id") 
+                        VALUES (@filter_id, @vacancy_id, @typeOfActivity_id) 
+                        RETURNING filter_id; 
                         """;
-                    Guid curId = await db.ExecuteScalarAsync<Guid>(sql, new { vacancy_id = filter.id, typeOfActivity_id = activityId });
+                    Guid curId = await db.ExecuteScalarAsync<Guid>(sql, new {filter_id = Guid.NewGuid() ,vacancy_id = filter.id, typeOfActivity_id = activityId });
                     ids.Add(curId);
                 }
                 return ids;
@@ -238,7 +245,7 @@ public class VacancyRepository : IVacancyRepository
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
                 string sql = """
-                                 SELECT v.*, vf."typeOfActivity_id", a.id AS a_id, a.type AS a_type, a.direction AS a_direction
+                                 SELECT v.*, vf."typeOfActivity_id"
                                  FROM "vacancy" v
                                  LEFT JOIN "vacancy_filter" vf ON v.id = vf.vacancy_id
                                  WHERE v.company_id = @companyId
@@ -261,8 +268,8 @@ public class VacancyRepository : IVacancyRepository
                     description = group.First().description,
                     min_salary = group.First().min_salary,
                     max_salary = group.First().max_salary,
-                    work_format = group.First().work_format,
-                    work_hour = group.First().work_hour,
+                    work_format = (WorkFormat?)group.First().work_format,
+                    work_hour = (WorkHour?)group.First().work_hour,
 
                     activities = group
                         .Where(g => g.typeOfActivity_id != null)
