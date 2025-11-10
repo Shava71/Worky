@@ -86,32 +86,49 @@ public class WorkerService : IWorkerService
         
         public async Task<IEnumerable<ResumeDtos>?> GetMyResumesAsync(string workerId, Guid? resumeId)
         {
-            //return await _resumeRepository.GetMyResumesAsync(workerId, resumeId);
             IEnumerable<ResumeDtos> resumes = await _resumeRepository.GetMyResumesAsync(workerId, resumeId);
+            List<ResumeDtos> resumeList = resumes.ToList();
 
-            List<Guid>? resumeIds = resumes.Select(r => r.id).ToList();
-            if (resumeIds == null || !resumeIds.Any())
+            if (!resumeList.Any())
+                return resumeList;
+
+            List<int> allActivityIds = resumeList
+                .SelectMany(r => r.activities.Select(a => a.id))
+                .Distinct()
+                .ToList();
+
+            if (allActivityIds.Any())
             {
-                return null;
+                List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(allActivityIds);
+                Dictionary<int, TypeOfActivityResponse> activityDict = activities.ToDictionary(a => a.id, a => a);
+
+                foreach (ResumeDtos resume in resumeList)
+                {
+                    resume.activities = resume.activities
+                        .Where(a => activityDict.ContainsKey(a.id))
+                        .Select(a => activityDict[a.id])
+                        .ToList();
+                }
             }
-        
-            SemaphoreSlim semaphore = new SemaphoreSlim(5);
-            IEnumerable<Task<ResumeDtos>> tasks = resumeIds.Select(async id =>
-            {
-                await semaphore.WaitAsync();
-                try
-                {
-                    return await BuildFullResumeAsync(id);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-               
-            });
-            ResumeDtos[] result = await Task.WhenAll(tasks);
             
-            return result;
+            Worker worker = await _workerRepository.GetWorkerByIdAsync(Guid.Parse(workerId));
+            WorkerDtos workerDto = new WorkerDtos
+            {
+                id = worker.UserId.ToString(),
+                first_name = worker.first_name,
+                second_name = worker.second_name,
+                surname = worker.surname,
+                birthday = worker.birthday,
+                phone = worker.PhoneNumber,
+                email = worker.Email,
+            };
+
+            foreach (var resume in resumeList)
+            {
+                resume.worker = workerDto;
+            }
+
+            return resumeList;
         }
 
         public async Task<Guid> CreateResumeAsync(CreateResume resume, string workerId)
@@ -207,7 +224,7 @@ public class WorkerService : IWorkerService
             string workerId = resume.worker_id!;
             
             Worker worker = await _workerRepository.GetWorkerByIdAsync(Guid.Parse(workerId));
-            var workerDto = new WorkerDtos
+            WorkerDtos workerDto = new WorkerDtos
             {
                 id = worker.UserId.ToString(),
                 first_name = worker.first_name,

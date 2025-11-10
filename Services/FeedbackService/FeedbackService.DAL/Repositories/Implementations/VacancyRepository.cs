@@ -6,24 +6,24 @@ using Microsoft.Extensions.Logging;
 
 namespace FeedbackService.DAL.Repositories.Implementations;
 
-public class ResumeRepository : IResumeRepository
+public class VacancyRepository : IVacancyRepository
 {
     private readonly FeedbackDbContext _dbcontext;
-    private ILogger<ResumeRepository> _logger;
+    private readonly ILogger<VacancyRepository> _logger;
 
-    public ResumeRepository(FeedbackDbContext dbcontext, ILogger<ResumeRepository> logger)
+    public VacancyRepository(FeedbackDbContext dbcontext, ILogger<VacancyRepository> logger)
     {
         _dbcontext = dbcontext;
         _logger = logger;
     }
     
-    public async Task<Guid> AddResumeAsync(Resume resume)
+    public async Task<Guid> AddVacancyAsync(Vacancy vacancy)
     {
         try
         {
-            await _dbcontext.resume.AddAsync(resume);
+            await _dbcontext.vacancy.AddAsync(vacancy);
             await _dbcontext.SaveChangesAsync();
-            return resume.resumeId;
+            return vacancy.vacancyId;
         }
         catch (Exception ex)
         {
@@ -32,16 +32,16 @@ public class ResumeRepository : IResumeRepository
         }
     }
 
-    public async Task DeleteResumeAsync(Guid resumeId)
+    public async Task DeleteVacancyAsync(Guid vacancyId)
     {
         try
         {
-            Resume? resume = await GetResumeAsync(resumeId);
-            if (resume == null)
+            Vacancy? vacancy = await GetVacacnyAsync(vacancyId);
+            if (vacancy == null)
             {
                 return;
             }
-            _dbcontext.resume.Remove(resume);
+            _dbcontext.vacancy.Remove(vacancy);
             await _dbcontext.SaveChangesAsync();
         }
         catch (Exception ex)
@@ -51,11 +51,11 @@ public class ResumeRepository : IResumeRepository
         }
     }
 
-    public async Task<Resume?> GetResumeAsync(Guid resumeId)
+    public async Task<Vacancy> GetVacacnyAsync(Guid vacancyId)
     {
         try
         {
-            return await _dbcontext.resume.Where(r => r.resumeId == resumeId).AsNoTracking().FirstOrDefaultAsync();
+            return await _dbcontext.vacancy.Where(r => r.vacancyId == vacancyId).AsNoTracking().FirstOrDefaultAsync();
         }
         catch (Exception ex)
         {

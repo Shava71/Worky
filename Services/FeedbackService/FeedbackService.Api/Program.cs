@@ -122,6 +122,7 @@ builder.Services.AddSwaggerGen(c =>
 
 // --- DI ---
 builder.Services.AddResumeDI();
+builder.Services.AddVacancyDI();
 builder.Services.AddFeedbackDI();
 
 builder.Services.AddMassTransit(config =>
@@ -149,24 +150,46 @@ builder.Services.AddMassTransit(config =>
         rider.AddConsumer<ResumeCreatedEventConsumer>();
         rider.AddConsumer<ResumeDeletedEventConsumer>();
         
+        rider.AddConsumer<VacancyCreatedEventConsumer>();
+        rider.AddConsumer<VacancyDeletedEventConsumer>();
+        
         rider.UsingKafka((context, k) =>
         {
             IConfigurationSection kafkaSettings = builder.Configuration.GetSection("Kafka");
             string bootstrapServers = kafkaSettings["BootstrapServers"];
+            string groupId = kafkaSettings["GroupId"];
             k.Host(bootstrapServers);
             
-            
-            k.TopicEndpoint<ResumeCreatedEvent>("resume.created", "feedback-service-group", e =>
+            k.TopicEndpoint<ResumeCreatedEvent>("resume.created", groupId, e =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<ResumeCreatedEventConsumer>(context);
+                e.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+                e.UseInMemoryOutbox();
                 
             });
-            k.TopicEndpoint<ResumeDeletedEvent>("resume.deleted", "feedback-service-group", e =>
+            k.TopicEndpoint<ResumeDeletedEvent>("resume.deleted", groupId, e =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<ResumeDeletedEventConsumer>(context);
+                e.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+                e.UseInMemoryOutbox();
+            });
+            
+            k.TopicEndpoint<VacancyCreatedEvent>("vacancy.created", groupId, e =>
+            {
+                e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
+                e.ConfigureConsumer<VacancyCreatedEventConsumer>(context);
+                e.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+                e.UseInMemoryOutbox();
                 
+            });
+            k.TopicEndpoint<VacancyDeletedEvent>("vacancy.deleted", groupId, e =>
+            {
+                e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
+                e.ConfigureConsumer<VacancyDeletedEventConsumer>(context);
+                e.UseMessageRetry(r => r.Interval(5, TimeSpan.FromSeconds(10)));
+                e.UseInMemoryOutbox();
             });
         });
     });

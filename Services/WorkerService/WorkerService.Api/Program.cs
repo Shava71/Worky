@@ -10,6 +10,7 @@ using WorkerService.Api.Extentions;
 using WorkerService.BLL.Consumers;
 using WorkerService.BLL.Events;
 using WorkerService.DAL.Data;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,13 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<WorkerDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+var redisConnectionString = builder.Configuration.GetConnectionString("Redis");
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    return ConnectionMultiplexer.Connect(redisConnectionString);
 });
 
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
