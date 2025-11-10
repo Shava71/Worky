@@ -46,6 +46,9 @@ public class UserService : IUserService
                         first_name = request.first_name!,
                         surname = request.surname!,
                         birthday = request.birthday!.Value,
+                        
+                        phone_info = request.phone_info!,
+                        email_info = request.email_info!,
                     };
                     topic = "user.worker.created";
                 }
