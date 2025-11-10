@@ -43,6 +43,9 @@ public class UserWorkerCreatedConsumer : IConsumer<UserWorkerCreatedEvent>
                 first_name = message.first_name,
                 surname = message.surname,
                 second_name = message.second_name,
+                
+                Email = message.email_info,
+                PhoneNumber = message.phone_info
             };
             
             await _workerRepository.CreateWorkerAsync(newWorker);

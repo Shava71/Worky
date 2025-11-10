@@ -14,4 +14,9 @@ public class UserWorkerCreatedEvent
     public string surname { get; set; } = null!;
     [Required]
     public DateOnly birthday { get; set; }
+    
+    [Required]
+    public string email_info { get; set; }
+    [Required]
+    public string phone_info { get; set; }
 }
