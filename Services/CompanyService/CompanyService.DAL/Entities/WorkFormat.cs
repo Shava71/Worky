@@ -1,8 +1,11 @@
+
+using Microsoft.OpenApi.Attributes;
+
 namespace CompanyService.DAL.Entities;
 
 public enum WorkFormat
 {
-    Office = 1,
-    Hybrid = 2,
-    Remote = 3
+    [Display(name: "Офис")] Office = 1,
+    [Display(name: "Гибрид")] Hybrid = 2,
+    [Display(name: "Удалённый")] Remote = 3
 }
