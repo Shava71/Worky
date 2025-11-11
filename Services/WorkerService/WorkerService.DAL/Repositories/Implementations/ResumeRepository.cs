@@ -138,6 +138,7 @@ public class ResumeRepository : IResumeRepository
                     experience = r.experience,
                     income_date = r.income_date,
                     education_id = r.education_id,
+                    education_name = r.education.name,
                     post = r.post,
                     skill = r.skill,
                     wantedSalary = r.wantedSalary,

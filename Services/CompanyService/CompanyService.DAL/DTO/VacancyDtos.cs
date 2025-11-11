@@ -14,6 +14,7 @@ public class VacancyDtos
     [Required] public string post { get; set; } = null!;
     [Required] public int min_salary { get; set; }
     [Required] public int education_id { get; set; }
+    [Required] public string education_name { get; set; }
     [Required] public int? experience { get; set; }
     [Required] public string? description { get; set; }
     [Required] public DateTime income_date { get; set; }

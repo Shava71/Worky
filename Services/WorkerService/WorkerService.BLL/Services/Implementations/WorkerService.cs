@@ -207,6 +207,10 @@ public class WorkerService : IWorkerService
         private async Task<ResumeDtos> BuildFullResumeAsync(Guid resumeId)
         {
             ResumeDtos resume = await _resumeRepository.GetResumeByIdAsync(resumeId);
+            if (resume == null)
+            {
+                return null;
+            }
 
             List<int> allIds = resume.activities.Select(a => a.id).Distinct().ToList();
             if (allIds.Any())

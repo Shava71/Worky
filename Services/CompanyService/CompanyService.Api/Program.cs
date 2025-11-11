@@ -147,6 +147,8 @@ builder.Services.AddMassTransit(config =>
         rider.AddProducer<VacancyUpdatedEvent>("vacancy.updated");
         rider.AddProducer<VacancyDeletedEvent>("vacancy.deleted");
         
+        rider.AddProducer<VacancyFilterAddEvent>("vacancy.filter.add");
+        
         rider.AddConsumer<UserCompanyCreatedConsumer>();
         
         rider.UsingKafka((context, k) =>
