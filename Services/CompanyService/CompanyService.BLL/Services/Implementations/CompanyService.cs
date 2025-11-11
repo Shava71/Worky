@@ -45,7 +45,10 @@ public class CompanyService : ICompnayService
             
             ITopicProducer<VacancyCreatedEvent> vacancyCreatedTopicProducer,
             ITopicProducer<VacancyUpdatedEvent> vacancyUpdatedTopicProducer,
-            ITopicProducer<VacancyDeletedEvent> vacancyDeletedTopicProducer)
+            ITopicProducer<VacancyDeletedEvent> vacancyDeletedTopicProducer,
+            
+            ITopicProducer<VacancyFilterAddEvent> vacancyFilterAddTopicProducer,
+            ITopicProducer<VacancyFilterDeleteEvent> vacancyFilterDeleteTopicProducer)
         {
             _vacancyRepository = vacancyRepository;
             _companyRepository = companyRepository;
@@ -56,6 +59,9 @@ public class CompanyService : ICompnayService
             _vacancyCreatedTopicProducer = vacancyCreatedTopicProducer;
             _vacancyUpdatedTopicProducer = vacancyUpdatedTopicProducer;
             _vacancyDeletedTopicProducer = vacancyDeletedTopicProducer;
+            
+            _vacancyFilterAddTopicProducer = vacancyFilterAddTopicProducer;
+            _vacancyFilterDeleteTopicProducer = vacancyFilterDeleteTopicProducer;
         }
 
         public async Task<VacancyDtos> GetVacancyInfoAsync(Guid vacancyId)
@@ -168,14 +174,23 @@ public class CompanyService : ICompnayService
                 // throw KeyNotFoundException("");
                 return [];
             }
+            
+            List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(filter.typeOfActivity_id);
+            try
+            {
+                await _vacancyFilterAddTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error adding vacancy filter for {CompanyId}", companyId);
+                return [];
+            }
+            
             IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
             if (!filter_id.Any())
             {
                 return [];
             }
-
-            List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(filter.typeOfActivity_id);
-            await _vacancyFilterAddTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
             
             return filter_id;
         }
@@ -187,14 +202,22 @@ public class CompanyService : ICompnayService
             {
                 return;
             }
-            await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
 
-            VacancyFilterDeleteEvent @event = new VacancyFilterDeleteEvent()
+            VacancyFilterDeleteEvent @event = new VacancyFilterDeleteEvent(
+                vacancy_id: vacancy_filter.vacancy_id,
+                activity_id: vacancy_filter.typeOfActivity_id
+            );
+            try
             {
-                vacancy_id = vacancy_filter.vacancy_id,
-                activity_id = vacancy_filter.typeOfActivity_id
-            };
-            await _vacancyFilterDeleteTopicProducer.Produce(@event);
+                await _vacancyFilterDeleteTopicProducer.Produce(@event);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting vacancy filter for {CompanyId}", companyId);
+                return;
+            }
+            await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
 
         }
 
