@@ -242,6 +242,11 @@ public class VacancyRepository : IVacancyRepository
             }
         }
 
+        public async Task<Vacancy_filter?> GetVacancyFilterByIdAsync(Guid id)
+        {
+            return await _dbContext.vacancy_filter.FirstOrDefaultAsync(vf => vf.filter_id == id);
+        }
+
         public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId)
         {
             using (IDbConnection db = _connectionFactory.CreateConnection())

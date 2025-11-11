@@ -1,5 +1,6 @@
 using CompanyService.DAL.Contracts;
 using CompanyService.DAL.DTO;
+using CompanyService.DAL.Entities;
 
 namespace CompanyService.DAL.Repositories.Interfaces;
 
@@ -12,5 +13,6 @@ public interface IVacancyRepository
     Task DeleteVacancyAsync(Guid id, Guid companyId);
     Task<IEnumerable<Guid>> AddVacancyFiltersAsync(AddFilter filter);
     Task DeleteVacancyFilterAsync(Guid filterId);
+    Task<Vacancy_filter?> GetVacancyFilterByIdAsync(Guid id);
     Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId);
 }

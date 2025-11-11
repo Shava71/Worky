@@ -33,7 +33,8 @@ public class CompanyService : ICompnayService
         private readonly ITopicProducer<VacancyUpdatedEvent> _vacancyUpdatedTopicProducer;
         private readonly ITopicProducer<VacancyDeletedEvent> _vacancyDeletedTopicProducer;
         
-        private readonly ITopicProducer<VacancyFilterAddEvent> _vacancyFilterTopicProducer;
+        private readonly ITopicProducer<VacancyFilterAddEvent> _vacancyFilterAddTopicProducer;
+        private readonly ITopicProducer<VacancyFilterDeleteEvent> _vacancyFilterDeleteTopicProducer;
 
         public CompanyService(
             IVacancyRepository vacancyRepository,
@@ -174,14 +175,27 @@ public class CompanyService : ICompnayService
             }
 
             List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(filter.typeOfActivity_id);
-            _vacancyFilterTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
+            await _vacancyFilterAddTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
             
             return filter_id;
         }
 
         public async Task DeleteVacancyFilterAsync(Guid filterId, string companyId)
         {
+            Vacancy_filter vacancy_filter = await _vacancyRepository.GetVacancyFilterByIdAsync(filterId);
+            if (vacancy_filter == null)
+            {
+                return;
+            }
             await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
+
+            VacancyFilterDeleteEvent @event = new VacancyFilterDeleteEvent()
+            {
+                vacancy_id = vacancy_filter.vacancy_id,
+                activity_id = vacancy_filter.typeOfActivity_id
+            };
+            await _vacancyFilterDeleteTopicProducer.Produce(@event);
+
         }
 
         // public async Task<object> GetStatisticsJsonAsync(string companyId, int start_year, int start_month, int end_year, int end_month)
