@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using CompanyService.DAL.Events;
 using MassTransit;
 using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -146,6 +147,9 @@ builder.Services.AddMassTransit(config =>
         rider.AddProducer<ResumeCreatedEvent>("resume.created");
         rider.AddProducer<ResumeUpdatedEvent>("resume.updated");
         rider.AddProducer<ResumeDeletedEvent>("resume.deleted");
+        
+        rider.AddProducer<ResumeFilterAddEvent>("resume.filter.add");
+        rider.AddProducer<ResumeFilterDeleteEvent>("resume.filter.delete");
         
         rider.AddConsumer<UserWorkerCreatedConsumer>();
         

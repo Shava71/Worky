@@ -2,6 +2,7 @@
 
 using WorkerService.DAL.Contracts;
 using WorkerService.DAL.DTO;
+using WorkerService.DAL.Entities;
 
 namespace WorkerService.DAL.Repositories.Interfaces;
 
@@ -14,5 +15,7 @@ public interface IResumeRepository
     Task DeleteResumeAsync(Guid id);
     Task<IEnumerable<Guid>> AddResumeFiltersAsync(AddFilter filter);
     Task DeleteResumeFilterAsync(Guid filterId);
+    Task<Resume_filter?> GetResumeFilterByIdAsync(Guid id);
+
     Task<IEnumerable<ResumeDtos>> GetMyResumesAsync(string workerId, Guid? resumeId);
 }

@@ -1,3 +1,4 @@
+using CompanyService.DAL.Events;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using WorkerService.BLL.Events;
@@ -25,27 +26,31 @@ public class WorkerService : IWorkerService
         private readonly ITopicProducer<ResumeUpdatedEvent> _resumeUpdatedTopicProducer;
         private readonly ITopicProducer<ResumeDeletedEvent> _resumeDeletedTopicProducer;
         
+        private readonly ITopicProducer<ResumeFilterAddEvent> _resumeFilterAddTopicProducer;
+        private readonly ITopicProducer<ResumeFilterDeleteEvent> _resumeFilterDeleteTopicProducer;
 
         public WorkerService(
             IResumeRepository resumeRepository, 
             IWorkerRepository workerRepository, 
             ILogger<WorkerService> logger,
             IAuthClient authClient,
-            // IFilterClient filterClient,
             IFilterCacheService filterCacheService,
             ITopicProducer<ResumeCreatedEvent> resumeCreatedTopicProducer,
             ITopicProducer<ResumeUpdatedEvent> resumeUpdatedTopicProducer,
-            ITopicProducer<ResumeDeletedEvent> resumeDeletedTopicProducer)
+            ITopicProducer<ResumeDeletedEvent> resumeDeletedTopicProducer,
+            ITopicProducer<ResumeFilterAddEvent> resumeFilterAddTopicProducer,
+            ITopicProducer<ResumeFilterDeleteEvent> resumeFilterDeleteTopicProducer)
         {
             _resumeRepository = resumeRepository;
             _workerRepository = workerRepository;
             _logger = logger;
             _authClient = authClient;
-            // _filterClient = filterClient;
             _filterCacheService = filterCacheService;
             _resumeCreatedTopicProducer = resumeCreatedTopicProducer;
             _resumeUpdatedTopicProducer = resumeUpdatedTopicProducer;
             _resumeDeletedTopicProducer = resumeDeletedTopicProducer;
+            _resumeFilterAddTopicProducer = resumeFilterAddTopicProducer;
+            _resumeFilterDeleteTopicProducer = resumeFilterDeleteTopicProducer;
         }
 
         // public async Task<IEnumerable<VacancyDtos>> FilterVacanciesAsync(GetVacanciesRequest request)
@@ -166,13 +171,52 @@ public class WorkerService : IWorkerService
         {
             if (!await WorkerHasResume(Guid.Parse(workerId), filter.id))
             {
+                // throw KeyNotFoundException("");
                 return [];
             }
-            return await _resumeRepository.AddResumeFiltersAsync(filter);
+            
+            List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(filter.typeOfActivity_id);
+            try
+            {
+                await _resumeFilterAddTopicProducer.Produce(new ResumeFilterAddEvent(filter.id, activities));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error adding vacancy filter for {workerId}", workerId);
+                return [];
+            }
+            
+            IEnumerable<Guid> filter_id = await _resumeRepository.AddResumeFiltersAsync(filter);
+            if (!filter_id.Any())
+            {
+                return [];
+            }
+            
+            return filter_id;
         }
 
         public async Task DeleteResumeFilterAsync(Guid filterId, string workerId)
         {
+            Resume_filter resume_filter = await _resumeRepository.GetResumeFilterByIdAsync(filterId);
+            if (resume_filter == null)
+            {
+                return;
+            }
+
+            ResumeFilterDeleteEvent @event = new ResumeFilterDeleteEvent(
+                vacancy_id: resume_filter.resume_id,
+                activity_id: resume_filter.typeOfActivity_id
+            );
+            try
+            {
+                await _resumeFilterDeleteTopicProducer.Produce(@event);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting vacancy filter for {workerId}", workerId);
+                return;
+            }
             await _resumeRepository.DeleteResumeFilterAsync(filterId);
         }
 

@@ -245,6 +245,12 @@ public class ResumeRepository : IResumeRepository
                 await db.ExecuteAsync(sql, new { filterId });
             }
         }
+
+        public async Task<Resume_filter?> GetResumeFilterByIdAsync(Guid id)
+        {
+            return await _dbContext.Resume_filter.FirstOrDefaultAsync(vf => vf.filter_id == id);
+        }
+
         
         public async Task<IEnumerable<ResumeDtos>> GetMyResumesAsync(string workerId, Guid? resumeId)
         {
@@ -255,6 +261,7 @@ public class ResumeRepository : IResumeRepository
                                  SELECT r.*, rf."typeOfActivity_id"
                                  FROM "Resume" r
                                  LEFT JOIN "Resume_filter" rf ON r.id = rf.resume_id
+                                 LEFT JOIN "education" e on r.education_id = e.id
                                  WHERE r.worker_id = @workerId
                                    AND (@resumeId IS NULL OR r.id = @resumeId);
                              """;
@@ -273,6 +280,7 @@ public class ResumeRepository : IResumeRepository
                     city = group.First().city,
                     experience = group.First().experience,
                     education_id = group.First().education_id,
+                    education_name = group.First().education_name,
                     income_date = group.First().income_date,
                     wantedSalary = group.First().wantedSalary,
 
