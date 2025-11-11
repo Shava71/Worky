@@ -148,6 +148,7 @@ builder.Services.AddMassTransit(config =>
         rider.AddProducer<VacancyDeletedEvent>("vacancy.deleted");
         
         rider.AddProducer<VacancyFilterAddEvent>("vacancy.filter.add");
+        rider.AddProducer<VacancyFilterDeleteEvent>("vacancy.filter.delete");
         
         rider.AddConsumer<UserCompanyCreatedConsumer>();
         

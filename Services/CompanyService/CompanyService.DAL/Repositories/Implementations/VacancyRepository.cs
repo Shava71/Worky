@@ -252,9 +252,10 @@ public class VacancyRepository : IVacancyRepository
             using (IDbConnection db = _connectionFactory.CreateConnection())
             {
                 string sql = """
-                                 SELECT v.*, vf."typeOfActivity_id"
+                                 SELECT v.*, vf."typeOfActivity_id", e.name AS education_name
                                  FROM "vacancy" v
                                  LEFT JOIN "vacancy_filter" vf ON v.id = vf.vacancy_id
+                                 LEFT JOIN "education" e on v.education_id = e.id
                                  WHERE v.company_id = @companyId
                                    AND (@vacancyId IS NULL OR v.id = @vacancyId);
                              """;
@@ -272,6 +273,7 @@ public class VacancyRepository : IVacancyRepository
                     experience = group.First().experience,
                     income_date = group.First().income_date,
                     education_id = group.First().education_id,
+                    education_name = group.First().education_name,
                     description = group.First().description,
                     min_salary = group.First().min_salary,
                     max_salary = group.First().max_salary,
