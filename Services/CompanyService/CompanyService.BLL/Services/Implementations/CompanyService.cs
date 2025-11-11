@@ -32,6 +32,8 @@ public class CompanyService : ICompnayService
         private readonly ITopicProducer<VacancyCreatedEvent> _vacancyCreatedTopicProducer;
         private readonly ITopicProducer<VacancyUpdatedEvent> _vacancyUpdatedTopicProducer;
         private readonly ITopicProducer<VacancyDeletedEvent> _vacancyDeletedTopicProducer;
+        
+        private readonly ITopicProducer<VacancyFilterAddEvent> _vacancyFilterTopicProducer;
 
         public CompanyService(
             IVacancyRepository vacancyRepository,
@@ -57,7 +59,7 @@ public class CompanyService : ICompnayService
 
         public async Task<VacancyDtos> GetVacancyInfoAsync(Guid vacancyId)
         {
-            return await _vacancyRepository.GetVacancyByIdAsync(vacancyId);
+            return await BuildFullVacancyAsync(vacancyId);
         }
 
         public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(Guid companyId, Guid? vacancyId)
@@ -165,7 +167,16 @@ public class CompanyService : ICompnayService
                 // throw KeyNotFoundException("");
                 return [];
             }
-            return await _vacancyRepository.AddVacancyFiltersAsync(filter);
+            IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
+            if (!filter_id.Any())
+            {
+                return [];
+            }
+
+            List<TypeOfActivityResponse> activities = await _filterCacheService.GetFiltersByIdsAsync(filter.typeOfActivity_id);
+            _vacancyFilterTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
+            
+            return filter_id;
         }
 
         public async Task DeleteVacancyFilterAsync(Guid filterId, string companyId)
@@ -418,6 +429,10 @@ public class CompanyService : ICompnayService
         private async Task<VacancyDtos> BuildFullVacancyAsync(Guid vacancyId)
         {
             VacancyDtos vacancy = await _vacancyRepository.GetVacancyByIdAsync(vacancyId);
+            if (vacancy == null)
+            {
+                return null;
+            }
 
             List<int> allIds = vacancy.activities.Select(a => a.id).Distinct().ToList();
             if (allIds.Any())
@@ -435,7 +450,7 @@ public class CompanyService : ICompnayService
             Guid copmanyId = (Guid)vacancy.company_id!;
             
             Company company = await _companyRepository.GetCompanyByIdAsync(copmanyId);
-            var companyDto = new CompanyDto()
+            CompanyDto companyDto = new CompanyDto()
             {
                 id = copmanyId,
                 email = company.email,

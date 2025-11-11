@@ -113,6 +113,7 @@ public class VacancyRepository : IVacancyRepository
                 .AsNoTracking()
                 .Include(v => v.company)
                 .Include(v => v.Vacancy_filters)
+                .Include(v => v.education)
                 .Where(v => v.id == id)
                 .Select(v => new VacancyDtos
                 {
@@ -122,6 +123,7 @@ public class VacancyRepository : IVacancyRepository
                     experience = v.experience,
                     income_date = v.income_date,
                     education_id = v.education_id,
+                    education_name = v.education.name,
                     description = v.description,
                     min_salary = v.min_salary,
                     max_salary = v.max_salary,
