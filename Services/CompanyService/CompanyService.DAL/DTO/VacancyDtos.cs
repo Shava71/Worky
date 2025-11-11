@@ -3,6 +3,7 @@ using CompanyService.DAL.DTO;
 using CompanyService.DAL.Entities;
 using CompanyService.DAL.Entities.TypeConfiguration;
 using CompanyService.DAL.HttpClients.Clients;
+using Microsoft.OpenApi.Extensions;
 
 
 namespace CompanyService.DAL.DTO;
@@ -20,7 +21,9 @@ public class VacancyDtos
     [Required] public DateTime income_date { get; set; }
     [Required] public int? max_salary { get; set; }
     [Required] public WorkFormat? work_format { get; set; }
+    [Required] public string work_format_name  => work_format?.GetDisplayName();
     [Required] public WorkHour? work_hour { get; set; }
+    [Required] public string work_hour_name  => work_hour?.GetDisplayName();
     [Required] public List<TypeOfActivityResponse>? activities { get; set; }
     [Required] public CompanyDto? company { get; set; }
 }
