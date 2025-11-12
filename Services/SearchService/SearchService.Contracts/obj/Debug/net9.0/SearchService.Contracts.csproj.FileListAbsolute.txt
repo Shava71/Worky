@@ -1,0 +1,12 @@
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/bin/Debug/net9.0/SearchService.Contracts.deps.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/bin/Debug/net9.0/SearchService.Contracts.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/bin/Debug/net9.0/SearchService.Contracts.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.AssemblyInfoInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.AssemblyInfo.cs
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.sourcelink.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/refint/SearchService.Contracts.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/SearchService.Contracts.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contracts/obj/Debug/net9.0/ref/SearchService.Contracts.dll

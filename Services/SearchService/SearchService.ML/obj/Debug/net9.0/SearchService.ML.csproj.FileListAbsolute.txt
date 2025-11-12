@@ -1,0 +1,12 @@
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/bin/Debug/net9.0/SearchService.ML.deps.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/bin/Debug/net9.0/SearchService.ML.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/bin/Debug/net9.0/SearchService.ML.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.AssemblyInfoInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.AssemblyInfo.cs
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.sourcelink.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/refint/SearchService.ML.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/SearchService.ML.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/Debug/net9.0/ref/SearchService.ML.dll

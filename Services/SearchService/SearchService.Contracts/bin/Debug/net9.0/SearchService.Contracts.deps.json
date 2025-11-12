@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "SearchService.Contracts/1.0.0": {
+        "runtime": {
+          "SearchService.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SearchService.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
