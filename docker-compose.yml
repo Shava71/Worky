@@ -231,6 +231,64 @@ services:
     networks:
       - backend
 
+
+  # --- SearchService ----
+  searchservice:
+    build:
+      context: ./Services/SearchService
+      dockerfile: SearchService/Dockerfile
+    ports:
+      - "5006:8080"
+    depends_on:
+      - kafka
+      - elasticsearch
+    networks:
+      - backend
+  
+  # ---- Elasticsearch и Kibana ----
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    container_name: elasticsearch
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node          # один узел (без кворума)
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g          # выделяем память JVM
+      - xpack.security.enabled=true         # включаем безопасность
+      - xpack.security.http.ssl.enabled=true  
+      - xpack.security.transport.ssl.enabled=false
+      - ELASTIC_PASSWORD=elasticpass           # пароль для пользователя elastic
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"                         # REST API
+      - "9300:9300"                         # транспортный порт (кластерный)
+    networks:
+      - backend
+  
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.15.0
+    container_name: kibana
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      - SERVER_NAME=kibana
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=changeme
+    ports:
+      - "5601:5601"                         # порт Kibana
+    networks:
+      - backend
+
+
 # ---- Volumes ----
 volumes:
   kafka_data:
@@ -240,6 +298,8 @@ volumes:
   filter_data:
   feedback_data:
   company_data:
+  es_data:
+    driver: local
   
 # ---- Networks ----
 networks:

@@ -261,7 +261,7 @@ public class ResumeRepository : IResumeRepository
                                  SELECT r.*, rf."typeOfActivity_id"
                                  FROM "Resume" r
                                  LEFT JOIN "Resume_filter" rf ON r.id = rf.resume_id
-                                 LEFT JOIN "education" e on r.education_id = e.id
+                                 LEFT JOIN "Education" e on r.education_id = e.id
                                  WHERE r.worker_id = @workerId
                                    AND (@resumeId IS NULL OR r.id = @resumeId);
                              """;
