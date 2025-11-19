@@ -204,7 +204,7 @@ public class WorkerService : IWorkerService
             }
 
             ResumeFilterDeleteEvent @event = new ResumeFilterDeleteEvent(
-                vacancy_id: resume_filter.resume_id,
+                resume_id: resume_filter.resume_id,
                 activity_id: resume_filter.typeOfActivity_id
             );
             try
