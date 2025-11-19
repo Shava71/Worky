@@ -1,11 +1,17 @@
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.BLL.deps.json
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.BLL.dll
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.BLL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.Contract.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.DAL.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.DAL.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/bin/Debug/net9.0/SearchService.Contract.pdb
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.csproj.AssemblyReference.cache
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.GeneratedMSBuildEditorConfig.editorconfig
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.AssemblyInfoInputs.cache
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.AssemblyInfo.cs
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.csproj.CoreCompileInputs.cache
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.sourcelink.json
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchSe.E484AB98.Up2Date
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.dll
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/refint/SearchService.BLL.dll
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/Debug/net9.0/SearchService.BLL.pdb

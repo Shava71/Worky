@@ -1,0 +1,70 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ru_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "russian_stop",
+            "russian_stemmer",
+            "russian_lemmatizer"
+          ]
+        }
+      },
+      "filter": {
+        "russian_stop": {
+          "type": "stop",
+          "stopwords": "_russian_"
+        },
+        "russian_stemmer": {
+          "type": "stemmer",
+          "language": "russian"
+        },
+        "russian_lemmatizer": {
+          "type": "stemmer",
+          "language": "light_russian"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "id": { "type": "keyword" },
+      "workerId": { "type": "keyword" },
+
+      "skill": { "type": "text", "analyzer": "ru_analyzer" },
+      "city": { "type": "keyword" },
+      "city_search": { "type": "text", "analyzer": "ru_analyzer" },
+
+      "experience": { "type": "integer" },
+      "educationId": {"type": "integer"},
+      "educationName": { "type": "keyword" },
+      "incomeDate": { "type": "date" },
+      "wantedSalary": { "type": "integer" },
+
+      "post": { "type": "text", "analyzer": "ru_analyzer" },
+      "workerFullName": { "type": "text", "analyzer": "ru_analyzer" },
+
+      "worker": {
+        "type": "object",
+        "properties": {
+          "secondName": { "type": "keyword" },
+          "firstName": { "type": "keyword" },
+          "surname": { "type": "keyword" },
+          "birthday": { "type": "date" },
+          "age": { "type": "integer" }
+        }
+      },
+
+      "activities": {
+        "type": "nested",
+        "properties": {
+          "direction": { "type": "keyword" },
+          "type": { "type": "keyword" }
+        }
+      }
+    }
+  }
+}

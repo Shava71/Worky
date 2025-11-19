@@ -236,7 +236,7 @@ services:
   searchservice:
     build:
       context: ./Services/SearchService
-      dockerfile: SearchService/Dockerfile
+      dockerfile: SearchService.Api/Dockerfile
     ports:
       - "5006:8080"
     depends_on:
@@ -247,33 +247,42 @@ services:
   
   # ---- Elasticsearch и Kibana ----
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.0.0
     container_name: elasticsearch
     environment:
       - node.name=es01
       - cluster.name=es-docker-cluster
-      - discovery.type=single-node          # один узел (без кворума)
-      - bootstrap.memory_lock=true
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g          # выделяем память JVM
-      - xpack.security.enabled=true         # включаем безопасность
-      - xpack.security.http.ssl.enabled=true  
-      - xpack.security.transport.ssl.enabled=false
-      - ELASTIC_PASSWORD=elasticpass           # пароль для пользователя elastic
+      - discovery.type=single-node          # ← оставляем
+      # ← УДАЛЯЕМ СОВСЕМ cluster.initial_master_nodes !!!
+      - bootstrap.memory_lock=false
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=elasticpass
+      # ← 512 МБ — единственное, что стабильно работает на Air 8 ГБ
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      # Опционально, но сильно экономит память и время старта:
+      - ingest.geoip.downloader.enabled=false
+      - xpack.ml.enabled=false
     ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+      memlock: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -u elastic:elasticpass http://localhost:9200 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 90
+      start_period: 120s
     volumes:
       - es_data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"                         # REST API
-      - "9300:9300"                         # транспортный порт (кластерный)
+      - "9200:9200"
     networks:
       - backend
-  
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.15.0
+    image: docker.elastic.co/kibana/kibana:9.0.0
     container_name: kibana
     depends_on:
       elasticsearch:
@@ -281,8 +290,8 @@ services:
     environment:
       - SERVER_NAME=kibana
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=kibanapass
     ports:
       - "5601:5601"                         # порт Kibana
     networks:

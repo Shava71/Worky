@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[2.1.66, )"
             },
+            "Elastic.Clients.Elasticsearch": {
+              "target": "Package",
+              "version": "[9.2.1, )"
+            },
             "MassTransit": {
               "target": "Package",
               "version": "[8.5.5, )"
