@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SearchService.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb00a8a40702f5f8eb062ed2a513ff32e4dc5a50")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbd96a09997dac15d697a2e45e3ddd9c6b907722")]
 [assembly: System.Reflection.AssemblyProductAttribute("SearchService.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SearchService.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

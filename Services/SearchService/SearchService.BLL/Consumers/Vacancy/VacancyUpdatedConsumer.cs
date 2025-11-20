@@ -4,14 +4,15 @@ using SearchService.BLL.Mapping;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
 using SearchService.DAL.Repositories.Implementations;
+using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.BLL.Consumers;
 
 public class VacancyUpdatedConsumer : IConsumer<VacancyUpdatedEvent>
 {
-    private readonly VacancyElasticRepository _repository;
+    private readonly IVacancyElasticRepository _repository;
 
-    public VacancyUpdatedConsumer(VacancyElasticRepository repository)
+    public VacancyUpdatedConsumer(IVacancyElasticRepository repository)
     {
         _repository = repository;
     }

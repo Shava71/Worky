@@ -1,7 +1,10 @@
+using System.Globalization;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.QueryDsl;
+using Microsoft.Extensions.Logging;
 using SeachService.DAL.DTO;
 using SearchService.Contract;
+using SearchService.DAL.Dto;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
 
@@ -9,19 +12,24 @@ namespace SearchService.DAL.Repositories.Implementations;
 
 public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVacancyElasticRepository
 {
-    public VacancyElasticRepository(ElasticsearchClient client)
-        : base(client, "vacancies") { }
+    private readonly ILogger<VacancyElasticRepository> _logger;
+    public VacancyElasticRepository(ElasticsearchClient client, ILogger<VacancyElasticRepository> logger)
+        : base(client, "vacancies") { _logger = logger; }
     
-    public async Task<IReadOnlyCollection<(VacancyDocument doc, double score)>> SearchAsync(GetVacanciesRequest request)
-    {
-        var must = new List<Query>();
-        var should = new List<Query>();
+    public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchAsync(GetVacanciesRequest request)
+{
+    _logger.LogInformation("Vacancy search started with request: {@request}", request);
 
-        // ID
+    var must = new List<Query>();   // Только жёсткие фильтры (не влияют на score)
+    var should = new List<Query>();  // Здесь будет текстовый поиск — он даёт score!
+
+    try
+    {
+        // === ЖЁСТКИЕ ФИЛЬТРЫ (must) — НЕ влияют на score ===
+
         if (request.id.HasValue)
             must.Add(new TermQuery { Field = "id", Value = request.id.Value.ToString() });
 
-        // Опыт
         if (request.min_experience.HasValue || request.max_experience.HasValue)
             must.Add(new NumberRangeQuery
             {
@@ -30,15 +38,10 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                 Lte = request.max_experience
             });
 
-        // Образование
         if (request.education.HasValue)
             must.Add(new TermQuery { Field = "educationId", Value = request.education.Value });
-        
-        // // Город (ищем в компании)
-        // if (!string.IsNullOrWhiteSpace(request.city))
-        //     must.Add(new MatchQuery { Field = "company.city", Query = request.city });
 
-        // Зарплата: ищем пересечение диапазонов
+        // Зарплата — сложный фильтр
         if (request.min_wantedSalary.HasValue || request.max_wantedSalary.HasValue)
         {
             var salaryClauses = new List<Query>();
@@ -49,14 +52,16 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             if (request.max_wantedSalary.HasValue)
                 salaryClauses.Add(new NumberRangeQuery { Field = "minSalary", Lte = request.max_wantedSalary.Value });
 
-            must.Add(new BoolQuery { Should = salaryClauses, MinimumShouldMatch = 1 });
+            must.Add(new BoolQuery
+            {
+                Should = salaryClauses,
+                MinimumShouldMatch = 1
+            });
         }
 
-        // Тип деятельности
         if (!string.IsNullOrWhiteSpace(request.type))
             must.Add(new TermQuery { Field = "activities.type.keyword", Value = request.type });
 
-        // Направления
         if (request.direction?.Count > 0)
             must.Add(new TermsQuery
             {
@@ -64,79 +69,78 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                 Terms = new TermsQueryField(request.direction.Select(FieldValue.String).ToList())
             });
 
-        // геолокация:  только если оба параметра переданы
-        if (!string.IsNullOrWhiteSpace(request.latitude) && 
+        // Геофильтр
+        if (!string.IsNullOrWhiteSpace(request.latitude) &&
             !string.IsNullOrWhiteSpace(request.longitude) &&
-            double.TryParse(request.latitude, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out var lat) &&
-            double.TryParse(request.longitude, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out var lon))
+            double.TryParse(request.latitude, NumberStyles.Any, CultureInfo.InvariantCulture, out var lat) &&
+            double.TryParse(request.longitude, NumberStyles.Any, CultureInfo.InvariantCulture, out var lon))
         {
             must.Add(new GeoDistanceQuery
             {
-                Field = "company.location",
-                Distance = "50km", // можно вынести в параметр позже
+                Field = "location",
+                Distance = "50km",
                 Location = new LatLonGeoLocation { Lat = lat, Lon = lon }
             });
         }
 
-        // Умный поиск (AISearch)
+        // === ТЕКСТОВЫЙ ПОИСК — ОСНОВНОЙ ИСТОЧНИК SCORE ===
         if (!string.IsNullOrWhiteSpace(request.AISearch))
         {
-            should.Add(new MultiMatchQuery
+            var textSearchQuery = new MultiMatchQuery
             {
-                Query = request.AISearch,
+                Query = request.AISearch.Trim(),
                 Fields = new Field[]
                 {
-                    "post^4",
-                    "description^2",
-                    "company.name^3",
-                    "company.city",
-                    "activities.direction",
-                    "activities.type",
-                    "workFormat_name",
-                    "workFour_name"
+                    "post^5",                    // Должность — самый важный
+                    "description^3",             // Описание
+                    "company.name^2",
+                    "activities.direction^2",
+                    "activities.type^2",
+                    "workHour",
+                    "workFormat"
                 },
-                Type = TextQueryType.MostFields,
-                Fuzziness = new Fuzziness(1)
-            });
+                Type = TextQueryType.BestFields,  // Лучше для точного совпадения в одном поле
+                Fuzziness = new Fuzziness("AUTO"),
+                Operator = Operator.Or,
+                // MinimumShouldMatch = "75%" // можно включить для строгих запросов
+            };
+
+            should.Add(textSearchQuery);
         }
-        // // Обычный поиск по строке (если нет AISearch)
-        // else if (!string.IsNullOrWhiteSpace(request.search))
-        // {
-        //     should.Add(new MultiMatchQuery
-        //     {
-        //         Query = request.search,
-        //         Fields = new Field[] { "post^4", "description^2", "company.name^3", "company.city" },
-        //         Type = TextQueryType.MostFields,
-        //         Fuzziness = Fuzziness.Auto
-        //     });
-        // }
 
-        var query = new BoolQuery
+        // === Если вообще ничего не указано — ищем по всему ===
+        Query finalQuery;
+
+        if (must.Count > 0 || should.Count > 0)
         {
-            Must = must.Count > 0 ? must : null,
-            Should = should.Count > 0 ? should : null,
-            MinimumShouldMatch = should.Count > 0 ? 1 : 0
-        };
+            finalQuery = new BoolQuery
+            {
+                Must = must.Count > 0 ? must : null,
+                Should = should.Count > 0 ? should : null,
+                MinimumShouldMatch = should.Count > 0 ? 1 : 0   // Ключевое! Заставляем should влиять
+            };
+        }
+        else
+        {
+            finalQuery = new MatchAllQuery();
+        }
 
-        // Сортировка
+        // === СОРТИРОВКА ===
         var sortOptions = new List<SortOptions>();
 
-        // Если переданы координаты — сортируем по расстоянию в первую очередь
+        // Гео-сортировка по расстоянию
         if (!string.IsNullOrWhiteSpace(request.latitude) &&
             !string.IsNullOrWhiteSpace(request.longitude) &&
-            double.TryParse(request.latitude, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out var sortLat) &&
-            double.TryParse(request.longitude, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out var sortLon))
+            double.TryParse(request.latitude, NumberStyles.Any, CultureInfo.InvariantCulture, out var sortLat) &&
+            double.TryParse(request.longitude, NumberStyles.Any, CultureInfo.InvariantCulture, out var sortLon))
         {
-            sortOptions.Add(new SortOptions
+            sortOptions.Add(new GeoDistanceSort
             {
-                GeoDistance = new GeoDistanceSort
-                {
-                    Field = "company.location",
-                    Location =  [new LatLonGeoLocation { Lat = sortLat, Lon = sortLon }] ,
-                    Order = SortOrder.Asc,
-                    Unit = DistanceUnit.Kilometers,
-                    Mode = SortMode.Min
-                }
+                Field = "location",
+                Location = new[] { GeoLocation.LatitudeLongitude(new LatLonGeoLocation(sortLat, sortLon)) },
+                Order = SortOrder.Asc,
+                Unit = DistanceUnit.Kilometers,
+                Mode = SortMode.Min
             });
         }
 
@@ -147,33 +151,55 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                 ? SortOrder.Desc
                 : SortOrder.Asc;
 
-            sortOptions.Add(new SortOptions
-            {
-                Field = new FieldSort { Field = request.SortItem, Order = order }
-            });
+            sortOptions.Add(new FieldSort { Field = request.SortItem, Order = order });
         }
-        else
+        else if (string.IsNullOrWhiteSpace(request.latitude) || string.IsNullOrWhiteSpace(request.longitude))
         {
-            // По умолчанию — по дате поступления
-            sortOptions.Add(new SortOptions
-            {
-                Field = new FieldSort { Field = "incomeDate", Order = SortOrder.Desc }
-            });
+            // По умолчанию — сначала свежие + по релевантности
+            sortOptions.Add(new FieldSort { Field = "_score", Order = SortOrder.Desc });
+            sortOptions.Add(new FieldSort { Field = "incomeDate", Order = SortOrder.Desc });
         }
 
-        var response = await _client.SearchAsync<VacancyDocument>(s => s
+        // === ВЫПОЛНЕНИЕ ЗАПРОСА ===
+        var searchResponse = await _client.SearchAsync<VacancyDocument>(s => s
             .Index(_indexName)
-            .Query(query)
-            .Sort(sortOptions.ToArray())
+            .Query(finalQuery)
+            .Sort(sortOptions)
             .Size(100)
             .TrackTotalHits(true)
+            .Source(true) // если не нужно всё — можно отключить
         );
 
-        if (!response.IsValidResponse)
-            throw new Exception($"Elasticsearch error: {response.DebugInformation}");
+        if (!searchResponse.IsValidResponse)
+        {
+            _logger.LogError("Elasticsearch error: {error}", searchResponse.DebugInformation);
+            throw new Exception($"Elasticsearch error: {searchResponse.DebugInformation}");
+        }
 
-        return response.Hits
-            .Select(h => (h.Source!, h.Score ?? 0.0))
+        _logger.LogInformation("Search success. Total hits: {total}, Returned: {count}",
+            searchResponse.Total, searchResponse.Documents.Count);
+
+        foreach (var hit in searchResponse.Hits)
+        {
+            _logger.LogInformation("Hit ID: {id} | Score: {score:F4} | Post: {post}",
+                hit.Id, hit.Score, hit.Source?.post);
+        }
+
+        var result = searchResponse.Hits
+            .Where(h => h.Source != null)
+            .Select(h => new VacancySearchResultDto
+            {
+                Document = h.Source!,
+                Score = h.Score ?? 0.0
+            })
             .ToList();
+
+        return result;
     }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Error during vacancy search");
+        throw;
+    }
+}
 }

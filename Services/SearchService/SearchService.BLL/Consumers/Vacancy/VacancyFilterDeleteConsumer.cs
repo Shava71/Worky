@@ -2,14 +2,15 @@ using MassTransit;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
 using SearchService.DAL.Repositories.Implementations;
+using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.BLL.Consumers;
 
 public class VacancyFilterDeleteConsumer : IConsumer<VacancyFilterDeleteEvent>
 {
-    private readonly VacancyElasticRepository _repository;
+    private readonly IVacancyElasticRepository _repository;
 
-    public VacancyFilterDeleteConsumer(VacancyElasticRepository repository)
+    public VacancyFilterDeleteConsumer(IVacancyElasticRepository repository)
     {
         _repository = repository;
     }

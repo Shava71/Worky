@@ -3,14 +3,15 @@ using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
 using SearchService.DAL.HttpClients.Clients;
 using SearchService.DAL.Repositories.Implementations;
+using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.BLL.Consumers;
 
 public class VacancyFilterAddConsumer : IConsumer<VacancyFilterAddEvent>
 {
-    private readonly VacancyElasticRepository _repository;
+    private readonly IVacancyElasticRepository _repository;
 
-    public VacancyFilterAddConsumer(VacancyElasticRepository repository)
+    public VacancyFilterAddConsumer(IVacancyElasticRepository repository)
     {
         _repository = repository;
     }

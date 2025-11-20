@@ -164,7 +164,7 @@ builder.Services.AddMassTransit(config =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
                 e.ConfigureConsumer<UserWorkerCreatedConsumer>(context);
-                
+                e.CreateIfMissing();
             });
         });
     });

@@ -55,7 +55,10 @@ public static class MappingExtensions
             company = new CompanyInfo
             {
                 id = dto.company?.id ?? Guid.Empty,
-                name = dto.company?.name ?? ""
+                name = dto.company?.name ?? "",
+                phoneNumber = dto.company?.phoneNumber ?? "",
+                email = dto.company?.email ?? "",
+                website = dto.company?.website ?? "",
             },
             activities = dto.activities?.Select(a => new Activity
             {

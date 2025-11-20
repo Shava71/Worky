@@ -3,13 +3,30 @@
     "analysis": {
       "analyzer": {
         "ru_analyzer": {
-          "type": "custom",
           "tokenizer": "standard",
           "filter": [
             "lowercase",
             "russian_stop",
-            "russian_stemmer",
-            "russian_lemmatizer"
+            "russian_stemmer"
+          ]
+        },
+        "code_analyzer": {
+          "tokenizer": "code_tokenizer",
+          "filter": [
+            "lowercase"
+          ]
+        }
+      },
+      "tokenizer": {
+        "code_tokenizer": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 10,
+          "token_chars": [
+            "letter",
+            "digit",
+            "symbol",
+            "punctuation"
           ]
         }
       },
@@ -21,10 +38,6 @@
         "russian_stemmer": {
           "type": "stemmer",
           "language": "russian"
-        },
-        "russian_lemmatizer": {
-          "type": "stemmer",
-          "language": "light_russian"
         }
       }
     }
@@ -32,45 +45,73 @@
   "mappings": {
     "properties": {
       "id": { "type": "keyword" },
-      "companyId": { "type": "keyword" },
 
-      "post": { "type": "text", "analyzer": "ru_analyzer" },
-      "description": {
+      "post": {
         "type": "text",
-        "analyzer": "ru_analyzer"
+        "analyzer": "ru_analyzer",
+        "search_analyzer": "ru_analyzer",
+        "fields": {
+          "code": {                
+            "type": "text",
+            "analyzer": "code_analyzer",
+            "search_analyzer": "standard"
+          }
+        }
       },
 
+      "description": {
+        "type": "text",
+        "analyzer": "ru_analyzer",
+        "search_analyzer": "ru_analyzer",
+        "fields": {
+          "code": {
+            "type": "text",
+            "analyzer": "code_analyzer",
+            "search_analyzer": "standard"
+          }
+        }
+      },
+
+      "experience": { "type": "integer" },
       "minSalary": { "type": "integer" },
       "maxSalary": { "type": "integer" },
-      "experience": { "type": "integer" },
-      "educationId": {"type": "integer"},
+
+      "educationId": { "type": "integer" },
       "educationName": { "type": "keyword" },
+
       "incomeDate": { "type": "date" },
 
       "workFormat": { "type": "keyword" },
-      "workHour": { "type": "keyword" },
-
-      "location": { "type": "geo_point" },
+      "workHour":   { "type": "keyword" },
 
       "company": {
-        "type": "object",
         "properties": {
-          "id": {"type": "integer"},
+          "id": { "type": "keyword" },
           "name": {
             "type": "text",
-            "analyzer": "ru_analyzer"
+            "analyzer": "ru_analyzer",
+            "search_analyzer": "ru_analyzer"
           },
-          "email": {"type": "keyword"},
-          "phoneNumber" : {"type": "keyword"},
-          "website": {"type": "keyword"}
+          "email": { "type": "keyword" },
+          "phoneNumber": { "type": "keyword" },
+          "website": { "type": "keyword" }
         }
       },
+
+      "location": { "type": "geo_point" },
 
       "activities": {
         "type": "nested",
         "properties": {
-          "direction": { "type": "keyword" },
-          "type": { "type": "keyword" }
+          "id": { "type": "integer" },
+          "direction": {
+            "type": "text",
+            "analyzer": "ru_analyzer"
+          },
+          "type": {
+            "type": "text",
+            "analyzer": "ru_analyzer"
+          }
         }
       }
     }

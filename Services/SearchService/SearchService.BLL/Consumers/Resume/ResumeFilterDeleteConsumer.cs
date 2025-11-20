@@ -3,14 +3,15 @@ using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
 using SearchService.DAL.HttpClients.Clients;
 using SearchService.DAL.Repositories.Implementations;
+using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.BLL.Consumers;
 
 public class ResumeFilterDeleteConsumer : IConsumer<ResumeFilterDeleteEvent>
 {
-    private readonly ResumeElasticRepository _repository;
+    private readonly IResumeElasticRepository _repository;
 
-    public ResumeFilterDeleteConsumer(ResumeElasticRepository repository)
+    public ResumeFilterDeleteConsumer(IResumeElasticRepository repository)
     {
         _repository = repository;
     }

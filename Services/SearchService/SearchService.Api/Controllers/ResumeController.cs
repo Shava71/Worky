@@ -18,7 +18,7 @@ public class ResumeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyCollection<ResumeDocument>>> Search([FromQuery] GetResumesRequest request)
+    public async Task<IActionResult> Search([FromQuery] GetResumesRequest request)
     {
         var result = await _searchService.SearchAsync(request);
         return Ok(result);

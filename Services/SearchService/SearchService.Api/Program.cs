@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.Analysis;
 using Elastic.Transport;
@@ -24,7 +25,18 @@ var settings = new ElasticsearchClientSettings(new Uri(elasticsearchUrl))
     .Authentication(new BasicAuthentication(username, password))
     .DefaultIndex("default-index")
     .EnableDebugMode()
-    .PrettyJson();
+    .PrettyJson()
+    .DefaultFieldNameInferrer(p => p)
+    .DefaultMappingFor<VacancyDocument>(m => m
+        .IndexName("vacancies")
+        .IdProperty(p => p.id)
+    )
+    .DefaultMappingFor<ResumeDocument>(m => m
+        .IndexName("resumes")
+        .IdProperty(p => p.id)
+    );
+
+
 
 ElasticsearchClient client = new ElasticsearchClient(settings);
 

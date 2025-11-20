@@ -2,6 +2,7 @@ using Elastic.Clients.Elasticsearch.Ingest;
 using SeachService.DAL.DTO;
 using SearchService.BLL.Services.Interfaces;
 using SearchService.Contract;
+using SearchService.DAL.Dto;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
 
@@ -16,9 +17,9 @@ public class VacancySearchService : IVacancySearchService
         _repository = repository;
     }
 
-    public async Task<IReadOnlyCollection<(VacancyDocument doc, double score)>> SearchAsync(GetVacanciesRequest request)
+    public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchAsync(GetVacanciesRequest request)
     {
-        IReadOnlyCollection<(VacancyDocument doc, double score)> result = await _repository.SearchAsync(request);
+        IReadOnlyCollection<VacancySearchResultDto> result = await _repository.SearchAsync(request);
         return result;
     }
 }

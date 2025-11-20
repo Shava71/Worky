@@ -5,14 +5,15 @@ using SearchService.BLL.Mapping;
 using SearchService.DAL.DTO;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Implementations;
+using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.BLL.Consumers;
 
 public class ResumeUpdatedConsumer : IConsumer<ResumeUpdatedEvent>
 {
-    private readonly ResumeElasticRepository _repository;
+    private readonly IResumeElasticRepository _repository;
 
-    public ResumeUpdatedConsumer(ResumeElasticRepository repository)
+    public ResumeUpdatedConsumer(IResumeElasticRepository repository)
     {
         _repository = repository;
     }
