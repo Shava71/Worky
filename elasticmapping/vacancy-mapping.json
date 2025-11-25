@@ -113,6 +113,18 @@
             "analyzer": "ru_analyzer"
           }
         }
+      },
+
+      "vector": {
+        "type": "dense_vector",
+        "dims": 384,
+        "index": true,
+        "similarity": "cosine",
+        "index_options": {
+          "type": "hnsw",
+          "m": 16,
+          "ef_construction": 100
+        }
       }
     }
   }

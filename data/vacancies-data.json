@@ -1,0 +1,758 @@
+[
+  {
+    "post": "Java Backend Developer",
+    "min_salary": 120000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Разработка микросервисов на Java с использованием Spring Boot и Apache Kafka.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "C# Backend Developer",
+    "min_salary": 110000,
+    "max_salary": 185000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Разработка cервера на C#, работа с EF Core, PostgreSQL.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Backend Developer",
+    "min_salary": 110000,
+    "max_salary": 185000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Разработка API на ASP.NET Core, работа с EF Core, PostgreSQL.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Python Developer",
+    "min_salary": 100000,
+    "max_salary": 170000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Создание сервисов на Django и FastAPI, опыт работы с Celery.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Golang Developer",
+    "min_salary": 150000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Разработка высоконагруженных сервисов на Go, Kafka, Redis.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "React Frontend Developer",
+    "min_salary": 90000,
+    "max_salary": 160000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "React, TypeScript, Redux Toolkit, создание UI компонент.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Vue Frontend Developer",
+    "min_salary": 85000,
+    "max_salary": 150000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Разработка SPA на Vue3, Pinia, Vite.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Fullstack Developer (React + Node.js)",
+    "min_salary": 120000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Fullstack разработка на React и Node.js (NestJS).",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "DevOps Engineer",
+    "min_salary": 140000,
+    "max_salary": 230000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Kubernetes, Docker, Terraform, CI/CD pipelines.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "ML Engineer",
+    "min_salary": 160000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Модели машинного обучения, PyTorch, scikit-learn, ML-pipelines.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Data Scientist",
+    "min_salary": 150000,
+    "max_salary": 250000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "NLP, классификация, моделирование данных, A/B тесты.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Data Analyst",
+    "min_salary": 90000,
+    "max_salary": 160000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "SQL, Power BI, аналитика данных, построение отчетов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "QA Engineer",
+    "min_salary": 80000,
+    "max_salary": 140000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Ручное тестирование, написание тест-кейсов, Jira.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "QA Automation Engineer",
+    "min_salary": 130000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Автоматизация тестирования: Java, Selenide, Jenkins.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Android Developer",
+    "min_salary": 120000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Kotlin, Android SDK, MVVM, Jetpack Compose.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "iOS Developer",
+    "min_salary": 130000,
+    "max_salary": 210000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Swift, UIKit, SwiftUI, CoreData.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "System Administrator",
+    "min_salary": 70000,
+    "max_salary": 130000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Linux, сети, настройка серверов, мониторинг.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Security Engineer",
+    "min_salary": 150000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "ИБ, SIEM, анализа логов, поиск уязвимостей.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Support Engineer",
+    "min_salary": 60000,
+    "max_salary": 110000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Техническая поддержка, работа c пользователями.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Unity Developer",
+    "min_salary": 110000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "C#, Unity3D, игровой геймплей, оптимизация производительности.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Node.js Developer",
+    "min_salary": 120000,
+    "max_salary": 190000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Node.js, NestJS, MongoDB, Redis.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+    
+  {
+    "post": "Express Node.js Developer",
+    "min_salary": 130000,
+    "max_salary": 195000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Node.js, Express.js, PostgreSQL, REST API.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Database Engineer (PostgreSQL)",
+    "min_salary": 140000,
+    "max_salary": 220000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Оптимизация запросов PostgreSQL, репликация, индексация.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Backend Rust Developer",
+    "min_salary": 160000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Разработка низкоуровневых сервисов на Rust, Tokio, Actix.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Angular Frontend Developer",
+    "min_salary": 90000,
+    "max_salary": 155000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Angular 15+, TypeScript, NgRx.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Terraform DevOps Specialist",
+    "min_salary": 150000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Terraform, AWS, K8s, инфраструктура как код.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "SRE Engineer",
+    "min_salary": 170000,
+    "max_salary": 270000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Observability, Prometheus, Grafana, SLO, SLA.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Cloud Engineer (Azure)",
+    "min_salary": 140000,
+    "max_salary": 210000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Azure, CI/CD, сетевые политики, Kubernetes.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Cloud Engineer (AWS)",
+    "min_salary": 150000,
+    "max_salary": 230000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Lambda, EC2, DynamoDB, CloudFormation.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Scala Developer",
+    "min_salary": 160000,
+    "max_salary": 250000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Akka, Kafka Streams, распределенные системы.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Kotlin Backend Developer",
+    "min_salary": 130000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Kotlin, Ktor, Spring Boot, микросервисы.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "PHP Backend Developer",
+    "min_salary": 90000,
+    "max_salary": 150000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Laravel, MySQL, Redis, очереди.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Drupal Developer",
+    "min_salary": 100000,
+    "max_salary": 165000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Drupal 9, PHP, создание модулей.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "WordPress Developer",
+    "min_salary": 80000,
+    "max_salary": 140000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Разработка плагинов и тем WordPress.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Game Developer (C++)",
+    "min_salary": 150000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "C++, game engines, low-level оптимизация.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Unreal Engine Developer",
+    "min_salary": 160000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "UE5, Blueprints, C++, рендеринг.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Big Data Engineer",
+    "min_salary": 170000,
+    "max_salary": 280000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Hadoop, Spark, Kafka, распределённые системы.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "ETL Engineer",
+    "min_salary": 120000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "ETL pipelines, Data Lake, Airflow.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "BI Engineer",
+    "min_salary": 100000,
+    "max_salary": 170000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Power BI, DAX, аналитические отчёты.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Penetration Tester",
+    "min_salary": 180000,
+    "max_salary": 280000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Pentest, OSINT, Metasploit, анализ уязвимостей.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Network Engineer",
+    "min_salary": 100000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Cisco, Mikrotik, VPN, маршрутизация.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "SAP ABAP Developer",
+    "min_salary": 160000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Разработка на ABAP, SAP ERP модули.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "1C Developer",
+    "min_salary": 90000,
+    "max_salary": 160000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "1С:Предприятие 8, разработка и поддержка конфигураций.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "RPA Developer",
+    "min_salary": 110000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "UiPath, автоматизация рутинных процессов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Go Infrastructure Developer",
+    "min_salary": 160000,
+    "max_salary": 250000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Go, Kubernetes operators, инфраструктурная разработка.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Robotics Software Engineer",
+    "min_salary": 180000,
+    "max_salary": 300000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "ROS, C++, робототехника, навигация.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Embedded Engineer (C)",
+    "min_salary": 130000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "C, микроконтроллеры, RTOS, low-level код.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Computer Vision Engineer",
+    "min_salary": 170000,
+    "max_salary": 270000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "CV модели, OpenCV, PyTorch.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "NLP Engineer",
+    "min_salary": 170000,
+    "max_salary": 280000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "NLP, Transformers, классификация текстов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "LLM Prompt Engineer",
+    "min_salary": 180000,
+    "max_salary": 300000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "LLM модели, разработка промптов, тестирование генерации.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "AI Infrastructure Engineer",
+    "min_salary": 200000,
+    "max_salary": 330000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "GPU-расчеты, распределённый ML, оптимизация инференса.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Backend Engineer (Elixir)",
+    "min_salary": 170000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Elixir, Phoenix, высоконагруженные распределенные приложения.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "C++ Highload Developer",
+    "min_salary": 190000,
+    "max_salary": 300000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "C++, оптимизация производительности, распределенные сервисы.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Backend Engineer (Dart / Flutter Backend)",
+    "min_salary": 120000,
+    "max_salary": 190000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Dart Frog backend, REST, Firebase.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Flutter Mobile Developer",
+    "min_salary": 110000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Flutter, Dart, мобильная разработка, UI widgets.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "QA Python Automation Engineer",
+    "min_salary": 130000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "PyTest, Selenium, API тестирование.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "DBA Engineer (MySQL)",
+    "min_salary": 130000,
+    "max_salary": 200000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Настройка MySQL, репликация, оптимизация запросов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Infrastructure Python Engineer",
+    "min_salary": 160000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Python, CICD, автоматизация DevOps задач.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "WebRTC Developer",
+    "min_salary": 160000,
+    "max_salary": 250000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "WebRTC, видеостриминг, SFU/MCU сервера.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Audio/Video Streaming Engineer",
+    "min_salary": 170000,
+    "max_salary": 260000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "FFmpeg, WebRTC, RTP, кодеки.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Search Engineer (Elasticsearch)",
+    "min_salary": 160000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 3,
+    "description": "Elasticsearch, relevancy tuning, BM25, vector search.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "SEO Specialist",
+    "min_salary": 80000,
+    "max_salary": 140000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "SEO, семантика, продвижение сайтов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Product Analyst",
+    "min_salary": 100000,
+    "max_salary": 170000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Аналитика продукта, SQL, A/B тесты, метрики.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Product Manager",
+    "min_salary": 130000,
+    "max_salary": 210000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Доставка IT-продуктов, аналитика, описание требований.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Scrum Master",
+    "min_salary": 100000,
+    "max_salary": 170000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Agile, Scrum, фасилитация, работа с командой.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Project Manager",
+    "min_salary": 120000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Управление IT проектами, Jira, ресурсы, сроки.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Unity VR Developer",
+    "min_salary": 150000,
+    "max_salary": 240000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Unity, VR, AR, оптимизация графики.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Digital Marketing Specialist",
+    "min_salary": 80000,
+    "max_salary": 140000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Контекстная реклама, аналитика, воронки продаж.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Business Analyst",
+    "min_salary": 110000,
+    "max_salary": 180000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Требования, UML, BPMN, общение с заказчиком.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Technical Writer",
+    "min_salary": 90000,
+    "max_salary": 140000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Документация API, гайды, описание архитектуры.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "IT Support Specialist",
+    "min_salary": 70000,
+    "max_salary": 120000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Техническая поддержка, работа с оборудованием.",
+    "work_format": 1,
+    "work_hour": 1
+  }
+
+]

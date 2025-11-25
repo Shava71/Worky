@@ -32,6 +32,9 @@ create-vacancies:
 
 create-mapping: create-resumes create-vacancies
 
+load-vacancies:
+	./data/load-vacancies.sh $(JWT)
+
 # Удаление индексов
 delete-resumes:
 	@echo "Deleting index 'resumes'..."

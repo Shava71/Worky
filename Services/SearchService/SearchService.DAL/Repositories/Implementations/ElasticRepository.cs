@@ -14,7 +14,7 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
         _indexName = indexName.ToLower();
     }
 
-    public async Task IndexAsync(string id, T document)
+    public virtual async Task IndexAsync(string id, T document)
     {
         var response = await _client.IndexAsync(document, x => x.Index(_indexName).Id(id).Refresh(Refresh.True));
 

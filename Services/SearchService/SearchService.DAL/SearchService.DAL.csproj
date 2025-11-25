@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SearchService.Contract\SearchService.Contract.csproj" />
+      <ProjectReference Include="..\SearchService.ML\SearchService.ML.csproj" />
     </ItemGroup>
 
 </Project>

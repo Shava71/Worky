@@ -24,4 +24,7 @@ RUN dotnet publish "SearchService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/pu
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+COPY SearchService.ML/model /app/model
+
 ENTRYPOINT ["dotnet", "SearchService.Api.dll"]

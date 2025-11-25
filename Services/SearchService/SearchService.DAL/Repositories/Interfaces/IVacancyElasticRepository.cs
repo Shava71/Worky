@@ -9,4 +9,9 @@ public interface IVacancyElasticRepository : IElasticRepository<VacancyDocument>
 {
     Task<IReadOnlyCollection<VacancySearchResultDto>> SearchAsync(GetVacanciesRequest request);
 
+    Task<IReadOnlyCollection<VacancySearchResultDto>> SearchLexicalAsync(string query);
+    Task<IReadOnlyCollection<VacancySearchResultDto>> SearchSemanticAsync(string query);
+
+    Task<IReadOnlyCollection<VacancySearchResultDto>> SearchHybridAsync(string query);
+    Task<IReadOnlyCollection<VacancySearchResultDto>> SearchTwoStageAsync(string query);
 }

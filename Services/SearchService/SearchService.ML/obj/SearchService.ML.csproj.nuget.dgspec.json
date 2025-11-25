@@ -45,6 +45,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BERTTokenizers": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[2.1.66, )"
@@ -52,6 +56,10 @@
             "Elastic.Clients.Elasticsearch": {
               "target": "Package",
               "version": "[9.2.1, )"
+            },
+            "HuggingFace": {
+              "target": "Package",
+              "version": "[0.4.0, )"
             },
             "MassTransit": {
               "target": "Package",
@@ -81,13 +89,25 @@
               "target": "Package",
               "version": "[10.0.0, )"
             },
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
               "version": "[1.23.2, )"
             },
+            "Microsoft.ML.OnnxRuntime.Extensions": {
+              "target": "Package",
+              "version": "[0.14.0, )"
+            },
             "Microsoft.ML.OnnxRuntime.Managed": {
               "target": "Package",
               "version": "[1.23.2, )"
+            },
+            "Microsoft.ML.Tokenizers": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
@@ -120,6 +140,10 @@
             "Swashbuckle.AspNetCore.SwaggerUI": {
               "target": "Package",
               "version": "[9.0.6, )"
+            },
+            "Tokenizers.HuggingFace": {
+              "target": "Package",
+              "version": "[2.21.4, )"
             }
           },
           "imports": [

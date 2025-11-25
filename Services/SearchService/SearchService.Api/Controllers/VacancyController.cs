@@ -12,13 +12,10 @@ namespace SearchService.Api.Controllers;
 public class VacancyController : ControllerBase
 {
     private readonly IVacancySearchService _searchService;
-    
-    private readonly IVacancyElasticRepository _elasticRepository;
 
-    public VacancyController(IVacancySearchService searchService, IVacancyElasticRepository elasticRepository)
+    public VacancyController(IVacancySearchService searchService)
     {
         _searchService = searchService;
-        _elasticRepository = elasticRepository;
     }
 
     [HttpGet]

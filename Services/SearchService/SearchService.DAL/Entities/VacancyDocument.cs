@@ -22,4 +22,6 @@ public class VacancyDocument
     [JsonPropertyName("activities")] public List<Activity> activities { get; set; } = new();
     // [JsonPropertyName("location"), JsonConverter(typeof(GeoLocationConverter))] public GeoLocation? location { get; set; }
     [JsonPropertyName("location")] public LatLonGeoLocation? location { get; set; }
+    [JsonPropertyName("vector")] public float[]? vector { get; set; }
+    [JsonIgnore] public double TempScore { get; set; }
 }
