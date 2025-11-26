@@ -263,7 +263,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
         var response = await _client.SearchAsync<VacancyDocument>(s => s
             .Index(_indexName)
             .Query(finalQuery)
-            // .Size(100)
+            .Size(100)
             .TrackTotalHits(true)
         );
 
