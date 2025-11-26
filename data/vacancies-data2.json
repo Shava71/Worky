@@ -1,0 +1,211 @@
+[
+  {
+    "post": "Медицинская сестра процедурной",
+    "min_salary": 45000,
+    "max_salary": 65000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Проведение инъекций, забор крови, работа с инструментами, помощь врачам.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Сестра медслужбы",
+    "min_salary": 46000,
+    "max_salary": 67000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Выполнение медицинских процедур, обслуживание пациентов, подготовка кабинета к приёму.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Учитель начальных классов",
+    "min_salary": 30000,
+    "max_salary": 50000,
+    "education_id": 3,
+    "experience": 1,
+    "description": "Работа с детьми 1–4 классов, ведение уроков, проверка тетрадей.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Педагог младших школьников",
+    "min_salary": 31000,
+    "max_salary": 52000,
+    "education_id": 3,
+    "experience": 1,
+    "description": "Обучение младших учеников, подготовка материалов, взаимодействие с родителями.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Продавец-консультант одежды",
+    "min_salary": 35000,
+    "max_salary": 55000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Помощь покупателям в выборе одежды, работа с кассой, поддержание витрин.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Консультант fashion-магазина",
+    "min_salary": 34000,
+    "max_salary": 54000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Подбор образов, обслуживание клиентов, оформление торгового зала.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Водитель-экспедитор",
+    "min_salary": 42000,
+    "max_salary": 70000,
+    "education_id": 1,
+    "experience": 2,
+    "description": "Развоз заказов по маршруту, оформление накладных, поддержание авто в порядке.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Автокурьер",
+    "min_salary": 43000,
+    "max_salary": 72000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Доставка товаров клиентам на машине, получение и передача посылок.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Повар горячего цеха",
+    "min_salary": 45000,
+    "max_salary": 75000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Готовка блюд по техкартам, контроль качества, поддержание чистоты.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Специалист по приготовлению горячих блюд",
+    "min_salary": 46000,
+    "max_salary": 76000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Приготовление горячих позиций меню, работа с оборудованием, санитарные нормы.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Бухгалтер по первичным документам",
+    "min_salary": 45000,
+    "max_salary": 70000,
+    "education_id": 3,
+    "experience": 1,
+    "description": "Проведение накладных и актов, работа в 1С, контроль первички.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Специалист по первичному учёту",
+    "min_salary": 44000,
+    "max_salary": 69000,
+    "education_id": 3,
+    "experience": 1,
+    "description": "Обработка входящих документов, занесение данных в систему, сверка отчетов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Оператор колл-центра",
+    "min_salary": 30000,
+    "max_salary": 45000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Прием звонков, консультации клиентов, регистрация обращений.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Телефонный консультант",
+    "min_salary": 30000,
+    "max_salary": 46000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Ответы на вопросы клиентов, предоставление информации, работа в CRM.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Социальный работник",
+    "min_salary": 30000,
+    "max_salary": 45000,
+    "education_id": 2,
+    "experience": 0,
+    "description": "Помощь пожилым людям, сопровождение к врачам, бытовая поддержка.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Помощник по уходу",
+    "min_salary": 31000,
+    "max_salary": 46000,
+    "education_id": 1,
+    "experience": 0,
+    "description": "Обслуживание людей, требующих поддержки, помощь в повседневных делах.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Администратор гостиницы",
+    "min_salary": 40000,
+    "max_salary": 65000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Работа с гостями, бронирование номеров, ведение отчетов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Сотрудник ресепшн",
+    "min_salary": 39000,
+    "max_salary": 64000,
+    "education_id": 2,
+    "experience": 1,
+    "description": "Регистрация посетителей, оформление заселения, помощь в размещении.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+
+  {
+    "post": "Инструктор по фитнесу",
+    "min_salary": 45000,
+    "max_salary": 80000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Проведение тренировок, составление программ для клиентов.",
+    "work_format": 1,
+    "work_hour": 1
+  },
+  {
+    "post": "Персональный тренер",
+    "min_salary": 47000,
+    "max_salary": 82000,
+    "education_id": 1,
+    "experience": 1,
+    "description": "Занятия с клиентами, контроль техники выполнения упражнений, подбор нагрузок.",
+    "work_format": 1,
+    "work_hour": 1
+  }
+]

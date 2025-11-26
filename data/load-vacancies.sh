@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 JWT="$1"
-FILE="./data/vacancies-data.json"
+FILE="./data/vacancies-data3.json"
 URL="http://localhost:5005/api/v1/Company/CreateVacancy"
 
 if [ -z "$JWT" ]; then

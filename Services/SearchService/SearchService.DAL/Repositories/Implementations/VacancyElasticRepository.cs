@@ -286,6 +286,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
 
         // Получаем вектор для запроса
         float[] queryVector = _embeddingService.GetEmbedding(query);
+        Console.WriteLine("Embedding hash = " + string.Join(",", queryVector.Take(8)));
 
         // Выполняем чистый KNN поиск
         var response = await _client.SearchAsync<VacancyDocument>(s => s

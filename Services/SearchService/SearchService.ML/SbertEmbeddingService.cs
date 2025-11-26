@@ -39,7 +39,7 @@ public class SbertEmbeddingService : IDisposable
             return new float[_dim];
 
         // --- Tokenization ---
-        var enc = _tokenizer.Encode(text, addSpecialTokens: true).First();
+        var enc = _tokenizer.Encode("query: "+text, addSpecialTokens: true).First();
 
         // --- Truncate ---
         var ids = enc.Ids.Take(MaxLen).Select(i => (long)i).ToArray();
