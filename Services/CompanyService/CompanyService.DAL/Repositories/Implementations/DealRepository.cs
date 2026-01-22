@@ -25,6 +25,14 @@ public class DealRepository : IDealRepository
         return await _context.deal.FindAsync(dealId);
     }
 
+    public async Task<List<Deal?>> GetDealsByCompanyId(Guid companyId, CancellationToken cancellationToken = default)
+    {
+        return await _context.deal.Include(d => d.tariff)
+            .Where(d => d.company_id == companyId)
+            .ToListAsync(cancellationToken);
+    }
+
+
     public async Task<Deal?> CurrentActiveDealAsync(DateOnly currentDate, Guid companyId, CancellationToken cancellationToken)
     {
         return await _context.deal

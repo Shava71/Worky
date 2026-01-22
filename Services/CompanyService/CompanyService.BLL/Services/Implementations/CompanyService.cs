@@ -458,7 +458,9 @@ public class CompanyService : ICompnayService
         public async Task<CompanyProfileDtos> GetProfileAsync(string companyId, string token, CancellationToken cancellationToken = default)
         {
             Company company = await _companyRepository.GetCompanyByIdAsync(Guid.Parse(companyId));
-            UserResponse? user = await _authClient.GetUserByIdAsync(companyId, token, cancellationToken);
+            // UserResponse? user = await _authClient.GetUserByIdAsync(companyId, token, cancellationToken);
+            List<Deal?> deals = await _dealRepository.GetDealsByCompanyId(Guid.Parse(companyId), cancellationToken);
+            
             CompanyDto companyDto = new CompanyDto()
             {
                 id = company.UserId,
@@ -469,7 +471,22 @@ public class CompanyService : ICompnayService
                 latitude = company.latitude,
                 longitude = company.longitude,
             };
-            return new CompanyProfileDtos { company = companyDto, user = user };
+            
+            List<DealDto> dealDtos = deals.Select(d => new DealDto()
+            {
+                id = d.id,
+                tariff_id = d.tariff_id,
+                tariff = d.tariff,
+                company_id = d.company_id.ToString(),
+                date_start = d.date_start,
+                date_end = d.date_end,
+                sum = d.tariff.price * ((d.date_end.Year - d.date_start.Year) * 12 + (d.date_end.Month - d.date_start.Month))
+            }).ToList();
+            
+            return new CompanyProfileDtos { company = companyDto, 
+                // user = user,
+                deals = dealDtos
+            };
         }
         
         private async Task<bool> CompanyHasVacancy(Guid companyid, Guid vacancyId)

@@ -35,6 +35,5 @@ public class UserResponse
     public DateTime CreatedAt { get; set; }
     
     public int AccessFailedCount { get; set; }
-    public byte[]? image { get; set; }
     
 }

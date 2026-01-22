@@ -191,7 +191,8 @@ namespace CompanyService.Api.Controllers
             try
             {
                 string companyId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                string token = Request.Headers["Authorization"].First();
+                string authHeader = Request.Headers["Authorization"].First();
+                string token = authHeader.Replace("Bearer ", "");
                 CompanyProfileDtos profile = await _companyService.GetProfileAsync(companyId, token);
                 return Ok(profile);
             }
