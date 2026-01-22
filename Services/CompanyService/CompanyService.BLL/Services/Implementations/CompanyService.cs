@@ -25,6 +25,7 @@ public class CompanyService : ICompnayService
 {
         private readonly IVacancyRepository _vacancyRepository;
         private readonly ICompanyRepository _companyRepository;
+        private readonly IDealRepository _dealRepository;
         private readonly ILogger<CompanyService> _logger;
         private readonly IAuthClient _authClient;
         private readonly IFilterCacheService _filterCacheService;
@@ -42,6 +43,7 @@ public class CompanyService : ICompnayService
             ILogger<CompanyService> logger,
             IAuthClient authClient,
             IFilterCacheService filterCacheService,
+            IDealRepository dealRepository,
             
             ITopicProducer<VacancyCreatedEvent> vacancyCreatedTopicProducer,
             ITopicProducer<VacancyUpdatedEvent> vacancyUpdatedTopicProducer,
@@ -55,6 +57,7 @@ public class CompanyService : ICompnayService
             _logger = logger;
             _authClient = authClient;
             _filterCacheService = filterCacheService;
+            _dealRepository = dealRepository;
             
             _vacancyCreatedTopicProducer = vacancyCreatedTopicProducer;
             _vacancyUpdatedTopicProducer = vacancyUpdatedTopicProducer;
@@ -120,6 +123,22 @@ public class CompanyService : ICompnayService
         public async Task<Guid> CreateVacancyAsync(CreateVacancy vacancy, string companyId)
         {
             // return await _vacancyRepository.CreateVacancyAsync(vacancy, companyId);
+            int currentVacanciesCount = await _vacancyRepository.GetMyVacanciesCountAsync(Guid.Parse(companyId));
+            
+            DateTime dateTime = DateTime.UtcNow.Date;
+            DateOnly currentDate = DateOnly.FromDateTime(dateTime);
+            Deal? currentDeal = await _dealRepository.CurrentActiveDealAsync(currentDate, Guid.Parse(companyId));
+
+            if (currentDeal is null)
+            {
+                throw new Exception("Deal not found");
+            }
+
+            if (currentVacanciesCount >= currentDeal.tariff.vacancy_count)
+            {
+                throw new Exception("Vacancy count exceeded");
+            }
+            
             Guid vacancyId = await _vacancyRepository.CreateVacancyAsync(vacancy, companyId);
             
             VacancyDtos fullVacancy = await BuildFullVacancyAsync(vacancyId);

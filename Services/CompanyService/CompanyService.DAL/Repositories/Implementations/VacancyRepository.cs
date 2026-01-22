@@ -295,4 +295,9 @@ public class VacancyRepository : IVacancyRepository
                 return vacancies.ToList();
             }
         }
+
+        public async Task<int> GetMyVacanciesCountAsync(Guid companyId)
+        {
+            return await _dbContext.vacancy.Where(v => v.company_id == companyId).CountAsync();
+        }
 }
