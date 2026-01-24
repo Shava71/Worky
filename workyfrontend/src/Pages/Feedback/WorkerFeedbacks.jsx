@@ -16,6 +16,8 @@ import {
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function WorkerFeedbackPage() {
     const [feedbacks, setFeedbacks] = useState([]);
@@ -27,10 +29,11 @@ export default function WorkerFeedbackPage() {
     // Загрузка откликов
     const fetchFeedbacks = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const res = await axios.get('https://localhost:7106/api/v1/Worker/GetFeedback',  {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            // const token = localStorage.getItem('jwt');
+            // const res = await axios.get('https://localhost:7106/api/v1/Worker/GetFeedback',  {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const res = await axios.get(API.feedback.get);
 
             setFeedbacks(res.data.feedbacks || []);
         } catch (err) {
@@ -46,11 +49,15 @@ export default function WorkerFeedbackPage() {
     // Загрузка информации по конкретной вакансии
     const fetchVacancyInfo = async (vacancyId) => {
         try {
-            const token = localStorage.getItem('jwt');
-            const res = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`,  {
-                headers: { Authorization: `Bearer ${token}` },
+            // const token = localStorage.getItem('jwt');
+            // const res = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`,  {
+            //     headers: { Authorization: `Bearer ${token}` },
+            //     params: { vacancyId: vacancyId },
+            // });
+
+            const res = await api.get(API.company.vacancyInfo, {
                 params: { vacancyId: vacancyId },
-            });
+            })
 
             setVacancies((prev) => ({
                 ...prev,
@@ -93,11 +100,12 @@ export default function WorkerFeedbackPage() {
 
     const handleDeleteVacancy = async (id) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.delete(`https://localhost:7106/api/v1/Worker/DeleteFeedback`,  {
-                params: { id: id },
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            // const token = localStorage.getItem('jwt');
+            // await axios.delete(`https://localhost:7106/api/v1/Worker/DeleteFeedback`,  {
+            //     params: { id: id },
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            await api.delete(API.feedback.delete, {params: { feedbackId: id }})
 
             // Обновляем локальное состояние
             setFeedbacks((prev) => prev.filter((v) => v.id !== id));

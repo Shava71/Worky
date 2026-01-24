@@ -17,6 +17,8 @@ import dayjs from 'dayjs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SelectDateCompanyFeedbackStatistics from "../../Components/SelectDateCompanyFeedbackStatistics.jsx";
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 const ITEMS_PER_PAGE = 5;
 
@@ -32,17 +34,19 @@ export default function CompanyProfile() {
     useEffect(() => {
         const fetchCompanyData = async () => {
             try {
-                const token = localStorage.getItem('jwt');
-                const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const token = localStorage.getItem('jwt');
+                // const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const response = await api.get(API.company.profile);
                 setCompanyData(response.data);
                 setLoading(false);
 
                 // Получаем все тарифы для отображения названий
-                const tariffResponse = await axios.get('https://localhost:7106/api/v1/Company/Tarrif', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const tariffResponse = await axios.get('https://localhost:7106/api/v1/Company/Tarrif', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const tariffResponse = await api.get(API.deal.tariffs);
 
                 const tariffMap = {};
                 tariffResponse.data.tarrifs.forEach(t => {

@@ -15,6 +15,8 @@ import {
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate, useParams } from 'react-router-dom';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function VacancyDetailsPage() {
     const [vacancy, setVacancy] = useState(null);
@@ -43,17 +45,24 @@ export default function VacancyDetailsPage() {
                 setUserRole(role);
 
                 // Загружаем данные вакансии
-                const vacancyResponse = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                    params: { vacancyId }
-                });
+                // const vacancyResponse = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`, {
+                //     headers: { Authorization: `Bearer ${token}` },
+                //     params: { vacancyId }
+                // });
+                const vacancyResponse = await axios.get(API.company.vacancyInfo,
+                    {
+                        params: {
+                            vacancyId
+                        }
+                    });
 
                 setVacancy(vacancyResponse.data.vacancy?.[0] || null);
 
                 // Загружаем список образований
-                const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const educationResponse = await api.get(API.filter.education);
 
                 setEducationList(educationResponse.data.education || []);
             } catch (err) {
@@ -74,10 +83,11 @@ export default function VacancyDetailsPage() {
     useEffect(() => {
         const fetchMyResumes = async () => {
             try {
-                const token = localStorage.getItem('jwt');
-                const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const token = localStorage.getItem('jwt');
+                // const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const response = await axios.get(API.worker.myResume);
                 setMyResumes(response.data || []);
             } catch (err) {
                 console.error('Ошибка при загрузке резюме:', err);
@@ -103,20 +113,24 @@ export default function VacancyDetailsPage() {
         if (!selectedResume || !vacancyId) return;
 
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.post(
-                'https://localhost:7106/api/v1/Worker/MakeFeedback',
-                {
-                    resume_id: selectedResume,
-                    vacancy_id: vacancyId
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            // const token = localStorage.getItem('jwt');
+            // await axios.post(
+            //     'https://localhost:7106/api/v1/Worker/MakeFeedback',
+            //     {
+            //         resume_id: selectedResume,
+            //         vacancy_id: vacancyId
+            //     },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`,
+            //             'Content-Type': 'application/json'
+            //         }
+            //     }
+            // );
+            await api.post(API.feedback.make, {
+                resume_id: selectedResume,
+                vacancy_id: vacancyId
+            });
             setSnackbar({
                 open: true,
                 message: 'Отклик успешно отправлен!',

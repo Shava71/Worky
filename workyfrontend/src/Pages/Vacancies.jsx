@@ -19,9 +19,11 @@ import {
     Alert,
     CircularProgress, ButtonGroup,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import dayjs from 'dayjs';
 import qs from 'qs';
+import api from '../api/axios';
+import { API } from '../api/routes';
 
 export default function VacanciesPage() {
     const [vacancies, setVacancies] = useState([]);
@@ -54,31 +56,48 @@ export default function VacanciesPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem('jwt');
+                // const token = localStorage.getItem('jwt');
 
-                const response = await axios.get('https://localhost:7106/api/v1/Worker/Vacancies', {
-                    headers: { Authorization: `Bearer ${token}` },
+                // const response = await axios.get('https://localhost:7106/api/v1/Worker/Vacancies', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                //     params: {
+                //         min_experience: filters.min_experience || undefined,
+                //         max_experience: filters.max_experience || undefined,
+                //         min_wantedSalary: filters.min_wantedSalary || undefined,
+                //         max_wantedSalary: filters.max_wantedSalary || undefined,
+                //         education: filters.education || undefined,
+                //         type: filters.type || undefined,
+                //         direction: filters.direction.length > 0 ? filters.direction : undefined,
+                //         // direction: ['Backend', 'Django'],
+                //         SortItem: filters.sortItem || undefined,
+                //         Order: filters.order || undefined,
+                //         search: filters.search || undefined
+                //     },
+                //     paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
+                // });
+                const response = await api.get(API.search.vacancies,{
                     params: {
-                        min_experience: filters.min_experience || undefined,
-                        max_experience: filters.max_experience || undefined,
-                        min_wantedSalary: filters.min_wantedSalary || undefined,
-                        max_wantedSalary: filters.max_wantedSalary || undefined,
-                        education: filters.education || undefined,
-                        type: filters.type || undefined,
-                        direction: filters.direction.length > 0 ? filters.direction : undefined,
-                        // direction: ['Backend', 'Django'],
-                        SortItem: filters.sortItem || undefined,
-                        Order: filters.order || undefined,
-                        search: filters.search || undefined
-                    },
-                    paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
-                });
+                                min_experience: filters.min_experience || undefined,
+                                max_experience: filters.max_experience || undefined,
+                                min_wantedSalary: filters.min_wantedSalary || undefined,
+                                max_wantedSalary: filters.max_wantedSalary || undefined,
+                                education: filters.education || undefined,
+                                type: filters.type || undefined,
+                                direction: filters.direction.length > 0 ? filters.direction : undefined,
+                                // direction: ['Backend', 'Django'],
+                                SortItem: filters.sortItem || undefined,
+                                Order: filters.order || undefined,
+                                search: filters.search || undefined
+                            },
+                            paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
+                        });
                 setVacancies(response.data.resumes || []);
 
                 // Загружаем список образований
-                const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const educationResponse = await api.get(API.filter.education);
                 setEducationList(educationResponse.data.education || []);
 
             } catch (err) {
@@ -99,10 +118,11 @@ export default function VacanciesPage() {
     useEffect(() => {
         const fetchMyResumes = async () => {
             try {
-                const token = localStorage.getItem('jwt');
-                const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const token = localStorage.getItem('jwt');
+                // const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const response = await api.get(API.worker.myResume);
                 setMyResumes(response.data || []);
             } catch (err) {
                 console.error('Ошибка при загрузке резюме:', err);
@@ -127,11 +147,12 @@ export default function VacanciesPage() {
 
     const fetchAvailableFilters = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setAvailableFilters(response.data.filters || []);
+            // const token = localStorage.getItem('jwt');
+            // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const response = await api.get(API.filter.get);
+            setAvailableFilters(response.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке фильтров:', err);
         }
@@ -180,20 +201,24 @@ export default function VacanciesPage() {
         if (!selectedResume || !vacancyId) return;
 
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.post(
-                'https://localhost:7106/api/v1/Worker/MakeFeedback',
-                {
-                    resume_id: selectedResume,
-                    vacancy_id: vacancyId
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            // const token = localStorage.getItem('jwt');
+            // await axios.post(
+            //     'https://localhost:7106/api/v1/Worker/MakeFeedback',
+            //     {
+            //         resume_id: selectedResume,
+            //         vacancy_id: vacancyId
+            //     },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`,
+            //             'Content-Type': 'application/json'
+            //         }
+            //     }
+            // );
+            await api.post(API.feedback.make, {
+                resume_id: selectedResume,
+                vacancy_id: vacancyId,
+            });
             setSnackbar({
                 open: true,
                 message: 'Отклик успешно отправлен!',

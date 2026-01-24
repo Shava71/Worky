@@ -17,8 +17,10 @@ import {
     Chip,
     CircularProgress,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function CreateVacancy() {
     const [formData, setFormData] = useState({
@@ -42,7 +44,8 @@ export default function CreateVacancy() {
     useEffect(() => {
         const fetchEducation = async () => {
             try {
-                const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education');
+                // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education');
+                const response = await api.get(API.filter.education);
                 setEducationList(response.data.education || []);
             } catch (error) {
                 console.error('Ошибка загрузки образования:', error);
@@ -62,8 +65,9 @@ export default function CreateVacancy() {
     useEffect(() => {
         const fetchFilters = async () => {
             try {
-                const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter');
-                setFilters(response.data.filters || []);
+                // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter');
+                const response = await api.get(API.filter.get);
+                setFilters(response.data || []);
             } catch (err) {
                 console.error('Ошибка при загрузке фильтров:', err);
             }
@@ -100,29 +104,34 @@ export default function CreateVacancy() {
 
     const handleSubmit = async () => {
         try {
-            const token = localStorage.getItem('jwt');
+            // const token = localStorage.getItem('jwt');
 
-            const createResponse = await axios.post(
-                'https://localhost:7106/api/v1/Worker/CreateResume',
-                formData,
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                }
-            );
+            // const createResponse = await axios.post(
+            //     'https://localhost:7106/api/v1/Worker/CreateResume',
+            //     formData,
+            //     {
+            //         headers: { Authorization: `Bearer ${token}` },
+            //     }
+            // );
+            const createResponse = await api.get(API.worker.createResume, formData)
             const resumeId = createResponse.data.id;
 
             // Добавляем фильтры
             if (selectedDirections.length > 0) {
-                await axios.post(
-                    'https://localhost:7106/api/v1/Worker/AddResumeFilter',
-                    {
-                        id: resumeId,
-                        typeOfActivity_id: selectedDirections,
-                    },
-                    {
-                        headers: { Authorization: `Bearer ${token}` },
-                    }
-                );
+                // await axios.post(
+                //     'https://localhost:7106/api/v1/Worker/AddResumeFilter',
+                //     {
+                //         id: resumeId,
+                //         typeOfActivity_id: selectedDirections,
+                //     },
+                //     {
+                //         headers: { Authorization: `Bearer ${token}` },
+                //     }
+                // );
+                await api.post(API.worker.createResume,{
+                    id: resumeId,
+                    typeOfActivity_id: selectedDirections,
+                });
             }
 
             setSnackbar({

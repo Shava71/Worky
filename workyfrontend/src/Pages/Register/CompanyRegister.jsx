@@ -10,8 +10,10 @@ import {
     Snackbar,
     Alert, Divider
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import YandexMapInput from "../../Components/YandexMapInput.jsx";
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 
 export default function CompanyRegister() {
@@ -45,13 +47,18 @@ export default function CompanyRegister() {
 
     const handleSubmit = async () => {
         try {
-            await axios.post('https://localhost:7106/api/v1/Authorization/Register', {
+            // await axios.post('https://localhost:7106/api/v1/Authorization/Register', {
+            //     ...formData,
+            //     latitude,
+            //     longitude
+            // }, {
+            //     headers: { 'Content-Type': 'application/json' },
+            // });
+            await api.post(API.auth.register, {
                 ...formData,
                 latitude,
                 longitude
-            }, {
-                headers: { 'Content-Type': 'application/json' },
-            });
+            })
 
             setSnackbar({
                 open: true,

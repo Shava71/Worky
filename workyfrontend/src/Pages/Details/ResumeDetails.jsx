@@ -19,9 +19,11 @@ import {
     Avatar,
     Grid,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate, useParams } from 'react-router-dom';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function ResumeDetailsPage() {
     const [resume, setResume] = useState(null);
@@ -53,18 +55,25 @@ export default function ResumeDetailsPage() {
                     );
                 }
                 const [resumeResponse, vacanciesResponse, educationResponse] = await Promise.all([
-                    axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info`, {
-                        headers: { Authorization: `Bearer ${token}` },
+                    // axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info`, {
+                    //     headers: { Authorization: `Bearer ${token}` },
+                    //     params: {
+                    //         resumeId: resumeId,
+                    //     }
+                    // }),
+                    api.get(API.worker.resumesInfo, {
                         params: {
                             resumeId: resumeId,
                         }
                     }),
-                    axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                        headers: { Authorization: `Bearer ${token}` },
-                    }),
-                    axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                        headers: { Authorization: `Bearer ${token}` },
-                    }),
+                    // axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
+                    //     headers: { Authorization: `Bearer ${token}` },
+                    // }),
+                    api.get(API.company.myVacancy),
+                    // axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
+                    //     headers: { Authorization: `Bearer ${token}` },
+                    // }),
+                    api.ger(API.filter.education)
                 ]);
 
                 setResume(resumeResponse.data.resume?.[0] || null);
@@ -91,17 +100,21 @@ export default function ResumeDetailsPage() {
     const handleRespond = async () => {
         if (!selectedVacancyId) return;
         try {
-            const token = localStorage.getItem('jwt');
-
-            await axios.post('https://localhost:7106/api/v1/Company/MakeFeedback', {
+            // const token = localStorage.getItem('jwt');
+            //
+            // await axios.post('https://localhost:7106/api/v1/Company/MakeFeedback', {
+            //     resume_id: resume.id,
+            //     vacancy_id: selectedVacancyId
+            // }, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //         'Content-Type': 'application/json'
+            //     }
+            // });
+            await api.post(API.feedback.make, {
                 resume_id: resume.id,
                 vacancy_id: selectedVacancyId
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            })
 
             setSnackbar({
                 open: true,

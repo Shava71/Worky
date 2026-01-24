@@ -7,7 +7,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BusinessIcon from '@mui/icons-material/Business';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import api from '../api/axios';
+import { API } from '../api/routes';
 
 const pages = ['Соискателям', 'Компаниям'];
 
@@ -66,21 +68,23 @@ export default function HeaderBar({ userRole, setUserRole, setCompanyProfile }) 
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const token = localStorage.getItem('jwt');
-                if (!token) return;
+                // const token = localStorage.getItem('jwt');
+                // if (!token) return;
 
                 if(userRole === 'Company'){
-                    const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
+                    // const response = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
+                    //     headers: { Authorization: `Bearer ${token}` }
+                    // });
+                    const response = await api.get(API.company.profile)
                     const profile = response.data;
                     setCompanyProfile(profile);
                     setCompanyName(profile.company?.name);
                 }
                 else if (userRole === 'Worker') {
-                    const response = await axios.get('https://localhost:7106/api/v1/Worker/GetProfile', {
-                        headers: { Authorization: `Bearer ${token}` }
-                    });
+                    // const response = await axios.get('https://localhost:7106/api/v1/Worker/GetProfile', {
+                    //     headers: { Authorization: `Bearer ${token}` }
+                    // });
+                    const response = await api.get(API.worker.profile)
                     const profile = response.data;
                     const worker = profile.worker?.second_name + ' ' + profile.worker?.first_name + ' ' + profile.worker?.surname;
                     setWorkerName(worker);

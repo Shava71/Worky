@@ -18,8 +18,10 @@ import {
     Autocomplete,
     CircularProgress,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function CreateVacancy() {
     const [formData, setFormData] = useState({
@@ -47,7 +49,8 @@ export default function CreateVacancy() {
     useEffect(() => {
         const fetchEducation = async () => {
             try {
-                const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education');
+                // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education');
+               const response = await api.get(API.filter.education);
                 setEducationList(response.data.education || []);
             } catch (error) {
                 console.error('Ошибка загрузки образования:', error);
@@ -67,8 +70,9 @@ export default function CreateVacancy() {
     useEffect(() => {
         const fetchFilters = async () => {
             try {
-                const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter');
-                setFilters(response.data.filters || []);
+                // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter');
+                const response = await api.get(API.filter.get);
+                setFilters(response.data || []);
             } catch (err) {
                 console.error('Ошибка при загрузке фильтров:', err);
             }
@@ -92,12 +96,13 @@ export default function CreateVacancy() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token = localStorage.getItem('jwt');
-                if (!token) return;
-
-                const profileResponse = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const token = localStorage.getItem('jwt');
+                // if (!token) return;
+                //
+                // const profileResponse = await axios.get('https://localhost:7106/api/v1/Company/GetProfile', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const profileResponse = await api.get(API.company.profile);
 
                 const deals = profileResponse.data.deals || [];
                 const today = new Date();
@@ -114,13 +119,16 @@ export default function CreateVacancy() {
                 }
 
                 const tariffId = parseInt(activeDeal.tariff_id);
-                const tariffResponse = await axios.get(`https://localhost:7106/api/v1/Company/Tarrif`,
+                // const tariffResponse = await axios.get(`https://localhost:7106/api/v1/Company/Tarrif`,
+                //     {params: {tariffId: tariffId}});
+                const tariffResponse = await api.get(API.deal.tariffs,
                     {params: {tariffId: tariffId}});
-                const vacancyCount = tariffResponse.data.tarrifs?.[0]?.vacancy_count ?? 0;
+                const vacancyCount = tariffResponse.data?.[0]?.vacancy_count ?? 0;
 
-                const myVacanciesResponse = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const myVacanciesResponse = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const myVacanciesResponse = await api.get(API.company.myVacancy);
                 const myVacancyCount = myVacanciesResponse.data.length;
 
                 if (myVacancyCount >= vacancyCount) {
@@ -157,26 +165,31 @@ export default function CreateVacancy() {
 
     const handleSubmit = async () => {
         try {
-            const token = localStorage.getItem('jwt');
+            // const token = localStorage.getItem('jwt');
 
             // Создаем вакансию
-            const createResponse = await axios.post(
-                'https://localhost:7106/api/v1/Company/CreateVacancy',
-                formData,
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                }
-            );
+            // const createResponse = await axios.post(
+            //     'https://localhost:7106/api/v1/Company/CreateVacancy',
+            //     formData,
+            //     {
+            //         headers: { Authorization: `Bearer ${token}` },
+            //     }
+            // );
+            const createResponse = await api.post(API.company.createVacancy, formData);
 
             const vacancyId = createResponse.data.id;
 
             // Добавляем фильтры
             if (selectedDirections.length > 0) {
-                await axios.post('https://localhost:7106/api/v1/Company/AddVacancyFilter', {
+                // await axios.post('https://localhost:7106/api/v1/Company/AddVacancyFilter', {
+                //     id: vacancyId,
+                //     typeOfActivity_id: selectedDirections,
+                // }, {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                await api.post(API.company.addVacancyFilter,{
                     id: vacancyId,
                     typeOfActivity_id: selectedDirections,
-                }, {
-                    headers: { Authorization: `Bearer ${token}` },
                 });
             }
 

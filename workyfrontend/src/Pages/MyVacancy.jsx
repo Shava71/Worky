@@ -21,8 +21,11 @@ import {
     Chip,
     CircularProgress,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
+import { API } from '../api/routes';
+
 
 export default function MyVacancy() {
     const [vacancies, setVacancies] = useState([]);
@@ -35,6 +38,7 @@ export default function MyVacancy() {
     const [educationList, setEducationList] = useState([]);
     const navigate = useNavigate();
 
+
     // Загрузка данных
     useEffect(() => {
         const fetchData = async () => {
@@ -42,20 +46,15 @@ export default function MyVacancy() {
                 const token = localStorage.getItem('jwt');
                 if (!token) return;
 
-                const vacanciesResponse = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const vacanciesResponse = await api.get(API.company.myVacancy);
 
-                const filtersResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const filtersResponse = await api.get(API.filter.get);
 
-                const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const educationResponse = await api.get(API.filter.education);
 
-                setVacancies(vacanciesResponse.data || []);
-                setAvailableFilters(filtersResponse.data.filters || []);
+
+                setVacancies(vacanciesResponse.data.vacancies || []);
+                setAvailableFilters(filtersResponse.data || []);
                 setEducationList(educationResponse.data.education || []);
             } catch (err) {
                 console.error('Ошибка при загрузке данных:', err);
@@ -97,49 +96,66 @@ export default function MyVacancy() {
 
     const handleSaveChanges = async () => {
         try {
-            const token = localStorage.getItem('jwt');
+            if (!editingVacancy) return;
 
+            // Обновляем основные данные вакансии
             const updatedData = {
-                Id: Number(editingVacancy.id),
+                Id: editingVacancy.id,
                 Post: editingVacancy.post,
                 MinSalary: Number(editingVacancy.min_salary),
-                MaxSalary: editingVacancy.max_salary ? Number(editingVacancy.max_salary) : null,
+                MaxSalary: editingVacancy.max_salary
+                    ? Number(editingVacancy.max_salary)
+                    : null,
                 EducationId: Number(editingVacancy.education_id),
                 Experience: editingVacancy.experience?.toString() ?? '',
                 Description: editingVacancy.description,
             };
 
-            // 1. Обновляем саму вакансию
-            await axios.put('https://localhost:7106/api/v1/Company/UpdateVacancy', updatedData, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            await api.put(API.company.updateVacancy, updatedData);
 
-            // 2. Удаляем старые фильтры
-            if (editingVacancy.activities?.length > 0) {
-                const oldFilterIds = editingVacancy.activities.map(a => a.filter_id);
-                for (const id of oldFilterIds) {
-                    await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancyFilter', {
-                        params: { filterId: id },
-                        headers: { Authorization: `Bearer ${token}` },
+            // Старые и новые фильтры
+            const oldActivities = editingVacancy.activities || [];
+
+            const oldActivityIds = oldActivities.map(a => a.id);          // typeOfActivity_id
+            const newActivityIds = selectedDirections;                    // typeOfActivity_id
+
+            // Diff
+            const filtersToAdd = newActivityIds.filter(
+                id => !oldActivityIds.includes(id)
+            );
+
+            const filtersToRemove = oldActivityIds.filter(
+                id => !newActivityIds.includes(id)
+            );
+
+            // Удаляем ТОЛЬКО убранные фильтры
+            for (const activity of oldActivities) {
+                if (filtersToRemove.includes(activity.id)) {
+                    await api.delete(API.company.deleteVacancyFilter, {
+                        params: { filterId: activity.filter_id },
                     });
                 }
             }
 
-            // 3. Добавляем новые фильтры
-            if (selectedDirections.length > 0) {
-                await axios.post('https://localhost:7106/api/v1/Company/AddVacancyFilter', {
+            // Добавляем ТОЛЬКО новые фильтры
+            if (filtersToAdd.length > 0) {
+                await api.post(API.company.addVacancyFilter, {
                     id: editingVacancy.id,
-                    typeOfActivity_id: selectedDirections,
-                }, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    typeOfActivity_id: filtersToAdd,
                 });
             }
 
-            // 4. Обновляем локальный список
+            // Обновляем локальный стейт
             setVacancies(prev =>
                 prev.map(v =>
                     v.id === editingVacancy.id
-                        ? { ...v, ...updatedData, activities: availableFilters.filter(f => selectedDirections.includes(f.id)) }
+                        ? {
+                            ...v,
+                            ...updatedData,
+                            activities: availableFilters.filter(f =>
+                                newActivityIds.includes(f.id)
+                            ),
+                        }
                         : v
                 )
             );
@@ -152,7 +168,8 @@ export default function MyVacancy() {
 
             handleCloseModal();
         } catch (err) {
-            console.error('Ошибка сохранения:', err.response?.data || err.message);
+            console.error('Ошибка сохранения вакансии:', err.response?.data || err);
+
             setSnackbar({
                 open: true,
                 message: 'Ошибка при сохранении вакансии',
@@ -163,10 +180,13 @@ export default function MyVacancy() {
 
     const handleDeleteVacancy = async (id) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancy', {
+            // const token = localStorage.getItem('jwt');
+            // await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancy', {
+            //     params: { vacancyId: id },
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            await api.delete(API.company.deleteVacancy, {
                 params: { vacancyId: id },
-                headers: { Authorization: `Bearer ${token}` },
             });
             setVacancies(vacancies.filter(v => v.id !== id));
             setSnackbar({
@@ -185,16 +205,19 @@ export default function MyVacancy() {
 
     const handleDeleteFilter = async (filterId) => {
         try {
-            const token = localStorage.getItem('jwt');
+            // const token = localStorage.getItem('jwt');
 
-            await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancyFilter', {
-                params: { filterId: filterId },
-                headers: { Authorization: `Bearer ${token}` },
+            // await axios.delete('https://localhost:7106/api/v1/Company/DeleteVacancyFilter', {
+            //     params: { filterId: filterId },
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            await api.delete(API.company.deleteVacancyFilter, {
+                params: { filterId },
             });
 
             setEditingVacancy(prev => ({
                 ...prev,
-                activities: prev.activities.filter(act => act.filter_id !== filterId), // ❗ Удаляем по `filter_id`
+                activities: prev.activities.filter(act => act.filter_id !== filterId),
             }));
 
             setSnackbar({
@@ -226,16 +249,23 @@ export default function MyVacancy() {
 
     const handleDownloadFlyer = async (vacancyId) => {
         try {
-            const token = localStorage.getItem('jwt');
+            // const token = localStorage.getItem('jwt');
             const urlParam = 'someaddress';
 
-            const response = await axios.get(`https://localhost:7106/api/v1/Company/Vacancy/flyer`, {
-                headers: { Authorization: `Bearer ${token}` },
+            // const response = await axios.get(`https://localhost:7106/api/v1/Company/Vacancy/flyer`, {
+            //     headers: { Authorization: `Bearer ${token}` },
+            //     responseType: 'blob',
+            //     params: {
+            //         vacancyId: vacancyId,
+            //         url: urlParam
+            //     }
+            // });
+            const response = await api.get(API.company.flyer, {
                 responseType: 'blob',
                 params: {
-                    vacancyId: vacancyId,
-                    url: urlParam
-                }
+                    vacancyId,
+                    url: urlParam,
+                },
             });
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
@@ -435,7 +465,7 @@ export default function MyVacancy() {
                                             <Chip
                                                 key={activity.id}
                                                 label={activity.direction}
-                                                onDelete={() => handleDeleteFilter(activity.filter_id)}
+                                                // onDelete={() => handleDeleteFilter(activity.filter_id)}
                                                 sx={{
                                                     bgcolor: '#e3f2fd',
                                                     color: '#1976d2',

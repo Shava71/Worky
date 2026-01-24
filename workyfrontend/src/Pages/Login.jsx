@@ -15,6 +15,9 @@ import { useNavigate } from 'react-router-dom';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LoginIcon from '@mui/icons-material/Login';
+import api from '../api/axios';
+import { API } from '../api/routes';
+
 
 export default function LoginForm({setUserRole}) {
     const [email, setEmail] = useState('');
@@ -26,9 +29,13 @@ export default function LoginForm({setUserRole}) {
     const handleLogin = async () => {
         setError(null);
         try {
-            const response = await axios.post('https://localhost:7106/api/v1/Authorization/Login', {
+            // const response = await axios.post('https://localhost:7106/api/v1/Authorization/Login', {
+            //     email,
+            //     password
+            // });
+            const response = await api.post(API.auth.login, {
                 email,
-                password
+                password,
             });
 
             const { token, role, id } = response.data;

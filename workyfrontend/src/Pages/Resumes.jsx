@@ -19,15 +19,17 @@ import {
     CircularProgress,
     TextField, ButtonGroup,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import qs from "qs";
+import api from '../api/axios';
+import { API } from '../api/routes';
 
 export default function ResumesPage() {
     const userRole = localStorage.getItem('role');
     const [resumes, setResumes] = useState([]);
-    const [vacancies, setVacancies] = useState([]);
+    const [vacancies,  setVacancies] = useState([]);
     const [filters, setFilters] = useState({
         city: '',
         min_experience: 0,
@@ -59,9 +61,24 @@ export default function ResumesPage() {
 
     const fetchResumes = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const response = await axios.get('https://localhost:7106/api/v1/Company/Resumes', {
-                headers: { Authorization: `Bearer ${token}` },
+            // const token = localStorage.getItem('jwt');
+            // const response = await axios.get('https://localhost:7106/api/v1/Company/Resumes', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            //     params: {
+            //         city: filters.city || undefined,
+            //         min_experience: filters.min_experience || undefined,
+            //         max_experience: filters.max_experience || undefined,
+            //         education: filters.education || undefined,
+            //         min_wantedSalary: filters.min_wantedSalary || undefined,
+            //         max_wantedSalary: filters.max_wantedSalary || undefined,
+            //         type: filters.type || undefined,
+            //         direction: filters.direction.length > 0 ? filters.direction : undefined,
+            //         SortItem: filters.sortItem || undefined,
+            //         Order: filters.order || undefined,
+            //     },
+            //     paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
+            // });
+            const response = await api.get(API.search.resumes, {
                 params: {
                     city: filters.city || undefined,
                     min_experience: filters.min_experience || undefined,
@@ -70,11 +87,11 @@ export default function ResumesPage() {
                     min_wantedSalary: filters.min_wantedSalary || undefined,
                     max_wantedSalary: filters.max_wantedSalary || undefined,
                     type: filters.type || undefined,
-                    direction: filters.direction.length > 0 ? filters.direction : undefined,
+                    direction: filters.direction.length ? filters.direction : undefined,
                     SortItem: filters.sortItem || undefined,
                     Order: filters.order || undefined,
                 },
-                paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
+                paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'repeat' }),
             });
             setResumes(response.data.resumes || []);
         } catch (err) {
@@ -85,10 +102,11 @@ export default function ResumesPage() {
 
     const fetchVacancies = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const res = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            // const token = localStorage.getItem('jwt');
+            // const res = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const res = await api.get(API.company.myVacancy);
             setVacancies(res.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке вакансий:', err);
@@ -97,11 +115,12 @@ export default function ResumesPage() {
 
     const fetchAvailableFilters = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setAvailableFilters(response.data.filters || []);
+            // const token = localStorage.getItem('jwt');
+            // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const response= await api.get(API.filter.get);
+            setAvailableFilters(response.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке фильтров:', err);
         }
@@ -109,10 +128,11 @@ export default function ResumesPage() {
 
     const fetchEducation = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            // const token = localStorage.getItem('jwt');
+            // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const response = await api.get(API.filter.education);
             setEducationList(response.data.education || []);
         } catch (err) {
             console.error('Ошибка при загрузке образования:', err);
@@ -185,20 +205,24 @@ export default function ResumesPage() {
 
     const handleRespond = async (resumeId, vacancyId) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.post(
-                'https://localhost:7106/api/v1/Company/MakeFeedback',
-                {
-                    resume_id: resumeId,
-                    vacancy_id: vacancyId
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                }
-            );
+            // const token = localStorage.getItem('jwt');
+            // await axios.post(
+            //     'https://localhost:7106/api/v1/Company/MakeFeedback',
+            //     {
+            //         resume_id: resumeId,
+            //         vacancy_id: vacancyId
+            //     },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`,
+            //             'Content-Type': 'application/json'
+            //         }
+            //     }
+            // );
+            await api.post(API.feedback.make, {
+                resume_id: resumeId,
+                vacancy_id: vacancyId,
+            });
             showSnackbar('Отклик успешно отправлен!', 'success');
         } catch (err) {
             console.error('Ошибка при отправке отклика:', err.response?.data || err.message);

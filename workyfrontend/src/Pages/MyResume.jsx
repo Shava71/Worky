@@ -21,9 +21,12 @@ import {
     Chip,
     CircularProgress,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 // import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
+import { API } from '../api/routes';
+
 
 export default function MyResume() {
     const [resumes, setResumes] = useState([]);
@@ -43,20 +46,25 @@ export default function MyResume() {
                 const token = localStorage.getItem('jwt');
                 if (!token) return;
 
-                const resumesResponse = await axios.get('https://localhost:7106/api/v1/Worker/MyResume', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                // const resumesResponse = await axios.get('https://localhost:7106/api/v1/Worker/MyResume', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                //
+                // const filtersResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                //
+                // const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
+                //     headers: { Authorization: `Bearer ${token}` },
+                // });
+                const resumesResponse = await api.get(API.worker.myResume);
 
-                const filtersResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const filtersResponse = await api.get(API.filter.get);
 
-                const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                    headers: { Authorization: `Bearer ${token}` },
-                });
+                const educationResponse = await api.get(API.filter.education);
 
                 setResumes(resumesResponse.data || []);
-                setAvailableFilters(filtersResponse.data.filters || []);
+                setAvailableFilters(filtersResponse.data || []);
                 setEducationList(educationResponse.data.education || []);
             } catch (err) {
                 console.error('Ошибка при загрузке данных:', err);
@@ -101,10 +109,11 @@ export default function MyResume() {
     // Сохранение изменений в резюме
     const handleSaveChanges = async () => {
         try {
-            const token = localStorage.getItem('jwt');
+            if (!editingResume) return;
 
+            // Обновляем основные данные резюме
             const updatedData = {
-                id: Number(editingResume.id),
+                id: editingResume.id,
                 post: editingResume.post,
                 skill: editingResume.skill,
                 city: editingResume.city,
@@ -113,40 +122,51 @@ export default function MyResume() {
                 wantedSalary: Number(editingResume.wantedSalary),
             };
 
-            // 1. Обновляем само резюме
-            await axios.put('https://localhost:7106/api/v1/Worker/UpdateResume', updatedData, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            await api.put(API.worker.updateResume, updatedData);
 
-            // 2. Удаляем старые фильтры
-            if (editingResume.activities?.length > 0) {
-                const oldFilterIds = editingResume.activities.map(a => a.filter_id);
-                for (const id of oldFilterIds) {
-                    await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResumeFilter', {
-                        params: { filterId: id },
-                        headers: { Authorization: `Bearer ${token}` },
+            //Старые и новые направления
+            const oldActivities = editingResume.activities || [];
+
+            const oldActivityIds = oldActivities.map(a => a.id); // typeOfActivity_id
+            const newActivityIds = selectedDirections;           // typeOfActivity_id
+
+            // Diff
+            const filtersToAdd = newActivityIds.filter(
+                id => !oldActivityIds.includes(id)
+            );
+
+            const filtersToRemove = oldActivityIds.filter(
+                id => !newActivityIds.includes(id)
+            );
+
+            // Удаляем ТОЛЬКО убранные фильтры
+            for (const activity of oldActivities) {
+                if (filtersToRemove.includes(activity.id)) {
+                    await api.delete(API.worker.deleteResumeFilter, {
+                        params: { filterId: activity.filter_id },
                     });
                 }
             }
 
-            // 3. Добавляем новые фильтры
-            if (selectedDirections.length > 0) {
-                await axios.post('https://localhost:7106/api/v1/Worker/AddResumeFilter', {
+            // Добавляем ТОЛЬКО новые фильтры
+            if (filtersToAdd.length > 0) {
+                await api.post(API.worker.addResumeFilter, {
                     id: editingResume.id,
-                    typeOfActivity_id: selectedDirections,
-                }, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    typeOfActivity_id: filtersToAdd,
                 });
             }
 
-            // 4. Обновляем локальный список
+            // Обновляем локальный стейт
             setResumes(prev =>
                 prev.map(r =>
                     r.id === editingResume.id
-                        ? { ...r, ...updatedData, activities: availableFilters.filter(f => selectedDirections.includes(f.id)) }
+                        ? {
+                            ...r,
+                            ...updatedData,
+                            activities: availableFilters.filter(f =>
+                                newActivityIds.includes(f.id)
+                            ),
+                        }
                         : r
                 )
             );
@@ -159,7 +179,8 @@ export default function MyResume() {
 
             handleCloseModal();
         } catch (err) {
-            console.error('Ошибка сохранения резюме:', err.response?.data || err.message);
+            console.error('Ошибка сохранения резюме:', err.response?.data || err);
+
             setSnackbar({
                 open: true,
                 message: 'Ошибка при сохранении резюме',
@@ -171,10 +192,13 @@ export default function MyResume() {
     // Удаление резюме
     const handleDeleteResume = async (id) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResume', {
+            // const token = localStorage.getItem('jwt');
+            // await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResume', {
+            //     params: { resumeId: id },
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            await api.delete(API.worker.deleteResume, {
                 params: { resumeId: id },
-                headers: { Authorization: `Bearer ${token}` },
             });
             setResumes(resumes.filter(r => r.id !== id));
             setSnackbar({
@@ -194,10 +218,13 @@ export default function MyResume() {
     // Удаление фильтра из резюме
     const handleDeleteFilter = async (filterId) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResumeFilter', {
-                params: { filterId: filterId },
-                headers: { Authorization: `Bearer ${token}` },
+            // const token = localStorage.getItem('jwt');
+            // await axios.delete('https://localhost:7106/api/v1/Worker/DeleteResumeFilter', {
+            //     params: { filterId: filterId },
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            await api.delete(API.worker.deleteResumeFilter, {
+                params: { filterId },
             });
             setEditingResume(prev => ({
                 ...prev,

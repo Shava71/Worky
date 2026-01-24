@@ -21,8 +21,10 @@ import {
     TableRow,
     TableContainer,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
+import { API } from '../api/routes';
 
 export default function Tariffs() {
     const [tariffs, setTariffs] = useState([]);
@@ -45,19 +47,21 @@ export default function Tariffs() {
                 let isAuthorized = false;
 
                 // ВСЕГДА запрашиваем тарифы — они анонимные
-                const tariffsResponse = await axios.get(
-                    'https://localhost:7106/api/v1/Company/Tarrif'
-                );
+                // const tariffsResponse = await axios.get(
+                //     'https://localhost:7106/api/v1/Company/Tarrif'
+                // );
+                const tariffsResponse = await api.get(API.deal.tariffs);
                 const tariffsData = tariffsResponse.data.tarrifs || [];
 
                 // Если есть токен — проверяем профиль и договор
                 if (token && role == 'Company') {
-                    const profileResponse = await axios.get(
-                        'https://localhost:7106/api/v1/Company/GetProfile',
-                        {
-                            headers: { Authorization: `Bearer ${token}` },
-                        }
-                    );
+                    // const profileResponse = await axios.get(
+                    //     'https://localhost:7106/api/v1/Company/GetProfile',
+                    //     {
+                    //         headers: { Authorization: `Bearer ${token}` },
+                    //     }
+                    // );
+                    const profileResponse = await api.get(API.company.profile);
 
                     const deals = profileResponse.data.deals || [];
                     const today = new Date();
@@ -93,16 +97,20 @@ export default function Tariffs() {
             const token = localStorage.getItem('jwt');
             if (!token || !selectedTariff) return;
 
-            await axios.post(
-                'https://localhost:7106/api/v1/Company/MakeDeal',
-                { tarrif_id: selectedTariff.id, countMonth: months },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                    },
-                }
-            );
+            // await axios.post(
+            //     'https://localhost:7106/api/v1/Company/MakeDeal',
+            //     { tarrif_id: selectedTariff.id, countMonth: months },
+            //     {
+            //         headers: {
+            //             Authorization: `Bearer ${token}`,
+            //             'Content-Type': 'application/json',
+            //         },
+            //     }
+            // );
+            await api.post(API.deal.makeDeal, {
+                tarrif_id: selectedTariff.id,
+                countMonth: months,
+            });
 
             setSnackbar({
                 open: true,

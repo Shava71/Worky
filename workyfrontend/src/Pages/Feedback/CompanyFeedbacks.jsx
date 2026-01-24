@@ -19,8 +19,10 @@ import {
     Card,
     CardContent,
 } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
 import dayjs from 'dayjs';
+import api from '../../api/axios';
+import { API } from '../../api/routes';
 
 export default function CompanyFeedbackPage() {
     const [feedbacks, setFeedbacks] = useState([]);
@@ -33,14 +35,19 @@ export default function CompanyFeedbackPage() {
     // Загрузка откликов
     const fetchFeedbacks = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const res = await axios.get('https://localhost:7106/api/v1/Company/GetFeedback', {
-                headers: { Authorization: `Bearer ${token}` },
-                params: {
+            // const token = localStorage.getItem('jwt');
+            // const res = await axios.get('https://localhost:7106/api/v1/Company/GetFeedback', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            //     params: {
+            //         vacancyId: selectedVacancyId || undefined
+            //     }
+            // });
+            const res = await api.get(API.feedback.get,{
+                params:{
                     vacancyId: selectedVacancyId || undefined
                 }
             });
-            setFeedbacks(res.data.feedbacks || []);
+            setFeedbacks(res.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке откликов:', err);
         }
@@ -49,11 +56,12 @@ export default function CompanyFeedbackPage() {
     // Загрузка вакансий компании
     const fetchVacancies = async () => {
         try {
-            const token = localStorage.getItem('jwt');
-            const res = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-            setVacancies(res.data || []);
+            // const token = localStorage.getItem('jwt');
+            // const res = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
+            //     headers: { Authorization: `Bearer ${token}` },
+            // });
+            const res = await api.get(API.company.myVacancy);
+            setVacancies(res.data.vacansies || []);
         } catch (err) {
             console.error('Ошибка при загрузке вакансий:', err);
         }
@@ -76,13 +84,18 @@ export default function CompanyFeedbackPage() {
     // };
     const fetchAllResumes = async () => {
         try {
-            const token = localStorage.getItem('jwt');
+            // const token = localStorage.getItem('jwt');
             const resumeIds = [...new Set(feedbacks.map(fb => fb.resume_id))]; // уникальные ID
             for (const id of resumeIds) {
                 if (!resumes[id]) {
-                    const res = await axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info?resumeId=${id}`, {
-                        headers: { Authorization: `Bearer ${token}` },
-                    });
+                    // const res = await axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info?resumeId=${id}`, {
+                    //     headers: { Authorization: `Bearer ${token}` },
+                    // });
+                    const res = await api.get(API.worker.resumesInfo, {
+                        params: {
+                            resumeId: id,
+                        }
+                    })
                     setResumes(prev => ({
                         ...prev,
                         [id]: res.data.resume?.[0] || null
@@ -97,16 +110,27 @@ export default function CompanyFeedbackPage() {
     // Изменение статуса отклика
     const handleChangeStatus = async (feedbackId, newStatus) => {
         try {
-            const token = localStorage.getItem('jwt');
-            await axios.post('https://localhost:7106/api/v1/Company/ChangeFeedbackStatus', {
-                feedback_id: feedbackId,
-                status: newStatus
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                }
-            });
+            // const token = localStorage.getItem('jwt');
+            // await axios.post('https://localhost:7106/api/v1/Company/ChangeFeedbackStatus', {
+            //     feedback_id: feedbackId,
+            //     status: newStatus
+            // }, {
+            //     headers: {
+            //         Authorization: `Bearer ${token}`,
+            //         'Content-Type': 'application/json'
+            //     }
+            // });
+            if(newStatus === 'Accepted') {
+                await api.post(API.feedback.accept, {
+                    feedbackId: feedbackId,
+                });
+            }
+            else if(newStatus === 'Cancelled') {
+                await api.post(API.feedback.cancel, {
+                    feedbackId: feedbackId,
+                });
+            }
+
 
             const newStatusPageInfo = newStatus === "Accepted" ? 1 : newStatus === "Cancelled" ? 2 : 0;
 
