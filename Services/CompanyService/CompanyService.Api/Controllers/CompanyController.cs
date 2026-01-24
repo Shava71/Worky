@@ -131,6 +131,11 @@ namespace CompanyService.Api.Controllers
                 await _companyService.DeleteVacancyFilterAsync(filterId, companyId);
                 return Ok("Filter deleted");
             }
+            catch (KeyNotFoundException ex)
+            {
+                _logger.LogError(ex, "Vacancy key not found + {0}", filterId);
+                return NotFound(ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in DeleteVacancyFilter");

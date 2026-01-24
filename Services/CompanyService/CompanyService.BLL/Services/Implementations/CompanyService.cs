@@ -91,11 +91,30 @@ public class CompanyService : ICompnayService
 
                 Dictionary<int , TypeOfActivityResponse> activityDict = activities.ToDictionary(a => a.id, a => a);
 
+                // foreach (VacancyDtos vacancy in vacancyList)
+                // {
+                //     vacancy.activities = vacancy.activities
+                //         .Where(a => activityDict.ContainsKey(a.id))
+                //         .Select(a => activityDict[a.id])
+                //         .ToList();
+                // }
                 foreach (VacancyDtos vacancy in vacancyList)
                 {
                     vacancy.activities = vacancy.activities
                         .Where(a => activityDict.ContainsKey(a.id))
-                        .Select(a => activityDict[a.id])
+                        .Select(a =>
+                        {
+                            var cached = activityDict[a.id];
+
+                            return new TypeOfActivityResponse
+                            {
+                                id = cached.id,
+                                direction = cached.direction,
+                                type = cached.type,
+                                
+                                filter_id = a.filter_id
+                            };
+                        })
                         .ToList();
                 }
             }
@@ -198,28 +217,29 @@ public class CompanyService : ICompnayService
             try
             {
                 await _vacancyFilterAddTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
+                IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
+
+                if (!filter_id.Any())
+                {
+                    throw new KeyNotFoundException("Filter not found");
+                }
+
+                return filter_id;
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding vacancy filter for {CompanyId}", companyId);
                 return [];
             }
-            
-            IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
-            if (!filter_id.Any())
-            {
-                return [];
-            }
-            
-            return filter_id;
         }
 
         public async Task DeleteVacancyFilterAsync(Guid filterId, string companyId)
         {
-            Vacancy_filter vacancy_filter = await _vacancyRepository.GetVacancyFilterByIdAsync(filterId);
+            Vacancy_filter? vacancy_filter = await _vacancyRepository.GetVacancyFilterByIdAsync(filterId);
             if (vacancy_filter == null)
             {
-                return;
+                throw new KeyNotFoundException("Filter not found");
             }
 
             VacancyFilterDeleteEvent @event = new VacancyFilterDeleteEvent(
@@ -229,14 +249,13 @@ public class CompanyService : ICompnayService
             try
             {
                 await _vacancyFilterDeleteTopicProducer.Produce(@event);
-
+                await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error deleting vacancy filter for {CompanyId}", companyId);
                 return;
             }
-            await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
 
         }
 

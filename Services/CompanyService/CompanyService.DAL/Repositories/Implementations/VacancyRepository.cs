@@ -242,59 +242,161 @@ public class VacancyRepository : IVacancyRepository
             }
         }
 
-        public async Task<Vacancy_filter?> GetVacancyFilterByIdAsync(Guid id)
+        public async Task<Vacancy_filter?> GetVacancyFilterByIdAsync(Guid filterId)
         {
-            return await _dbContext.vacancy_filter.FirstOrDefaultAsync(vf => vf.filter_id == id);
-        }
+            // return await _dbContext.vacancy_filter.FirstOrDefaultAsync(vf => vf.filter_id == id);
+            using IDbConnection db = _connectionFactory.CreateConnection();
 
-        public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId)
+            const string sql = """
+                                   SELECT filter_id, vacancy_id, "typeOfActivity_id"
+                                   FROM vacancy_filter
+                                   WHERE filter_id = @filterId
+                               """;
+
+            return await db.QueryFirstOrDefaultAsync<Vacancy_filter>(
+                sql,
+                new { filterId }
+            );
+        }
+        
+        public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(
+            string companyId,
+            Guid? vacancyId)
         {
-            using (IDbConnection db = _connectionFactory.CreateConnection())
+            using IDbConnection db = _connectionFactory.CreateConnection();
+
+            const string sql = """
+                SELECT
+                    v.id,
+                    v.company_id,
+                    v.post,
+                    v.min_salary,
+                    v.max_salary,
+                    v.education_id,
+                    v.experience,
+                    v.description,
+                    v.income_date,
+                    v.work_format,
+                    v.work_hour,
+
+                    e.name                     AS education_name,
+
+                    vf.filter_id               AS "FilterId",
+                    vf."typeOfActivity_id"     AS "TypeOfActivityId"
+
+                FROM "vacancy" v
+                LEFT JOIN "vacancy_filter" vf
+                    ON v.id = vf.vacancy_id
+                LEFT JOIN "education" e
+                    ON v.education_id = e.id
+                WHERE v.company_id = @companyId
+                  AND (@vacancyId IS NULL OR v.id = @vacancyId);
+            """;
+
+            var rows = await db.QueryAsync<VacancyRow>(sql, new
             {
-                string sql = """
-                                 SELECT v.*, vf."typeOfActivity_id", e.name AS education_name
-                                 FROM "vacancy" v
-                                 LEFT JOIN "vacancy_filter" vf ON v.id = vf.vacancy_id
-                                 LEFT JOIN "education" e on v.education_id = e.id
-                                 WHERE v.company_id = @companyId
-                                   AND (@vacancyId IS NULL OR v.id = @vacancyId);
-                             """;
+                companyId = Guid.Parse(companyId),
+                vacancyId
+            });
 
-                Guid parsedCompanyId = Guid.Parse(companyId);
-                var rows = await db.QueryAsync(sql, new { companyId = parsedCompanyId, vacancyId });
-
-                var grouped = rows.GroupBy(r => (Guid)r.id);
-
-                var vacancies = grouped.Select(group => new VacancyDtos
+            var vacancies = rows
+                .GroupBy(r => r.id)
+                .Select(group =>
                 {
-                    id = group.Key,
-                    company_id = group.First().company_id,
-                    post = group.First().post,
-                    experience = group.First().experience,
-                    income_date = group.First().income_date,
-                    education_id = group.First().education_id,
-                    education_name = group.First().education_name,
-                    description = group.First().description,
-                    min_salary = group.First().min_salary,
-                    max_salary = group.First().max_salary,
-                    work_format = (WorkFormat?)group.First().work_format,
-                    work_hour = (WorkHour?)group.First().work_hour,
+                    var first = group.First();
 
-                    activities = group
-                        .Where(g => g.typeOfActivity_id != null)
-                        .Select(g => new TypeOfActivityResponse
-                        {
-                            id = (int)g.typeOfActivity_id,
-                            direction = null,
-                            type = null
-                        })
-                        .DistinctBy(a => a.id)
-                        .ToList()
-                });
+                    return new VacancyDtos
+                    {
+                        id = first.id,
+                        company_id = first.company_id,
+                        post = first.post,
+                        min_salary = first.min_salary,
+                        max_salary = first.max_salary,
+                        education_id = first.education_id,
+                        education_name = first.education_name,
+                        experience = first.experience,
+                        description = first.description,
+                        income_date = first.income_date,
+                        work_format = (WorkFormat?)first.work_format,
+                        work_hour = (WorkHour?)first.work_hour,
 
-                return vacancies.ToList();
-            }
+                        activities = group
+                            .Where(g => g.TypeOfActivityId.HasValue && g.FilterId.HasValue)
+                            .GroupBy(g => g.TypeOfActivityId!.Value)
+                            .Select(g => new TypeOfActivityResponse
+                            {
+                                id = g.Key,
+                                filter_id = g.First().FilterId!.Value,
+                                direction = null,
+                                type = null
+                            })
+                            .ToList()
+                    };
+                })
+                .ToList();
+
+            return vacancies;
         }
+        // public async Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId)
+        // {
+        //     using (IDbConnection db = _connectionFactory.CreateConnection())
+        //     {
+        //         string sql = """
+        //                          SELECT v.*, vf."filter_id", vf."typeOfActivity_id", e.name AS education_name
+        //                          FROM "vacancy" v
+        //                          LEFT JOIN "vacancy_filter" vf ON v.id = vf.vacancy_id
+        //                          LEFT JOIN "education" e on v.education_id = e.id
+        //                          WHERE v.company_id = @companyId
+        //                            AND (@vacancyId IS NULL OR v.id = @vacancyId);
+        //                      """;
+        //
+        //         Guid parsedCompanyId = Guid.Parse(companyId);
+        //         var rows = await db.QueryAsync(sql, new { companyId = parsedCompanyId, vacancyId });
+        //
+        //         var grouped = rows.GroupBy(r => (Guid)r.id);
+        //
+        //         var vacancies = grouped.Select(group => new VacancyDtos
+        //         {
+        //             id = group.Key,
+        //             company_id = group.First().company_id,
+        //             post = group.First().post,
+        //             experience = group.First().experience,
+        //             income_date = group.First().income_date,
+        //             education_id = group.First().education_id,
+        //             education_name = group.First().education_name,
+        //             description = group.First().description,
+        //             min_salary = group.First().min_salary,
+        //             max_salary = group.First().max_salary,
+        //             work_format = (WorkFormat?)group.First().work_format,
+        //             work_hour = (WorkHour?)group.First().work_hour,
+        //
+        //             // activities = group
+        //             //     .Where(g => g.typeOfActivity_id != null)
+        //             //     .Select(g => new TypeOfActivityResponse
+        //             //     {
+        //             //         filter_id = g.filter_id,
+        //             //         id = (int)g.typeOfActivity_id,
+        //             //         direction = null,
+        //             //         type = null
+        //             //     })
+        //             //     .DistinctBy(a => a.id)
+        //             //     .ToList()
+        //             activities = group
+        //                 .Where(g => g.typeOfActivity_id != null && g.filter_id != null)
+        //                 .GroupBy(g => g.typeOfActivity_id)
+        //                 .Select(g => new TypeOfActivityResponse
+        //                 {
+        //                     id = (int)g.Key,
+        //                     filter_id = (Guid)g.First().filter_id,
+        //                     direction = null,
+        //                     type = null
+        //                 })
+        //                 .ToList()
+        //         });
+        //
+        //         return vacancies.ToList();
+        //     }
+        // }
 
         public async Task<int> GetMyVacanciesCountAsync(Guid companyId)
         {
