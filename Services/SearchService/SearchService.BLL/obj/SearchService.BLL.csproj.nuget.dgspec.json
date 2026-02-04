@@ -1,37 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/SearchService.BLL.csproj": {}
+    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.BLL\\SearchService.BLL.csproj": {}
   },
   "projects": {
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/SearchService.BLL.csproj": {
+    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.BLL\\SearchService.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/SearchService.BLL.csproj",
+        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.BLL\\SearchService.BLL.csproj",
         "projectName": "SearchService.BLL",
-        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/SearchService.BLL.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.BLL/obj/",
+        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.BLL\\SearchService.BLL.csproj",
+        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.BLL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.avanpost.ru/repository/nuget-group/": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/SearchService.DAL.csproj": {
-                "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/SearchService.DAL.csproj"
+              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\SearchService.DAL.csproj": {
+                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\SearchService.DAL.csproj"
               },
-              "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj": {
-                "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj"
+              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj": {
+                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj"
               }
             }
           }
@@ -46,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -137,28 +137,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj": {
+    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj",
+        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj",
         "projectName": "SearchService.Contract",
-        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/obj/",
+        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj",
+        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.avanpost.ru/repository/nuget-group/": {}
         },
         "frameworks": {
           "net8.0": {
@@ -176,7 +176,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -209,11 +209,15 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
+              "version": "[8.0.15, 8.0.15]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.20, 8.0.20]"
+              "version": "[8.0.15, 8.0.15]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.15, 8.0.15]"
             }
           ],
           "frameworkReferences": {
@@ -221,38 +225,38 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/SearchService.DAL.csproj": {
+    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\SearchService.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/SearchService.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\SearchService.DAL.csproj",
         "projectName": "SearchService.DAL",
-        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/SearchService.DAL.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.DAL/obj/",
+        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\SearchService.DAL.csproj",
+        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.avanpost.ru/repository/nuget-group/": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj": {
-                "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj"
+              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj": {
+                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj"
               },
-              "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj": {
-                "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj"
+              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj": {
+                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj"
               }
             }
           }
@@ -267,7 +271,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -358,28 +362,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj": {
+    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj",
+        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj",
         "projectName": "SearchService.ML",
-        "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/SearchService.ML.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/SearchService/SearchService.ML/obj/",
+        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\SearchService.ML.csproj",
+        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.ML\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packages.avanpost.ru/repository/nuget-group/": {}
         },
         "frameworks": {
           "net9.0": {
@@ -397,7 +401,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -520,7 +524,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

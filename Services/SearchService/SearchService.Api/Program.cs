@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using SearchService.Api.Extensions;
 using SearchService.BLL.Consumers;
 using SearchService.BLL.Events;
+using SearchService.BLL.Services.Implementations;
+using SearchService.BLL.Services.Interfaces;
+using SearchService.DAL.Embenddings;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
 
@@ -60,6 +63,19 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddElasticRepositories();
 builder.Services.AddElasticServices();
+
+builder.Services.Configure<EmbeddingOptions>(
+    builder.Configuration.GetSection("Embeddings"));
+
+builder.Services.AddHttpClient<IEmbeddingService, EmbeddingHttpService>(
+    (sp, client) =>
+    {
+        var options = sp.GetRequiredService<
+            Microsoft.Extensions.Options.IOptions<EmbeddingOptions>>().Value;
+
+        client.BaseAddress = new Uri(options.BaseUrl);
+        client.Timeout = TimeSpan.FromSeconds(options.TimeoutSeconds);
+    });
 
 builder.Services.AddMassTransit(config =>
 {
