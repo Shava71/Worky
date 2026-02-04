@@ -13,7 +13,7 @@ public class CompanyDbContext : DbContext
     public DbSet<Education> education { get; set; }
     public DbSet<Tarrif> tariff { get; set; }
     public DbSet<Vacancy> vacancy { get; set; }
-    public DbSet<Vacancy_filter?> vacancy_filter { get; set; }
+    public DbSet<Vacancy_filter> vacancy_filter { get; set; }
     
     
     public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options){}

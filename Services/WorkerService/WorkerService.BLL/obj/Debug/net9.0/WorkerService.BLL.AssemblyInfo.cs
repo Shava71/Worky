@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WorkerService.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb00a8a40702f5f8eb062ed2a513ff32e4dc5a50")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca24d4a4f121f6d1b057f64a2b1c2734394ab48b")]
 [assembly: System.Reflection.AssemblyProductAttribute("WorkerService.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WorkerService.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

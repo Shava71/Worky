@@ -25,7 +25,11 @@ public class CompanyRepository : ICompanyRepository
 
     public async Task<Company> GetCompanyByIdAsync(Guid id)
     {
-        return await _dbContext.company.FindAsync(id);
+        return await _dbContext.company
+            .Include(c => c.Deals.OrderByDescending(d => d.date_start))
+            .ThenInclude(d => d.tariff)
+            .FirstOrDefaultAsync(c => c.UserId == id);
+            
     }
 
     public async Task UpdateCompanyAsync(Company company)

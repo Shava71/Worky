@@ -21,6 +21,70 @@ namespace FilterService.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("FilterService.Models.Education", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Educations");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            name = "Начальное общее образование"
+                        },
+                        new
+                        {
+                            id = 2,
+                            name = "Основное общее образование"
+                        },
+                        new
+                        {
+                            id = 3,
+                            name = "Среднее общее образование"
+                        },
+                        new
+                        {
+                            id = 4,
+                            name = "Среднее профессиональное образование"
+                        },
+                        new
+                        {
+                            id = 5,
+                            name = "Бакалавриат"
+                        },
+                        new
+                        {
+                            id = 6,
+                            name = "Специалитет"
+                        },
+                        new
+                        {
+                            id = 7,
+                            name = "Магистратура"
+                        },
+                        new
+                        {
+                            id = 8,
+                            name = "Аспирантура"
+                        },
+                        new
+                        {
+                            id = 9,
+                            name = "Ординатура"
+                        });
+                });
+
             modelBuilder.Entity("FilterService.Models.TypeOfActivity", b =>
                 {
                     b.Property<int>("id")

@@ -73,10 +73,10 @@ public class FeedbackController : ControllerBase
         {
             Guid currentIdUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
             IEnumerable<Feedback?> feedbacks = await feedbackService.GetAllFeedbacksAsync(currentIdUser, Id);
-            if (!feedbacks.Any())
-            {
-                return NotFound();
-            }
+            // if (!feedbacks.Any())
+            // {
+            //     return NotFound();
+            // }
             return Ok(feedbacks);
         }
         catch (Exception ex)

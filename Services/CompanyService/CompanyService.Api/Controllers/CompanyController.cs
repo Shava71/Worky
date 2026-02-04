@@ -131,6 +131,11 @@ namespace CompanyService.Api.Controllers
                 await _companyService.DeleteVacancyFilterAsync(filterId, companyId);
                 return Ok("Filter deleted");
             }
+            catch (KeyNotFoundException ex)
+            {
+                _logger.LogError(ex, "Vacancy key not found + {0}", filterId);
+                return NotFound(ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in DeleteVacancyFilter");
@@ -191,7 +196,8 @@ namespace CompanyService.Api.Controllers
             try
             {
                 string companyId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                string token = Request.Headers["Authorization"].First();
+                string authHeader = Request.Headers["Authorization"].First();
+                string token = authHeader.Replace("Bearer ", "");
                 CompanyProfileDtos profile = await _companyService.GetProfileAsync(companyId, token);
                 return Ok(profile);
             }

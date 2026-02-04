@@ -261,3 +261,7 @@
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/obj/Debug/net9.0/FilterService.pdb
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/obj/Debug/net9.0/FilterService.genruntimeconfig.cache
 /Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/obj/Debug/net9.0/ref/FilterService.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/mac/Desktop/Worky/MicroServicesBackend/Services/FilterService/FilterService/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
