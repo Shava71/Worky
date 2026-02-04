@@ -296,6 +296,26 @@ services:
       - "5601:5601"                         # порт Kibana
     networks:
       - backend
+  
+  # ---- Embeddings Service (MPNet) ----
+  embeddings:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
+    container_name: embeddings
+    command: >
+      --model-id sentence-transformers/all-mpnet-base-v2
+      --pooling mean
+      --dtype float16
+    ports:
+      - "8085:80"          # наружу (опционально)
+    volumes:
+      - hf_cache:/data     # кеш модели
+    networks:
+      - backend
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
 
 
 # ---- Volumes ----

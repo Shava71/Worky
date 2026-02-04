@@ -4,6 +4,7 @@ using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.QueryDsl;
 using Microsoft.Extensions.Logging;
 using SeachService.DAL.DTO;
+using SearchService.BLL.Services.Interfaces;
 using SearchService.Contract;
 using SearchService.DAL.Dto;
 using SearchService.DAL.Entities;
@@ -16,8 +17,13 @@ namespace SearchService.DAL.Repositories.Implementations;
 public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVacancyElasticRepository
 {
     private readonly ILogger<VacancyElasticRepository> _logger;
-    private readonly SbertEmbeddingService _embeddingService;
-    public VacancyElasticRepository(ElasticsearchClient client, ILogger<VacancyElasticRepository> logger, SbertEmbeddingService embeddingService)
+    // private readonly SbertEmbeddingService _embeddingService;
+    private readonly IEmbeddingService _embeddingService;
+
+    public VacancyElasticRepository(ElasticsearchClient client, ILogger<VacancyElasticRepository> logger, 
+        // SbertEmbeddingService embeddingService
+        IEmbeddingService embeddingService
+        )
         : base(client, "vacancies") { _logger = logger; _embeddingService = embeddingService; }
 
     public override async Task IndexAsync(string id, VacancyDocument document)
@@ -26,7 +32,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
 
         if (string.IsNullOrWhiteSpace(text))
             text = document.post ?? "";
-        document.vector = _embeddingService.GetEmbedding(text);
+        document.vector = await _embeddingService.GetEmbedding(text);
         
         await base.IndexAsync(id, document);
     }
@@ -285,7 +291,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             return Array.Empty<VacancySearchResultDto>();
 
         // Получаем вектор для запроса
-        float[] queryVector = _embeddingService.GetEmbedding(query);
+        float[] queryVector = await _embeddingService.GetEmbedding(query);
         Console.WriteLine("Embedding hash = " + string.Join(",", queryVector.Take(8)));
 
         // Выполняем чистый KNN поиск
@@ -366,7 +372,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
     public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchTwoStageAsync(string query)
     {
         // 1) Получаем вектор запроса
-        float[] queryVector = _embeddingService.GetEmbedding(query);
+        float[] queryVector = await _embeddingService.GetEmbedding(query);
         
         // var boolQuery = new BoolQuery
         // {
