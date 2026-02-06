@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   # ---- ApiGateway (YARP) ----
@@ -329,6 +328,7 @@ volumes:
   company_data:
   es_data:
     driver: local
+  hf_cache:
   
 # ---- Networks ----
 networks:

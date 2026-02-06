@@ -320,54 +320,108 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             .ToList();
     }
     
-    public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchHybridAsync(string query)
+    public async Task<IReadOnlyCollection<VacancySearchResultDto>>
+        SearchHybridAsync(string query)
     {
         if (string.IsNullOrWhiteSpace(query))
-        {
-            // просто вернем MatchAll через лексический поиск
             return await SearchLexicalAsync(query);
-        }
 
-        // --- 1. Запускаем лексический поиск ---
         var lexicalResults = await SearchLexicalAsync(query);
-
-        // --- 2. Запускаем семантический поиск ---
         var semanticResults = await SearchSemanticAsync(query);
 
-        // Если оба пустые — вернуть пусто
         if (lexicalResults.Count == 0 && semanticResults.Count == 0)
             return Array.Empty<VacancySearchResultDto>();
 
+        // --- коэффициенты ---
+        const double alpha = 0.6;   // вес BM25
+        const double beta = 0.4;    // вес semantic
 
-        // --- 3. RRF fusion ---
-        const int k = 60;
+        // --- нормализация ---
+        var normalizedLexical = NormalizeScores(lexicalResults);
+        var normalizedSemantic = NormalizeScores(semanticResults);
 
-        // Ранжируем
-        var lexRanked = lexicalResults
-            .Select((r, i) => new { r.Document, Score = r.Score, Rank = i + 1 });
-
-        var semRanked = semanticResults
-            .Select((r, i) => new { r.Document, Score = r.Score, Rank = i + 1 });
-
-        // Объединяем
-        var combined = lexRanked.Concat(semRanked)
+        // --- объединяем ---
+        var combined = normalizedLexical
+            .Concat(normalizedSemantic)
             .GroupBy(x => x.Document.id)
-            .Select(g => new
+            .Select(g =>
             {
-                Doc = g.First().Document,
-                Score = g.Sum(x => 1.0 / (k + x.Rank)) // RRF
+                var doc = g.First().Document;
+
+                var lexScore = g
+                    .Where(x => x.Type == ScoreType.Lexical)
+                    .Select(x => x.Score)
+                    .FirstOrDefault();
+
+                var semScore = g
+                    .Where(x => x.Type == ScoreType.Semantic)
+                    .Select(x => x.Score)
+                    .FirstOrDefault();
+
+                var finalScore = alpha * lexScore + beta * semScore;
+
+                return new VacancySearchResultDto
+                {
+                    Document = doc,
+                    Score = (float)finalScore
+                };
             })
             .OrderByDescending(x => x.Score)
             .Take(50)
-            .Select(x => new VacancySearchResultDto
-            {
-                Document = x.Doc,
-                Score = (float)x.Score
-            })
             .ToList();
 
         return combined;
     }
+
+    
+    // public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchHybridAsync(string query)
+    // {
+    //     if (string.IsNullOrWhiteSpace(query))
+    //     {
+    //         // просто вернем MatchAll через лексический поиск
+    //         return await SearchLexicalAsync(query);
+    //     }
+    //
+    //     // --- 1. Запускаем лексический поиск ---
+    //     var lexicalResults = await SearchLexicalAsync(query);
+    //
+    //     // --- 2. Запускаем семантический поиск ---
+    //     var semanticResults = await SearchSemanticAsync(query);
+    //
+    //     // Если оба пустые — вернуть пусто
+    //     if (lexicalResults.Count == 0 && semanticResults.Count == 0)
+    //         return Array.Empty<VacancySearchResultDto>();
+    //
+    //
+    //     // --- 3. RRF fusion ---
+    //     const int k = 60;
+    //
+    //     // Ранжируем
+    //     var lexRanked = lexicalResults
+    //         .Select((r, i) => new { r.Document, Score = r.Score, Rank = i + 1 });
+    //
+    //     var semRanked = semanticResults
+    //         .Select((r, i) => new { r.Document, Score = r.Score, Rank = i + 1 });
+    //
+    //     // Объединяем
+    //     var combined = lexRanked.Concat(semRanked)
+    //         .GroupBy(x => x.Document.id)
+    //         .Select(g => new
+    //         {
+    //             Doc = g.First().Document,
+    //             Score = g.Sum(x => 1.0 / (k + x.Rank)) // RRF
+    //         })
+    //         .OrderByDescending(x => x.Score)
+    //         .Take(50)
+    //         .Select(x => new VacancySearchResultDto
+    //         {
+    //             Document = x.Doc,
+    //             Score = (float)x.Score
+    //         })
+    //         .ToList();
+    //
+    //     return combined;
+    // }
     
     public async Task<IReadOnlyCollection<VacancySearchResultDto>> SearchTwoStageAsync(string query)
     {
@@ -454,4 +508,43 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
 
         return dot / (Math.Sqrt(mag1) * Math.Sqrt(mag2));
     }
+    
+    private static IEnumerable<NormalizedResult> NormalizeScores(
+        IReadOnlyCollection<VacancySearchResultDto> results,
+        ScoreType? typeOverride = null)
+    {
+        if (results.Count == 0)
+            return Enumerable.Empty<NormalizedResult>();
+
+        var min = results.Min(r => r.Score);
+        var max = results.Max(r => r.Score);
+
+        var range = max - min;
+        if (range == 0)
+            range = 1; // защита от деления на 0
+
+        var type = typeOverride ??
+                   (results == results ? ScoreType.Lexical : ScoreType.Semantic);
+
+        return results.Select(r => new NormalizedResult
+        {
+            Document = r.Document,
+            Score = (r.Score - min) / range,
+            Type = typeOverride ?? ScoreType.Lexical
+        });
+    }
+
+}
+
+enum ScoreType
+{
+    Lexical,
+    Semantic
+}
+
+sealed class NormalizedResult
+{
+    public VacancyDocument Document { get; init; } = default!;
+    public double Score { get; init; }
+    public ScoreType Type { get; init; }
 }

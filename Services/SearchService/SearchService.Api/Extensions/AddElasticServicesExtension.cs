@@ -11,7 +11,7 @@ public static class AddElasticServicesExtension
         services.AddScoped<IVacancySearchService, VacancySearchService>();
         services.AddScoped<IResumeSearchService, ResumeSearchService>();
 
-        services.AddScoped<SbertEmbeddingService>();
+        // services.AddScoped<SbertEmbeddingService>();
         
         return services;
     }
