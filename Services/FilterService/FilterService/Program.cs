@@ -21,6 +21,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IFilterRepository, FilterRepository>();
 builder.Services.AddScoped<IFilterService, FilterService.Service.FilterService>();
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 
 var app = builder.Build();
 

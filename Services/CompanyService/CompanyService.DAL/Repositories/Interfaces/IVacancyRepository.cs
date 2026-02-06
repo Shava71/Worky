@@ -15,4 +15,5 @@ public interface IVacancyRepository
     Task DeleteVacancyFilterAsync(Guid filterId);
     Task<Vacancy_filter?> GetVacancyFilterByIdAsync(Guid id);
     Task<IEnumerable<VacancyDtos>> GetMyVacanciesAsync(string companyId, Guid? vacancyId);
+    Task<int> GetMyVacanciesCountAsync(Guid companyId);
 }

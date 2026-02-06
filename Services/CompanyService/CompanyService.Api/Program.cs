@@ -19,7 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<CompanyDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        npgsql => npgsql.MigrationsAssembly("CompanyService.DAL"));
 });
 
 var redisConnectionString = builder.Configuration.GetConnectionString("Redis");
@@ -187,11 +188,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-using (var serviceScope = app.Services.CreateScope())
-{
-    var context = serviceScope.ServiceProvider.GetRequiredService<CompanyDbContext>();
-    context.Database.Migrate();
-}
+
 
 app.UseCors();
 app.UseRouting();
@@ -206,7 +203,11 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty;
 });
 
-
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<CompanyDbContext>();
+    context.Database.Migrate();
+}
 
 app.Run();
 

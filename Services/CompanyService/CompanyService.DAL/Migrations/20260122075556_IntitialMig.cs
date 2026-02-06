@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CompanyService.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class IntitialMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -108,7 +108,7 @@ namespace CompanyService.DAL.Migrations
                     post = table.Column<string>(type: "text", nullable: false),
                     min_salary = table.Column<int>(type: "integer", nullable: false),
                     education_id = table.Column<int>(type: "integer", nullable: false),
-                    experience = table.Column<short>(type: "smallint", nullable: false),
+                    experience = table.Column<int>(type: "integer", nullable: false),
                     description = table.Column<string>(type: "text", nullable: true),
                     income_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     max_salary = table.Column<int>(type: "integer", nullable: true),
@@ -178,11 +178,9 @@ namespace CompanyService.DAL.Migrations
                 name: "Deals",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     tariff_id = table.Column<int>(type: "integer", nullable: false),
                     company_id = table.Column<Guid>(type: "uuid", nullable: true),
-                    status = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     date_start = table.Column<DateOnly>(type: "date", nullable: false),
                     date_end = table.Column<DateOnly>(type: "date", nullable: false),
                     sum = table.Column<int>(type: "integer", nullable: false),
@@ -250,10 +248,11 @@ namespace CompanyService.DAL.Migrations
                 columns: new[] { "id", "description", "name", "price", "vacancy_count" },
                 values: new object[,]
                 {
-                    { 1, "Размещение 1 вакансии без продвижения.", "Базовый", 990, 1 },
-                    { 2, "Размещение 3 вакансий, выделение цветом в списке.", "Стандартный", 2990, 3 },
-                    { 3, "Размещение 5 вакансий, поднятие в поиске раз в 3 дня.", "Продвинутый", 5990, 5 },
-                    { 4, "Размещение 10 вакансий, ежедневное поднятие.", "Премиум", 9990, 10 }
+                    { 1, "Размещение 1 вакансии", "Базовый", 990, 1 },
+                    { 2, "Размещение 3 вакансий", "Стандартный", 2990, 3 },
+                    { 3, "Размещение 5 вакансий", "Продвинутый", 5990, 5 },
+                    { 4, "Размещение 10 вакансий", "Премиум", 9990, 10 },
+                    { 5, "Безлимитное размещение вакансий", "Безлимитный", 20000, 2147483647 }
                 });
 
             migrationBuilder.CreateIndex(

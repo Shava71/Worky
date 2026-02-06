@@ -20,9 +20,9 @@ public class DealConfiguration : IEntityTypeConfiguration<Deal>
         builder.Property(d => d.company_id)
             .IsRequired(false);
 
-        builder.Property(d => d.status)
-            .IsRequired()
-            .HasDefaultValue(false);
+        // builder.Property(d => d.status)
+        //     .IsRequired()
+        //     .HasDefaultValue(false);
 
         builder.Property(d => d.date_start)
             .IsRequired();

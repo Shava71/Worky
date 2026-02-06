@@ -59,11 +59,9 @@ namespace CompanyService.DAL.Migrations
 
             modelBuilder.Entity("CompanyService.DAL.Entities.Deal", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+                        .HasColumnType("uuid");
 
                     b.Property<int?>("Tarrifid")
                         .HasColumnType("integer");
@@ -76,11 +74,6 @@ namespace CompanyService.DAL.Migrations
 
                     b.Property<DateOnly>("date_start")
                         .HasColumnType("date");
-
-                    b.Property<bool>("status")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
 
                     b.Property<int>("sum")
                         .HasColumnType("integer");
@@ -193,7 +186,7 @@ namespace CompanyService.DAL.Migrations
                         new
                         {
                             id = 1,
-                            description = "Размещение 1 вакансии без продвижения.",
+                            description = "Размещение 1 вакансии",
                             name = "Базовый",
                             price = 990,
                             vacancy_count = 1
@@ -201,7 +194,7 @@ namespace CompanyService.DAL.Migrations
                         new
                         {
                             id = 2,
-                            description = "Размещение 3 вакансий, выделение цветом в списке.",
+                            description = "Размещение 3 вакансий",
                             name = "Стандартный",
                             price = 2990,
                             vacancy_count = 3
@@ -209,7 +202,7 @@ namespace CompanyService.DAL.Migrations
                         new
                         {
                             id = 3,
-                            description = "Размещение 5 вакансий, поднятие в поиске раз в 3 дня.",
+                            description = "Размещение 5 вакансий",
                             name = "Продвинутый",
                             price = 5990,
                             vacancy_count = 5
@@ -217,10 +210,18 @@ namespace CompanyService.DAL.Migrations
                         new
                         {
                             id = 4,
-                            description = "Размещение 10 вакансий, ежедневное поднятие.",
+                            description = "Размещение 10 вакансий",
                             name = "Премиум",
                             price = 9990,
                             vacancy_count = 10
+                        },
+                        new
+                        {
+                            id = 5,
+                            description = "Безлимитное размещение вакансий",
+                            name = "Безлимитный",
+                            price = 20000,
+                            vacancy_count = 2147483647
                         });
                 });
 

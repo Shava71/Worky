@@ -10,14 +10,12 @@ namespace CompanyService.DAL.Entities;
 
 public partial class Deal
 {
-    public int id { get; set; }
+    public Guid id { get; set; }
 
     public int tariff_id { get; set; }
 
     public Guid? company_id { get; set; }
-
-    public bool status { get; set; }
-
+    
     public DateOnly date_start { get; set; }
 
     public DateOnly date_end { get; set; }

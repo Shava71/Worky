@@ -25,6 +25,7 @@ public class CompanyService : ICompnayService
 {
         private readonly IVacancyRepository _vacancyRepository;
         private readonly ICompanyRepository _companyRepository;
+        private readonly IDealRepository _dealRepository;
         private readonly ILogger<CompanyService> _logger;
         private readonly IAuthClient _authClient;
         private readonly IFilterCacheService _filterCacheService;
@@ -42,6 +43,7 @@ public class CompanyService : ICompnayService
             ILogger<CompanyService> logger,
             IAuthClient authClient,
             IFilterCacheService filterCacheService,
+            IDealRepository dealRepository,
             
             ITopicProducer<VacancyCreatedEvent> vacancyCreatedTopicProducer,
             ITopicProducer<VacancyUpdatedEvent> vacancyUpdatedTopicProducer,
@@ -55,6 +57,7 @@ public class CompanyService : ICompnayService
             _logger = logger;
             _authClient = authClient;
             _filterCacheService = filterCacheService;
+            _dealRepository = dealRepository;
             
             _vacancyCreatedTopicProducer = vacancyCreatedTopicProducer;
             _vacancyUpdatedTopicProducer = vacancyUpdatedTopicProducer;
@@ -88,11 +91,30 @@ public class CompanyService : ICompnayService
 
                 Dictionary<int , TypeOfActivityResponse> activityDict = activities.ToDictionary(a => a.id, a => a);
 
+                // foreach (VacancyDtos vacancy in vacancyList)
+                // {
+                //     vacancy.activities = vacancy.activities
+                //         .Where(a => activityDict.ContainsKey(a.id))
+                //         .Select(a => activityDict[a.id])
+                //         .ToList();
+                // }
                 foreach (VacancyDtos vacancy in vacancyList)
                 {
                     vacancy.activities = vacancy.activities
                         .Where(a => activityDict.ContainsKey(a.id))
-                        .Select(a => activityDict[a.id])
+                        .Select(a =>
+                        {
+                            var cached = activityDict[a.id];
+
+                            return new TypeOfActivityResponse
+                            {
+                                id = cached.id,
+                                direction = cached.direction,
+                                type = cached.type,
+                                
+                                filter_id = a.filter_id
+                            };
+                        })
                         .ToList();
                 }
             }
@@ -120,6 +142,22 @@ public class CompanyService : ICompnayService
         public async Task<Guid> CreateVacancyAsync(CreateVacancy vacancy, string companyId)
         {
             // return await _vacancyRepository.CreateVacancyAsync(vacancy, companyId);
+            int currentVacanciesCount = await _vacancyRepository.GetMyVacanciesCountAsync(Guid.Parse(companyId));
+            
+            DateTime dateTime = DateTime.UtcNow.Date;
+            DateOnly currentDate = DateOnly.FromDateTime(dateTime);
+            Deal? currentDeal = await _dealRepository.CurrentActiveDealAsync(currentDate, Guid.Parse(companyId));
+
+            if (currentDeal is null)
+            {
+                throw new Exception("Deal not found");
+            }
+
+            if (currentVacanciesCount >= currentDeal.tariff.vacancy_count)
+            {
+                throw new Exception("Vacancy count exceeded");
+            }
+            
             Guid vacancyId = await _vacancyRepository.CreateVacancyAsync(vacancy, companyId);
             
             VacancyDtos fullVacancy = await BuildFullVacancyAsync(vacancyId);
@@ -179,28 +217,29 @@ public class CompanyService : ICompnayService
             try
             {
                 await _vacancyFilterAddTopicProducer.Produce(new VacancyFilterAddEvent(filter.id, activities));
+                IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
+
+                if (!filter_id.Any())
+                {
+                    throw new KeyNotFoundException("Filter not found");
+                }
+
+                return filter_id;
+
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error adding vacancy filter for {CompanyId}", companyId);
                 return [];
             }
-            
-            IEnumerable<Guid> filter_id = await _vacancyRepository.AddVacancyFiltersAsync(filter);
-            if (!filter_id.Any())
-            {
-                return [];
-            }
-            
-            return filter_id;
         }
 
         public async Task DeleteVacancyFilterAsync(Guid filterId, string companyId)
         {
-            Vacancy_filter vacancy_filter = await _vacancyRepository.GetVacancyFilterByIdAsync(filterId);
+            Vacancy_filter? vacancy_filter = await _vacancyRepository.GetVacancyFilterByIdAsync(filterId);
             if (vacancy_filter == null)
             {
-                return;
+                throw new KeyNotFoundException("Filter not found");
             }
 
             VacancyFilterDeleteEvent @event = new VacancyFilterDeleteEvent(
@@ -210,14 +249,13 @@ public class CompanyService : ICompnayService
             try
             {
                 await _vacancyFilterDeleteTopicProducer.Produce(@event);
-
+                await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error deleting vacancy filter for {CompanyId}", companyId);
                 return;
             }
-            await _vacancyRepository.DeleteVacancyFilterAsync(filterId);
 
         }
 
@@ -439,7 +477,9 @@ public class CompanyService : ICompnayService
         public async Task<CompanyProfileDtos> GetProfileAsync(string companyId, string token, CancellationToken cancellationToken = default)
         {
             Company company = await _companyRepository.GetCompanyByIdAsync(Guid.Parse(companyId));
-            UserResponse? user = await _authClient.GetUserByIdAsync(companyId, token, cancellationToken);
+            // UserResponse? user = await _authClient.GetUserByIdAsync(companyId, token, cancellationToken);
+            List<Deal?> deals = await _dealRepository.GetDealsByCompanyId(Guid.Parse(companyId), cancellationToken);
+            
             CompanyDto companyDto = new CompanyDto()
             {
                 id = company.UserId,
@@ -450,7 +490,22 @@ public class CompanyService : ICompnayService
                 latitude = company.latitude,
                 longitude = company.longitude,
             };
-            return new CompanyProfileDtos { company = companyDto, user = user };
+            
+            List<DealDto> dealDtos = deals.Select(d => new DealDto()
+            {
+                id = d.id,
+                tariff_id = d.tariff_id,
+                tariff = d.tariff,
+                company_id = d.company_id.ToString(),
+                date_start = d.date_start,
+                date_end = d.date_end,
+                sum = d.tariff.price * ((d.date_end.Year - d.date_start.Year) * 12 + (d.date_end.Month - d.date_start.Month))
+            }).ToList();
+            
+            return new CompanyProfileDtos { company = companyDto, 
+                // user = user,
+                deals = dealDtos
+            };
         }
         
         private async Task<bool> CompanyHasVacancy(Guid companyid, Guid vacancyId)

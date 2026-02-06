@@ -21,6 +21,10 @@ public static class CompanyDIExtensions
         services.AddScoped<IVacancyRepository, VacancyRepository>();
         services.AddScoped<IFilterCacheService, FilterCacheService>();
         services.AddScoped<ICompnayService, BLL.Services.Implementations.CompanyService>();
+
+        services.AddScoped<ITariffRepository, TariffRepository>();
+        services.AddScoped<IDealRepository, DealRepository>();
+        services.AddScoped<IDealService, DealService>();
         
         return services;
     }

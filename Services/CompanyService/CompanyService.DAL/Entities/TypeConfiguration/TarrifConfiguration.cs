@@ -20,7 +20,7 @@ public class TarrifConfiguration : IEntityTypeConfiguration<Tarrif>
                 id = 1,
                 name = "Базовый",
                 price = 990,
-                description = "Размещение 1 вакансии без продвижения.",
+                description = "Размещение 1 вакансии",
                 vacancy_count = 1
             },
             new Tarrif
@@ -28,7 +28,7 @@ public class TarrifConfiguration : IEntityTypeConfiguration<Tarrif>
                 id = 2,
                 name = "Стандартный",
                 price = 2990,
-                description = "Размещение 3 вакансий, выделение цветом в списке.",
+                description = "Размещение 3 вакансий",
                 vacancy_count = 3
             },
             new Tarrif
@@ -36,7 +36,7 @@ public class TarrifConfiguration : IEntityTypeConfiguration<Tarrif>
                 id = 3,
                 name = "Продвинутый",
                 price = 5990,
-                description = "Размещение 5 вакансий, поднятие в поиске раз в 3 дня.",
+                description = "Размещение 5 вакансий",
                 vacancy_count = 5
             },
             new Tarrif
@@ -44,8 +44,16 @@ public class TarrifConfiguration : IEntityTypeConfiguration<Tarrif>
                 id = 4,
                 name = "Премиум",
                 price = 9990,
-                description = "Размещение 10 вакансий, ежедневное поднятие.",
+                description = "Размещение 10 вакансий",
                 vacancy_count = 10
+            },
+            new Tarrif
+            {
+                id = 5,
+                name = "Безлимитный",
+                price = 20000,
+                description = "Безлимитное размещение вакансий",
+                vacancy_count = int.MaxValue
             }
         );
     }
