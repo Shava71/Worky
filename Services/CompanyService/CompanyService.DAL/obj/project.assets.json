@@ -4631,26 +4631,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/mac/.nuget/packages/": {}
+    "C:\\Users\\demde\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj",
       "projectName": "CompanyService.DAL",
-      "projectPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj",
-      "packagesPath": "/Users/mac/.nuget/packages/",
-      "outputPath": "/Users/mac/Desktop/Worky/MicroServicesBackend/Services/CompanyService/CompanyService.DAL/obj/",
+      "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj",
+      "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/mac/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packages.avanpost.ru/repository/nuget-group/": {}
       },
       "frameworks": {
         "net9.0": {
@@ -4668,7 +4668,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -4773,7 +4773,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

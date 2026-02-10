@@ -526,7 +526,7 @@ public class CompanyService : ICompnayService
                 return null;
             }
 
-            List<int> allIds = vacancy.activities.Select(a => a.id).Distinct().ToList();
+            List<int> allIds = vacancy.activities.Select(a => a.id).Distinct().ToList() ?? new List<int>();
             if (allIds.Any())
             {
                 // var activities = await _filterClient.GetFiltersByIdAsync(allIds);
