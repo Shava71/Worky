@@ -1,7 +1,0 @@
-{
-  "PublicRoutes": [
-    "/auth/register",
-    "/auth/login",
-    "/resumes/..."
-  ]
-}
