@@ -4,7 +4,7 @@ using StackExchange.Redis;
 
 namespace CompanyService.DAL.Repositories.Redis.Implementations;
 
-public class RedisRepository : IRedisRepository
+public class  RedisRepository : IRedisRepository
 {
     private readonly IDatabase _database;
 

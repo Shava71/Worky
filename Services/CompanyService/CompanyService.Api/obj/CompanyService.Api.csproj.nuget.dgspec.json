@@ -1,37 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj": {}
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj",
         "projectName": "CompanyService.Api",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj"
               },
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj"
               }
             }
           }
@@ -46,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -154,35 +154,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj",
         "projectName": "CompanyService.BLL",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj"
               }
             }
           }
@@ -197,7 +197,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -306,28 +306,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj",
         "projectName": "CompanyService.DAL",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -345,7 +345,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -450,7 +450,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

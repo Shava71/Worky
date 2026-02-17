@@ -19,7 +19,6 @@ public class Company_CreateVacancyTests
     private readonly Mock<ITopicProducer<VacancyCreatedEvent>> _producer = new();
     private readonly Mock<ILogger<BLL.Services.Implementations.CompanyService>> _logger = new();
 
-    // остальные зависимости мокаем минимально
     private readonly Mock<ICompanyRepository> _companyRepo = new();
     private readonly Mock<IFilterCacheService> _filterCache = new();
     private readonly Mock<IAuthClient> _authClient = new();
@@ -81,12 +80,10 @@ public class Company_CreateVacancyTests
                 tariff = new Tarrif() { vacancy_count = 10 }
             });
 
-        // есть уже 4 вакансии
         _vacancyRepo
             .Setup(r => r.GetMyVacanciesCountAsync(companyId))
             .ReturnsAsync(4);
 
-        // Репозиторий успешно создаёт вакансию и возвращает id
         _vacancyRepo
             .Setup(r => r.CreateVacancyAsync(createDto, companyId.ToString()))
             .ReturnsAsync(vacancyId);
@@ -129,7 +126,6 @@ public class Company_CreateVacancyTests
             experience: null
         );
 
-        // Активный договор с лимитом 5 вакансий
         _dealRepo
             .Setup(r => r.CurrentActiveDealAsync(It.IsAny<DateOnly>(), companyId, It.IsAny<CancellationToken>()))
             .ReturnsAsync(new Deal
@@ -144,14 +140,11 @@ public class Company_CreateVacancyTests
 
         BLL.Services.Implementations.CompanyService service = CreateService();
 
-        // Act/Assert
         var ex = await Assert.ThrowsAsync<Exception>(async () =>
             await service.CreateVacancyAsync(createDto, companyId.ToString()));
          
-        // метод создания вакансии не вызывался
         _vacancyRepo.Verify(r => r.CreateVacancyAsync(It.IsAny<CreateVacancy>(), It.IsAny<string>()), Times.Never());
 
-        // Событие не публиковалось
         _producer.Verify(p => p.Produce(It.IsAny<VacancyCreatedEvent>(), It.IsAny<CancellationToken>()), Times.Never());
     }
 }
