@@ -1,21 +1,11 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Rider ignored files
-/modules.xml
-/contentModel.xml
-/projectSettingsUpdater.xml
-/.idea.MicroServicesBackend.iml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+# JetBrains
+*.iml
+.idea/
+*.iws
+*.ipr
 
+# Build
 bin/
 obj/
 **/bin/
 **/obj/
-
-*.log
-

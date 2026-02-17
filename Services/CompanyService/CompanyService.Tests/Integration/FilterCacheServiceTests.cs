@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CompanyService.BLL.Services.Http.Implementations;
 using CompanyService.BLL.Services.Implementations;
 using Microsoft.AspNetCore.TestHost;
