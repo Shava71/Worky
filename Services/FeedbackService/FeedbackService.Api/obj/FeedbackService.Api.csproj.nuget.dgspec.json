@@ -1,37 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.Api\\FeedbackService.Api.csproj": {}
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.Api\\FeedbackService.Api.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.Api\\FeedbackService.Api.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj",
         "projectName": "FeedbackService.Api",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.Api\\FeedbackService.Api.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.Api\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.Api/FeedbackService.Api.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\FeedbackService.BLL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\FeedbackService.BLL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj"
               },
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj"
               }
             }
           }
@@ -44,9 +44,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -142,12 +142,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -156,35 +150,35 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\FeedbackService.BLL.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\FeedbackService.BLL.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj",
         "projectName": "FeedbackService.BLL",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\FeedbackService.BLL.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.BLL\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/FeedbackService.BLL.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.BLL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj"
               }
             }
           }
@@ -197,9 +191,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -295,39 +289,33 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj",
         "projectName": "FeedbackService.DAL",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\FeedbackService.DAL.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\FeedbackService\\FeedbackService.DAL\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/FeedbackService.DAL.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/FeedbackService/FeedbackService.DAL/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -343,9 +331,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -441,18 +429,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

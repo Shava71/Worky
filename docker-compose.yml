@@ -297,23 +297,49 @@ services:
       - backend
   
   # ---- Embeddings Service (MPNet) ----
+#  embeddings:
+#    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
+#    container_name: embeddings
+#    command: >
+#      --model-id sentence-transformers/all-mpnet-base-v2
+#      --pooling mean
+#      --dtype float16
+#    ports:
+#      - "8085:80"          # наружу (опционально)
+#    volumes:
+#      - hf_cache:/data     # кеш модели
+#    networks:
+#      - backend
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 1g
   embeddings:
     image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
     container_name: embeddings
     command: >
-      --model-id sentence-transformers/all-mpnet-base-v2
+      --model-id /data/current
       --pooling mean
       --dtype float16
     ports:
-      - "8085:80"          # наружу (опционально)
+      - "8085:80"
     volumes:
-      - hf_cache:/data     # кеш модели
+      - ${HOME}/Desktop/ml/volume/models:/data
     networks:
       - backend
     deploy:
       resources:
         limits:
           memory: 1g
+  
+  searchservice-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: searchdb
+      POSTGRES_USER: searchuser
+      POSTGRES_PASSWORD: searchpass
+    ports:
+      - "5440:5432"
 
 
 

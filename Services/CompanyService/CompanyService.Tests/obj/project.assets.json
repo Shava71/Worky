@@ -8528,39 +8528,39 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\demde\\.nuget\\packages\\": {}
+    "/Users/mac/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\CompanyService.Tests.csproj",
+      "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Tests/CompanyService.Tests.csproj",
       "projectName": "CompanyService.Tests",
-      "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\CompanyService.Tests.csproj",
-      "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\obj\\",
+      "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Tests/CompanyService.Tests.csproj",
+      "packagesPath": "/Users/mac/.nuget/packages/",
+      "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/mac/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://packages.avanpost.ru/repository/nuget-group/": {}
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj": {
-              "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.csproj"
+            "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj": {
+              "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/CompanyService.Api.csproj"
             },
-            "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj": {
-              "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\CompanyService.BLL.csproj"
+            "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj": {
+              "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.BLL/CompanyService.BLL.csproj"
             },
-            "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj": {
-              "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\CompanyService.DAL.csproj"
+            "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj": {
+              "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/CompanyService.DAL.csproj"
             }
           }
         }
@@ -8573,9 +8573,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -8621,41 +8621,13 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-            "version": "[9.0.203, 9.0.203]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Net.Http' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
-      "libraryId": "System.Net.Http",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Text.RegularExpressions' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
-      "libraryId": "System.Text.RegularExpressions",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

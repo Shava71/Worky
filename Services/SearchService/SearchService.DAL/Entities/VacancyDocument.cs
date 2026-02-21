@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Elastic.Clients.Elasticsearch;
-using SearchService.DAL.Serializer;
 
 namespace SearchService.DAL.Entities;
 

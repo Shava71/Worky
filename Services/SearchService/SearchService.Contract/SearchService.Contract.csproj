@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts\Response\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.6" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
       <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.6" />

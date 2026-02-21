@@ -1,4 +1,4 @@
-using System.ComponentModel;
+/*using System.ComponentModel;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SearchService.DAL.Dto;
@@ -213,4 +213,4 @@ public class TestSearchVacancyController : ControllerBase
         if (idcg == 0) return 0;
         return dcg / idcg;
     }
-}
+}*/

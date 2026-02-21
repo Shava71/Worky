@@ -1,0 +1,15 @@
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/bin/Debug/net9.0/CompanyService.DAL.deps.json
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/bin/Debug/net9.0/CompanyService.DAL.runtimeconfig.json
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/bin/Debug/net9.0/CompanyService.DAL.dll
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/bin/Debug/net9.0/CompanyService.DAL.pdb
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.csproj.AssemblyReference.cache
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfoInputs.cache
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.AssemblyInfo.cs
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.csproj.CoreCompileInputs.cache
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.sourcelink.json
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.dll
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/refint/CompanyService.DAL.dll
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.pdb
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/CompanyService.DAL.genruntimeconfig.cache
+/Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.DAL/obj/Debug/net9.0/ref/CompanyService.DAL.dll

@@ -1,37 +1,37 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Application\\AuthService.Application.csproj": {}
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Application/AuthService.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Application\\AuthService.Application.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Application/AuthService.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Application\\AuthService.Application.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Application/AuthService.Application.csproj",
         "projectName": "AuthService.Application",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Application\\AuthService.Application.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Application\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Application/AuthService.Application.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj"
               },
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\AuthService.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\AuthService.Infrastructure.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj"
               }
             }
           }
@@ -44,9 +44,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -78,39 +78,33 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj",
         "projectName": "AuthService.Domain",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -126,9 +120,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -184,46 +178,40 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\AuthService.Infrastructure.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\AuthService.Infrastructure.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj",
         "projectName": "AuthService.Infrastructure",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\AuthService.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Infrastructure\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/AuthService.Infrastructure.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj": {
-                "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\AuthService\\AuthService.Domain\\AuthService.Domain.csproj"
+              "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj": {
+                "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/AuthService/AuthService.Domain/AuthService.Domain.csproj"
               }
             }
           }
@@ -236,9 +224,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -298,18 +286,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,27 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj": {}
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj": {}
   },
   "projects": {
-    "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj": {
+    "/Users/mac/Desktop/Worky/backend/Worky/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj",
+        "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj",
         "projectName": "SearchService.Contract",
-        "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\SearchService.Contract.csproj",
-        "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\SearchService\\SearchService.Contract\\obj\\",
+        "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/SearchService/SearchService.Contract/SearchService.Contract.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/SearchService/SearchService.Contract/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packages.avanpost.ru/repository/nuget-group/": {}
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -37,9 +37,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -72,19 +72,11 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.15, 8.0.15]"
-            },
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.203, 9.0.203]"
+              "version": "[8.0.20, 8.0.20]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.15, 8.0.15]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.15, 8.0.15]"
+              "version": "[8.0.20, 8.0.20]"
             }
           ],
           "frameworkReferences": {
@@ -92,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

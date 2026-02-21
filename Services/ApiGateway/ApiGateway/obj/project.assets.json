@@ -4977,26 +4977,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\demde\\.nuget\\packages\\": {}
+    "/Users/mac/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\ApiGateway\\ApiGateway\\ApiGateway.csproj",
+      "projectUniqueName": "/Users/mac/Desktop/Worky/backend/Worky/Services/ApiGateway/ApiGateway/ApiGateway.csproj",
       "projectName": "ApiGateway",
-      "projectPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\ApiGateway\\ApiGateway\\ApiGateway.csproj",
-      "packagesPath": "C:\\Users\\demde\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\ApiGateway\\ApiGateway\\obj\\",
+      "projectPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/ApiGateway/ApiGateway/ApiGateway.csproj",
+      "packagesPath": "/Users/mac/.nuget/packages/",
+      "outputPath": "/Users/mac/Desktop/Worky/backend/Worky/Services/ApiGateway/ApiGateway/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\demde\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/mac/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://packages.avanpost.ru/repository/nuget-group/": {}
+        "/usr/local/share/dotnet/library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
@@ -5012,9 +5012,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -5060,12 +5060,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-            "version": "[9.0.203, 9.0.203]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -5074,7 +5068,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
