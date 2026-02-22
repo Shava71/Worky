@@ -1,0 +1,17 @@
+# JetBrains
+*.iml
+.idea/
+*.iws
+*.ipr
+
+# Build
+bin/
+obj/
+**/bin/
+**/obj/
+**/**/bin/
+**/**/obj/
+**/**/**/bin/
+**/**/**/obj/
+**/**/**/**/bin/
+**/**/**/**/obj/
