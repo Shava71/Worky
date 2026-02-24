@@ -1,5 +1,6 @@
 using SearchService.BLL.Services.Interfaces;
 using SearchService.Contract;
+using SearchService.DAL.Dto;
 using SearchService.DAL.DTO;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
@@ -15,9 +16,9 @@ public class ResumeSearchService : IResumeSearchService
         _repository = repository;
     }
 
-    public async Task<IReadOnlyCollection<(ResumeDocument doc, double score)>> SearchAsync(GetResumesRequest request)
+    public async Task<SearchResponse<ResumeSearchResultDto>> SearchAsync(GetResumesRequest request)
     {
-        IReadOnlyCollection<(ResumeDocument doc, double score)> result = await _repository.SearchAsync(request);
+        var result = await _repository.SearchAsync(request);
         return result;
     }
 }

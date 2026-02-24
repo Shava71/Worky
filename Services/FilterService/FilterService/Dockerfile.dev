@@ -1,0 +1,10 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:9.0
+
+WORKDIR /app
+EXPOSE 8080
+
+# Отключаем https-dev-certs и лишний шум
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+ENV ASPNETCORE_URLS=http://0.0.0.0:8080
+
+ENTRYPOINT ["dotnet", "watch", "run"]

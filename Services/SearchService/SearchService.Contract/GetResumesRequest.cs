@@ -16,5 +16,8 @@ public record GetResumesRequest(
     string? type,
     List<string>? direction,
     
-    string? AISearch // это умный поиск по ключевым словам, который может содержаться в любом поле документа (например, "C# developer 5000"
+    string? AISearch, // это умный поиск по ключевым словам, который может содержаться в любом поле документа (например, "C# developer 5000"
+    int Page,
+    int PageSize,
+    Guid? UserId
 );

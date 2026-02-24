@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace SearchService.DAL.Entities;
 
 public class ResumeDocument
@@ -12,6 +14,8 @@ public class ResumeDocument
     public DateTime incomeDate { get; set; }
     public int? wantedSalary { get; set; }
     public string post { get; set; } = null!;
+    [JsonPropertyName("vector")] public float[]? vector { get; set; }
+
 
     // Вложенные объекты
     public WorkerInfo worker { get; set; } = null!;

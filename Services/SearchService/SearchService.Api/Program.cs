@@ -3,6 +3,7 @@ using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.Analysis;
 using Elastic.Transport;
 using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using SearchService.Api.Extensions;
@@ -10,6 +11,7 @@ using SearchService.BLL.Consumers;
 using SearchService.BLL.Events;
 using SearchService.BLL.Services.Implementations;
 using SearchService.BLL.Services.Interfaces;
+using SearchService.DAL;
 using SearchService.DAL.Embenddings;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Events;
@@ -23,6 +25,13 @@ var username = builder.Configuration.GetValue<string>("Elasticsearch:Username")
                ?? "elastic";
 var password = builder.Configuration.GetValue<string>("Elasticsearch:Password") 
                ?? "changeme";
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                       throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<SearchDbContext>(options =>
+    options.UseNpgsql(connectionString)
+        .EnableSensitiveDataLogging()
+        .EnableDetailedErrors());
 
 var settings = new ElasticsearchClientSettings(new Uri(elasticsearchUrl))
     .Authentication(new BasicAuthentication(username, password))
@@ -192,6 +201,12 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "WorkerService API V1");
     c.RoutePrefix = string.Empty;
 });
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<SearchDbContext>();
+    context.Database.Migrate();
+}
 
 app.Run();
 
