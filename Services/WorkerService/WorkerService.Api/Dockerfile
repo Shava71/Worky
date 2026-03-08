@@ -10,10 +10,12 @@ WORKDIR /src
 COPY ["WorkerService.Api/WorkerService.Api.csproj", "WorkerService.Api/"]
 COPY ["WorkerService.BLL/WorkerService.BLL.csproj", "WorkerService.BLL/"]
 COPY ["WorkerService.DAL/WorkerService.DAL.csproj", "WorkerService.DAL/"]
-RUN dotnet restore "WorkerService.Api/WorkerService.Api.csproj"
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "WorkerService.Api/WorkerService.Api.csproj"
 COPY . .
 WORKDIR "/src/WorkerService.Api"
-RUN dotnet build "WorkerService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet build "WorkerService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release

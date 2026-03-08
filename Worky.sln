@@ -58,6 +58,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService.DAL", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService.Test", "Services\WorkerService\WorkerService.Test\WorkerService.Test.csproj", "{95BDB4D1-0047-4E3A-9C07-FF59BB9303F3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{53A7EC5E-10E1-424D-A169-A68A157B4F3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchService.Test", "SearchService.Test\SearchService.Test.csproj", "{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,7 @@ Global
 		{F3202A07-CB29-4DCD-89A9-76B13F1A33D7} = {1010BB26-00E0-4EFF-9B5C-9C80AA3382F6}
 		{92816676-362B-46F7-BCE6-752B0A921945} = {1010BB26-00E0-4EFF-9B5C-9C80AA3382F6}
 		{95BDB4D1-0047-4E3A-9C07-FF59BB9303F3} = {1010BB26-00E0-4EFF-9B5C-9C80AA3382F6}
+		{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64} = {745B9A55-1600-4FA2-8ABD-D0332803AC4D}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{442D129B-81A3-4DDC-B5F7-AE1CDAF8FFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -176,5 +181,9 @@ Global
 		{95BDB4D1-0047-4E3A-9C07-FF59BB9303F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95BDB4D1-0047-4E3A-9C07-FF59BB9303F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95BDB4D1-0047-4E3A-9C07-FF59BB9303F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E9FCBE-B5E1-4221-B21A-2061F56EEA64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

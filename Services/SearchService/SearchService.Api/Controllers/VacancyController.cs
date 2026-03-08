@@ -22,8 +22,6 @@ public class VacancyController : ControllerBase
     public async Task<IActionResult> Search([FromQuery] GetVacanciesRequest request)
     {
         var result = await _searchService.SearchAsync(request);
-        
-        
         return Ok(result);
     }
 }

@@ -3,8 +3,7 @@
 WORKDIR /app
 EXPOSE 8080
 
-# Отключаем https-dev-certs и лишний шум
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
-ENTRYPOINT ["dotnet", "watch", "run"]
+ENTRYPOINT ["sh", "-c", "dotnet restore && dotnet watch run --project AuthService.Api"]

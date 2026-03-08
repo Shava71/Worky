@@ -102,15 +102,17 @@ public class ResumeElasticRepository
             };
         }
 
-        var response = await _client.SearchAsync<ResumeDocument>(s => s
+        SearchRequestDescriptor<ResumeDocument> requestDescriptor = new SearchRequestDescriptor<ResumeDocument>()
             .Index(_indexName)
             .From(from)
             .Size(request.PageSize)
             .Query(finalQuery)
             .TrackTotalHits(true)
             .Source(src => src
-                .Filter(f => f.Excludes(e => e.vector)))
-        );
+                .Filter(f => f.Excludes(e => e.vector)));
+        ApplySorting(requestDescriptor, request);
+
+        var response = await _client.SearchAsync<ResumeDocument>(requestDescriptor);
 
         var sessionId = await SaveSearchSession(request, response);
 
@@ -131,6 +133,24 @@ public class ResumeElasticRepository
     private List<Query> BuildStaticFilters(GetResumesRequest request)
     {
         var must = new List<Query>();
+        
+        if (request.id.HasValue)
+        {
+            must.Add(new TermQuery
+            {
+                Field = "id",
+                Value = request.id.Value.ToString()
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(request.city))
+        {
+            must.Add(new TermQuery
+            {
+                Field = "city",
+                Value = request.city
+            });
+        }
 
         if (request.min_experience.HasValue || request.max_experience.HasValue)
             must.Add(new NumberRangeQuery
@@ -161,9 +181,59 @@ public class ResumeElasticRepository
                 Lte = request.max_wantedSalary.Value
             });
         
+        if (!string.IsNullOrWhiteSpace(request.type))
+        {
+            must.Add(new NestedQuery
+            {
+                Path = "activities",
+                Query = new TermQuery
+                {
+                    Field = "activities.type",
+                    Value = request.type
+                }
+            });
+        }
         
+        if (request.direction != null && request.direction.Any())
+        {
+            var ids = request.direction
+                .Where(x => long.TryParse(x, out _))
+                .Select(x => FieldValue.Long(long.Parse(x)))
+                .ToList();
+
+            must.Add(new NestedQuery
+            {
+                Path = "activities",
+                Query = new TermsQuery
+                {
+                    Field = "activities.id",
+                    Terms = new TermsQueryField(ids)
+                }
+            });
+        }
 
         return must;
+    }
+    
+    private void ApplySorting(
+        SearchRequestDescriptor<ResumeDocument> descriptor,
+        GetResumesRequest request)
+    {
+        if (string.IsNullOrWhiteSpace(request.SortItem))
+            return;
+
+        var order = request.Order?.ToLower() == "asc"
+            ? SortOrder.Asc
+            : SortOrder.Desc;
+
+        descriptor.Sort(s =>
+        {
+            s.Field(new FieldSort
+            {
+                Field = request.SortItem,
+                Order = order
+            });
+        });
     }
 
     private async Task<Guid> SaveSearchSession(

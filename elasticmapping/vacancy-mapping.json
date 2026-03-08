@@ -1,10 +1,5 @@
 {
   "settings": {
-    "similarity": {
-      "default": {
-        "type": "classic"
-      }
-    },
     "analysis": {
       "analyzer": {
         "ru_analyzer": {

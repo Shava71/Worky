@@ -10,10 +10,12 @@ WORKDIR /src
 COPY ["FeedbackService.Api/FeedbackService.Api.csproj", "FeedbackService.Api/"]
 COPY ["FeedbackService.BLL/FeedbackService.BLL.csproj", "FeedbackService.BLL/"]
 COPY ["FeedbackService.DAL/FeedbackService.DAL.csproj", "FeedbackService.DAL/"]
-RUN dotnet restore "FeedbackService.Api/FeedbackService.Api.csproj"
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "FeedbackService.Api/FeedbackService.Api.csproj"
 COPY . .
 WORKDIR "/src/FeedbackService.Api"
-RUN dotnet build "FeedbackService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet build "FeedbackService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release

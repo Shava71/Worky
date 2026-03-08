@@ -10,10 +10,12 @@ WORKDIR /src
 COPY ["AuthService.Api/AuthService.Api.csproj", "AuthService.Api/"]
 COPY ["AuthService.Infrastructure/AuthService.Infrastructure.csproj", "AuthService.Infrastructure/"]
 COPY ["AuthService.Domain/AuthService.Domain.csproj", "AuthService.Domain/"]
-RUN dotnet restore "AuthService.Api/AuthService.Api.csproj"
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "AuthService.Api/AuthService.Api.csproj"
 COPY . .
 WORKDIR "/src/AuthService.Api"
-RUN dotnet build "AuthService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet build "AuthService.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release

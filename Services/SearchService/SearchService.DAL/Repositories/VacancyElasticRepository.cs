@@ -107,15 +107,16 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             };
         }
 
-        var response = await _client.SearchAsync<VacancyDocument>(s => s
+        SearchRequestDescriptor<VacancyDocument> searchDescriptor = new SearchRequestDescriptor<VacancyDocument>()
             .Index(_indexName)
             .From(from)
             .Size(request.PageSize)
             .Query(finalQuery)
             .TrackTotalHits(true)
             .Source(src => src
-                .Filter(f => f.Excludes(e => e.vector)))
-        );
+                .Filter(f => f.Excludes(e => e.vector)));
+        ApplySorting(searchDescriptor, request);
+        var response = await _client.SearchAsync<VacancyDocument>(searchDescriptor);
 
         var sessionId = await SaveSearchSession(request, response);
 
@@ -149,11 +150,101 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                     Gte = request.min_experience,
                     Lte = request.max_experience
                 });
+            
+            if (request.min_wantedSalary.HasValue)
+                must.Add(new NumberRangeQuery
+                {
+                    Field = "min_salary",
+                    Gte = request.min_wantedSalary,
+                });
+            
+            if (request.max_wantedSalary.HasValue)
+                must.Add(new NumberRangeQuery
+                {
+                    Field = "max_salary",
+                    Lte = request.max_wantedSalary,
+                });
+            
+            if (request.income_date.HasValue)
+                must.Add(new DateRangeQuery
+                {
+                    Field = "incomeDate",
+                    Gte = request.income_date.Value
+                });
 
             if (request.education.HasValue)
                 must.Add(new TermQuery { Field = "educationId", Value = request.education.Value });
+            
+            if (!string.IsNullOrWhiteSpace(request.latitude) &&
+                !string.IsNullOrWhiteSpace(request.longitude) &&
+                double.TryParse(request.latitude, out var lat) &&
+                double.TryParse(request.longitude, out var lon))
+            {
+                must.Add(new GeoDistanceQuery
+                {
+                    Field = "location",
+                    Distance = "50km",
+                    Location = new LatLonGeoLocation
+                    {
+                        Lat = lat,
+                        Lon = lon
+                    }
+                });
+            }
+            
+            if (request.direction != null && request.direction.Any())
+            {
+                var ids = request.direction
+                    .Where(x => long.TryParse(x, out _))
+                    .Select(x => FieldValue.Long(long.Parse(x)))
+                    .ToList();
+
+                must.Add(new NestedQuery
+                {
+                    Path = "activities",
+                    Query = new TermsQuery
+                    {
+                        Field = "activities.id",
+                        Terms = new TermsQueryField(ids)
+                    }
+                });
+            }
+
+            if (!string.IsNullOrWhiteSpace(request.type))
+            {
+                must.Add(new NestedQuery
+                {
+                    Path = "activities",
+                    Query = new TermQuery
+                    {
+                        Field = "activities.type",
+                        Value = request.type
+                    }
+                });
+            }
 
             return must;
+        }
+    
+        private void ApplySorting(
+            SearchRequestDescriptor<VacancyDocument> descriptor,
+            GetVacanciesRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.SortItem))
+                return;
+
+            var order = request.Order?.ToLower() == "asc"
+                ? SortOrder.Asc
+                : SortOrder.Desc;
+
+            descriptor.Sort(s =>
+            {
+                s.Field(new FieldSort
+                {
+                    Field = request.SortItem,
+                    Order = order
+                });
+            });
         }
         
         private async Task<Guid> SaveSearchSession(GetVacanciesRequest request, Elastic.Clients.Elasticsearch.SearchResponse<VacancyDocument> response)

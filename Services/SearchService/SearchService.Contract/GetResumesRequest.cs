@@ -8,6 +8,8 @@ public record GetResumesRequest(
     int? max_experience,
     [Range(1, 8)] int? education,
     string? city,
+    // string? latitude,
+    // string? longitude,
     DateTime? income_date,
     int? min_wantedSalary,
     int? max_wantedSalary,

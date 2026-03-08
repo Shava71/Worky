@@ -1,6 +1,13 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da310ee1_002D4651_002D418b_002D95f3_002D16dbc5313128/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FilterCacheServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterCacheServiceTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ANumber_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F8ed457897f3c3eb3d2dd5313a6cdd92db9ccde47068ad9e82affff97b92cf1_003FNumber_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ATermsQuery_002Eg_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F94be202387739fc7c3607c9892dc313db6fcf8a4d5f3b762f6cbe56c16ec8719_003FTermsQuery_002Eg_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=da310ee1_002D4651_002D418b_002D95f3_002D16dbc5313128/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="FilterCacheServiceTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterCacheServiceTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_ByKeyword_ReturnsRelevantResults&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_WithSalaryRange_FiltersCorrectly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_ByEducation_FiltersCorrectly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_WithInvalidEducation_ReturnsBadRequest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_Pagination_WorksCorrectly&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

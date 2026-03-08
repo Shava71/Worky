@@ -8,10 +8,12 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["FilterService/FilterService.csproj", "FilterService/"]
-RUN dotnet restore "FilterService/FilterService.csproj"
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet restore "FilterService/FilterService.csproj"
 COPY . .
 WORKDIR "/src/FilterService"
-RUN dotnet build "FilterService.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet build "FilterService.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
