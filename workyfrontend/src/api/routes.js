@@ -48,7 +48,8 @@ export const API = {
     },
 
     search: {
-        resumes: '/api/resumes/Search',
-        vacancies: '/api/vacancies/Search',
+        resumes: '/api/resumes',
+        vacancies: '/api/vacancies',
+        click: '/api/search/click',
     },
 };

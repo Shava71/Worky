@@ -18,7 +18,7 @@ import CompanyFeedbackPage from "./Pages/Feedback/CompanyFeedbacks.jsx";
 import CompanyRegister from "./Pages/Register/CompanyRegister.jsx";
 import WorkerRegister from "./Pages/Register/WorkerRegister.jsx";
 import VacanciesPage from "./Pages/Vacancies.jsx";
-import VacancyDetailsPage from "./Pages/Details/VacancyDetails.jsx";
+import {VacancyDetailsPage} from "./Pages/Details/VacancyDetails.jsx";
 import MyResume from "./Pages/MyResume.jsx";
 import CreateResume from "./Pages/Create/CreateResume.jsx";
 import WorkerFeedbackPage from "./Pages/Feedback/WorkerFeedbacks.jsx";

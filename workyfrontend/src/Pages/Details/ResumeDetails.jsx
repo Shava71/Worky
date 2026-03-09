@@ -55,24 +55,12 @@ export default function ResumeDetailsPage() {
                     );
                 }
                 const [resumeResponse, vacanciesResponse, educationResponse] = await Promise.all([
-                    // axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info`, {
-                    //     headers: { Authorization: `Bearer ${token}` },
-                    //     params: {
-                    //         resumeId: resumeId,
-                    //     }
-                    // }),
                     api.get(API.worker.resumesInfo, {
                         params: {
                             resumeId: resumeId,
                         }
                     }),
-                    // axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-                    //     headers: { Authorization: `Bearer ${token}` },
-                    // }),
                     api.get(API.company.myVacancy),
-                    // axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                    //     headers: { Authorization: `Bearer ${token}` },
-                    // }),
                     api.ger(API.filter.education)
                 ]);
 
@@ -92,6 +80,42 @@ export default function ResumeDetailsPage() {
         };
 
         fetchData();
+    }, [resumeId]);
+
+    useEffect(() => {
+
+        const query = new URLSearchParams(location.search);
+        const sessionId = query.get("sid");
+        const startTime = Number(query.get("st"));
+
+        const sendClick = () => {
+            if (!sessionId || !startTime) return;
+
+            const dwell = Date.now() - startTime;
+
+
+            const data = JSON.stringify({
+                sessionId: sessionId,
+                documentId: resumeId,
+                dwellTimeMs: dwell
+            });
+            /*
+            navigator.sendBeacon(
+                API.search.click,
+                new Blob([data], { type: "application/json" })
+            );
+             */
+
+            api.post(API.search.click, data)
+        };
+
+        window.addEventListener("pagehide", sendClick);
+
+        return () => {
+            window.removeEventListener("pagehide", sendClick);
+            sendClick();
+        };
+
     }, [resumeId]);
 
     const getEducationName = (id) =>

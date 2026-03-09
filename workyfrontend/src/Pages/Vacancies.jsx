@@ -19,7 +19,6 @@ import {
     Alert,
     CircularProgress, ButtonGroup,
 } from '@mui/material';
-// import axios from 'axios';
 import dayjs from 'dayjs';
 import qs from 'qs';
 import api from '../api/axios';
@@ -27,7 +26,6 @@ import { API } from '../api/routes';
 
 export default function VacanciesPage() {
     const [vacancies, setVacancies] = useState([]);
-   // const [resumes, setResumes] = useState([]);
     const [filters, setFilters] = useState({
         min_experience: 0,
         max_experience: 30,
@@ -38,90 +36,60 @@ export default function VacanciesPage() {
         direction: [],
         sortItem: '',
         order: 'asc',
-        search: ''
+        AISearch: '',
+        Page: "1",
+        PageSize: "20"
     });
+    const [appliedFilters, setAppliedFilters] = useState(filters); // <-- новое состояние для запроса
     const [loading, setLoading] = useState(true);
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
-    const [educationList, setEducationList] = useState([]); // Список образований
+    const [educationList, setEducationList] = useState([]);
     const [availableFilters, setAvailableFilters] = useState([]);
     const userRole = localStorage.getItem('role');
 
-    // const [vacancy, setVacancy] = useState(null);
     const [myResumes, setMyResumes] = useState([]);
     const [selectedResume, setSelectedResume] = useState('');
+    const [sessionId, setSessionId] = useState(null);
 
-
-
-    // Загрузка данных
+    // Загрузка вакансий только при appliedFilters
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
-                // const token = localStorage.getItem('jwt');
-
-                // const response = await axios.get('https://localhost:7106/api/v1/Worker/Vacancies', {
-                //     headers: { Authorization: `Bearer ${token}` },
-                //     params: {
-                //         min_experience: filters.min_experience || undefined,
-                //         max_experience: filters.max_experience || undefined,
-                //         min_wantedSalary: filters.min_wantedSalary || undefined,
-                //         max_wantedSalary: filters.max_wantedSalary || undefined,
-                //         education: filters.education || undefined,
-                //         type: filters.type || undefined,
-                //         direction: filters.direction.length > 0 ? filters.direction : undefined,
-                //         // direction: ['Backend', 'Django'],
-                //         SortItem: filters.sortItem || undefined,
-                //         Order: filters.order || undefined,
-                //         search: filters.search || undefined
-                //     },
-                //     paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
-                // });
                 const response = await api.get(API.search.vacancies,{
                     params: {
-                                min_experience: filters.min_experience || undefined,
-                                max_experience: filters.max_experience || undefined,
-                                min_wantedSalary: filters.min_wantedSalary || undefined,
-                                max_wantedSalary: filters.max_wantedSalary || undefined,
-                                education: filters.education || undefined,
-                                type: filters.type || undefined,
-                                direction: filters.direction.length > 0 ? filters.direction : undefined,
-                                // direction: ['Backend', 'Django'],
-                                SortItem: filters.sortItem || undefined,
-                                Order: filters.order || undefined,
-                                search: filters.search || undefined
-                            },
-                            paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
-                        });
-                setVacancies(response.data.resumes || []);
-
-                // Загружаем список образований
-                // const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                //     headers: { Authorization: `Bearer ${token}` },
-                // });
-                const educationResponse = await api.get(API.filter.education);
-                setEducationList(educationResponse.data.education || []);
-
+                        min_experience: appliedFilters.min_experience || undefined,
+                        max_experience: appliedFilters.max_experience || undefined,
+                        min_wantedSalary: appliedFilters.min_wantedSalary || undefined,
+                        max_wantedSalary: appliedFilters.max_wantedSalary || undefined,
+                        education: appliedFilters.education || undefined,
+                        type: appliedFilters.type || undefined,
+                        direction: appliedFilters.direction.length > 0 ? appliedFilters.direction : undefined,
+                        SortItem: appliedFilters.sortItem || undefined,
+                        Order: appliedFilters.order || undefined,
+                        AISearch: appliedFilters.AISearch || undefined,
+                        Page: appliedFilters.Page || undefined,
+                        PageSize: appliedFilters.PageSize || undefined
+                    },
+                    paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'}),
+                });
+                setVacancies(response.data.items.map(x => x.document) || []);
+                setSessionId(response.data.sessionId);
+                fetchEducation();
             } catch (err) {
-                console.error('Ошибка при загрузке ваших вакансий:', err);
-                // setSnackbar({
-                //     open: true,
-                //     message: 'Не удалось загрузить список вакансий',
-                //     severity: 'error'
-                // });
+                console.error('Ошибка при загрузке вакансий:', err);
             } finally {
                 setLoading(false);
             }
         };
+
         fetchData();
         fetchAvailableFilters();
-    }, [filters]);
+    }, [appliedFilters]);
 
     useEffect(() => {
         const fetchMyResumes = async () => {
             try {
-                // const token = localStorage.getItem('jwt');
-                // const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
-                //     headers: { Authorization: `Bearer ${token}` },
-                // });
                 const response = await api.get(API.worker.myResume);
                 setMyResumes(response.data || []);
             } catch (err) {
@@ -137,6 +105,15 @@ export default function VacanciesPage() {
         fetchMyResumes();
     }, []);
 
+    const fetchEducation = async () => {
+        try {
+            const response = await api.get(API.filter.education);
+            setEducationList(response.data.education || []);
+        } catch (err) {
+            console.error('Ошибка при загрузке образования:', err);
+        }
+    };
+
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prev => ({
@@ -147,20 +124,13 @@ export default function VacanciesPage() {
 
     const fetchAvailableFilters = async () => {
         try {
-            // const token = localStorage.getItem('jwt');
-            // const response = await axios.get('https://localhost:7106/api/v1/GetInfo/Filter', {
-            //     headers: { Authorization: `Bearer ${token}` },
-            // });
             const response = await api.get(API.filter.get);
             setAvailableFilters(response.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке фильтров:', err);
         }
     };
-    const getEducationName = (id) => {
-        const education = educationList.find(edu => edu.id === id);
-        return education ? education.name : 'не указано';
-    };
+
     const handleExperienceSliderChange = (event, newValue) => {
         setFilters(prev => ({
             ...prev,
@@ -177,13 +147,13 @@ export default function VacanciesPage() {
         }));
     };
 
+    // Применить фильтры — обновляем appliedFilters
     const applyFilters = () => {
-        console.log('Отправляемые фильтры:', filters);
-        setFilters(filters);
+        setAppliedFilters(filters);
     };
 
     const resetFilters = () => {
-        setFilters({
+        const reset = {
             min_experience: 0,
             max_experience: 100,
             min_wantedSalary: 0,
@@ -193,28 +163,18 @@ export default function VacanciesPage() {
             direction: [],
             sortItem: '',
             order: 'asc',
-            search: ''
-        });
+            AISearch: '',
+            Page: "1",
+            PageSize: "20"
+        };
+        setFilters(reset);
+        setAppliedFilters(reset); // обновляем сразу appliedFilters
     };
 
     const handleRespond = async (selectedResume, vacancyId) => {
         if (!selectedResume || !vacancyId) return;
 
         try {
-            // const token = localStorage.getItem('jwt');
-            // await axios.post(
-            //     'https://localhost:7106/api/v1/Worker/MakeFeedback',
-            //     {
-            //         resume_id: selectedResume,
-            //         vacancy_id: vacancyId
-            //     },
-            //     {
-            //         headers: {
-            //             Authorization: `Bearer ${token}`,
-            //             'Content-Type': 'application/json'
-            //         }
-            //     }
-            // );
             await api.post(API.feedback.make, {
                 resume_id: selectedResume,
                 vacancy_id: vacancyId,
@@ -232,6 +192,11 @@ export default function VacanciesPage() {
                 severity: 'error'
             });
         }
+    };
+
+    const handleVacancyClick = (vacancyId) => {
+        const startTime = Date.now();
+        window.location.href = `/Worker/Vacancies/Info/${vacancyId}?sid=${sessionId}&st=${startTime}`;
     };
 
     if (loading) {
@@ -257,8 +222,8 @@ export default function VacanciesPage() {
                         <Stack spacing={2}>
                             <TextField
                                 label="Поиск"
-                                name="search"
-                                value={filters.search}
+                                name="AISearch"
+                                value={filters.AISearch}
                                 onChange={handleFilterChange}
                                 fullWidth
                                 helperText="Название компании, описание или должность"
@@ -418,23 +383,17 @@ export default function VacanciesPage() {
                                             <strong>Описание:</strong> {vacancy.description}
                                         </Typography>
                                         {
-                                            vacancy.max_salary ? (
+                                            vacancy.maxSalary ? (
                                                 <Typography variant="body1" sx={{ mb: 1 }}>
-                                                    <strong>Зарплата:</strong> {vacancy.min_salary} - {vacancy.max_salary}₽
+                                                    <strong>Зарплата:</strong> {vacancy.minSalary} - {vacancy.maxSalary}₽
                                                 </Typography>
                                             ) :
                                                 (<Typography variant="body1" sx={{ mb: 1 }}>
-                                                    <strong>Зарплата:</strong> {vacancy.min_salary}₽
+                                                    <strong>Зарплата:</strong> {vacancy.minSalary}₽
                                                 </Typography>)
                                         }
-                                        {/*<Typography variant="body1" sx={{ mb: 1 }}>*/}
-                                        {/*    <strong>Мин. зарплата:</strong> {vacancy.min_salary} ₽*/}
-                                        {/*</Typography>*/}
-                                        {/*<Typography variant="body1" sx={{ mb: 1 }}>*/}
-                                        {/*    <strong>Макс. зарплата:</strong> {vacancy.max_salary ? `${vacancy.max_salary} ₽` : '—'}*/}
-                                        {/*</Typography>*/}
                                         <Typography variant="body1" sx={{ mb: 1 }}>
-                                            <strong>Образование:</strong> {getEducationName(vacancy.education_id)}
+                                            <strong>Образование:</strong> {vacancy.educationName}
                                         </Typography>
                                         <Typography variant="body1" sx={{ mb: 1 }}>
                                             <strong>Опыт:</strong> {vacancy.experience || '—'} лет
@@ -500,7 +459,7 @@ export default function VacanciesPage() {
                                             <Button
                                                 variant="contained"
                                                 color="secondary"
-                                                onClick={() => window.location.href = `/Worker/Vacancies/Info/${vacancy.id}`}
+                                                onClick={() => handleVacancyClick(vacancy.id)}
                                             >
                                                 Посмотреть подробнее
                                             </Button>

@@ -14,21 +14,22 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { useNavigate, useParams } from 'react-router-dom';
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 import api from '../../api/axios';
 import { API } from '../../api/routes';
 
-export default function VacancyDetailsPage() {
+export function VacancyDetailsPage() {
     const [vacancy, setVacancy] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+    const [snackbar, setSnackbar] = useState({open: false, message: '', severity: 'success'});
     const [userRole, setUserRole] = useState(null); // Роль пользователя
     const [educationList, setEducationList] = useState([]); // Список образований
     const navigate = useNavigate();
-    const { vacancyId } = useParams();
+    const {vacancyId} = useParams();
 
     const [myResumes, setMyResumes] = useState([]);
     const [selectedResume, setSelectedResume] = useState('');
+    const location = useLocation();
 
     // Получение данных о вакансии и образовании
     useEffect(() => {
@@ -44,24 +45,15 @@ export default function VacancyDetailsPage() {
                 const role = localStorage.getItem('role');
                 setUserRole(role);
 
-                // Загружаем данные вакансии
-                // const vacancyResponse = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`, {
-                //     headers: { Authorization: `Bearer ${token}` },
-                //     params: { vacancyId }
-                // });
-                const vacancyResponse = await axios.get(API.company.vacancyInfo,
+                const vacancyResponse = await api.get(API.company.vacancyInfo,
                     {
                         params: {
                             vacancyId
                         }
                     });
 
-                setVacancy(vacancyResponse.data.vacancy?.[0] || null);
+                setVacancy(vacancyResponse.data.vacancy || null);
 
-                // Загружаем список образований
-                // const educationResponse = await axios.get('https://localhost:7106/api/v1/GetInfo/Education', {
-                //     headers: { Authorization: `Bearer ${token}` },
-                // });
                 const educationResponse = await api.get(API.filter.education);
 
                 setEducationList(educationResponse.data.education || []);
@@ -83,10 +75,6 @@ export default function VacancyDetailsPage() {
     useEffect(() => {
         const fetchMyResumes = async () => {
             try {
-                // const token = localStorage.getItem('jwt');
-                // const response = await axios.get('https://localhost:7106/api/v1/Worker/MyResume',  {
-                //     headers: { Authorization: `Bearer ${token}` },
-                // });
                 const response = await axios.get(API.worker.myResume);
                 setMyResumes(response.data || []);
             } catch (err) {
@@ -102,6 +90,42 @@ export default function VacancyDetailsPage() {
         fetchMyResumes();
     }, []);
 
+    useEffect(() => {
+
+        const query = new URLSearchParams(location.search);
+        const sessionId = query.get("sid");
+        const startTime = Number(query.get("st"));
+
+        const sendClick = () => {
+            if (!sessionId || !startTime) return;
+
+            const dwell = Date.now() - startTime;
+
+
+            const data = JSON.stringify({
+                sessionId: sessionId,
+                documentId: vacancyId,
+                dwellTimeMs: dwell
+            });
+            /*
+            navigator.sendBeacon(
+                API.search.click,
+                new Blob([data], { type: "application/json" })
+            );
+             */
+
+            api.post(API.search.click, data)
+        };
+
+        window.addEventListener("pagehide", sendClick);
+
+        return () => {
+            window.removeEventListener("pagehide", sendClick);
+            sendClick();
+        };
+
+    }, [vacancyId]);
+
     // Функция для получения названия образования по ID
     const getEducationName = (id) => {
         const education = educationList.find(edu => edu.id === id);
@@ -113,20 +137,6 @@ export default function VacancyDetailsPage() {
         if (!selectedResume || !vacancyId) return;
 
         try {
-            // const token = localStorage.getItem('jwt');
-            // await axios.post(
-            //     'https://localhost:7106/api/v1/Worker/MakeFeedback',
-            //     {
-            //         resume_id: selectedResume,
-            //         vacancy_id: vacancyId
-            //     },
-            //     {
-            //         headers: {
-            //             Authorization: `Bearer ${token}`,
-            //             'Content-Type': 'application/json'
-            //         }
-            //     }
-            // );
             await api.post(API.feedback.make, {
                 resume_id: selectedResume,
                 vacancy_id: vacancyId
@@ -147,21 +157,21 @@ export default function VacancyDetailsPage() {
     };
     if (loading) {
         return (
-            <Box sx={{ p: 3, textAlign: 'center' }}>
-                <CircularProgress />
-                <Typography variant="h6" sx={{ mt: 2 }}>Загрузка вакансии...</Typography>
+            <Box sx={{p: 3, textAlign: 'center'}}>
+                <CircularProgress/>
+                <Typography variant="h6" sx={{mt: 2}}>Загрузка вакансии...</Typography>
             </Box>
         );
     }
 
     if (!vacancy) {
         return (
-            <Container maxWidth="sm" sx={{ py: 6 }}>
-                <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
+            <Container maxWidth="sm" sx={{py: 6}}>
+                <Paper elevation={3} sx={{p: 4, borderRadius: 3}}>
                     <Typography align="center" color="text.secondary">
                         Вакансия не найдена.
                     </Typography>
-                    <Button fullWidth onClick={() => navigate(-1)} sx={{ mt: 2 }}>
+                    <Button fullWidth onClick={() => navigate(-1)} sx={{mt: 2}}>
                         Назад к списку
                     </Button>
                 </Paper>
@@ -174,8 +184,8 @@ export default function VacancyDetailsPage() {
         : vacancy.min_salary;
 
     return (
-        <Container maxWidth="lg" sx={{ py: 6 }}>
-            <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
+        <Container maxWidth="lg" sx={{py: 6}}>
+            <Paper elevation={3} sx={{p: 3, mb: 4, borderRadius: 3}}>
                 <Box display="flex" justifyContent="space-between" gap={3}>
                     {/* Информация о компании */}
                     <Box sx={{
@@ -186,34 +196,37 @@ export default function VacancyDetailsPage() {
                         mr: 2
                     }}>
                         <Typography variant="h6" fontWeight="bold">Компания</Typography>
-                        <Divider sx={{ my: 1 }} />
+                        <Divider sx={{my: 1}}/>
                         <Typography><strong>Название:</strong> {vacancy.company?.name}</Typography>
                         <Typography><strong>Email:</strong> {vacancy.company?.email || '—'}</Typography>
                         <Typography><strong>Телефон:</strong> {vacancy.company?.phoneNumber || '—'}</Typography>
                         <Typography><strong>Сайт:</strong> {vacancy.company?.website || '—'}</Typography>
-                        <Typography><strong>Адрес:</strong> {vacancy.company?.latitude}, {vacancy.company?.longitude}</Typography>
+                        <Typography><strong>Адрес:</strong> {vacancy.company?.latitude}, {vacancy.company?.longitude}
+                        </Typography>
                     </Box>
 
                     {/* Основная информация о вакансии */}
-                    <Box sx={{ flex: 2 }}>
+                    <Box sx={{flex: 2}}>
                         <Typography variant="h5" gutterBottom fontWeight="bold">
                             {vacancy.post}
                         </Typography>
-                        <Typography paragraph sx={{ whiteSpace: 'pre-line' }}>
+                        <Typography paragraph sx={{whiteSpace: 'pre-line'}}>
                             {vacancy.description}
                         </Typography>
-                        <Box sx={{ mt: 2 }}>
+                        <Box sx={{mt: 2}}>
                             <Typography><strong>Опыт работы:</strong> {vacancy.experience} лет</Typography>
                             <Typography><strong>Зарплата:</strong> {salaryDisplay} ₽</Typography>
-                            <Typography><strong>Образование:</strong> {getEducationName(vacancy.education_id)}</Typography>
-                            <Typography><strong>Дата добавления:</strong> {dayjs(vacancy.income_date).format('DD.MM.YYYY')}</Typography>
+                            <Typography><strong>Образование:</strong> {getEducationName(vacancy.education_id)}
+                            </Typography>
+                            <Typography><strong>Дата
+                                добавления:</strong> {dayjs(vacancy.income_date).format('DD.MM.YYYY')}</Typography>
                         </Box>
-                        <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                        <Box sx={{mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1}}>
                             {vacancy.activities?.map((act) => (
                                 <Chip key={act.id} label={act.direction} sx={{
                                     bgcolor: '#e3f2fd',
                                     color: '#1976d2'
-                                }} />
+                                }}/>
                             ))}
                         </Box>
                     </Box>
@@ -224,7 +237,7 @@ export default function VacancyDetailsPage() {
             {userRole === 'Worker' &&
                 (
 
-                    <Paper elevation={3} sx={{ p: 3, mb: 4, borderRadius: 3 }}>
+                    <Paper elevation={3} sx={{p: 3, mb: 4, borderRadius: 3}}>
                         <Typography variant="h6" gutterBottom fontWeight="bold">
                             📝 Откликнуться
                         </Typography>
@@ -258,7 +271,7 @@ export default function VacancyDetailsPage() {
                             color="primary"
                             fullWidth
                             onClick={() => handleRespond(selectedResume, vacancy.id)}
-                            sx={{ py: 1.2 }}
+                            sx={{py: 1.2}}
                             disabled={!selectedResume}
                         >
                             Отправить отклик
@@ -270,7 +283,8 @@ export default function VacancyDetailsPage() {
             <Button onClick={() => navigate(-1)}>← Назад</Button>
 
             {/* Snackbar */}
-            <Snackbar open={snackbar.open} autoHideDuration={3000} onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}>
+            <Snackbar open={snackbar.open} autoHideDuration={3000}
+                      onClose={() => setSnackbar(prev => ({...prev, open: false}))}>
                 <Alert severity={snackbar.severity}>{snackbar.message}</Alert>
             </Snackbar>
         </Container>
