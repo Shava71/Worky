@@ -6,6 +6,7 @@ import requests
 from datetime import datetime
 from typing import List, Tuple
 
+from requests.auth import HTTPBasicAuth
 from sentence_transformers import SentenceTransformer, InputExample, losses
 from torch.utils.data import DataLoader, random_split
 
@@ -21,7 +22,9 @@ BASE_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet")
 TMP_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet_tmp")
 BACKUP_PREFIX = "base_mpnet_old_"
 
-ELASTIC_URL = "http://elasticsearch:9200"
+ELASTIC_URL = "http://localhost:9200"
+ELASTIC_USER = "elastic"
+ELASTIC_PASSWORD = "elasticpass"
 
 INDICES = {
     "vacancy": "vacancies",
@@ -29,7 +32,8 @@ INDICES = {
 }
 
 DB_CONFIG = {
-    "host": "postgres",
+    "host": "localhost",
+    "port": "5440",
     "database": "searchdb",
     "user": "searchuser",
     "password": "searchpass"
@@ -52,15 +56,15 @@ def load_training_data():
     cur = conn.cursor()
 
     query = """
-        SELECT s.query,
-               i.documentid,
-               i.documenttype,
-               i.clicked,
-               i.position,
-               i.dwelltimems
-        FROM searchimpressions i
-        JOIN searchsessions s ON s.id = i.sessionid
-        WHERE s.query IS NOT NULL
+        SELECT s."Query",
+               i."DocumentId",
+               i."DocumentType",
+               i."Clicked",
+               i."Position",
+               i."DwellTimeMs"
+        FROM "SearchImpressions" i
+        JOIN "SearchSessions" s ON s."Id" = i."SessionId"
+        WHERE s."Query" IS NOT NULL AND s."Query" <> ''
     """
 
     cur.execute(query)
@@ -68,7 +72,6 @@ def load_training_data():
 
     cur.close()
     conn.close()
-
     return rows
 
 
@@ -79,22 +82,41 @@ def load_training_data():
 def fetch_document_text(document_id: str, document_type: str) -> str | None:
     index = INDICES.get(document_type)
     if not index:
+        print(f"[ERROR] Unknown document type: {document_type}")
         return None
 
-    response = requests.get(f"{ELASTIC_URL}/{index}/_doc/{document_id}")
+    url = f"{ELASTIC_URL}/{index}/_doc/{document_id}"
+    print(f"[REQUEST] {url}")
+
+    try:
+        response = requests.get(url, 
+                                auth=HTTPBasicAuth(ELASTIC_USER, ELASTIC_PASSWORD),
+                                proxies={"http": None, "https": None})
+    except Exception as e:
+        print(f"[ERROR] Request failed: {e}")
+        return None
+
+    print(f"[RESPONSE] status={response.status_code}")
 
     if response.status_code != 200:
+        print(f"[ERROR] Document not found in ES: {document_id}")
+        print(response.text)
         return None
 
     source = response.json().get("_source", {})
 
     if document_type == "vacancy":
-        return f"{source.get('post', '')} {source.get('description', '')}"
+        text = f"{source.get('post', '')} {source.get('description', '')}"
 
-    if document_type == "resume":
-        return f"{source.get('post', '')} {source.get('skill', '')}"
+    elif document_type == "resume":
+        text = f"{source.get('post', '')} {source.get('skill', '')}"
 
-    return None
+    else:
+        return None
+
+    print(f"[TEXT] length={len(text)}")
+
+    return text
 
 
 # ==============================
@@ -118,35 +140,56 @@ def build_triplets(rows) -> List[InputExample]:
 
         text = fetch_document_text(str(doc_id), doc_type)
         if not text:
+            print(f"[SKIP] Document not found or empty text: id={doc_id}, type={doc_type}")
             continue
+        else:
+            print(f"[OK] Fetched text for document: id={doc_id}, type={doc_type}, length={len(text)}")
 
         if clicked and dwell and dwell > MIN_DWELL_MS:
             positives.append((query, text))
+            print(f"[POSITIVE] query='{query}', doc_id={doc_id}, dwell={dwell}")
         else:
             negatives_by_query.setdefault(query, []).append((position, text))
+            print(f"[NEGATIVE] query='{query}', doc_id={doc_id}, clicked={clicked}, dwell={dwell}")
+
+    print(f"Total positives: {len(positives)}")
+    print(f"Total unique queries with negatives: {len(negatives_by_query)}")
 
     triplets: List[InputExample] = []
 
-    for anchor_query, positive_text in positives:
-        negatives = negatives_by_query.get(anchor_query, [])
+    # открываем log-файл
+    log_file_path = os.path.join(os.getcwd(), "triplets.log")
+    with open(log_file_path, "w", encoding="utf-8") as log_f:
 
-        # берём первые 5 по позиции
-        negatives_sorted = sorted(negatives, key=lambda x: x[0])[:5]
+        for anchor_query, positive_text in positives:
+            negatives = negatives_by_query.get(anchor_query, [])
+            print(f"Processing anchor query='{anchor_query}', negatives found={len(negatives)}")
 
-        if not negatives_sorted:
-            continue
+            # берём первые 5 по позиции
+            negatives_sorted = sorted(negatives, key=lambda x: x[0])[:5]
 
-        sampled = random.sample(
-            negatives_sorted,
-            min(NEGATIVES_PER_POSITIVE, len(negatives_sorted))
-        )
+            if not negatives_sorted:
+                print(f"[SKIP ANCHOR] No negatives for query='{anchor_query}'")
+                continue
 
-        for _, neg_text in sampled:
-            triplets.append(
-                InputExample(texts=[anchor_query, positive_text, neg_text])
+            sampled = random.sample(
+                negatives_sorted,
+                min(NEGATIVES_PER_POSITIVE, len(negatives_sorted))
             )
 
+            for _, neg_text in sampled:
+                triplets.append(
+                    InputExample(texts=[anchor_query, positive_text, neg_text])
+                )
+
+                # записываем в log
+                log_f.write("Anchor: {}\n".format(anchor_query))
+                log_f.write("Positive: {}\n".format(positive_text))
+                log_f.write("Negative: {}\n".format(neg_text))
+                log_f.write("-" * 80 + "\n")
+
     print(f"Triplets built: {len(triplets)}")
+    print(f"Triplets logged to {log_file_path}")
 
     return triplets
 
@@ -187,8 +230,8 @@ def deploy_model(model: SentenceTransformer):
 def reindex_elasticsearch():
     print("Triggering reindex for vacancies and resumes...")
 
-    requests.post("http://localhost:5006/api/reindex/vacancies")
-    requests.post("http://localhost:5006/api/reindex/resumes")
+    # requests.post("http://localhost:5006/api/reindex/vacancies")
+    # requests.post("http://localhost:5006/api/reindex/resumes")
 
     print("Reindex triggered.")
 
@@ -255,3 +298,4 @@ def train():
 
 if __name__ == "__main__":
     train()
+    

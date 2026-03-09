@@ -114,7 +114,11 @@ public class ResumeElasticRepository
 
         var response = await _client.SearchAsync<ResumeDocument>(requestDescriptor);
 
-        var sessionId = await SaveSearchSession(request, response);
+        Guid sessionId = Guid.Empty;
+        if(!string.IsNullOrWhiteSpace(request.AISearch))
+        {
+            sessionId = await SaveSearchSession(request, response);
+        }
 
         return new Contract.SearchResponse<ResumeSearchResultDto>
         {

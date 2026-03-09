@@ -117,8 +117,13 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                 .Filter(f => f.Excludes(e => e.vector)));
         ApplySorting(searchDescriptor, request);
         var response = await _client.SearchAsync<VacancyDocument>(searchDescriptor);
-
-        var sessionId = await SaveSearchSession(request, response);
+        
+        Guid sessionId = Guid.Empty;
+        if(!string.IsNullOrWhiteSpace(request.AISearch))
+        {
+            sessionId = await SaveSearchSession(request, response);
+        }
+       
 
         return new Contract.SearchResponse<VacancySearchResultDto>
         {
@@ -154,14 +159,14 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             if (request.min_wantedSalary.HasValue)
                 must.Add(new NumberRangeQuery
                 {
-                    Field = "min_salary",
+                    Field = "minSalary",
                     Gte = request.min_wantedSalary,
                 });
             
             if (request.max_wantedSalary.HasValue)
                 must.Add(new NumberRangeQuery
                 {
-                    Field = "max_salary",
+                    Field = "maxSalary",
                     Lte = request.max_wantedSalary,
                 });
             
