@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using AuthService.Api;
 using AuthService.Api.Extentions;
 using AuthService.Infrastructure.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -114,7 +115,7 @@ builder.Services.AddDbContext<AuthDbContext>(options =>
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
 var signingKey = new SymmetricSecurityKey(key);
 builder.Services.AddSingleton(signingKey);
-builder.Services.AddAuthServices();
+builder.Services.AddAuthServices(builder.Configuration);
 
 
 builder.Services.AddCors(o => o.AddDefaultPolicy(p =>
@@ -140,6 +141,12 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AuthDbContext>();
     db.Database.Migrate();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<MinioBucketInitializer>();
+    await initializer.InitializeAsync();
 }
 
 app.Run();
