@@ -3,6 +3,11 @@ export const API = {
         login: '/api/Auth/Login',
         register: '/api/Auth/Register',
         profile: (userId) => `/api/Auth/User/Profile?userId=${userId}`,
+        uploadPhoto: (userId) => `api/Auth/profile-photo/upload/${userId}`,
+        getPhoto: (userId) => `api/Auth/profile-photo/${userId}`,
+        deletePhoto: (userId) => `api/Auth/profile-photo/${userId}`,
+        updatePhoto: (userId) => `api/Auth/profile-photo/${userId}`,
+
     },
 
     worker: {
@@ -26,6 +31,7 @@ export const API = {
         deleteVacancyFilter: '/api/v1/Company/DeleteVacancyFilter',
         flyer: '/api/v1/Company/Flyer',
         profile: '/api/v1/Company/GetProfile',
+        updateProfile: (userId) => `/api/v1/Company/update/${userId}`,
     },
 
     deal: {
