@@ -24,87 +24,83 @@ public class ProfilePhotoController : Controller
     {
         return $"{userId}.jpg";
     }
-
-    // ----------------------------
-    // Добавить фото
-    // POST api/profile-photo/upload/{userId}
-    // ----------------------------
-    [HttpPost("upload/{userId}")]
-    public async Task<IActionResult> Upload(Guid userId, IFormFile file)
+    private bool CheckUserId(Guid userId)
     {
-        if (file == null || file.Length == 0)
-            return BadRequest("Empty file");
-        CheckUserId(userId);
-        var objectName = GetObjectName(userId);
-
-        using var stream = file.OpenReadStream();
-
-        await _minio.PutObjectAsync(new PutObjectArgs()
-            .WithBucket(Bucket)
-            .WithObject(objectName)
-            .WithStreamData(stream)
-            .WithObjectSize(file.Length)
-            .WithContentType(file.ContentType));
-
-        return Ok();
+        Guid currentUser = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        return currentUser == userId;
     }
-
     // ----------------------------
-    // Получить фото
-    // GET api/profile-photo/{userId}
+    // Получить ссылку на фото
+    // GET api/Auth/profile-photo/{userId}
     // ----------------------------
     [HttpGet("{userId}")]
     public async Task<IActionResult> Get(Guid userId)
     {
         var objectName = GetObjectName(userId);
+        var url = await _minio.PresignedGetObjectAsync(
+            new PresignedGetObjectArgs()
+                .WithBucket(Bucket)
+                .WithObject(objectName)
+                .WithExpiry(60 * 60) // 1 час
+        );
+        url = url.Replace("minio:9000", "localhost:9000");
+        return Ok(new { url });
+    }
 
-        MemoryStream ms = new();
+    // ----------------------------
+    // Получить ссылку для загрузки фото
+    // POST api/Auth/profile-photo/upload/{userId}
+    // ----------------------------
+    [HttpPost("upload/{userId}")]
+    public async Task<IActionResult> Upload(Guid userId)
+    {
+        if (!CheckUserId(userId))
+            return Unauthorized();
+        var objectName = GetObjectName(userId);
+        var url = await _minio.PresignedPutObjectAsync(
+            new PresignedPutObjectArgs()
+                .WithBucket(Bucket)
+                .WithObject(objectName)
+                .WithExpiry(60 * 10) // 10 минут
+        );
+        url = url.Replace("minio:9000", "localhost:9000");
+        return Ok(new { url });
+    }
 
-        await _minio.GetObjectAsync(new GetObjectArgs()
-            .WithBucket(Bucket)
-            .WithObject(objectName)
-            .WithCallbackStream(stream =>
-            {
-                stream.CopyTo(ms);
-            }));
-
-        ms.Position = 0;
-
-        return File(ms, "image/jpeg");
+    // ----------------------------
+    // Получить ссылку для обновления фото
+    // PUT api/Auth/profile-photo/{userId}
+    // ----------------------------
+    [HttpPut("{userId}")]
+    public async Task<IActionResult> Update(Guid userId)
+    {
+        if (!CheckUserId(userId))
+            return Unauthorized();
+        var objectName = GetObjectName(userId);
+        var url = await _minio.PresignedPutObjectAsync(
+            new PresignedPutObjectArgs()
+                .WithBucket(Bucket)
+                .WithObject(objectName)
+                .WithExpiry(60 * 10)
+        );
+        url = url.Replace("minio:9000", "localhost:9000");
+        return Ok(new { url });
     }
 
     // ----------------------------
     // Удалить фото
-    // DELETE api/profile-photo/{userId}
     // ----------------------------
     [HttpDelete("{userId}")]
     public async Task<IActionResult> Delete(Guid userId)
     {
-        CheckUserId(userId);
+        if (!CheckUserId(userId))
+            return Unauthorized();
         var objectName = GetObjectName(userId);
-
-        await _minio.RemoveObjectAsync(new RemoveObjectArgs()
-            .WithBucket(Bucket)
-            .WithObject(objectName));
-
+        await _minio.RemoveObjectAsync(
+            new RemoveObjectArgs()
+                .WithBucket(Bucket)
+                .WithObject(objectName)
+        );
         return Ok();
-    }
-
-    // ----------------------------
-    // Изменить фото
-    // PUT api/profile-photo/{userId}
-    // ----------------------------
-    [HttpPut("{userId}")]
-    public async Task<IActionResult> Update(Guid userId, IFormFile file)
-    {
-        CheckUserId(userId);
-        await Delete(userId);
-        return await Upload(userId, file);
-    }
-
-    public bool CheckUserId(Guid userId)
-    {
-        Guid companyId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        return  companyId.Equals(userId);
     }
 }

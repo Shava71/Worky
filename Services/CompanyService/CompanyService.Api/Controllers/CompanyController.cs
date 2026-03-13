@@ -6,6 +6,7 @@ using System.Security.Claims;
 using CompanyService.BLL.Services.Interfaces;
 using CompanyService.DAL.Contracts;
 using CompanyService.DAL.DTO;
+using CompanyService.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -17,12 +18,14 @@ namespace CompanyService.Api.Controllers
     public class CompanyController : Controller
     {
         private readonly ICompnayService _companyService;
+        private readonly ICompanyRepository _companyRepository;
         private readonly ILogger<CompanyController> _logger;
 
-        public CompanyController(ICompnayService companyService, ILogger<CompanyController> logger)
+        public CompanyController(ICompnayService companyService, ILogger<CompanyController> logger,  ICompanyRepository companyRepository)
         {
             _companyService = companyService;
             _logger = logger;
+            _companyRepository = companyRepository;
         }
         
         [AllowAnonymous]
@@ -206,6 +209,26 @@ namespace CompanyService.Api.Controllers
                 _logger.LogError(ex, "Error in GetProfile");
                 return BadRequest(500);
             }
+        }
+        
+        [HttpPut("Update/{userId}")]
+        public async Task<IActionResult> UpdateCompany(Guid userId, [FromBody] UpdateCompanyDto dto)
+        {
+            var company = await _companyRepository.GetCompanyByIdAsync(userId);
+
+            if (company == null)
+                return NotFound("Company not found");
+
+            company.name = dto.Name;
+            company.email = dto.Email;
+            company.phoneNumber = dto.PhoneNumber;
+            company.latitude = dto.Latitude;
+            company.longitude = dto.Longitude;
+            company.website = dto.Website;
+
+            await _companyRepository.UpdateCompanyAsync(company);
+
+            return Ok(company);
         }
     }
 }

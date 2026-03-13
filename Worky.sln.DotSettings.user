@@ -9,5 +9,8 @@
     &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_ByEducation_FiltersCorrectly&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_WithInvalidEducation_ReturnsBadRequest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::F5E9FCBE-B5E1-4221-B21A-2061F56EEA64::net9.0::SearchService.Test.VacancySearchTests.SearchVacancies_Pagination_WorksCorrectly&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::373BDC61-9194-4223-BFDC-D7833129A307::net8.0::AuthService.Tests.UITests.Tests.LoginTests.Login_WithValidCredentials_ShouldRedirect&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::373BDC61-9194-4223-BFDC-D7833129A307::net8.0::AuthService.Tests.UITests.Tests.LoginTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::373BDC61-9194-4223-BFDC-D7833129A307::net8.0::AuthService.Tests.UITests.Tests.RegisterTests.Register_NewUser_ShouldRedirectToLogin&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
