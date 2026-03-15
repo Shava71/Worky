@@ -117,6 +117,11 @@ public class WorkerService : IWorkerService
             }
             
             Worker worker = await _workerRepository.GetWorkerByIdAsync(Guid.Parse(workerId));
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            int age = today.Year - worker.birthday.Year;
+
+            if (today < worker.birthday.AddYears(age))
+                age--;
             WorkerDtos workerDto = new WorkerDtos
             {
                 id = worker.UserId.ToString(),
@@ -126,6 +131,7 @@ public class WorkerService : IWorkerService
                 birthday = worker.birthday,
                 phone = worker.PhoneNumber,
                 email = worker.Email,
+                age = age
             };
 
             foreach (var resume in resumeList)
@@ -224,6 +230,11 @@ public class WorkerService : IWorkerService
         {
             Worker worker = await _workerRepository.GetWorkerByIdAsync(Guid.Parse(workerId));
             UserResponse? user = await _authClient.GetUserByIdAsync(workerId, token, cancellationToken);
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            int age = today.Year - worker.birthday.Year;
+
+            if (today < worker.birthday.AddYears(age))
+                age--;
             
             WorkerDtos workerDtos = new WorkerDtos()
             {
@@ -233,6 +244,7 @@ public class WorkerService : IWorkerService
                 second_name = worker.second_name,
                 image = user?.image,
                 id = worker.UserId.ToString(),
+                age = age
             };
             
             return new WorkerProfileDto { worker = workerDtos, UserResponse = user };

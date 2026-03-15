@@ -38,9 +38,14 @@ public class WorkerRepository : IWorkerRepository
         // };
     }
 
-    public async Task UpdateWorkerAsync(Worker worker)
+    public async Task UpdateWorkerAsync(UpdateWorkerDto dto, Guid id)
     {
-        _dbContext.Worker.Update(worker);
+        var worker = await _dbContext.Worker.FirstOrDefaultAsync(w => w.UserId == id);
+        if (worker == null) throw new Exception("Worker not found");
+        worker.first_name = dto.FirstName;
+        worker.second_name = dto.SecondName;
+        worker.surname = dto.Surname;
+        worker.birthday = dto.Birthday;
         await _dbContext.SaveChangesAsync();
     }
 }

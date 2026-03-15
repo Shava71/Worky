@@ -22,7 +22,7 @@ public class ProfilePhotoController : Controller
 
     private string GetObjectName(Guid userId)
     {
-        return $"{userId}.jpg";
+        return $"{userId}.webp";
     }
     private bool CheckUserId(Guid userId)
     {
@@ -43,7 +43,6 @@ public class ProfilePhotoController : Controller
                 .WithObject(objectName)
                 .WithExpiry(60 * 60) // 1 час
         );
-        url = url.Replace("minio:9000", "localhost:9000");
         return Ok(new { url });
     }
 
@@ -63,7 +62,6 @@ public class ProfilePhotoController : Controller
                 .WithObject(objectName)
                 .WithExpiry(60 * 10) // 10 минут
         );
-        url = url.Replace("minio:9000", "localhost:9000");
         return Ok(new { url });
     }
 
@@ -83,7 +81,6 @@ public class ProfilePhotoController : Controller
                 .WithObject(objectName)
                 .WithExpiry(60 * 10)
         );
-        url = url.Replace("minio:9000", "localhost:9000");
         return Ok(new { url });
     }
 
@@ -101,6 +98,7 @@ public class ProfilePhotoController : Controller
                 .WithBucket(Bucket)
                 .WithObject(objectName)
         );
+        
         return Ok();
     }
 }

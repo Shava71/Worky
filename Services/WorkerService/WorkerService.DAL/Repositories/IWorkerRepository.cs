@@ -8,5 +8,5 @@ public interface IWorkerRepository
 {
     Task CreateWorkerAsync(Worker worker);
     Task<Worker> GetWorkerByIdAsync(Guid id);
-    Task UpdateWorkerAsync(Worker worker);
+    Task UpdateWorkerAsync(UpdateWorkerDto worker, Guid id);
 }

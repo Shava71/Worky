@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WorkerService.BLL.Services.Interfaces;
 using WorkerService.DAL.Contracts;
+using WorkerService.DAL.DTO;
+using WorkerService.DAL.Repositories.Interfaces;
 
 namespace WorkerService.Api.Controllers;
 
@@ -13,30 +15,16 @@ namespace WorkerService.Api.Controllers;
 public class WorkerController : Controller
 {
     private readonly IWorkerService _workerService;
+    private readonly IWorkerRepository  _workerRepository;
     private readonly ILogger<WorkerController> _logger;
     
-    public WorkerController(ILogger<WorkerController> logger, IWorkerService workerService)
+    public WorkerController(ILogger<WorkerController> logger, IWorkerService workerService,  IWorkerRepository workerRepository)
     {
         _logger = logger;
         _workerService = workerService;
+        _workerRepository = workerRepository;
     }
     
-        // [AllowAnonymous]
-        // [HttpGet("Resumes")]
-        // public async Task<IActionResult> FilterResume([FromQuery] GetResumesRequest request)
-        // {
-        //     try
-        //     {
-        //         var resumes = await _workerService.FilterResumesAsync(request);
-        //         return Ok(new { resumes });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in FilterResume");
-        //         return BadRequest(500);
-        //     }
-        // }
-        //
         [AllowAnonymous]
         [HttpGet("Resumes/Info")]
         public async Task<IActionResult> GetResumeInfo([FromQuery] Guid resumeId)
@@ -169,51 +157,21 @@ public class WorkerController : Controller
             }
         }
 
-        // [HttpGet("GetFeedback")]
-        // public async Task<IActionResult> GetFeedback([FromQuery] Guid? vacancyId)
-        // {
-        //     try
-        //     {
-        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //         var feedbacks = await _workerService.GetFeedbacksAsync(workerId, vacancyId);
-        //         return Ok(new { feedbacks });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in GetFeedback");
-        //         return BadRequest(500);
-        //     }
-        // }
-        //
-        // [HttpPost("MakeFeedback")]
-        // public async Task<IActionResult> MakeFeedback([FromBody] MakeFeedbackRequest request)
-        // {
-        //     try
-        //     {
-        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //         var id = await _workerService.MakeFeedbackAsync(request, workerId);
-        //         return Ok(new { id });
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in MakeFeedback");
-        //         return BadRequest(500);
-        //     }
-        // }
-        //
-        // [HttpDelete("DeleteFeedback")]
-        // public async Task<IActionResult> DeleteFeedback([FromQuery] ulong id)
-        // {
-        //     try
-        //     {
-        //         string workerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //         await _workerService.DeleteFeedbackAsync(id, workerId);
-        //         return Ok();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError(ex, "Error in DeleteFeedback");
-        //         return BadRequest(500);
-        //     }
-        // }
+        [HttpPut("Update")]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateWorkerDto dto)
+        {
+            try
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (string.IsNullOrEmpty(userId))
+                    return Unauthorized();
+                await _workerRepository.UpdateWorkerAsync(dto, Guid.Parse(userId));
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating worker profile");
+                return StatusCode(500, "Не удалось обновить профиль");
+            }
+        }
 }
