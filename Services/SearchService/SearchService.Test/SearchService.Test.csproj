@@ -23,6 +23,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SearchService.Contract\SearchService.Contract.csproj" />
+      <ProjectReference Include="..\SearchService.DAL\SearchService.DAL.csproj" />
       <ProjectReference Include="..\Services\SearchService\SearchService.Contract\SearchService.Contract.csproj" />
       <ProjectReference Include="..\Services\SearchService\SearchService.DAL\SearchService.DAL.csproj" />
     </ItemGroup>
