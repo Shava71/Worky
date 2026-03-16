@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import LoginIcon from '@mui/icons-material/Login';
-import api from '../api/axios';
+import api from '../api/myaxios.js';
 import { API } from '../api/routes';
 
 
@@ -29,10 +29,6 @@ export default function LoginForm({setUserRole}) {
     const handleLogin = async () => {
         setError(null);
         try {
-            // const response = await axios.post('https://localhost:7106/api/v1/Authorization/Login', {
-            //     email,
-            //     password
-            // });
             const response = await api.post(API.auth.login, {
                 email,
                 password,
@@ -54,9 +50,6 @@ export default function LoginForm({setUserRole}) {
             } else {
                 navigate('/');
             }
-
-            // // Плавное обновление header, если используешь AuthContext
-            // window.dispatchEvent(new Event("storage"));
 
         } catch (err) {
             console.error('Login failed:', err);
@@ -83,7 +76,7 @@ export default function LoginForm({setUserRole}) {
                     Вход в систему
                 </Typography>
 
-                {error && <Alert severity="error" sx={{ width: '100%' }}>{error}</Alert>}
+                {error && <Alert severity="error" data-testid="login-error" sx={{ width: '100%' }}>{error}</Alert>}
 
                 <TextField
                     label="Email"
@@ -92,6 +85,7 @@ export default function LoginForm({setUserRole}) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
+                    inputProps={{ "data-testid": "email-input" }}
                 />
 
                 <TextField
@@ -102,6 +96,7 @@ export default function LoginForm({setUserRole}) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
+                    inputProps={{ "data-testid": "password-input" }}
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
@@ -117,6 +112,7 @@ export default function LoginForm({setUserRole}) {
                 />
 
                 <Button
+                    data-testid="login-button"
                     variant="contained"
                     color="primary"
                     size="large"

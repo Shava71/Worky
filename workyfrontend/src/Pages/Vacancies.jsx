@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import dayjs from 'dayjs';
 import qs from 'qs';
-import api from '../api/axios';
+import api from '../api/myaxios.js';
 import { API } from '../api/routes';
 
 export default function VacanciesPage() {
@@ -91,7 +91,7 @@ export default function VacanciesPage() {
         const fetchMyResumes = async () => {
             try {
                 const response = await api.get(API.worker.myResume);
-                setMyResumes(response.data || []);
+                setMyResumes(response.data.resumes  || []);
             } catch (err) {
                 console.error('Ошибка при загрузке резюме:', err);
                 setSnackbar({

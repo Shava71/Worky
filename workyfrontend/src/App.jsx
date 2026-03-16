@@ -23,6 +23,8 @@ import MyResume from "./Pages/MyResume.jsx";
 import CreateResume from "./Pages/Create/CreateResume.jsx";
 import WorkerFeedbackPage from "./Pages/Feedback/WorkerFeedbacks.jsx";
 import StatisticCompanyFeedback from "./Pages/Statistics/CompanyFeedbackStatistic.jsx";
+import WorkerProfilePage from "./Pages/Profiles/WorkerProfile.jsx";
+import WorkerProfile from "./Pages/Profiles/WorkerProfile.jsx";
 function App() {
 
     const [userRole, setUserRole] = useState(() => {
@@ -59,7 +61,8 @@ function App() {
                   <Route path="/WorkerRegister" element={<WorkerRegister/>}/>
                   <Route path="/Login" element={<LoginForm setUserRole={setUserRole}/>}/>
 
-                  <Route path="/Company/Profile" element={<CompanyProfile company={companyProfile?.company} deals={companyProfile?.deals} />} />
+                  <Route path="/Worker/Profile" element={<WorkerProfile/>} />
+                  <Route path="/Company/Profile" element={<CompanyProfile company={companyProfile   ?.company} deals={companyProfile?.deals} />} />
                   <Route path="/Tariffs" element={<Tariffs/>}/>
 
                   <Route path="/CreateVacancy" element={<CreateVacancy />}/>

@@ -22,7 +22,7 @@ import {
 // import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate, useParams } from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export default function ResumeDetailsPage() {
@@ -61,11 +61,11 @@ export default function ResumeDetailsPage() {
                         }
                     }),
                     api.get(API.company.myVacancy),
-                    api.ger(API.filter.education)
+                    api.get(API.filter.education)
                 ]);
 
-                setResume(resumeResponse.data.resume?.[0] || null);
-                setVacancies(vacanciesResponse.data || []);
+                setResume(resumeResponse.data?.resume || null);
+                setVacancies(vacanciesResponse.data.vacancies || []);
                 setEducationList(educationResponse.data.education || []);
             } catch (err) {
                 console.error('Ошибка при загрузке данных:', err);
@@ -124,17 +124,6 @@ export default function ResumeDetailsPage() {
     const handleRespond = async () => {
         if (!selectedVacancyId) return;
         try {
-            // const token = localStorage.getItem('jwt');
-            //
-            // await axios.post('https://localhost:7106/api/v1/Company/MakeFeedback', {
-            //     resume_id: resume.id,
-            //     vacancy_id: selectedVacancyId
-            // }, {
-            //     headers: {
-            //         Authorization: `Bearer ${token}`,
-            //         'Content-Type': 'application/json'
-            //     }
-            // });
             await api.post(API.feedback.make, {
                 resume_id: resume.id,
                 vacancy_id: selectedVacancyId
@@ -236,13 +225,6 @@ export default function ResumeDetailsPage() {
                                 {workerName}
                             </Typography>
 
-                            {/*<Typography variant="body2" align="center" color="text.secondary">*/}
-                            {/*    Email: {worker.email || '—'}*/}
-                            {/*</Typography>*/}
-
-                            {/*<Typography variant="body2" align="center" color="text.secondary">*/}
-                            {/*    Телефон: {worker.phoneNumber || '—'}*/}
-                            {/*</Typography>*/}
                             <Typography variant="body2" align="center" color="text.secondary">
                                 Возраст: {calculateAge(worker.birthday)}
                             </Typography>

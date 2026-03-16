@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export default function CreateVacancy() {
@@ -113,7 +113,7 @@ export default function CreateVacancy() {
             //         headers: { Authorization: `Bearer ${token}` },
             //     }
             // );
-            const createResponse = await api.get(API.worker.createResume, formData)
+            const createResponse = await api.post(API.worker.createResume, formData)
             const resumeId = createResponse.data.id;
 
             // Добавляем фильтры

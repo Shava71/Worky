@@ -20,7 +20,7 @@ import {
 } from '@mui/material';
 // import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export default function CreateVacancy() {

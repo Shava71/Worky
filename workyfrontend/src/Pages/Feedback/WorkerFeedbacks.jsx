@@ -13,10 +13,9 @@ import {
     Grid,
     CircularProgress,
 } from '@mui/material';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export default function WorkerFeedbackPage() {
@@ -29,13 +28,9 @@ export default function WorkerFeedbackPage() {
     // Загрузка откликов
     const fetchFeedbacks = async () => {
         try {
-            // const token = localStorage.getItem('jwt');
-            // const res = await axios.get('https://localhost:7106/api/v1/Worker/GetFeedback',  {
-            //     headers: { Authorization: `Bearer ${token}` },
-            // });
-            const res = await axios.get(API.feedback.get);
+            const res = await api.get(API.feedback.get);
 
-            setFeedbacks(res.data.feedbacks || []);
+            setFeedbacks(res.data || []);
         } catch (err) {
             console.error('Ошибка при загрузке откликов:', err);
             setSnackbar({
@@ -49,19 +44,13 @@ export default function WorkerFeedbackPage() {
     // Загрузка информации по конкретной вакансии
     const fetchVacancyInfo = async (vacancyId) => {
         try {
-            // const token = localStorage.getItem('jwt');
-            // const res = await axios.get(`https://localhost:7106/api/v1/Worker/Vacancies/Info`,  {
-            //     headers: { Authorization: `Bearer ${token}` },
-            //     params: { vacancyId: vacancyId },
-            // });
-
             const res = await api.get(API.company.vacancyInfo, {
                 params: { vacancyId: vacancyId },
             })
 
             setVacancies((prev) => ({
                 ...prev,
-                [vacancyId]: res.data.vacancy?.[0] || null,
+                [vacancyId]: res.data.vacancy || null,
             }));
         } catch (err) {
             console.error('Ошибка при загрузке вакансии:', err);
@@ -84,8 +73,8 @@ export default function WorkerFeedbackPage() {
     // Получаем данные по вакансии при первом открытии
     useEffect(() => {
         feedbacks.forEach(fb => {
-            if (!vacancies[fb.vacancy_id]) {
-                fetchVacancyInfo(fb.vacancy_id);
+            if (!vacancies[fb.vacancyId]) {
+                fetchVacancyInfo(fb.vacancyId);
             }
         });
     }, [feedbacks]);
@@ -159,7 +148,7 @@ export default function WorkerFeedbackPage() {
             ) : (
                 <Stack spacing={3}>
                     {feedbacks.map(feedback => {
-                        const vacancy = vacancies[feedback.vacancy_id];
+                        const vacancy = vacancies[feedback.vacancyId];
                         const statusText =
                             feedback.status === 0
                                 ? 'В процессе'
@@ -192,12 +181,12 @@ export default function WorkerFeedbackPage() {
                                                 <Typography><strong>Описание:</strong> {vacancy.description}</Typography>
                                                 <Typography><strong>Зарплата:</strong> {vacancy.min_salary} — {vacancy.max_salary ?? 'не указано'} ₽</Typography>
                                                 <Typography><strong>Опыт:</strong> {vacancy.experience} лет</Typography>
-                                                <Typography><strong>Образование:</strong> ID {vacancy.education_id}</Typography>
+                                                <Typography><strong>Образование:</strong>{vacancy.education_name}</Typography>
                                             </>
                                         ) : (
                                             <Box>
                                                 <Typography color="text.secondary">Загрузка данных о вакансии...</Typography>
-                                                <Button size="small" onClick={() => fetchVacancyInfo(feedback.vacancy_id)}>
+                                                <Button size="small" onClick={() => fetchVacancyInfo(feedback.vacancyId)}>
                                                     Загрузить
                                                 </Button>
                                             </Box>
@@ -241,7 +230,7 @@ export default function WorkerFeedbackPage() {
                                             variant="contained"
                                             color="info"
                                             fullWidth
-                                            onClick={() => handleOpenVacancyDetails(feedback.vacancy_id)}
+                                            onClick={() => handleOpenVacancyDetails(feedback.vacancyId)}
                                             sx={{ py: 1.2 }}
                                         >
                                             Подробнее

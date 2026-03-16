@@ -12,10 +12,9 @@ import {
     Snackbar,
     Alert, FormControl, InputLabel, Select, MenuItem
 } from '@mui/material';
-import axios from 'axios';
 import dayjs from 'dayjs';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export function VacancyDetailsPage() {
@@ -75,8 +74,8 @@ export function VacancyDetailsPage() {
     useEffect(() => {
         const fetchMyResumes = async () => {
             try {
-                const response = await axios.get(API.worker.myResume);
-                setMyResumes(response.data || []);
+                const response = await api.get(API.worker.myResume);
+                setMyResumes(response.data.resumes || []);
             } catch (err) {
                 console.error('Ошибка при загрузке резюме:', err);
                 setSnackbar({

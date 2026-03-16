@@ -16,7 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
-import api from "../../api/axios.js";
+import api from "../../api/myaxios.js";
 import {API} from "../../api/routes.js";
 
 export default function WorkerRegister() {
@@ -174,6 +174,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.userName}
                         helperText={errors.userName}
+                        inputProps={{ "data-testid": "username-input" }}
                     />
                     <TextField
                         label="Email"
@@ -183,6 +184,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.email}
                         helperText={errors.email}
+                        inputProps={{ "data-testid": "email-input" }}
                     />
                     <TextField
                         label="Номер телефона"
@@ -192,6 +194,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.phoneNumber}
                         helperText={errors.phoneNumber}
+                        inputProps={{ "data-testid": "phone-input" }}
                     />
                     <TextField
                         label="Пароль"
@@ -202,6 +205,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.passwordHash}
                         helperText={errors.passwordHash}
+                        inputProps={{ "data-testid": "password-input" }}
                     />
 
                     {/* Личные данные */}
@@ -213,6 +217,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.first_name}
                         helperText={errors.first_name}
+                        inputProps={{ "data-testid": "firstname-input" }}
                     />
                     <TextField
                         label="Фамилия"
@@ -222,6 +227,7 @@ export default function WorkerRegister() {
                         fullWidth
                         error={!!errors.second_name}
                         helperText={errors.second_name}
+                        inputProps={{ "data-testid": "lastname-input" }}
                     />
                     <TextField
                         label="Отчество"
@@ -229,6 +235,7 @@ export default function WorkerRegister() {
                         value={formData.surname}
                         onChange={handleChange}
                         fullWidth
+                        inputProps={{ "data-testid": "surname-input" }}
                     />
 
                     {/* Дата рождения с DatePicker */}
@@ -238,9 +245,14 @@ export default function WorkerRegister() {
                             value={formData.birthday ? dayjs(formData.birthday) : null}
                             onChange={handleDateChange}
                             format="DD.MM.YYYY"
-                            renderInput={(params) => (
-                                <TextField {...params} fullWidth error={!!errors.birthday} helperText={errors.birthday} />
-                            )}
+                            slotProps={{
+                                textField: {
+                                    inputProps: { "data-testid": "birthday-input" },
+                                    fullWidth: true,
+                                    error: !!errors.birthday,
+                                    helperText: errors.birthday
+                                }
+                            }}
                         />
                     </LocalizationProvider>
 
@@ -252,6 +264,7 @@ export default function WorkerRegister() {
                     )}
 
                     <Button
+                        data-testid="register-button"
                         variant="contained"
                         color="primary"
                         onClick={handleSubmit}

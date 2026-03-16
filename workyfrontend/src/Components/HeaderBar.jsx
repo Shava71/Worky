@@ -8,7 +8,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import PersonIcon from '@mui/icons-material/Person';
 import { useNavigate } from 'react-router-dom';
 // import axios from 'axios';
-import api from '../api/axios';
+import api from '../api/myaxios.js';
 import { API } from '../api/routes';
 
 const pages = ['Соискателям', 'Компаниям'];

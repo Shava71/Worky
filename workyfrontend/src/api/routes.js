@@ -19,6 +19,7 @@ export const API = {
         addResumeFilter: '/api/Worker/AddResumeFilter',
         deleteResumeFilter: '/api/Worker/DeleteResumeFilter',
         profile: '/api/Worker/GetProfile',
+        updateProfile: `/api/Worker/Update`,
     },
 
     company: {
@@ -31,7 +32,7 @@ export const API = {
         deleteVacancyFilter: '/api/v1/Company/DeleteVacancyFilter',
         flyer: '/api/v1/Company/Flyer',
         profile: '/api/v1/Company/GetProfile',
-        updateProfile: (userId) => `/api/v1/Company/update/${userId}`,
+        updateProfile: (userId) => `/api/v1/Company/Update/${userId}`,
     },
 
     deal: {

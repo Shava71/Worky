@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 // import axios from 'axios';
 import dayjs from 'dayjs';
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 export default function CompanyFeedbackPage() {
@@ -35,13 +35,6 @@ export default function CompanyFeedbackPage() {
     // Загрузка откликов
     const fetchFeedbacks = async () => {
         try {
-            // const token = localStorage.getItem('jwt');
-            // const res = await axios.get('https://localhost:7106/api/v1/Company/GetFeedback', {
-            //     headers: { Authorization: `Bearer ${token}` },
-            //     params: {
-            //         vacancyId: selectedVacancyId || undefined
-            //     }
-            // });
             const res = await api.get(API.feedback.get,{
                 params:{
                     vacancyId: selectedVacancyId || undefined
@@ -56,41 +49,18 @@ export default function CompanyFeedbackPage() {
     // Загрузка вакансий компании
     const fetchVacancies = async () => {
         try {
-            // const token = localStorage.getItem('jwt');
-            // const res = await axios.get('https://localhost:7106/api/v1/Company/MyVacancy', {
-            //     headers: { Authorization: `Bearer ${token}` },
-            // });
             const res = await api.get(API.company.myVacancy);
-            setVacancies(res.data.vacansies || []);
+            setVacancies(res.data.vacancies || []);
         } catch (err) {
             console.error('Ошибка при загрузке вакансий:', err);
         }
     };
 
-    // // Загрузка данных по одному резюме
-    // const fetchResumeInfo = async (resumeId) => {
-    //     try {
-    //         const token = localStorage.getItem('jwt');
-    //         const res = await axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info?resumeId=${resumeId}`, {
-    //             headers: { Authorization: `Bearer ${token}` },
-    //         });
-    //         setResumes(prev => ({
-    //             ...prev,
-    //             [resumeId]: res.data.resume?.[0] || null
-    //         }));
-    //     } catch (err) {
-    //         console.error('Ошибка при загрузке резюме:', err);
-    //     }
-    // };
     const fetchAllResumes = async () => {
         try {
-            // const token = localStorage.getItem('jwt');
-            const resumeIds = [...new Set(feedbacks.map(fb => fb.resume_id))]; // уникальные ID
+            const resumeIds = [...new Set(feedbacks.map(fb => fb.resumeId))]; // уникальные ID
             for (const id of resumeIds) {
                 if (!resumes[id]) {
-                    // const res = await axios.get(`https://localhost:7106/api/v1/Company/Resumes/Info?resumeId=${id}`, {
-                    //     headers: { Authorization: `Bearer ${token}` },
-                    // });
                     const res = await api.get(API.worker.resumesInfo, {
                         params: {
                             resumeId: id,
@@ -98,7 +68,7 @@ export default function CompanyFeedbackPage() {
                     })
                     setResumes(prev => ({
                         ...prev,
-                        [id]: res.data.resume?.[0] || null
+                        [id]: res.data.resume || null
                     }));
                 }
             }
@@ -240,8 +210,8 @@ export default function CompanyFeedbackPage() {
                 )}
 
                 {feedbacks.map(feedback => {
-                    const resume = resumes[feedback.resume_id];
-                    const vacancy = vacancies.find(v => v.id === feedback.vacancy_id);
+                    const resume = resumes[feedback.resumeId];
+                    const vacancy = vacancies.find(v => v.id === feedback.vacancyId);
 
                     return (
                         <Paper key={feedback.id} elevation={3} sx={{ p: 3, borderRadius: 3 }}>
@@ -255,7 +225,7 @@ export default function CompanyFeedbackPage() {
                                     <Typography><strong>Описание:</strong> {vacancy?.description}</Typography>
                                     <Typography><strong>Зарплата:</strong> {vacancy?.min_salary} - {vacancy?.max_salary ?? 'не указано'}</Typography>
                                     <Typography><strong>Опыт:</strong> {vacancy?.experience || '—'}</Typography>
-                                    <Typography><strong>Образование:</strong> {vacancy?.education_id || '—'}</Typography>
+                                    <Typography><strong>Образование:</strong> {vacancy?.education_name || '—'}</Typography>
                                 </Grid>
 
                                 {/* Резюме */}
@@ -285,7 +255,7 @@ export default function CompanyFeedbackPage() {
                                                 ))}
                                             </Box>
                                             <Button
-                                                onClick={() => navigateToResumeDetails(feedback.resume_id)}
+                                                onClick={() => navigateToResumeDetails(feedback.resumeId)}
                                                 variant="outlined"
                                                 color="primary"
                                                 sx={{ mt: 2, width: 'fit-content' }}

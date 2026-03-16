@@ -24,7 +24,7 @@ import {
 // import axios from 'axios';
 // import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
-import api from '../api/axios';
+import api from '../api/myaxios.js';
 import { API } from '../api/routes';
 
 
@@ -63,7 +63,7 @@ export default function MyResume() {
 
                 const educationResponse = await api.get(API.filter.education);
 
-                setResumes(resumesResponse.data || []);
+                setResumes(resumesResponse.data.resumes || []);
                 setAvailableFilters(filtersResponse.data || []);
                 setEducationList(educationResponse.data.education || []);
             } catch (err) {

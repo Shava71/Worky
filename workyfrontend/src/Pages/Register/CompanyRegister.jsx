@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 // import axios from 'axios';
 import YandexMapInput from "../../Components/YandexMapInput.jsx";
-import api from '../../api/axios';
+import api from '../../api/myaxios.js';
 import { API } from '../../api/routes';
 
 
