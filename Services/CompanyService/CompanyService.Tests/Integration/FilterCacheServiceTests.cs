@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Allure.Xunit.Attributes;
 using CompanyService.BLL.Services.Http.Implementations;
 using CompanyService.BLL.Services.Implementations;
 using Microsoft.AspNetCore.TestHost;
@@ -10,6 +11,8 @@ public class FilterCacheServiceTests
 {
     [Trait("Category", "Integration")]
     [Fact]
+    [AllureSuite("CompanyService")]
+    [AllureSubSuite("CreateVacancy")]
     public async Task GetFiltersByIdsAsync_Returns_From_Http_And_Caches()
     {
         var host = HostFactory.CreateHost();

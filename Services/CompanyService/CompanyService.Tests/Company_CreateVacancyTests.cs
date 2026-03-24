@@ -1,4 +1,5 @@
-﻿using CompanyService.BLL.Services.Http.Interfaces;
+﻿using Allure.Xunit.Attributes;
+using CompanyService.BLL.Services.Http.Interfaces;
 using CompanyService.BLL.Services.Interfaces;
 using CompanyService.DAL.Contracts;
 using CompanyService.DAL.DTO;
@@ -41,6 +42,8 @@ public class Company_CreateVacancyTests
     }
 
     [Fact]
+    [AllureSuite("CompanyService")]
+    [AllureSubSuite("CreateVacancy")]
     public async Task CreateVacancyAsync_Success()
     {
         // Arrange
@@ -110,6 +113,8 @@ public class Company_CreateVacancyTests
     }
 
     [Fact]
+    [AllureSuite("CompanyService")]
+    [AllureSubSuite("CreateVacancy")]
     public async Task CreateVacancyAsync_Failure()
     {
         // Arrange

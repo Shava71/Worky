@@ -1,3 +1,4 @@
+using Allure.Xunit.Attributes;
 using CompanyService.BLL.Services.Http.Implementations;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,8 @@ public class FilterClientTests
 {
     [Trait("Category", "Integration")]
     [Fact]
+    [AllureSuite("CompanyService")]
+    [AllureSubSuite("CreateVacancy")]
     public async Task GetFiltersByIdAsync_Returns_Data_From_TestServer()
     {
         var host = HostFactory.CreateHost();
