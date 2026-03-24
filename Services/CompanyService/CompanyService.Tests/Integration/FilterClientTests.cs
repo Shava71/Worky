@@ -9,7 +9,7 @@ public class FilterClientTests
 {
     [Trait("Category", "Integration")]
     [Fact]
-    [AllureSuite("CompanyService")]
+    [AllureSuite("CompanyService")] //allurt
     [AllureSubSuite("CreateVacancy")]
     public async Task GetFiltersByIdAsync_Returns_Data_From_TestServer()
     {
