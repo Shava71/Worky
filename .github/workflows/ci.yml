@@ -45,7 +45,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y default-jre
-          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
+          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
           tar -zxvf allure-2.27.0.tgz
           sudo mv allure-2.27.0 /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
@@ -55,8 +55,7 @@ jobs:
           if [ -d "allure-results" ]; then
             allure generate allure-results --clean -o allure-report
           else
-            echo "No allure-results found"
-            mkdir allure-report
+            echo "No allure-results directory found, skipping Allure report"
           fi
 
       - name: Upload test results
@@ -65,10 +64,16 @@ jobs:
           name: test-results
           path: TestResults/**/*.trx
 
-      - name: Upload coverage report
+      - name: Upload coverage raw
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: coverage-xml
+          path: TestResults/**/coverage.cobertura.xml
+
+      - name: Upload coverage HTML
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
           path: coveragereport
 
       - name: Upload Allure report
@@ -76,6 +81,7 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+
 
   integration:
     runs-on: ubuntu-latest
@@ -95,27 +101,14 @@ jobs:
           dotnet test Services/CompanyService/CompanyService.Tests \
             --filter "Category=Integration"
 
+
   report:
     runs-on: ubuntu-latest
     needs: [test, integration]
 
     steps:
-      - name: Download Allure report
+      - name: Download all artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
 
       - name: Show files
         run: ls -R
-
-  pages:
-    runs-on: ubuntu-latest
-    needs: report
-
-    steps:
-      - name: Download Allure report
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-report
-          path: .
