@@ -1,0 +1,9 @@
+{"dotnetenterprise.s4net.serverInfo.product":"SQ_Server"}
+{"dotnetenterprise.s4net.serverInfo.serverUrl":"custom_url"}
+{"dotnetenterprise.s4net.serverInfo.version":"26.3.0.120487"}
+{"dotnetenterprise.s4net.jre.bootstrapping":"Enabled"}
+{"dotnetenterprise.s4net.jre.download":"Downloaded"}
+{"dotnetenterprise.s4net.scannerEngine.bootstrapping":"Enabled"}
+{"dotnetenterprise.s4net.scannerEngine.download":"Downloaded"}
+{"dotnetenterprise.s4net.params.sonar_scm_disabled.source":"SQ_SERVER_SETTINGS"}
+{"dotnetenterprise.s4net.begin.runtime":"netcore"}

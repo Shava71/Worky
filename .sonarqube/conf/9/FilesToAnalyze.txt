@@ -1,0 +1,15 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Data\AuthDbContext.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Data\Factory\AuthDbContextFactory.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Kafka\KafkaProducerFactory.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251012175614_Initial.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251012175614_Initial.Designer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251013154602_AddOutbox.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251013154602_AddOutbox.Designer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251102173339_FixRolesData.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251102173339_FixRolesData.Designer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251102174338_FixRolesData2.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\20251102174338_FixRolesData2.Designer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Migrations\AuthDbContextModelSnapshot.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Outbox\OutboxMessage.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Repository\Implementation\UserRepository.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Infrastructure\Repository\Interface\IUserRepository.cs

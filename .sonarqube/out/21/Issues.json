@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Компилятор Microsoft (R) Visual C#",
+        "version": "4.13.0.0",
+        "fileVersion": "4.13.0-3.25155.17 (398aa319)",
+        "semanticVersion": "4.13.0",
+        "language": "ru-RU"
+      },
+      "results": [
+        {
+          "ruleId": "CS0105",
+          "level": "warning",
+          "message": "Директива using для \"System.Data\" ранее встречалась в этом пространстве имен",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.Test/Integrations/ResumeRepositoryTest.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 7,
+                  "endLine": 13,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 3
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.Test/Integrations/WorkerRepositoryTest.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 24,
+                  "endLine": 44,
+                  "endColumn": 97
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.Test/Integrations/ResumeRepositoryTest.cs",
+                "region": {
+                  "startLine": 204,
+                  "startColumn": 9,
+                  "endLine": 204,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CS0105": {
+          "id": "CS0105",
+          "shortDescription": "Директива Using уже использовалась в этом пространстве имен",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0105)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8600": {
+          "id": "CS8600",
+          "shortDescription": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8600)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8602": {
+          "id": "CS8602",
+          "shortDescription": "Разыменование вероятной пустой ссылки.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8602)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

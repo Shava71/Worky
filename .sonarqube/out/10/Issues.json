@@ -1,0 +1,1185 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Компилятор Microsoft (R) Visual C#",
+        "version": "4.13.0.0",
+        "fileVersion": "4.13.0-3.25155.17 (398aa319)",
+        "semanticVersion": "4.13.0",
+        "language": "ru-RU"
+      },
+      "results": [
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"SearchSessions\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/SearchDbContext.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 12,
+                  "endLine": 9,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/SearchDbContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 33,
+                  "endLine": 12,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"SearchImpressions\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/SearchDbContext.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 12,
+                  "endLine": 9,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/SearchDbContext.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 36,
+                  "endLine": 13,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"UserResponse\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 36,
+                  "endLine": 8,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 36,
+                  "endLine": 8,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"worker\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 34,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 34,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/VacancyDtos.cs",
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 51,
+                  "endLine": 26,
+                  "endColumn": 80
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"surname\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 30,
+                  "endLine": 10,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/WorkerDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 30,
+                  "endLine": 10,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/VacancyDtos.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 49,
+                  "endLine": 28,
+                  "endColumn": 76
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"name\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 19,
+                  "endLine": 6,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 19,
+                  "endLine": 6,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"email\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 19,
+                  "endLine": 7,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 19,
+                  "endLine": 7,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"phoneNumber\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 19,
+                  "endLine": 8,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 19,
+                  "endLine": 8,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"latitude\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 19,
+                  "endLine": 10,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 19,
+                  "endLine": 10,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"longitude\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 19,
+                  "endLine": 11,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyDto.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 19,
+                  "endLine": 11,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"user\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 36,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 36,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"company\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 34,
+                  "endLine": 10,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 34,
+                  "endLine": 10,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"deals\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 37,
+                  "endLine": 11,
+                  "endColumn": 42
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/CompanyProfileDtos.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 37,
+                  "endLine": 11,
+                  "endColumn": 42
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"education_name\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/VacancyDtos.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 30,
+                  "endLine": 20,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/VacancyDtos.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 30,
+                  "endLine": 20,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"education_name\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/ResumeDtos.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 30,
+                  "endLine": 19,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Dto/ResumeDtos.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 30,
+                  "endLine": 19,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS0618",
+          "level": "warning",
+          "message": "\"SearchRequestDescriptor<VacancyDocument>.Index(Indices)\" является устаревшим: 'Use 'Indices()' instead.'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 110,
+                  "startColumn": 69,
+                  "endLine": 111,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 2
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 71,
+                  "startColumn": 37,
+                  "endLine": 71,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS0618",
+          "level": "warning",
+          "message": "\"SearchRequestDescriptor<ResumeDocument>.Index(Indices)\" является устаревшим: 'Use 'Indices()' instead.'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 105,
+                  "startColumn": 69,
+                  "endLine": 106,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 2
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 37,
+                  "endLine": 69,
+                  "endColumn": 53
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Entities/VacancyDocument.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 5,
+                  "endLine": 22,
+                  "endColumn": 126
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/IVacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 5,
+                  "endLine": 12,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 5,
+                  "endLine": 20,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S4487",
+          "level": "warning",
+          "message": "Remove this unread private field '_logger' or refactor the code to use its value.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 56,
+                  "endLine": 19,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S4487",
+          "level": "warning",
+          "message": "Remove this unread private field '_logger' or refactor the code to use its value.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 55,
+                  "endLine": 19,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'builder' to 'modelBuilder' to match the base class declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/SearchDbContext.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 58,
+                  "endLine": 15,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S112",
+          "level": "warning",
+          "message": "'System.Exception' should not be thrown by user code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ElasticRepository.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 19,
+                  "endLine": 42,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S112",
+          "level": "warning",
+          "message": "'System.Exception' should not be thrown by user code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ElasticRepository.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 19,
+                  "endLine": 34,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S112",
+          "level": "warning",
+          "message": "'System.Exception' should not be thrown by user code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ElasticRepository.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 19,
+                  "endLine": 22,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1510",
+          "level": "note",
+          "message": "Используйте \"ArgumentNullException.ThrowIfNull\" вместо явного вызова нового экземпляра исключения",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 257,
+                  "startColumn": 13,
+                  "endLine": 257,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 257,
+                  "startColumn": 17,
+                  "endLine": 257,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Для ясности и для обеспечения производительности старайтесь сравнивать 'Count' с 0 вместо того, чтобы использовать 'Any()'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 201,
+                  "startColumn": 42,
+                  "endLine": 201,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1860",
+          "level": "note",
+          "message": "Для ясности и для обеспечения производительности старайтесь сравнивать 'Count' с 0 вместо того, чтобы использовать 'Any()'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 200,
+                  "startColumn": 46,
+                  "endLine": 200,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "DiagnosticPropertyKey": "Count"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"ApplySorting\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 222,
+                  "startColumn": 18,
+                  "endLine": 222,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"BuildStaticFilters\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/ResumeElasticRepository.cs",
+                "region": {
+                  "startLine": 137,
+                  "startColumn": 25,
+                  "endLine": 137,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"ApplySorting\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 234,
+                  "startColumn": 22,
+                  "endLine": 234,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"BuildStaticFilters\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.DAL/Repositories/VacancyElasticRepository.cs",
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 25,
+                  "endLine": 144,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1510": {
+          "id": "CA1510",
+          "shortDescription": "Использовать вспомогательное приложение по вызову ArgumentNullException",
+          "fullDescription": "Помощники по вызову являются более простыми и эффективными, чем блок if, создающий новый экземпляр исключения.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1510",
+          "properties": {
+            "category": "Maintainability",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1822": {
+          "id": "CA1822",
+          "shortDescription": "Пометьте члены как статические",
+          "fullDescription": "Члены, которые не обращаются к данным экземпляров и не вызывают методы экземпляров, можно пометить как статические. После этого компилятор создаст невиртуальные места для вызова этих членов. Это может привести к ощутимому росту производительности для чувствительного к производительности кода.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1822",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1860": {
+          "id": "CA1860",
+          "shortDescription": "Не используйте метод расширения 'Enumerable.Any()'",
+          "fullDescription": "Старайтесь использовать свойства 'IsEmpty', 'Count' или 'Length' в зависимости от доступности вместо вызова 'Enumerable.Any()'. Намерение является более четким и более эффективным по сравнению с использованием метода расширения 'Enumerable.Any()'.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1860",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS0618": {
+          "id": "CS0618",
+          "shortDescription": "Тип или член устарел",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS0618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8601": {
+          "id": "CS8601",
+          "shortDescription": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8601)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8603": {
+          "id": "CS8603",
+          "shortDescription": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8603)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения, допускающего значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S112": {
+          "id": "S112",
+          "shortDescription": "General or reserved exceptions should never be thrown",
+          "fullDescription": "This rule raises an issue when a general or reserved exception is thrown.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-112",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S125": {
+          "id": "S125",
+          "shortDescription": "Sections of code should not be commented out",
+          "fullDescription": "Commented-out code distracts the focus from the actual executed code. It creates a noise that increases maintenance code. And because it is never executed, it quickly becomes out of date and invalid.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-125",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S4487": {
+          "id": "S4487",
+          "shortDescription": "Unread \"private\" fields should be removed",
+          "fullDescription": "Private fields which are written but never read are a case of \"dead store\". Changing the value of such a field is useless and most probably indicates an error in the code.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-4487",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S927": {
+          "id": "S927",
+          "shortDescription": "Parameter names should match base declaration and other partial definitions",
+          "fullDescription": "Parameters are part of the method signature and its identity.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-927",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

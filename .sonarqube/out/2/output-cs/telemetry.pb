@@ -1,0 +1,1 @@
+{RnC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Contract\SearchService.Contract.csprojòCSharp12

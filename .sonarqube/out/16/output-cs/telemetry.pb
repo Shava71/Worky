@@ -1,0 +1,1 @@
+qRdC:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\WorkerService.Api.csprojòCSharp13

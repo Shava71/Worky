@@ -1,0 +1,12 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\OnnxSessionPool.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\SbertEmbeddingService.cs
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_cased.txt
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_cased_german.txt
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_cased_large.txt
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_cased_multilingual.txt
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_uncased.txt
+C:\Users\demde\.nuget\packages\berttokenizers\1.2.0\contentFiles\any\net6.0\Vocabularies\base_uncased_large.txt
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\download_model.py
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\PythonExportDataset\export_dataset.py
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\train.py
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.ML\triplets.log

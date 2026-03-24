@@ -1,0 +1,16 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Controllers\WorkerController.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Extentions\HttpClientRegistrationExtensions.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Extentions\WorkerDIExtension.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Program.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\obj\Debug\net9.0\WorkerService.Api.GlobalUsings.g.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\obj\Debug\net9.0\WorkerService.Api.AssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\obj\Debug\net9.0\WorkerService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\appsettings.Development.json
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\appsettings.json
+C:\Users\demde\Desktop\Worky\Worky\Services\ApiGateway\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Dockerfile
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Dockerfile.dev
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\WorkerService.http
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.Api\Properties\launchSettings.json

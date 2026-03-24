@@ -1,0 +1,1 @@
+qRdC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\SearchService.BLL.csprojòCSharp13

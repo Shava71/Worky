@@ -89,8 +89,6 @@ public class VacancySearchTests
          
             Assert.True(item.Document.minSalary >= minSalary, $"MinSalary {item.Document.minSalary} должен быть >= {minSalary}");
             Assert.True(item.Document.maxSalary <= maxSalary, $"maxSalary {item.Document.maxSalary} должен быть <= {maxSalary}");
-
-            
         }
     }
     

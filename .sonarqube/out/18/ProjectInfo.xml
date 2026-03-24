@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>SearchService.BLL</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Product</ProjectType>
+  <ProjectGuid>7c8c6c85-23f0-4a70-ad8a-1b9e2d35d380</ProjectGuid>
+  <FullPath>C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\SearchService.BLL.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResultFiles>
+    <AnalysisResultFile Id="FilesToAnalyze" Location="C:\Users\demde\Desktop\Worky\Worky\.sonarqube\conf\18\FilesToAnalyze.txt" />
+  </AnalysisResultFiles>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\18\Issues.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\18</Property>
+    <Property Name="sonar.cs.scanner.telemetry">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\18\Telemetry.json</Property>
+  </AnalysisSettings>
+  <Configuration>Debug</Configuration>
+  <Platform>AnyCPU</Platform>
+  <TargetFramework>net9.0</TargetFramework>
+</ProjectInfo>

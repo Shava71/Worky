@@ -6,6 +6,7 @@ namespace CompanyService.Tests.Integration;
 
 public class FilterClientTests
 {
+    [Trait("Category", "Integration")]
     [Fact]
     public async Task GetFiltersByIdAsync_Returns_Data_From_TestServer()
     {

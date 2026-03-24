@@ -10,7 +10,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentAssertions" Version="8.8.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
+        <PackageReference Include="SpecFlow" Version="3.9.74" />
+        <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.9.74" />
+        <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
         <PackageReference Include="xunit" Version="2.4.2"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,10 +27,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SearchService.Api\SearchService.Api.csproj" />
+      <ProjectReference Include="..\SearchService.BLL\SearchService.BLL.csproj" />
       <ProjectReference Include="..\SearchService.Contract\SearchService.Contract.csproj" />
-      <ProjectReference Include="..\SearchService.DAL\SearchService.DAL.csproj" />
-      <ProjectReference Include="..\Services\SearchService\SearchService.Contract\SearchService.Contract.csproj" />
-      <ProjectReference Include="..\Services\SearchService\SearchService.DAL\SearchService.DAL.csproj" />
     </ItemGroup>
 
 </Project>

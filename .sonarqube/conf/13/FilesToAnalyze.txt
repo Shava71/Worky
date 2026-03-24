@@ -1,0 +1,12 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Contracts\RegisterRequestContract.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Events\UserCompanyCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Events\UserWorkerCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Models\LoginResponse.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Implementation\JwtService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Implementation\KafkaOutboxPublisher.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Implementation\UserService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Interface\IJwtService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Interface\IOutboxPublisher.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Services\Interface\IUserService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\Worker\OutboxPublisWorker.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\AuthService.Application.csproj.DotSettings

@@ -1,0 +1,3 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Domain\Entities\Role.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Domain\Entities\User.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Domain\Entities\UserRole.cs

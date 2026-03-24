@@ -234,6 +234,7 @@
 /Users/mac/Desktop/Worky/backend/Worky/Services/CompanyService/CompanyService.Api/obj/Debug/net9.0/ref/CompanyService.Api.dll
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\appsettings.json
+C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\CompanyService.Api.staticwebassets.endpoints.json
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\Lato-Black.ttf
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\Lato-BlackItalic.ttf
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\Lato-Bold.ttf
@@ -253,7 +254,6 @@ C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bi
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\Lato-Thin.ttf
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\Lato-ThinItalic.ttf
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\LatoFont\OFL.txt
-C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\CompanyService.Api.staticwebassets.endpoints.json
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\CompanyService.Api.exe
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\CompanyService.Api.deps.json
 C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\bin\Debug\net9.0\CompanyService.Api.runtimeconfig.json

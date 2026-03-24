@@ -1,0 +1,2958 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Компилятор Microsoft (R) Visual C#",
+        "version": "4.13.0.0",
+        "fileVersion": "4.13.0-3.25155.17 (398aa319)",
+        "semanticVersion": "4.13.0",
+        "language": "ru-RU"
+      },
+      "results": [
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"UserName\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 19,
+                  "endLine": 9,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 19,
+                  "endLine": 9,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Email\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 19,
+                  "endLine": 13,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 19,
+                  "endLine": 13,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"PasswordHash\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 19,
+                  "endLine": 18,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 19,
+                  "endLine": 18,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Role\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 19,
+                  "endLine": 21,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 19,
+                  "endLine": 21,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/WorkerRepository.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 25,
+                  "endLine": 27,
+                  "endColumn": 62
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/WorkerRepository.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 16,
+                  "endLine": 28,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"UserResponse\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 36,
+                  "endLine": 8,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 36,
+                  "endLine": 8,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"worker\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 34,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerProfileDto.cs",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 34,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"surname\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 30,
+                  "endLine": 10,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/WorkerDtos.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 30,
+                  "endLine": 10,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"education_name\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/ResumeDtos.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 30,
+                  "endLine": 19,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/ResumeDtos.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 30,
+                  "endLine": 19,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Worker\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 12,
+                  "endLine": 17,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 26,
+                  "endLine": 10,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Resume\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 12,
+                  "endLine": 17,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 26,
+                  "endLine": 11,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Resume_filter\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 12,
+                  "endLine": 17,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 33,
+                  "endLine": 12,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Education\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 12,
+                  "endLine": 17,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/WorkerDbContext.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 29,
+                  "endLine": 13,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"id\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 19,
+                  "endLine": 5,
+                  "endColumn": 21
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 5,
+                  "startColumn": 19,
+                  "endLine": 5,
+                  "endColumn": 21
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"name\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 19,
+                  "endLine": 6,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 6,
+                  "startColumn": 19,
+                  "endLine": 6,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"email\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 19,
+                  "endLine": 7,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 19,
+                  "endLine": 7,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"latitude\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 19,
+                  "endLine": 10,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 19,
+                  "endLine": 10,
+                  "endColumn": 27
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"longitude\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 19,
+                  "endLine": 11,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/DTO/CompanyDto.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 19,
+                  "endLine": 11,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8625",
+          "level": "warning",
+          "message": "Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 45,
+                  "endLine": 108,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8625",
+          "level": "warning",
+          "message": "Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 40,
+                  "endLine": 109,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Data/Factory/WorkerDbContextFactory.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 35,
+                  "endLine": 17,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"resumes\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Entities/Education.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 32,
+                  "endLine": 15,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Entities/Education.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 32,
+                  "endLine": 15,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 33,
+                  "endLine": 136,
+                  "endColumn": 41
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 141,
+                  "startColumn": 38,
+                  "endLine": 141,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8603",
+          "level": "warning",
+          "message": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 163,
+                  "startColumn": 20,
+                  "endLine": 163,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 168,
+                  "startColumn": 39,
+                  "endLine": 168,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 196,
+                  "startColumn": 39,
+                  "endLine": 196,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 39,
+                  "endLine": 209,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 39,
+                  "endLine": 221,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 239,
+                  "startColumn": 39,
+                  "endLine": 239,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 257,
+                  "startColumn": 39,
+                  "endLine": 257,
+                  "endColumn": 94
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8625",
+          "level": "warning",
+          "message": "Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 292,
+                  "startColumn": 41,
+                  "endLine": 292,
+                  "endColumn": 45
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8625",
+          "level": "warning",
+          "message": "Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 293,
+                  "startColumn": 36,
+                  "endLine": 293,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/WorkerRepository.cs",
+                "region": {
+                  "startLine": 29,
+                  "startColumn": 9,
+                  "endLine": 29,
+                  "endColumn": 116
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S125",
+          "level": "warning",
+          "message": "Remove this commented out code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/%D0%A1ontracts/RegisterRequestContract.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 5,
+                  "endLine": 25,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S101",
+          "level": "warning",
+          "message": "Rename class 'Resume_filter' to match pascal case naming rules, consider using 'Resumefilter'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Entities/Resume_filter.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 22,
+                  "endLine": 10,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Education' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 23,
+                  "endLine": 18,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 147,
+                  "startColumn": 41,
+                  "endLine": 147,
+                  "endColumn": 52
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 24,
+                  "endLine": 177,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 260,
+                  "startColumn": 23,
+                  "endLine": 260,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'integer' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 50,
+                  "endLine": 21,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 60,
+                  "endLine": 41,
+                  "endColumn": 69
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 137,
+                  "startColumn": 60,
+                  "endLine": 137,
+                  "endColumn": 69
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 139,
+                  "startColumn": 59,
+                  "endLine": 139,
+                  "endColumn": 68
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'InboxState' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 23,
+                  "endLine": 31,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 117,
+                  "startColumn": 41,
+                  "endLine": 117,
+                  "endColumn": 53
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 194,
+                  "startColumn": 24,
+                  "endLine": 194,
+                  "endColumn": 36
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 251,
+                  "startColumn": 23,
+                  "endLine": 251,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'bigint' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 51,
+                  "endLine": 34,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 67,
+                  "endLine": 45,
+                  "endColumn": 75
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 67,
+                  "endLine": 62,
+                  "endColumn": 75
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 88,
+                  "startColumn": 63,
+                  "endLine": 88,
+                  "endColumn": 71
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'timestamp with time zone' 10 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 61,
+                  "endLine": 40,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 67,
+                  "endLine": 42,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 61,
+                  "endLine": 43,
+                  "endColumn": 87
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 62,
+                  "endLine": 44,
+                  "endColumn": 88
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 60,
+                  "startColumn": 60,
+                  "endLine": 60,
+                  "endColumn": 86
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 62,
+                  "endLine": 61,
+                  "endColumn": 88
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 90,
+                  "startColumn": 64,
+                  "endLine": 90,
+                  "endColumn": 90
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 91,
+                  "startColumn": 61,
+                  "endLine": 91,
+                  "endColumn": 87
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 67,
+                  "endLine": 109,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 64,
+                  "endLine": 136,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'OutboxState' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 54,
+                  "startColumn": 23,
+                  "endLine": 54,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 122,
+                  "startColumn": 41,
+                  "endLine": 122,
+                  "endColumn": 54
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 24,
+                  "endLine": 221,
+                  "endColumn": 37
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 254,
+                  "startColumn": 23,
+                  "endLine": 254,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Resume' 14 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 24,
+                  "endLine": 15,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 24,
+                  "endLine": 19,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 24,
+                  "endLine": 23,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 24,
+                  "endLine": 27,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 24,
+                  "endLine": 35,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 24,
+                  "endLine": 44,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 49,
+                  "startColumn": 24,
+                  "endLine": 49,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 61,
+                  "startColumn": 24,
+                  "endLine": 61,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 65,
+                  "startColumn": 24,
+                  "endLine": 65,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 24,
+                  "endLine": 69,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 77,
+                  "startColumn": 24,
+                  "endLine": 77,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 86,
+                  "startColumn": 24,
+                  "endLine": 86,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 92,
+                  "startColumn": 24,
+                  "endLine": 92,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 97,
+                  "startColumn": 24,
+                  "endLine": 97,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "10": null,
+              "11": null,
+              "12": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null,
+              "9": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'OutboxMessage' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 23,
+                  "endLine": 85,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 199,
+                  "startColumn": 24,
+                  "endLine": 199,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 204,
+                  "startColumn": 24,
+                  "endLine": 204,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 24,
+                  "endLine": 209,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 215,
+                  "startColumn": 24,
+                  "endLine": 215,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 245,
+                  "startColumn": 23,
+                  "endLine": 245,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'educationid' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 23,
+                  "endLine": 22,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 23,
+                  "endLine": 85,
+                  "endColumn": 36
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 93,
+                  "startColumn": 25,
+                  "endLine": 93,
+                  "endColumn": 38
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 98,
+                  "startColumn": 25,
+                  "endLine": 98,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'character varying(256)' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 98,
+                  "startColumn": 62,
+                  "endLine": 98,
+                  "endColumn": 86
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 105,
+                  "startColumn": 64,
+                  "endLine": 105,
+                  "endColumn": 88
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 106,
+                  "startColumn": 69,
+                  "endLine": 106,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 66,
+                  "endLine": 107,
+                  "endColumn": 90
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 63,
+                  "endLine": 108,
+                  "endColumn": 87
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'integer' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 23,
+                  "endLine": 28,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 23,
+                  "endLine": 36,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 73,
+                  "startColumn": 26,
+                  "endLine": 73,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 81,
+                  "startColumn": 26,
+                  "endLine": 81,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 23,
+                  "endLine": 87,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Resume' 5 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 127,
+                  "startColumn": 23,
+                  "endLine": 127,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 171,
+                  "startColumn": 41,
+                  "endLine": 171,
+                  "endColumn": 49
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 226,
+                  "startColumn": 24,
+                  "endLine": 226,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 231,
+                  "startColumn": 24,
+                  "endLine": 231,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 257,
+                  "startColumn": 23,
+                  "endLine": 257,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'education_id' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 23,
+                  "endLine": 34,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 25,
+                  "endLine": 45,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 25,
+                  "endLine": 50,
+                  "endColumn": 39
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251020164302_SchemeV2.cs",
+                "region": {
+                  "startLine": 76,
+                  "startColumn": 23,
+                  "endLine": 76,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'Worker' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251102170031_fix1.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 24,
+                  "endLine": 15,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251102170031_fix1.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 24,
+                  "endLine": 21,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251102170031_fix1.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 24,
+                  "endLine": 31,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251102170031_fix1.cs",
+                "region": {
+                  "startLine": 35,
+                  "startColumn": 24,
+                  "endLine": 35,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'DefaultConnection' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 168,
+                  "startColumn": 74,
+                  "endLine": 168,
+                  "endColumn": 93
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 196,
+                  "startColumn": 74,
+                  "endLine": 196,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 74,
+                  "endLine": 209,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 221,
+                  "startColumn": 74,
+                  "endLine": 221,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 239,
+                  "startColumn": 74,
+                  "endLine": 239,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 257,
+                  "startColumn": 74,
+                  "endLine": 257,
+                  "endColumn": 93
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'dto' to 'worker' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/WorkerRepository.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 57,
+                  "endLine": 41,
+                  "endColumn": 60
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S112",
+          "level": "warning",
+          "message": "'System.Exception' should not be thrown by user code.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/WorkerRepository.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 35,
+                  "endLine": 44,
+                  "endColumn": 68
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3878",
+          "level": "warning",
+          "message": "Remove this array creation and simply pass the elements.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Entities/TypeConfiguration/EducationConfiguration.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 25,
+                  "endLine": 22,
+                  "endColumn": 10
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2139",
+          "level": "warning",
+          "message": "Either log this exception and handle it, or rethrow it with some contextual information.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 117,
+                  "startColumn": 30,
+                  "endLine": 117,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 119,
+                  "startColumn": 17,
+                  "endLine": 119,
+                  "endColumn": 65
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 120,
+                  "startColumn": 17,
+                  "endLine": 120,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Logging statement.",
+              "1": "Thrown exception."
+            }
+          }
+        },
+        {
+          "ruleId": "S2077",
+          "level": "warning",
+          "message": "Make sure using a dynamically formatted SQL query is safe here.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 36,
+                  "endLine": 88,
+                  "endColumn": 19
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 21,
+                  "endLine": 52,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "SQL Query is dynamically formatted and assigned to sql."
+            }
+          }
+        },
+        {
+          "ruleId": "S6664",
+          "level": "warning",
+          "message": "Reduce the number of Information logging calls within this code block from 3 to the 2 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 176,
+                  "startColumn": 17,
+                  "endLine": 176,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 17,
+                  "endLine": 177,
+                  "endColumn": 44
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 17,
+                  "endLine": 178,
+                  "endColumn": 155
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "Reduce the number of Information logging calls within this code block from 3 to the 2 allowed.",
+              "1": "Reduce the number of Information logging calls within this code block from 3 to the 2 allowed."
+            }
+          }
+        },
+        {
+          "ruleId": "S2629",
+          "level": "warning",
+          "message": "Don't use string interpolation in logging message templates.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 176,
+                  "startColumn": 40,
+                  "endLine": 176,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2629",
+          "level": "warning",
+          "message": "Don't use string interpolation in logging message templates.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 40,
+                  "endLine": 178,
+                  "endColumn": 154
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "Шаблон сообщения о ведении журнала не должен изменяться между вызовами в \"LoggerExtensions.LogInformation(ILogger, string?, params object?[])\"",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 176,
+                  "startColumn": 40,
+                  "endLine": 176,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "Шаблон сообщения о ведении журнала не должен изменяться между вызовами в \"LoggerExtensions.LogInformation(ILogger, string?, params object?[])\"",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 177,
+                  "startColumn": 40,
+                  "endLine": 177,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA2254",
+          "level": "note",
+          "message": "Шаблон сообщения о ведении журнала не должен изменяться между вызовами в \"LoggerExtensions.LogInformation(ILogger, string?, params object?[])\"",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Repositories/ResumeRepository.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 40,
+                  "endLine": 178,
+                  "endColumn": 154
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1186",
+          "level": "warning",
+          "message": "Add a nested comment explaining why this method is empty, throw a 'NotSupportedException' or complete the implementation.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019191412_InitialOutboxFix.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 33,
+                  "endLine": 17,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 118,
+                  "startColumn": 43,
+                  "endLine": 118,
+                  "endColumn": 78
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "principalColumns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 178,
+                  "startColumn": 26,
+                  "endLine": 178,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 210,
+                  "startColumn": 26,
+                  "endLine": 210,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 216,
+                  "startColumn": 26,
+                  "endLine": 216,
+                  "endColumn": 64
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/WorkerService/WorkerService.DAL/Migrations/20251019182110_InitialOutbox.cs",
+                "region": {
+                  "startLine": 237,
+                  "startColumn": 26,
+                  "endLine": 237,
+                  "endColumn": 68
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        }
+      ],
+      "rules": {
+        "CA1861": {
+          "id": "CA1861",
+          "shortDescription": "Избегайте использования константных массивов в качестве аргументов",
+          "fullDescription": "Постоянные массивы, передаваемые в качестве аргументов, не будут использоваться при повторном вызове, что подразумевает создание нового массива каждый раз. Попробуйте извлечь их в статичные поля, доступные только для чтения (\"static readonly\"), чтобы повысить производительность, если переданный массив не был изменен в вызываемом методе.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1861",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA2254": {
+          "id": "CA2254",
+          "shortDescription": "Шаблон должен быть статическим выражением",
+          "fullDescription": "Шаблон сообщения о ведении журнала не должен изменяться между вызовами.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca2254",
+          "properties": {
+            "category": "Usage",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS8600": {
+          "id": "CS8600",
+          "shortDescription": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8600)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8602": {
+          "id": "CS8602",
+          "shortDescription": "Разыменование вероятной пустой ссылки.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8602)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8603": {
+          "id": "CS8603",
+          "shortDescription": "Возможно, возврат ссылки, допускающей значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8603)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения, допускающего значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8625": {
+          "id": "CS8625",
+          "shortDescription": "Литерал, равный NULL, не может быть преобразован в ссылочный тип, не допускающий значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8625)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S101": {
+          "id": "S101",
+          "shortDescription": "Types should be named in PascalCase",
+          "fullDescription": "Shared naming conventions allow teams to collaborate efficiently.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-101",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S112": {
+          "id": "S112",
+          "shortDescription": "General or reserved exceptions should never be thrown",
+          "fullDescription": "This rule raises an issue when a general or reserved exception is thrown.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-112",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1186": {
+          "id": "S1186",
+          "shortDescription": "Methods should not be empty",
+          "fullDescription": "An empty method is generally considered bad practice and can lead to confusion, readability, and maintenance issues. Empty methods bring no functionality and are misleading to others as they might think the method implementation fulfills a specific and identified requirement.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1186",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S1192": {
+          "id": "S1192",
+          "shortDescription": "String literals should not be duplicated",
+          "fullDescription": "Duplicated string literals make the process of refactoring complex and error-prone, as any change would need to be propagated on all occurrences.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1192",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S125": {
+          "id": "S125",
+          "shortDescription": "Sections of code should not be commented out",
+          "fullDescription": "Commented-out code distracts the focus from the actual executed code. It creates a noise that increases maintenance code. And because it is never executed, it quickly becomes out of date and invalid.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-125",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2077": {
+          "id": "S2077",
+          "shortDescription": "Formatting SQL queries is security-sensitive",
+          "fullDescription": "Formatted SQL queries can be difficult to maintain, debug and can increase the risk of SQL injection when concatenating untrusted values into the query. However, this rule doesn’t detect SQL injections (unlike rule {rule:csharpsquid:S3649}), the goal is only to highlight complex/formatted queries.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2077",
+          "properties": {
+            "category": "Major Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2139": {
+          "id": "S2139",
+          "shortDescription": "Exceptions should be either logged or rethrown but not both",
+          "fullDescription": "When an exception is logged and rethrown, the upstream code may not be aware that the exception has already been logged. As a result, the same exception gets logged multiple times, making it difficult to identify the root cause of the issue. This can be particularly problematic in multi-threaded applications where messages from other threads can be interwoven with the repeated log entries.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2139",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S2629": {
+          "id": "S2629",
+          "shortDescription": "Logging templates should be constant",
+          "fullDescription": "Logging arguments should not require evaluation in order to avoid unnecessary performance overhead. When passing concatenated strings or string interpolations directly into a logging method, the evaluation of these expressions occurs every time the logging method is called, regardless of the log level. This can lead to inefficient code execution and increased resource consumption.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2629",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S3878": {
+          "id": "S3878",
+          "shortDescription": "Arrays should not be created for params parameters",
+          "fullDescription": "Creating an array or using a collection expression solely for the purpose of passing it to a params parameter is unnecessary. Simply pass the elements directly, and they will be automatically consolidated into the appropriate collection type.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3878",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6664": {
+          "id": "S6664",
+          "shortDescription": "The code block contains too many logging calls",
+          "fullDescription": "A code block should not contain too many logging statements of a specific level.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-6664",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S927": {
+          "id": "S927",
+          "shortDescription": "Parameter names should match base declaration and other partial definitions",
+          "fullDescription": "Parameters are part of the method signature and its identity.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-927",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "TestSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

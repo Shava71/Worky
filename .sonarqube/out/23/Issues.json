@@ -1,0 +1,1231 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Компилятор Microsoft (R) Visual C#",
+        "version": "4.13.0.0",
+        "fileVersion": "4.13.0-3.25155.17 (398aa319)",
+        "semanticVersion": "4.13.0",
+        "language": "ru-RU"
+      },
+      "results": [
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "поле \"_response\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения поле, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 12,
+                  "endLine": 27,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 33,
+                  "endLine": 22,
+                  "endColumn": 42
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "поле \"_searchResult\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения поле, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 12,
+                  "endLine": 27,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 52,
+                  "endLine": 23,
+                  "endColumn": 65
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "поле \"_page1\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения поле, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 12,
+                  "endLine": 27,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 175,
+                  "startColumn": 52,
+                  "endLine": 175,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "поле \"_page2\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения поле, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 12,
+                  "endLine": 27,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 176,
+                  "startColumn": 52,
+                  "endLine": 176,
+                  "endColumn": 58
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 64,
+                  "startColumn": 25,
+                  "endLine": 65,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 25,
+                  "endLine": 102,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 25,
+                  "endLine": 134,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 188,
+                  "startColumn": 22,
+                  "endLine": 188,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 190,
+                  "startColumn": 22,
+                  "endLine": 190,
+                  "endColumn": 29
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/VacancySearchTests.cs",
+                "region": {
+                  "startLine": 165,
+                  "startColumn": 26,
+                  "endLine": 165,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/VacancySearchTests.cs",
+                "region": {
+                  "startLine": 169,
+                  "startColumn": 26,
+                  "endLine": 169,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8602",
+          "level": "warning",
+          "message": "Разыменование вероятной пустой ссылки.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/VacancySearchTests.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 26,
+                  "endLine": 173,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureSetup' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 28,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureTearDown' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 28,
+                  "endLine": 17,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestInitialize' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 21,
+                  "endLine": 23,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestTearDown' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 21,
+                  "endLine": 27,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioInitialize' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Theory. Reduce the visibility of the method, or add a Theory attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 21,
+                  "endLine": 32,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioStart' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 21,
+                  "endLine": 38,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioCleanup' on test class 'ВалидацияПараметровПоискаВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyValidation.feature",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 21,
+                  "endLine": 43,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1033",
+          "level": "note",
+          "message": "Test class 'SearchService.Test.BDD.ВалидацияПараметровПоискаВакансийFeature' does not contain constructor argument of type 'SearchService.Test.BDD.ВалидацияПараметровПоискаВакансийFeature.FixtureData'. Add a constructor argument to consume the fixture data.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancyValidation.feature.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 26,
+                  "endLine": 22,
+                  "endColumn": 66
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "TFixtureDisplayName": "SearchService.Test.BDD.ВалидацияПараметровПоискаВакансийFeature.FixtureData",
+              "TFixtureName": "FixtureData",
+              "TestClassName": "ВалидацияПараметровПоискаВакансийFeature"
+            }
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureSetup' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 28,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureTearDown' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 28,
+                  "endLine": 17,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestInitialize' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 21,
+                  "endLine": 23,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestTearDown' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 21,
+                  "endLine": 27,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioInitialize' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Theory. Reduce the visibility of the method, or add a Theory attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 21,
+                  "endLine": 32,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioStart' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 21,
+                  "endLine": 38,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioCleanup' on test class 'ПагинацияРезультатовПоискаFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancyPagination.feature",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 21,
+                  "endLine": 43,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1033",
+          "level": "note",
+          "message": "Test class 'SearchService.Test.BDD.ПагинацияРезультатовПоискаFeature' does not contain constructor argument of type 'SearchService.Test.BDD.ПагинацияРезультатовПоискаFeature.FixtureData'. Add a constructor argument to consume the fixture data.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancyPagination.feature.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 26,
+                  "endLine": 22,
+                  "endColumn": 59
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "TFixtureDisplayName": "SearchService.Test.BDD.ПагинацияРезультатовПоискаFeature.FixtureData",
+              "TFixtureName": "FixtureData",
+              "TestClassName": "ПагинацияРезультатовПоискаFeature"
+            }
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureSetup' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 28,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureTearDown' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 28,
+                  "endLine": 17,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestInitialize' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 21,
+                  "endLine": 23,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestTearDown' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 21,
+                  "endLine": 27,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioInitialize' on test class 'ПоискВакансийFeature' should be marked as a Theory. Reduce the visibility of the method, or add a Theory attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 21,
+                  "endLine": 32,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioStart' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 21,
+                  "endLine": 38,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioCleanup' on test class 'ПоискВакансийFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySearch.feature",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 21,
+                  "endLine": 43,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1033",
+          "level": "note",
+          "message": "Test class 'SearchService.Test.BDD.ПоискВакансийFeature' does not contain constructor argument of type 'SearchService.Test.BDD.ПоискВакансийFeature.FixtureData'. Add a constructor argument to consume the fixture data.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearch.feature.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 26,
+                  "endLine": 22,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "TFixtureDisplayName": "SearchService.Test.BDD.ПоискВакансийFeature.FixtureData",
+              "TFixtureName": "FixtureData",
+              "TestClassName": "ПоискВакансийFeature"
+            }
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureSetup' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 28,
+                  "endLine": 9,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'FeatureTearDown' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 28,
+                  "endLine": 17,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestInitialize' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 21,
+                  "endLine": 23,
+                  "endColumn": 35
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'TestTearDown' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 21,
+                  "endLine": 27,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioInitialize' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Theory. Reduce the visibility of the method, or add a Theory attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 21,
+                  "endLine": 32,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioStart' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 38,
+                  "startColumn": 21,
+                  "endLine": 38,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1013",
+          "level": "warning",
+          "message": "Public method 'ScenarioCleanup' on test class 'ФильтрацияВакансийПоЗарплатеFeature' should be marked as a Fact. Reduce the visibility of the method, or add a Fact attribute to the method.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "VacancySalaryFilter.feature",
+                "region": {
+                  "startLine": 43,
+                  "startColumn": 21,
+                  "endLine": 43,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "xUnit1033",
+          "level": "note",
+          "message": "Test class 'SearchService.Test.BDD.ФильтрацияВакансийПоЗарплатеFeature' does not contain constructor argument of type 'SearchService.Test.BDD.ФильтрацияВакансийПоЗарплатеFeature.FixtureData'. Add a constructor argument to consume the fixture data.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySalaryFilter.feature.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 26,
+                  "endLine": 22,
+                  "endColumn": 61
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "TFixtureDisplayName": "SearchService.Test.BDD.ФильтрацияВакансийПоЗарплатеFeature.FixtureData",
+              "TFixtureName": "FixtureData",
+              "TestClassName": "ФильтрацияВакансийПоЗарплатеFeature"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"GivenVacanciesWithKeyword\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 23,
+                  "endLine": 52,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Член \"GivenServiceIsRunning\" не обращается к данным экземпляров, поэтому его можно пометить как статический.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/SearchService/SearchService.Test/BDD/VacancySearchSteps.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 17,
+                  "endLine": 46,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1822": {
+          "id": "CA1822",
+          "shortDescription": "Пометьте члены как статические",
+          "fullDescription": "Члены, которые не обращаются к данным экземпляров и не вызывают методы экземпляров, можно пометить как статические. После этого компилятор создаст невиртуальные места для вызова этих членов. Это может привести к ощутимому росту производительности для чувствительного к производительности кода.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1822",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS8601": {
+          "id": "CS8601",
+          "shortDescription": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8601)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8602": {
+          "id": "CS8602",
+          "shortDescription": "Разыменование вероятной пустой ссылки.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8602)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения, допускающего значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "xUnit1013": {
+          "id": "xUnit1013",
+          "shortDescription": "Public method should be marked as test",
+          "defaultLevel": "warning",
+          "helpUri": "https://xunit.net/xunit.analyzers/rules/xUnit1013",
+          "properties": {
+            "category": "Usage",
+            "isEnabledByDefault": true
+          }
+        },
+        "xUnit1033": {
+          "id": "xUnit1033",
+          "shortDescription": "Test classes decorated with 'Xunit.IClassFixture<TFixture>' or 'Xunit.ICollectionFixture<TFixture>' should add a constructor argument of type TFixture",
+          "defaultLevel": "note",
+          "helpUri": "https://xunit.net/xunit.analyzers/rules/xUnit1033",
+          "properties": {
+            "category": "Usage",
+            "isEnabledByDefault": true
+          }
+        }
+      }
+    }
+  ]
+}

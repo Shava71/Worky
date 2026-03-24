@@ -1,0 +1,176 @@
+{
+  "scannerProperties": [
+    {
+      "key": "sonar.scanner.app",
+      "value": "ScannerMSBuild"
+    },
+    {
+      "key": "sonar.scanner.appVersion",
+      "value": "11.2"
+    },
+    {
+      "key": "sonar.scanner.bootstrapStartTime",
+      "value": "1774248959000"
+    },
+    {
+      "key": "sonar.projectKey",
+      "value": "my-aspnet-app"
+    },
+    {
+      "key": "sonar.working.directory",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\.sonar"
+    },
+    {
+      "key": "sonar.projectBaseDir",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService"
+    },
+    {
+      "key": "sonar.pullrequest.cache.basepath",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api"
+    },
+    {
+      "key": "sonar.sources",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\obj\\CompanyService.Tests.csproj.nuget.dgspec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\obj\\project.assets.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\obj\\project.packagespec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\appsettings.Development.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\appsettings.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\CompanyService.Api.deps.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\CompanyService.Api.runtimeconfig.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\CompanyService.Api.staticwebassets.endpoints.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\CompanyService.Tests.deps.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\bin\\Debug\\net9.0\\CompanyService.Tests.runtimeconfig.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Tests\\obj\\Debug\\net9.0\\CompanyService.Tests.sourcelink.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\.dockerignore"
+    },
+    {
+      "key": "sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "sonar.modules",
+      "value": "ECA3ECF7-A94B-4942-A73A-FAAC15666553,0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08,4B7C55BC-A94C-4A78-86F2-DAC471374684"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.projectKey",
+      "value": "my-aspnet-app:ECA3ECF7-A94B-4942-A73A-FAAC15666553"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.projectName",
+      "value": "CompanyService.DAL"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.projectBaseDir",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.working.directory",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\.sonar\\mod0"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.sources",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Data\\CompanyDbContext.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Data\\CompanyDbContextFactory.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Data\\IDbConnectionFactory.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Data\\NpsqlDbConnectionFactory.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\ActivityDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\CompanyDto.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\CompanyProfileDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\DealDto.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\FeedbackDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\ResumeDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\UpdateCompanyDto.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\VacancyDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\VacancyRow.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\WorkerDtos.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\DTO\\WorkerProfileDto.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Company.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Deal.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Education.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Tarrif.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\CompanyConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\DealConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\EducationConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\TarrifConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\VacancyConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\TypeConfiguration\\VacancyFilterConfiguration.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Vacancy.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\Vacancy_filter.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\WorkFormat.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Entities\\WorkHour.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\UserCompanyCreatedEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\UserCompanyCreateFailedEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\VacancyCreatedEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\VacancyDeletedEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\VacancyFilterAddEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\VacancyFilterDeleteEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Events\\VacancyUpdatedEvent.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\HttpClients\\Clients\\TypeOfActivityResponse.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\HttpClients\\Clients\\UserResponse.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Migrations\\20260122075556_IntitialMig.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Migrations\\20260122075556_IntitialMig.Designer.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Migrations\\CompanyDbContextModelSnapshot.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Models\\FeedbackStatus.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Implementations\\CompanyRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Implementations\\DealRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Implementations\\TariffRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Implementations\\VacancyRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Interfaces\\ICompanyRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Interfaces\\IDealRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Interfaces\\ITariffRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Interfaces\\IVacancyRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Redis\\Implementations\\RedisRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Repositories\\Redis\\Interfaces\\IRedisRepository.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\AddFilter.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\CreateResume.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\CreateVacancy.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\FeedbackStatusRequest.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\GetResumesRequest.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\GetVacanciesRequest.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\MakeDealRequest.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\MakeFeedbackRequest.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\RegisterRequestContract.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\UpdateResume.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\Сontracts\\UpdateVacancy.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\CompanyService.DAL.csproj.nuget.dgspec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\project.assets.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\project.packagespec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\bin\\Debug\\net9.0\\CompanyService.DAL.deps.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\bin\\Debug\\net9.0\\CompanyService.DAL.runtimeconfig.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.DAL\\obj\\Debug\\net9.0\\CompanyService.DAL.sourcelink.json"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\0"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\0\\Issues.json"
+    },
+    {
+      "key": "ECA3ECF7-A94B-4942-A73A-FAAC15666553.sonar.cs.scanner.telemetry",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\0\\Telemetry.json"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.projectKey",
+      "value": "my-aspnet-app:0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.projectName",
+      "value": "CompanyService.BLL"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.projectBaseDir",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.working.directory",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\.sonar\\mod1"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.sources",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\obj\\CompanyService.BLL.csproj.nuget.dgspec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\obj\\project.assets.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\obj\\project.packagespec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\bin\\Debug\\net9.0\\CompanyService.BLL.deps.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\bin\\Debug\\net9.0\\CompanyService.BLL.runtimeconfig.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\obj\\Debug\\net9.0\\CompanyService.BLL.sourcelink.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Consumers\\UserCompanyCreatedConsumer.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Http\\Implementations\\AuthClient.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Http\\Implementations\\FilterClient.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Http\\Interfaces\\IAuthClient.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Http\\Interfaces\\IFilterClient.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Implementations\\CompanyService.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Implementations\\DealService.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Implementations\\FilterCacheService.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Interfaces\\ICompnayService.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Interfaces\\IDealService.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.BLL\\Services\\Interfaces\\IFilterCacheService.cs"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\1"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\1\\Issues.json"
+    },
+    {
+      "key": "0E01CA99-80E3-4EE6-84E2-E2A2FA0A8E08.sonar.cs.scanner.telemetry",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\1\\Telemetry.json"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.projectKey",
+      "value": "my-aspnet-app:4B7C55BC-A94C-4A78-86F2-DAC471374684"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.projectName",
+      "value": "CompanyService.Api"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.projectBaseDir",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.working.directory",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\.sonar\\mod2"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.sources",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\appsettings.Development.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\appsettings.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Dockerfile,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Dockerfile.dev,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\stylecop.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\CompanyService.Api.csproj.nuget.dgspec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\project.assets.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\project.packagespec.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Properties\\launchSettings.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\bin\\Debug\\net9.0\\appsettings.Development.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\bin\\Debug\\net9.0\\appsettings.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\bin\\Debug\\net9.0\\CompanyService.Api.deps.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\bin\\Debug\\net9.0\\CompanyService.Api.runtimeconfig.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\bin\\Debug\\net9.0\\CompanyService.Api.staticwebassets.endpoints.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\CompanyService.Api.sourcelink.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\rjsmcshtml.dswa.cache.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\rjsmrazor.dswa.cache.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\rpswa.dswa.cache.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\staticwebassets.build.endpoints.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\staticwebassets.build.json,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyDIExtensions.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Controllers\\CompanyController.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Controllers\\DealController.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\HttpClientRegistrationExtensions.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\Program.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\CompanyService.Api.GlobalUsings.g.cs,\"C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs\",C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\CompanyService.Api.AssemblyInfo.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\obj\\Debug\\net9.0\\CompanyService.Api.MvcApplicationPartsAssemblyInfo.cs,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.editorconfig,C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\CompanyService.Api.http"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\2"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\2\\Issues.json"
+    },
+    {
+      "key": "4B7C55BC-A94C-4A78-86F2-DAC471374684.sonar.cs.scanner.telemetry",
+      "value": "C:\\Users\\demde\\Desktop\\Worky\\Worky\\Services\\CompanyService\\CompanyService.Api\\.sonarqube\\out\\2\\Telemetry.json"
+    },
+    {
+      "key": "sonar.login",
+      "value": "***"
+    },
+    {
+      "key": "sonar.host.url",
+      "value": "http://127.0.0.1:9000"
+    },
+    {
+      "key": "sonar.visualstudio.enable",
+      "value": "false"
+    }
+  ]
+}

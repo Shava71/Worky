@@ -1,0 +1,1 @@
+C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\.sonarqube\out\0

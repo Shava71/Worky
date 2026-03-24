@@ -1,0 +1,15 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Resume\ResumeCreatedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Resume\ResumeDeletedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Resume\ResumeFilterAddConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Resume\ResumeFilterDeleteConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Resume\ResumeUpdatedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Vacancy\VacancyCreatedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Vacancy\VacancyDeletedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Vacancy\VacancyFilterAddConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Vacancy\VacancyFilterDeleteConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Consumers\Vacancy\VacancyUpdatedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\MappingExtension.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Services\IResumeSearchService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Services\IVacancySearchService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Services\ResumeSearchService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.BLL\Services\VacancySearchService.cs

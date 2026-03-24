@@ -1,0 +1,11 @@
+‡
+|C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\obj\Debug\net8.0\AuthService.Tests.AssemblyInfo.csutf-8n
+eC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\UITests\Tests\LoginTests.csutf-8}
+rC:\Users\demde\.nuget\packages\microsoft.net.test.sdk\17.6.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.csutf-8b
+YC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\GlobalUsings.csutf-8|
+sC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\UITests\PageObjects\WorkerRegisterPage.csutf-8q
+hC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\UITests\Tests\RegisterTests.csutf-8•
+‰C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8o
+fC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\UITests\PlaywrightFixture.csutf-8‰
+~C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\obj\Debug\net8.0\AuthService.Tests.GlobalUsings.g.csutf-8s
+jC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Tests\UITests\PageObjects\LoginPage.csutf-8

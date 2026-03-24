@@ -1,4 +1,6 @@
-
+// <copyright file="CompanyDIExtensions.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 using CompanyService.BLL.Services.Implementations;
 using CompanyService.BLL.Services.Interfaces;
@@ -25,7 +27,7 @@ public static class CompanyDIExtensions
         services.AddScoped<ITariffRepository, TariffRepository>();
         services.AddScoped<IDealRepository, DealRepository>();
         services.AddScoped<IDealService, DealService>();
-        
+
         return services;
     }
 }

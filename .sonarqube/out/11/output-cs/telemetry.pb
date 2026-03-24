@@ -1,0 +1,1 @@
+qRdC:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\WorkerService.BLL.csprojòCSharp13

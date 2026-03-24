@@ -1,0 +1,10 @@
+†
+îC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\obj\Debug\net9.0\CompanyService.Api.MvcApplicationPartsAssemblyInfo.csutf-8ç
+ÅC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\obj\Debug\net9.0\CompanyService.Api.AssemblyInfo.csutf-8ô
+çC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.csutf-8è
+ÉC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\obj\Debug\net9.0\CompanyService.Api.GlobalUsings.g.csutf-8a
+XC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\Program.csutf-8z
+qC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\HttpClientRegistrationExtensions.csutf-8t
+kC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\Controllers\DealController.csutf-8w
+nC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\Controllers\CompanyController.csutf-8m
+dC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Api\CompanyDIExtensions.csutf-8

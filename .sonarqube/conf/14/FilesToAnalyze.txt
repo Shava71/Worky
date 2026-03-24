@@ -1,0 +1,17 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Controllers\FeedbackController.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Extensions\FeedbackDIExtensions.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Extensions\ResumeDIExtensions.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Extensions\VacancyDiExtensions.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Program.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\obj\Debug\net9.0\FeedbackService.Api.GlobalUsings.g.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\obj\Debug\net9.0\FeedbackService.Api.AssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\obj\Debug\net9.0\FeedbackService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\appsettings.Development.json
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\appsettings.json
+C:\Users\demde\Desktop\Worky\Worky\Services\ApiGateway\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Dockerfile
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Dockerfile.dev
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\FeedbackService.http
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.Api\Properties\launchSettings.json

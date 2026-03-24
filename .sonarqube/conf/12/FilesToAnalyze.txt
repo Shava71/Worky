@@ -1,0 +1,10 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Consumers\ResumeCreatedEventConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Consumers\ResumeDeletedEventConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Consumers\VacancyCreatedEventConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Consumers\VacancyDeletedEventConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Events\ResumeCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Events\ResumeDeletedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Events\VacancyCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Events\VacancyDeletedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Services\FeedbackService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\FeedbackService\FeedbackService.BLL\Services\IFeedbackService.cs

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <ProjectName>CompanyService.Tests</ProjectName>
+  <ProjectLanguage>C#</ProjectLanguage>
+  <ProjectType>Test</ProjectType>
+  <ProjectGuid>6b962793-a885-460d-bfae-ed2e1d573d55</ProjectGuid>
+  <FullPath>C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\CompanyService.Tests.csproj</FullPath>
+  <IsExcluded>false</IsExcluded>
+  <AnalysisResultFiles>
+    <AnalysisResultFile Id="FilesToAnalyze" Location="C:\Users\demde\Desktop\Worky\Worky\.sonarqube\conf\20\FilesToAnalyze.txt" />
+  </AnalysisResultFiles>
+  <AnalysisSettings>
+    <Property Name="sonar.cs.roslyn.reportFilePaths">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\20\Issues.json</Property>
+    <Property Name="sonar.cs.analyzer.projectOutPaths">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\20</Property>
+    <Property Name="sonar.cs.scanner.telemetry">C:\Users\demde\Desktop\Worky\Worky\.sonarqube\out\20\Telemetry.json</Property>
+  </AnalysisSettings>
+  <Configuration>Debug</Configuration>
+  <Platform>AnyCPU</Platform>
+  <TargetFramework>net9.0</TargetFramework>
+</ProjectInfo>

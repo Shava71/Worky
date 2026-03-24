@@ -1,3 +1,7 @@
+// <copyright file="Program.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Text;
 using System.Text.Json;
 using CompanyService.Api.Extentions;
@@ -19,7 +23,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<CompanyDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
         npgsql => npgsql.MigrationsAssembly("CompanyService.DAL"));
 });
 
@@ -27,10 +32,10 @@ var redisConnectionString = builder.Configuration.GetConnectionString("Redis");
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 {
-    return ConnectionMultiplexer.Connect(redisConnectionString);
+    return ConnectionMultiplexer.Connect(redisConnectionString!);
 });
 
-var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
 var signingKey = new SymmetricSecurityKey(key);
 builder.Services.AddSingleton(signingKey);
 builder.Services.AddAuthentication(options =>
@@ -38,26 +43,33 @@ builder.Services.AddAuthentication(options =>
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
         // options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     })
     .AddJwtBearer(options =>
     {
         // options.SaveToken = true;
-        // options.RequireHttpsMetadata = false;   
+        // options.RequireHttpsMetadata = false;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             // указывает, будет ли валидироваться издатель при валидации токена
             ValidateIssuer = true,
+
             // строка, представляющая издателя
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
+
             // будет ли валидироваться потребитель токена
             ValidateAudience = true,
+
             // установка потребителя токена
             ValidAudience = builder.Configuration["Jwt:Audience"],
+
             // будет ли валидироваться время существования
             ValidateLifetime = true,
+
             // установка ключа безопасности
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+
             // валидация ключа безопасности
             ValidateIssuerSigningKey = true,
         };
@@ -68,18 +80,20 @@ builder.Services.AddAuthentication(options =>
             {
                 context.HandleResponse();
                 context.Response.StatusCode = 401;
-                context.Response.Headers.Add("Trace-Id", context.HttpContext.TraceIdentifier);
-                return context.Response.WriteAsJsonAsync(new { message = "Необходимо авторизироваться" },
+                context.Response.Headers.Append("Trace-Id", context.HttpContext.TraceIdentifier);
+                return context.Response.WriteAsJsonAsync(
+                    new { message = "Необходимо авторизироваться" },
                     JsonSerializerOptions.Default);
             },
             OnForbidden = context =>
             {
                 context.NoResult();
                 context.Response.StatusCode = 403;
-                context.Response.Headers.Add("Trace-Id", context.HttpContext.TraceIdentifier);
-                return context.Response.WriteAsJsonAsync(new { message = "У вас нет доступа к данной странице" },
+                context.Response.Headers.Append("Trace-Id", context.HttpContext.TraceIdentifier);
+                return context.Response.WriteAsJsonAsync(
+                    new { message = "У вас нет доступа к данной странице" },
                     JsonSerializerOptions.Default);
-            }
+            },
         };
     });
 builder.Services.AddAuthorization();
@@ -90,17 +104,17 @@ builder.Services.AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Worky", Version = "v1" });
 
-        //Добавляем схему авторизации
+        // Добавляем схему авторизации
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
             Description = "Введите токен в формате: Bearer {токен}",
             Name = "Authorization",
             Type = SecuritySchemeType.ApiKey,
-            Scheme = "Bearer"
+            Scheme = "Bearer",
         });
 
-        //Добавляем требование авторизации по умолчанию
+        // Добавляем требование авторизации по умолчанию
         c.AddSecurityRequirement(new OpenApiSecurityRequirement()
         {
             {
@@ -109,14 +123,14 @@ builder.Services.AddSwaggerGen(c =>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
+                        Id = "Bearer",
                     },
                     Scheme = "oauth2",
                     Name = "Bearer",
                     In = ParameterLocation.Header,
                 },
                 new List<string>()
-            }
+            },
         });
     }
     catch (Exception ex)
@@ -129,37 +143,36 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddMassTransit(config =>
 {
     config.AddConsumer<UserCompanyCreatedConsumer>();
-    
+
     config.AddEntityFrameworkOutbox<CompanyDbContext>(o =>
     {
         // o.QueryDelay = TimeSpan.FromSeconds(30);
         o.UsePostgres().UseBusOutbox();
     });
-    
+
     config.UsingInMemory((context, cfg) =>
     {
         cfg.ConfigureEndpoints(context);
     });
-    
+
     config.AddRider(rider =>
     {
         rider.AddProducer<UserCompanyCreateFailedEvent>("user.company.createfailed");
         rider.AddProducer<VacancyCreatedEvent>("vacancy.created");
         rider.AddProducer<VacancyUpdatedEvent>("vacancy.updated");
         rider.AddProducer<VacancyDeletedEvent>("vacancy.deleted");
-        
+
         rider.AddProducer<VacancyFilterAddEvent>("vacancy.filter.add");
         rider.AddProducer<VacancyFilterDeleteEvent>("vacancy.filter.delete");
-        
+
         rider.AddConsumer<UserCompanyCreatedConsumer>();
-        
+
         rider.UsingKafka((context, k) =>
         {
             IConfigurationSection kafkaSettings = builder.Configuration.GetSection("Kafka");
-            string bootstrapServers = kafkaSettings["BootstrapServers"];
+            string? bootstrapServers = kafkaSettings["BootstrapServers"];
             k.Host(bootstrapServers);
-            
-            
+
             k.TopicEndpoint<UserCompanyCreatedEvent>("user.company.created", "company-service-group", e =>
             {
                 e.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
@@ -169,10 +182,10 @@ builder.Services.AddMassTransit(config =>
         });
     });
 });
-    
+
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    string con = builder.Configuration.GetConnectionString("Redis");
+    string? con = builder.Configuration.GetConnectionString("Redis");
     options.Configuration = con;
     options.InstanceName = "СompanyService";
 });
@@ -187,8 +200,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-
 
 app.UseCors();
 app.UseRouting();
@@ -210,4 +221,3 @@ using (var serviceScope = app.Services.CreateScope())
 }
 
 app.Run();
-

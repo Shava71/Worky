@@ -1,0 +1,13 @@
+Œ
+€C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\obj\Debug\net9.0\SearchService.Test.AssemblyInfo.csutf-8˜
+ŒC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.csutf-8Ž
+‚C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\obj\Debug\net9.0\SearchService.Test.GlobalUsings.g.csutf-8
+tC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\obj\Debug\net9.0\xUnit.AssemblyHooks.csutf-8}
+rC:\Users\demde\.nuget\packages\microsoft.net.test.sdk\17.6.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.csutf-8k
+bC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\VacancySearchTests.csutf-8e
+\C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\GlobalUsings.csutf-8x
+mC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\BDD\VacancyValidation.feature.csutf-8o
+fC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\BDD\VacancySearchSteps.csutf-8t
+iC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\BDD\VacancySearch.feature.csutf-8z
+oC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\BDD\VacancySalaryFilter.feature.csutf-8x
+mC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\BDD\VacancyPagination.feature.csutf-8

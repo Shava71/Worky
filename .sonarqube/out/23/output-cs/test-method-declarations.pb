@@ -1,0 +1,7 @@
+º
+bC:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test\VacancySearchTests.csSearchService.TestY
+%SearchService.Test.VacancySearchTests0SearchVacancies_ByKeyword_ReturnsRelevantResultsY
+%SearchService.Test.VacancySearchTests0SearchVacancies_WithSalaryRange_FiltersCorrectlyU
+%SearchService.Test.VacancySearchTests,SearchVacancies_ByEducation_FiltersCorrectly_
+%SearchService.Test.VacancySearchTests6SearchVacancies_WithInvalidEducation_ReturnsBadRequestR
+%SearchService.Test.VacancySearchTests)SearchVacancies_Pagination_WorksCorrectly

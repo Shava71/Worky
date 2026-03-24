@@ -1,0 +1,1507 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Компилятор Microsoft (R) Visual C#",
+        "version": "4.13.0.0",
+        "fileVersion": "4.13.0-3.25155.17 (398aa319)",
+        "semanticVersion": "4.13.0",
+        "language": "ru-RU"
+      },
+      "results": [
+        {
+          "ruleId": "CS8613",
+          "level": "warning",
+          "message": "Допустимость значений NULL для ссылочных типов в типе возвращаемого значения объекта \"Task<User?> UserRepository.FindByIdAsync(string userId)\" не совпадает с явно реализованным членом \"Task<User> IUserRepository.FindByIdAsync(string userId)\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 24,
+                  "startColumn": 30,
+                  "endLine": 24,
+                  "endColumn": 43
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8613",
+          "level": "warning",
+          "message": "Допустимость значений NULL для ссылочных типов в типе возвращаемого значения объекта \"Task<User?> UserRepository.FindByEmailAsync(string email)\" не совпадает с явно реализованным членом \"Task<User> IUserRepository.FindByEmailAsync(string email)\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 69,
+                  "startColumn": 30,
+                  "endLine": 69,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8613",
+          "level": "warning",
+          "message": "Допустимость значений NULL для ссылочных типов в типе возвращаемого значения объекта \"Task<Role?> UserRepository.FindRoleByNameAsync(string roleName)\" не совпадает с явно реализованным членом \"Task<Role> IUserRepository.FindRoleByNameAsync(string roleName)\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 92,
+                  "startColumn": 30,
+                  "endLine": 92,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"User\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 12,
+                  "endLine": 16,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 24,
+                  "endLine": 10,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"Role\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 12,
+                  "endLine": 16,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 24,
+                  "endLine": 11,
+                  "endColumn": 28
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"UserRole\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 12,
+                  "endLine": 16,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 28,
+                  "endLine": 12,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "свойство \"OutboxMessage\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения свойство, допускающего значение NULL.",
+          "suppressionStates": [
+            "suppressedInSource"
+          ],
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 12,
+                  "endLine": 16,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/AuthDbContext.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 33,
+                  "endLine": 14,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8601",
+          "level": "warning",
+          "message": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 29,
+                  "endLine": 21,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8618",
+          "level": "warning",
+          "message": "поле \"_connectionString\", не допускающий значения NULL, должен содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения поле, допускающего значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 12,
+                  "endLine": 18,
+                  "endColumn": 26
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 29,
+                  "endLine": 16,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8600",
+          "level": "warning",
+          "message": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Data/Factory/AuthDbContextFactory.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 35,
+                  "endLine": 16,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS1998",
+          "level": "warning",
+          "message": "В данном асинхронном методе отсутствуют операторы await, поэтому метод будет выполняться синхронно. Воспользуйтесь оператором await для ожидания неблокирующих вызовов API или оператором await Task.Run(...) для выполнения связанных с ЦП заданий в фоновом потоке.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 75,
+                  "startColumn": 29,
+                  "endLine": 75,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CS8604",
+          "level": "warning",
+          "message": "Возможно, аргумент-ссылка, допускающий значение NULL, для параметра \"source\" в \"IEnumerable<Guid> Enumerable.Select<UserRole, Guid>(IEnumerable<UserRole> source, Func<UserRole, Guid> selector)\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 82,
+                  "startColumn": 30,
+                  "endLine": 82,
+                  "endColumn": 40
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'UserRole' 8 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 24,
+                  "endLine": 16,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 24,
+                  "endLine": 20,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 179,
+                  "startColumn": 24,
+                  "endLine": 179,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 187,
+                  "startColumn": 24,
+                  "endLine": 187,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 199,
+                  "startColumn": 24,
+                  "endLine": 199,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 203,
+                  "startColumn": 24,
+                  "endLine": 203,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 330,
+                  "startColumn": 24,
+                  "endLine": 330,
+                  "endColumn": 34
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 338,
+                  "startColumn": 24,
+                  "endLine": 338,
+                  "endColumn": 34
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'users' 20 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 26,
+                  "endLine": 32,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 24,
+                  "endLine": 40,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 52,
+                  "startColumn": 24,
+                  "endLine": 52,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 62,
+                  "startColumn": 24,
+                  "endLine": 62,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 24,
+                  "endLine": 72,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 84,
+                  "startColumn": 24,
+                  "endLine": 84,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 96,
+                  "startColumn": 24,
+                  "endLine": 96,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 108,
+                  "startColumn": 24,
+                  "endLine": 108,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 128,
+                  "startColumn": 24,
+                  "endLine": 128,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 155,
+                  "startColumn": 24,
+                  "endLine": 155,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 161,
+                  "startColumn": 24,
+                  "endLine": 161,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 167,
+                  "startColumn": 24,
+                  "endLine": 167,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 173,
+                  "startColumn": 24,
+                  "endLine": 173,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 189,
+                  "startColumn": 33,
+                  "endLine": 189,
+                  "endColumn": 40
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 210,
+                  "startColumn": 24,
+                  "endLine": 210,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 214,
+                  "startColumn": 24,
+                  "endLine": 214,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 218,
+                  "startColumn": 24,
+                  "endLine": 218,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 222,
+                  "startColumn": 24,
+                  "endLine": 222,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 226,
+                  "startColumn": 24,
+                  "endLine": 226,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 233,
+                  "startColumn": 23,
+                  "endLine": 233,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "10": null,
+              "11": null,
+              "12": null,
+              "13": null,
+              "14": null,
+              "15": null,
+              "16": null,
+              "17": null,
+              "18": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null,
+              "9": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'roles' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 26,
+                  "endLine": 36,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 119,
+                  "startColumn": 24,
+                  "endLine": 119,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 133,
+                  "startColumn": 24,
+                  "endLine": 133,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 181,
+                  "startColumn": 33,
+                  "endLine": 181,
+                  "endColumn": 40
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 230,
+                  "startColumn": 24,
+                  "endLine": 230,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 237,
+                  "startColumn": 23,
+                  "endLine": 237,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'character varying(256)' 16 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 23,
+                  "endLine": 41,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 26,
+                  "endLine": 46,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 73,
+                  "startColumn": 23,
+                  "endLine": 73,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 78,
+                  "startColumn": 26,
+                  "endLine": 78,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 85,
+                  "startColumn": 23,
+                  "endLine": 85,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 90,
+                  "startColumn": 26,
+                  "endLine": 90,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 97,
+                  "startColumn": 23,
+                  "endLine": 97,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 102,
+                  "startColumn": 26,
+                  "endLine": 102,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 243,
+                  "startColumn": 23,
+                  "endLine": 243,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 247,
+                  "startColumn": 26,
+                  "endLine": 247,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 271,
+                  "startColumn": 23,
+                  "endLine": 271,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 275,
+                  "startColumn": 26,
+                  "endLine": 275,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 281,
+                  "startColumn": 23,
+                  "endLine": 281,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 285,
+                  "startColumn": 26,
+                  "endLine": 285,
+                  "endColumn": 50
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 291,
+                  "startColumn": 23,
+                  "endLine": 291,
+                  "endColumn": 47
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 295,
+                  "startColumn": 26,
+                  "endLine": 295,
+                  "endColumn": 50
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "10": null,
+              "11": null,
+              "12": null,
+              "13": null,
+              "14": null,
+              "2": null,
+              "3": null,
+              "4": null,
+              "5": null,
+              "6": null,
+              "7": null,
+              "8": null,
+              "9": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'timestamp with time zone' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 109,
+                  "startColumn": 23,
+                  "endLine": 109,
+                  "endColumn": 49
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 114,
+                  "startColumn": 26,
+                  "endLine": 114,
+                  "endColumn": 52
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 144,
+                  "startColumn": 63,
+                  "endLine": 144,
+                  "endColumn": 89
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 146,
+                  "startColumn": 59,
+                  "endLine": 146,
+                  "endColumn": 85
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 301,
+                  "startColumn": 23,
+                  "endLine": 301,
+                  "endColumn": 49
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251013154602_AddOutbox.cs",
+                "region": {
+                  "startLine": 305,
+                  "startColumn": 26,
+                  "endLine": 305,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'character varying(256)' 4 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251012175614_Initial.cs",
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 59,
+                  "endLine": 31,
+                  "endColumn": 83
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251012175614_Initial.cs",
+                "region": {
+                  "startLine": 32,
+                  "startColumn": 69,
+                  "endLine": 32,
+                  "endColumn": 93
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251012175614_Initial.cs",
+                "region": {
+                  "startLine": 33,
+                  "startColumn": 56,
+                  "endLine": 33,
+                  "endColumn": 80
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251012175614_Initial.cs",
+                "region": {
+                  "startLine": 34,
+                  "startColumn": 66,
+                  "endLine": 34,
+                  "endColumn": 90
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null
+            }
+          }
+        },
+        {
+          "ruleId": "S1192",
+          "level": "warning",
+          "message": "Define a constant instead of using this literal 'roles' 6 times.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 24,
+                  "endLine": 17,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 24,
+                  "endLine": 22,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 24,
+                  "endLine": 27,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 40,
+                  "startColumn": 24,
+                  "endLine": 40,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 24,
+                  "endLine": 45,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 50,
+                  "startColumn": 24,
+                  "endLine": 50,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": null,
+              "1": null,
+              "2": null,
+              "3": null,
+              "4": null
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102173339_FixRolesData.cs",
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 26,
+                  "endLine": 18,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 28,
+                  "startColumn": 26,
+                  "endLine": 28,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1861",
+          "level": "note",
+          "message": "Выбирать статичные поля, доступные только для чтения (\"static readonly\"), вместо аргументов постоянного массива, если вызываемый метод вызывается повторно и не изменяет переданный массив",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Migrations/20251102174338_FixRolesData2.cs",
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 26,
+                  "endLine": 51,
+                  "endColumn": 48
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "paramName": "columns"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1862",
+          "level": "note",
+          "message": "Для сравнения без учета регистра лучше использовать \"string.Equals(string, StringComparison)\", но помните, что при этом поведение может немного измениться, поэтому проведите тщательное тестирование после применения этой рекомендации. Если же сравнение с учетом культуры не требуется, попробуйте использовать \"StringComparison.OrdinalIgnoreCase\".",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 72,
+                  "startColumn": 39,
+                  "endLine": 72,
+                  "endColumn": 75
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "LeftOffendingMethod": null,
+              "RightOffendingMethod": "ToUpper"
+            }
+          }
+        },
+        {
+          "ruleId": "CA1510",
+          "level": "note",
+          "message": "Используйте \"ArgumentNullException.ThrowIfNull\" вместо явного вызова нового экземпляра исключения",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 9,
+                  "endLine": 107,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/demde/Desktop/Worky/Worky/Services/AuthService/AuthService.Infrastructure/Repository/Implementation/UserRepository.cs",
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 13,
+                  "endLine": 107,
+                  "endColumn": 23
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1510": {
+          "id": "CA1510",
+          "shortDescription": "Использовать вспомогательное приложение по вызову ArgumentNullException",
+          "fullDescription": "Помощники по вызову являются более простыми и эффективными, чем блок if, создающий новый экземпляр исключения.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1510",
+          "properties": {
+            "category": "Maintainability",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1861": {
+          "id": "CA1861",
+          "shortDescription": "Избегайте использования константных массивов в качестве аргументов",
+          "fullDescription": "Постоянные массивы, передаваемые в качестве аргументов, не будут использоваться при повторном вызове, что подразумевает создание нового массива каждый раз. Попробуйте извлечь их в статичные поля, доступные только для чтения (\"static readonly\"), чтобы повысить производительность, если переданный массив не был изменен в вызываемом методе.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1861",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CA1862": {
+          "id": "CA1862",
+          "shortDescription": "Используйте перегрузки метода \"StringComparison\" для сравнения строк без учета регистра",
+          "fullDescription": "Не вызывайте \"ToLower\", \"ToUpper\", \"ToLowerInvariant\" и \"ToUpperInvariant\" для сравнения строк без учета регистра, например, \"string.ToLower() == string.ToLower()\", поскольку это приведет к выделению. Вместо этого используйте \"string.Equals(string, StringComparison)\" для сравнения без учета регистра. При переходе на использование перегрузки, которая использует \"StringComparison\", поведение может немного измениться, поэтому проведите тщательное тестирование после применения этой рекомендации. Кроме того, если сравнение с учетом культуры не требуется, попробуйте использовать \"StringComparison.OrdinalIgnoreCase\".",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1862",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS1998": {
+          "id": "CS1998",
+          "shortDescription": "В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1998)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8600": {
+          "id": "CS8600",
+          "shortDescription": "Преобразование литерала, допускающего значение NULL или возможного значения NULL в тип, не допускающий значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8600)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8601": {
+          "id": "CS8601",
+          "shortDescription": "Возможно, назначение-ссылка, допускающее значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8601)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8604": {
+          "id": "CS8604",
+          "shortDescription": "Возможно, аргумент-ссылка, допускающий значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8604)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8613": {
+          "id": "CS8613",
+          "shortDescription": "Допустимость значения NULL для ссылочных типов в возвращаемом типе не совпадает с явно реализованным членом.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8613)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "CS8618": {
+          "id": "CS8618",
+          "shortDescription": "Поле, не допускающее значения NULL, должно содержать значение, отличное от NULL, при выходе из конструктора. Рассмотрите возможность добавления модификатора \"required\" или объявления значения, допускающего значение NULL.",
+          "defaultLevel": "warning",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS8618)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry"
+            ]
+          }
+        },
+        "S1192": {
+          "id": "S1192",
+          "shortDescription": "String literals should not be duplicated",
+          "fullDescription": "Duplicated string literals make the process of refactoring complex and error-prone, as any change would need to be propagated on all occurrences.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1192",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

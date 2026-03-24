@@ -1,0 +1,12 @@
+õ
+èC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.csutf-8ì
+áC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\obj\Debug\net9.0\CompanyService.Tests.GlobalUsings.g.csutf-8ë
+ÖC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\obj\Debug\net9.0\CompanyService.Tests.AssemblyInfo.csutf-8}
+rC:\Users\demde\.nuget\packages\microsoft.net.test.sdk\17.6.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.Program.csutf-8p
+gC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Integration\TestData.csutf-8
+vC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Integration\InMemoryRedisRepository.csutf-8s
+jC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Integration\HostFactory.csutf-8y
+pC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Integration\FilterClientTests.csutf-8
+vC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Integration\FilterCacheServiceTests.csutf-8h
+_C:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\GlobalUsings.csutf-8v
+mC:\Users\demde\Desktop\Worky\Worky\Services\CompanyService\CompanyService.Tests\Company_CreateVacancyTests.csutf-8

@@ -8,6 +8,7 @@ namespace CompanyService.Tests.Integration;
 
 public class FilterCacheServiceTests
 {
+    [Trait("Category", "Integration")]
     [Fact]
     public async Task GetFiltersByIdsAsync_Returns_From_Http_And_Caches()
     {

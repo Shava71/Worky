@@ -1,0 +1,17 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\AuthDIExtensions.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Controllers\AuthController.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Controllers\ProfilePhotoController.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Controllers\UserController.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\MinioBucketInitializer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Program.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\obj\Debug\net9.0\AuthService.Api.GlobalUsings.g.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\obj\Debug\net9.0\AuthService.Api.AssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\obj\Debug\net9.0\AuthService.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\appsettings.Development.json
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\appsettings.json
+C:\Users\demde\Desktop\Worky\Worky\Services\ApiGateway\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\.dockerignore
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Dockerfile
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Dockerfile.dev
+C:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Api\Properties\launchSettings.json

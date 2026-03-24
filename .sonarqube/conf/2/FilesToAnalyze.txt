@@ -1,0 +1,4 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Contract\ClickRequest.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Contract\GetResumesRequest.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Contract\GetVacanciesRequest.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Contract\SearchResponse.cs

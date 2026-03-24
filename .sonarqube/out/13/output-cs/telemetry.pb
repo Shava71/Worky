@@ -1,0 +1,1 @@
+{RnC:\Users\demde\Desktop\Worky\Worky\Services\AuthService\AuthService.Application\AuthService.Application.csprojòCSharp13

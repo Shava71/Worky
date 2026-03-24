@@ -1,0 +1,16 @@
+﻿C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Consumers\UserWorkerCreatedConsumer.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\ResumeCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\ResumeDeletedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\ResumeFilterAddEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\ResumeFilterDeleteEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\ResumeUpdatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\UserWorkerCreatedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Events\UserWorkerCreateFailedEvent.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Http\Implementations\AuthClient.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Http\Implementations\FilterClient.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Http\Interfaces\IAuthClient.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Http\Interfaces\IFilterClient.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Implementations\FilterCacheService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Implementations\WorkerService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Interfaces\IFilterCacheService.cs
+C:\Users\demde\Desktop\Worky\Worky\Services\WorkerService\WorkerService.BLL\Services\Interfaces\IWorkerService.cs

@@ -1,3 +1,7 @@
+// <copyright file="DealController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
 using System.Security.Claims;
 using CompanyService.BLL.Services.Implementations;
 using CompanyService.BLL.Services.Interfaces;
@@ -14,14 +18,15 @@ namespace CompanyService.Api.Controllers;
 [Authorize(Roles = "Company", AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 public class DealController : Controller
 {
-    private readonly ILogger<DealController> _logger;
-    private readonly IDealService _dealService;
+    private readonly ILogger<DealController> logger;
+    private readonly IDealService dealService;
+
     public DealController(ILogger<DealController> logger, IDealService dealService)
     {
-        _logger = logger;
-        _dealService = dealService;
+        this.logger = logger;
+        this.dealService = dealService;
     }
-    
+
     [AllowAnonymous]
     [HttpGet("Tarrif")]
     public async Task<IActionResult> GetTarrif([FromQuery] int? tariffId)
@@ -37,19 +42,18 @@ public class DealController : Controller
             // return Ok(new { tarrifs = tarrifs});
             if (tariffId.HasValue)
             {
-                Tarrif? tarrif = await _dealService.GetTariff(tariffId);
+                Tarrif? tarrif = await dealService.GetTariff(tariffId);
                 return Ok(new { tarrif = tarrif });
             }
             else
             {
-                List<Tarrif>? tarrifs = await _dealService.GetTariff();
+                List<Tarrif>? tarrifs = await dealService.GetTariff();
                 return Ok(new { tarrifs = tarrifs });
             }
-
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occured while get tarrifs by company");
+            logger.LogError(ex, "An error occured while get tarrifs by company");
             return BadRequest(500);
         }
     }
@@ -77,13 +81,12 @@ public class DealController : Controller
             // await _dbContext.SaveChangesAsync();
             // return Ok(new { id = newDeal.id});
             string companyId = User.FindFirstValue(ClaimTypes.NameIdentifier)!;
-            Guid id = await _dealService.CreateDeal(request, Guid.Parse(companyId));
+            Guid id = await dealService.CreateDeal(request, Guid.Parse(companyId));
             return Ok(new { id = id });
-
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occured while make deal by company");
+            logger.LogError(ex, "An error occured while make deal by company");
             return BadRequest(500);
         }
     }

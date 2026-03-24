@@ -1,0 +1,1 @@
+iR\C:\Users\demde\Desktop\Worky\Worky\Services\FilterService\FilterService\FilterService.csprojòCSharp13

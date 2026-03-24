@@ -1,0 +1,6 @@
+projectKey=my-aspnet-app
+serverUrl=http://127.0.0.1:9000
+serverVersion=26.3.0.120487
+dashboardUrl=http://127.0.0.1:9000/dashboard?id=my-aspnet-app
+ceTaskId=d78cebba-53b3-474e-be30-6c0216195732
+ceTaskUrl=http://127.0.0.1:9000/api/ce/task?id=d78cebba-53b3-474e-be30-6c0216195732

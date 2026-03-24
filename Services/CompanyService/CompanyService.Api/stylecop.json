@@ -1,0 +1,10 @@
+﻿{
+  "settings": {
+    "orderingRules": { //using вне namespace
+      "usingDirectivesPlacement": "outsideNamespace"
+    },
+    "documentationRules": { //отключить xml документацию
+      "documentExposedElements": false
+    }
+  }
+}
