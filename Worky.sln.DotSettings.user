@@ -1,22 +1,22 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ANumber_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F8ed457897f3c3eb3d2dd5313a6cdd92db9ccde47068ad9e82affff97b92cf1_003FNumber_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ATermsQuery_002Eg_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003F94be202387739fc7c3607c9892dc313db6fcf8a4d5f3b762f6cbe56c16ec8719_003FTermsQuery_002Eg_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=35ed34e1_002D6572_002D414b_002Dbcb6_002D4fce5266394e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetFiltersByIdAsync_Returns_Data_From_TestServer" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterClientTests.GetFiltersByIdAsync_Returns_Data_From_TestServer&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=35ed34e1_002D6572_002D414b_002Dbcb6_002D4fce5266394e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetFiltersByIdAsync_Returns_Data_From_TestServer" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterClientTests.GetFiltersByIdAsync_Returns_Data_From_TestServer&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e919489e_002D001b_002D4773_002D8f17_002Da393d1e394da/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;Or&gt;&#xD;
-    &lt;And&gt;&#xD;
-      &lt;Namespace&gt;SearchService.Test.BDD&lt;/Namespace&gt;&#xD;
-      &lt;Project Location="C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test" Presentation="&amp;lt;SearchService&amp;gt;\&amp;lt;SearchService.Test&amp;gt;" /&gt;&#xD;
-    &lt;/And&gt;&#xD;
-    &lt;TestAncestor&gt;&#xD;
-      &lt;TestId&gt;xUnit::42FE4F95-F54D-4466-A9A4-FC00BC0E98BF::net9.0::SearchService.Test.VacancySearchTests&lt;/TestId&gt;&#xD;
-      &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterClientTests&lt;/TestId&gt;&#xD;
-    &lt;/TestAncestor&gt;&#xD;
-  &lt;/Or&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e919489e_002D001b_002D4773_002D8f17_002Da393d1e394da/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Or&gt;
+    &lt;And&gt;
+      &lt;Namespace&gt;SearchService.Test.BDD&lt;/Namespace&gt;
+      &lt;Project Location="C:\Users\demde\Desktop\Worky\Worky\Services\SearchService\SearchService.Test" Presentation="&amp;lt;SearchService&amp;gt;\&amp;lt;SearchService.Test&amp;gt;" /&gt;
+    &lt;/And&gt;
+    &lt;TestAncestor&gt;
+      &lt;TestId&gt;xUnit::42FE4F95-F54D-4466-A9A4-FC00BC0E98BF::net9.0::SearchService.Test.VacancySearchTests&lt;/TestId&gt;
+      &lt;TestId&gt;xUnit::6B962793-A885-460D-BFAE-ED2E1D573D55::net9.0::CompanyService.Tests.Integration.FilterClientTests&lt;/TestId&gt;
+    &lt;/TestAncestor&gt;
+  &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>
