@@ -14,7 +14,6 @@ import {
     Select,
     MenuItem,
     Chip,
-    Grid,
     Snackbar,
     Alert,
     CircularProgress, ButtonGroup,
@@ -214,9 +213,22 @@ export default function VacanciesPage() {
                 Вакансии компаний
             </Typography>
 
-            {/* Фильтры */}
-            <Grid container spacing={3} sx={{ mb: 4 }}>
-                <Grid item xs={12} md={3}>
+            {/* Фильтры и список вакансий */}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
+                    alignItems: 'flex-start',
+                    gap: 3,
+                    mb: 4,
+                }}
+            >
+                <Box
+                    sx={{
+                        width: { xs: '100%', md: 320 },
+                        flexShrink: 0,
+                    }}
+                >
                     <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
                         <Typography variant="h6" gutterBottom>Фильтры</Typography>
                         <Stack spacing={2}>
@@ -354,10 +366,10 @@ export default function VacanciesPage() {
                             <Button variant="outlined" onClick={resetFilters}>Сбросить</Button>
                         </Stack>
                     </Paper>
-                </Grid>
+                </Box>
 
                 {/* Список вакансий */}
-                <Grid item xs={12} md={9}>
+                <Box sx={{ flex: 1, width: '100%', minWidth: 0 }}>
                     {vacancies.length === 0 && (
                         <Paper elevation={3} sx={{ p: 4, bgcolor: '#fff3cd', mb: 3 }}>
                             <Typography align="center" color="text.secondary">
@@ -469,8 +481,8 @@ export default function VacanciesPage() {
                             </Paper>
                         ))}
                     </Stack>
-                </Grid>
-            </Grid>
+                </Box>
+            </Box>
 
             {/* Snackbar */}
             <Snackbar open={snackbar.open} autoHideDuration={3000} onClose={() => setSnackbar(prev => ({ ...prev, open: false }))}>
