@@ -216,20 +216,27 @@ export default function VacanciesPage() {
 
             {/* Фильтры и список вакансий */}
             <Grid container spacing={3} sx={{ mb: 4 }}>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12}>
                     <Paper elevation={3} sx={{ p: 3, borderRadius: 2 }}>
                         <Typography variant="h6" gutterBottom>Фильтры</Typography>
-                        <Stack spacing={2}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexWrap: 'wrap',
+                                gap: 2,
+                                alignItems: 'flex-start',
+                            }}
+                        >
                             <TextField
                                 label="Поиск"
                                 name="AISearch"
                                 value={filters.AISearch}
                                 onChange={handleFilterChange}
-                                fullWidth
+                                sx={{ flex: '1 1 280px', minWidth: 220 }}
                                 helperText="Название компании, описание или должность"
                             />
 
-                            <Box sx={{ mt: 2 }}>
+                            <Box sx={{ flex: '1 1 280px', minWidth: 220 }}>
                                 <Typography gutterBottom>Опыт работы</Typography>
                                 <Slider
                                     name="experience"
@@ -245,7 +252,7 @@ export default function VacanciesPage() {
                                 />
                             </Box>
 
-                            <Box sx={{ mt: 2 }}>
+                            <Box sx={{ flex: '1 1 320px', minWidth: 240 }}>
                                 <Typography gutterBottom>Желаемая зарплата</Typography>
                                 <Slider
                                     name="wantedSalary"
@@ -263,7 +270,7 @@ export default function VacanciesPage() {
                                 />
                             </Box>
 
-                            <FormControl fullWidth>
+                            <FormControl sx={{ flex: '1 1 220px', minWidth: 220 }}>
                                 <InputLabel id="filter-education">Образование</InputLabel>
                                 <Select
                                     labelId="filter-education"
@@ -280,7 +287,7 @@ export default function VacanciesPage() {
                                     ))}
                                 </Select>
                             </FormControl>
-                            <FormControl fullWidth>
+                            <FormControl sx={{ flex: '1 1 220px', minWidth: 220 }}>
                                 <InputLabel id="filter-type">Тип деятельности</InputLabel>
                                 <Select
                                     labelId="filter-type"
@@ -294,7 +301,7 @@ export default function VacanciesPage() {
                                     ))}
                                 </Select>
                             </FormControl>
-                            <FormControl fullWidth>
+                            <FormControl sx={{ flex: '1 1 280px', minWidth: 240 }}>
                                 <InputLabel id="filter-direction">Направления</InputLabel>
                                 <Select
                                     labelId="filter-direction"
@@ -321,7 +328,7 @@ export default function VacanciesPage() {
                                     }
                                 </Select>
                             </FormControl>
-                            <FormControl fullWidth>
+                            <FormControl sx={{ flex: '1 1 220px', minWidth: 220 }}>
                                 <InputLabel id="sort-item">Сортировать по</InputLabel>
                                 <Select
                                     labelId="sort-item"
@@ -336,7 +343,7 @@ export default function VacanciesPage() {
                                 </Select>
                             </FormControl>
 
-                            <FormControl fullWidth>
+                            <FormControl sx={{ flex: '1 1 220px', minWidth: 220 }}>
                                 <InputLabel id="order-label">Порядок</InputLabel>
                                 <Select
                                     labelId="order-label"
@@ -350,14 +357,24 @@ export default function VacanciesPage() {
                                 </Select>
                             </FormControl>
 
-                            <Button variant="contained" onClick={applyFilters}>Применить</Button>
-                            <Button variant="outlined" onClick={resetFilters}>Сбросить</Button>
-                        </Stack>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    gap: 1.5,
+                                    alignSelf: 'stretch',
+                                    alignItems: 'center',
+                                    ml: { xs: 0, md: 'auto' },
+                                }}
+                            >
+                                <Button variant="contained" onClick={applyFilters}>Применить</Button>
+                                <Button variant="outlined" onClick={resetFilters}>Сбросить</Button>
+                            </Box>
+                        </Box>
                     </Paper>
                 </Grid>
 
                 {/* Список вакансий */}
-                <Grid item xs={12} md={9}>
+                <Grid item xs={12}>
                     {vacancies.length === 0 && (
                         <Paper elevation={3} sx={{ p: 4, bgcolor: '#fff3cd', mb: 3 }}>
                             <Typography align="center" color="text.secondary">
