@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Options;
 using SearchService.BLL.Services.Interfaces;
 using SearchService.DAL.Embenddings;
-using SearchService.DAL.Utils;
 
 namespace SearchService.BLL.Services.Implementations;
 
@@ -23,8 +22,6 @@ public class EmbeddingHttpService : IEmbeddingService
     {
         if (string.IsNullOrWhiteSpace(text))
             throw new ArgumentException("Text for embedding cannot be empty.");
-
-        text = SearchTextNormalizer.Normalize(text);
 
         var payload = new
         {

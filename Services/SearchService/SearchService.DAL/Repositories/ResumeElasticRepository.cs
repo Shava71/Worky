@@ -8,7 +8,6 @@ using SearchService.DAL.Dto;
 using SearchService.DAL.DTO;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
-using SearchService.DAL.Utils;
 
 namespace SearchService.DAL.Repositories.Implementations;
 
@@ -38,7 +37,6 @@ public class ResumeElasticRepository
         if (string.IsNullOrWhiteSpace(text))
             text = document.post ?? "";
 
-        text = SearchTextNormalizer.Normalize(text);
         document.vector = await _embeddingService.GetEmbedding(text);
 
         await base.IndexAsync(id, document);
@@ -51,10 +49,8 @@ public class ResumeElasticRepository
         var mustFilters = BuildStaticFilters(request);
 
         float[]? queryVector = null;
-        string normalizedAiSearch = SearchTextNormalizer.Normalize(request.AISearch);
-
         if (!string.IsNullOrWhiteSpace(request.AISearch))
-            queryVector = await _embeddingService.GetEmbedding(normalizedAiSearch);
+            queryVector = await _embeddingService.GetEmbedding(request.AISearch);
 
         Query finalQuery;
 
@@ -69,7 +65,7 @@ public class ResumeElasticRepository
                     {
                         new MultiMatchQuery
                         {
-                            Query = normalizedAiSearch,
+                            Query = request.AISearch,
                             Fields = new Field[]
                             {
                                 "post^4",
@@ -79,7 +75,7 @@ public class ResumeElasticRepository
                             Fuzziness = new Fuzziness("AUTO")
                         }
                     },
-                    MinimumShouldMatch = 0
+                    MinimumShouldMatch = 1
                 },
                 Script = new Script
                 {
