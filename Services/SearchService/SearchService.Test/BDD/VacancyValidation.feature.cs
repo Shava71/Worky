@@ -40,8 +40,8 @@ namespace SearchService.Test.BDD
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BDD", "Валидация параметров поиска вакансий", "  Как пользователь\r\n  Я хочу получать сообщение об ошибке при неверных параметрах" +
-                    "\r\n  Чтобы понимать причину ошибки", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BDD", "Валидация параметров поиска вакансий", "  Как пользователь\n  Я хочу получать сообщение об ошибке при неверных параметрах\n" +
+                    "  Чтобы понимать причину ошибки", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -40,8 +40,8 @@ namespace SearchService.Test.BDD
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BDD", "Поиск вакансий", "  Как пользователь системы поиска вакансий\r\n  Я хочу искать вакансии по ключевым " +
-                    "словам\r\n  Чтобы находить подходящие предложения работы", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "BDD", "Поиск вакансий", "  Как пользователь системы поиска вакансий\n  Я хочу искать вакансии по ключевым с" +
+                    "ловам\n  Чтобы находить подходящие предложения работы", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         

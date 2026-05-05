@@ -63,7 +63,11 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             {
                 Query = new BoolQuery
                 {
-                    Must = mustFilters,
+                    Must = new List<Query>
+                    {
+                        new MatchAllQuery()
+                    },
+                    Filter = mustFilters,
                     Should = new List<Query>
                     {
                         new MultiMatchQuery
@@ -81,7 +85,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                             Fuzziness = new Fuzziness("AUTO")
                         }
                     },
-                    MinimumShouldMatch = 1
+                    MinimumShouldMatch = 0
                 },
                 Script = new Script
                 {
@@ -282,5 +286,4 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             return session.Id;
         }
 }
-
 

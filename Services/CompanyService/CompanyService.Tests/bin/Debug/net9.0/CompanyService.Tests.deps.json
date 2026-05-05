@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "CompanyService.Tests/1.0.0": {
         "dependencies": {
+          "Allure.XUnit": "1.1.4",
           "CompanyService.Api": "1.0.0",
           "CompanyService.BLL": "1.0.0",
           "CompanyService.DAL": "1.0.0",
@@ -20,6 +21,31 @@
         },
         "runtime": {
           "CompanyService.Tests.dll": {}
+        }
+      },
+      "Allure.Commons/3.5.0.4": {
+        "dependencies": {
+          "MimeTypesMap": "1.0.8",
+          "Newtonsoft.Json": "13.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Allure.Commons.dll": {
+            "assemblyVersion": "3.5.0.4",
+            "fileVersion": "3.5.0.4"
+          }
+        }
+      },
+      "Allure.XUnit/1.1.4": {
+        "dependencies": {
+          "Allure.Commons": "3.5.0.4",
+          "xunit.core": "2.4.2",
+          "xunit.runner.reporters": "2.4.1"
+        },
+        "runtime": {
+          "lib/net5.0/Allure.XUnit.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Castle.Core/5.1.1": {
@@ -88,12 +114,12 @@
           "runtimes/win-x64/native/libcrypto-3-x64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "3.3.2.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/libcurl.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "8.10.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/librdkafka.dll": {
             "rid": "win-x64",
@@ -108,37 +134,32 @@
           "runtimes/win-x64/native/libssl-3-x64.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "3.3.2.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/msvcp140.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "14.40.33816.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/vcruntime140.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "14.40.33816.0"
-          },
-          "runtimes/win-x64/native/zlib1.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "1.3.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/zstd.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.5.6.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/libcrypto-3.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "3.3.2.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/libcurl.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "8.10.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/librdkafka.dll": {
             "rid": "win-x86",
@@ -153,27 +174,22 @@
           "runtimes/win-x86/native/libssl-3.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "3.3.2.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/msvcp140.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "14.40.33816.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/vcruntime140.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "14.40.33816.0"
-          },
-          "runtimes/win-x86/native/zlib1.dll": {
-            "rid": "win-x86",
-            "assetType": "native",
-            "fileVersion": "1.3.1.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/zstd.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.5.6.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -890,6 +906,14 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "MimeTypesMap/1.0.8": {
+        "runtime": {
+          "lib/netstandard2.0/MimeTypesMap.dll": {
+            "assemblyVersion": "1.0.8.0",
+            "fileVersion": "1.0.8.0"
+          }
+        }
+      },
       "Moq/4.20.72": {
         "dependencies": {
           "Castle.Core": "5.1.1"
@@ -1127,9 +1151,14 @@
           "runtimes/win-x64/native/libwinpthread-1.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x64/native/qpdf.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/zlib1.dll": {
             "rid": "win-x64",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
@@ -1152,9 +1181,14 @@
           "runtimes/win-x86/native/libwinpthread-1.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "0.0.0.0"
           },
           "runtimes/win-x86/native/qpdf.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/zlib1.dll": {
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
@@ -1614,6 +1648,13 @@
           "runtime.native.System": "4.3.0"
         }
       },
+      "System.Runtime.Loader/4.0.0": {
+        "dependencies": {
+          "System.IO": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
       "System.Runtime.Numerics/4.3.0": {
         "dependencies": {
           "System.Globalization": "4.3.0",
@@ -1838,7 +1879,7 @@
         "runtime": {
           "lib/netstandard2.0/xunit.abstractions.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
+            "fileVersion": "0.0.0.0"
           }
         }
       },
@@ -1881,6 +1922,31 @@
           "lib/netstandard1.1/xunit.execution.dotnet.dll": {
             "assemblyVersion": "2.4.2.0",
             "fileVersion": "2.4.2.0"
+          }
+        }
+      },
+      "xunit.runner.reporters/2.4.1": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "xunit.runner.utility": "2.4.1"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
+          }
+        }
+      },
+      "xunit.runner.utility/2.4.1": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Runtime.Loader": "4.0.0",
+          "xunit.abstractions": "2.0.3"
+        },
+        "runtime": {
+          "lib/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll": {
+            "assemblyVersion": "2.4.1.0",
+            "fileVersion": "2.4.1.0"
           }
         }
       },
@@ -1991,6 +2057,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Allure.Commons/3.5.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Z70v7jcxDypsHMnAvnbs1eTw0kdi4Uv6o0Z5gSGgqrH6ZZz6M/mB9IjQn6vE9B2ZWwT21mc38XtAdTl17faFNg==",
+      "path": "allure.commons/3.5.0.4",
+      "hashPath": "allure.commons.3.5.0.4.nupkg.sha512"
+    },
+    "Allure.XUnit/1.1.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Tv9q0cUMqkbiv2RHoSsc5f+o1ao6YcmfN9nTpC/AMBCBtpCHjF5s82jS25qs18ySz6KgHlENLJST0jipGKlYAQ==",
+      "path": "allure.xunit/1.1.4",
+      "hashPath": "allure.xunit.1.1.4.nupkg.sha512"
     },
     "Castle.Core/5.1.1": {
       "type": "package",
@@ -2362,6 +2442,13 @@
       "sha512": "sha512-9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
       "path": "microsoft.win32.primitives/4.3.0",
       "hashPath": "microsoft.win32.primitives.4.3.0.nupkg.sha512"
+    },
+    "MimeTypesMap/1.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iOm6Zar+yVROhlyrGGSJTfThvNoHLUeYeQQND9YD/ot/nA2qsWUp9kP2MHTdF9P7I8afW6eCf8vdELLZjDFdSQ==",
+      "path": "mimetypesmap/1.0.8",
+      "hashPath": "mimetypesmap.1.0.8.nupkg.sha512"
     },
     "Moq/4.20.72": {
       "type": "package",
@@ -2874,6 +2961,13 @@
       "path": "system.runtime.interopservices.runtimeinformation/4.3.0",
       "hashPath": "system.runtime.interopservices.runtimeinformation.4.3.0.nupkg.sha512"
     },
+    "System.Runtime.Loader/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4UN78GOVU/mbDFcXkEWtetJT/sJ0yic2gGk1HSlSpWI0TDf421xnrZTDZnwNBapk1GQeYN7U1lTj/aQB1by6ow==",
+      "path": "system.runtime.loader/4.0.0",
+      "hashPath": "system.runtime.loader.4.0.0.nupkg.sha512"
+    },
     "System.Runtime.Numerics/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -3041,6 +3135,20 @@
       "sha512": "sha512-CZmgcKkwpyo8FlupZdWpJCryrAOWLh1FBPG6gmVZuPQkGQsim/oL4PcP4nfrC2hHgXUFtluvaJ0Sp9PQKUMNpg==",
       "path": "xunit.extensibility.execution/2.4.2",
       "hashPath": "xunit.extensibility.execution.2.4.2.nupkg.sha512"
+    },
+    "xunit.runner.reporters/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hhaVlBodTXMvnGpm+TaPqQl8owHKF9Ifpy4u/2gHX6n9XuZbT+tmfspfHNukhpNY/Ts7UEF925ICoX887D39Gg==",
+      "path": "xunit.runner.reporters/2.4.1",
+      "hashPath": "xunit.runner.reporters.2.4.1.nupkg.sha512"
+    },
+    "xunit.runner.utility/2.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OR1KQpDegHK9mxARihYEWSiG82ce/WbWvv7/unSyAuEsGVPpLCzYt1ExsyUE136i28qSqPmoS1Fh1hs9NmKCTQ==",
+      "path": "xunit.runner.utility/2.4.1",
+      "hashPath": "xunit.runner.utility.2.4.1.nupkg.sha512"
     },
     "xunit.runner.visualstudio/2.4.5": {
       "type": "package",

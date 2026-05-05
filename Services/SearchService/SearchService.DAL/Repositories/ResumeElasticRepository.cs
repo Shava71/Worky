@@ -61,7 +61,11 @@ public class ResumeElasticRepository
             {
                 Query = new BoolQuery
                 {
-                    Must = mustFilters,
+                    Must = new List<Query>
+                    {
+                        new MatchAllQuery()
+                    },
+                    Filter = mustFilters,
                     Should = new List<Query>
                     {
                         new MultiMatchQuery
@@ -76,7 +80,7 @@ public class ResumeElasticRepository
                             Fuzziness = new Fuzziness("AUTO")
                         }
                     },
-                    MinimumShouldMatch = 1
+                    MinimumShouldMatch = 0
                 },
                 Script = new Script
                 {
