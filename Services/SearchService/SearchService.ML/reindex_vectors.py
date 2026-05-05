@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 from typing import Dict, Iterable, List, Tuple
 
 import requests
@@ -37,18 +38,40 @@ def get_auth() -> HTTPBasicAuth:
     return HTTPBasicAuth(ELASTIC_USER, ELASTIC_PASSWORD)
 
 
+def normalize_search_text(text: str) -> str:
+    if not text:
+        return ""
+
+    value = text.strip().lower().replace("ё", "е")
+
+    replacements = [
+        (r"\bc#\b", "c# csharp dotnet asp.net aspnet"),
+        (r"\basp\.net core\b", "asp.net core aspnet core asp.net aspnet dotnet csharp"),
+        (r"\basp\.net\b", "asp.net aspnet dotnet csharp"),
+        (r"(?<!asp)\.net\b", ".net dotnet csharp"),
+        (r"\bстажер\b", "стажер стажировка junior internship trainee"),
+        (r"\bстажировка\b", "стажировка стажер junior internship trainee"),
+        (r"\bjunior\b", "junior стажер стажировка trainee"),
+    ]
+
+    for pattern, replacement in replacements:
+        value = re.sub(pattern, replacement, value, flags=re.IGNORECASE)
+
+    return re.sub(r"\s+", " ", value).strip()
+
+
 def build_text(index_name: str, source: Dict) -> str:
     if index_name == "vacancies":
         post = source.get("post", "") or ""
         description = source.get("description", "") or ""
         text = f"{post} {description}".strip()
-        return text or post
+        return normalize_search_text(text or post)
 
     if index_name == "resumes":
         post = source.get("post", "") or ""
         skill = source.get("skill", "") or ""
         text = f"{post} {skill}".strip()
-        return text or post
+        return normalize_search_text(text or post)
 
     raise ValueError(f"Unsupported index: {index_name}")
 

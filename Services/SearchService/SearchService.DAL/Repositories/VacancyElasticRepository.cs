@@ -9,6 +9,7 @@ using SearchService.Contract;
 using SearchService.DAL.Dto;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
+using SearchService.DAL.Utils;
 using SearchService.ML;
 
 
@@ -39,6 +40,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
 
         if (string.IsNullOrWhiteSpace(text))
             text = document.post ?? "";
+        text = SearchTextNormalizer.Normalize(text);
         document.vector = await _embeddingService.GetEmbedding(text);
         
         await base.IndexAsync(id, document);
@@ -51,9 +53,10 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
         var mustFilters = BuildStaticFilters(request);
 
         float[]? queryVector = null;
+        string normalizedAiSearch = SearchTextNormalizer.Normalize(request.AISearch);
 
         if (!string.IsNullOrWhiteSpace(request.AISearch))
-            queryVector = await _embeddingService.GetEmbedding(request.AISearch);
+            queryVector = await _embeddingService.GetEmbedding(normalizedAiSearch);
 
         Query finalQuery;
 
@@ -68,7 +71,7 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                     {
                         new MultiMatchQuery
                         {
-                            Query = request.AISearch,
+                            Query = normalizedAiSearch,
                             Fields = new Field[]
                             {
                                 "post^5",
