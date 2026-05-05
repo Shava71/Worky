@@ -61,10 +61,6 @@ public class ResumeElasticRepository
             {
                 Query = new BoolQuery
                 {
-                    Must = new List<Query>
-                    {
-                        new MatchAllQuery()
-                    },
                     Filter = mustFilters,
                     Should = new List<Query>
                     {

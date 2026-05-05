@@ -63,10 +63,6 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             {
                 Query = new BoolQuery
                 {
-                    Must = new List<Query>
-                    {
-                        new MatchAllQuery()
-                    },
                     Filter = mustFilters,
                     Should = new List<Query>
                     {
@@ -286,4 +282,3 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
             return session.Id;
         }
 }
-
