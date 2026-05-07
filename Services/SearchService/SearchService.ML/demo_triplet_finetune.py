@@ -11,18 +11,25 @@ BASE_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 
 MODELS_DIR = os.path.expanduser("~/Desktop/ml/volume/models")
 BASE_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet")
+CLEAN_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet_clean")
 TMP_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet_tmp")
 BACKUP_PREFIX = "base_mpnet_old_"
 
-BATCH_SIZE = 2
-EPOCHS = 80
-LR = 5e-5
-WARMUP_STEPS = 0
+BATCH_SIZE = 8
+EPOCHS = 4
+LR = 1e-5
+TRIPLET_MARGIN = 0.25
+WARMUP_RATIO = 0.1
+FORCE_CLEAN_BASE = os.getenv("FORCE_CLEAN_BASE", "0") == "1"
 
 
 POSITIVE_PAIRS = [
     ("c#", "asp.net"),
     ("c# backend", "asp.net backend developer"),
+    ("c# backend", "asp.net core backend developer"),
+    ("c# backend", "asp.net backend developr"),
+    ("csharp backend", "asp.net backend developer"),
+    ("backend c#", "asp.net backend developer"),
     ("backend разработчик c#", "разработчик asp.net core"),
     ("c# web api", "asp.net core web api"),
     ("c# api developer", "asp.net api developer"),
@@ -43,6 +50,7 @@ POSITIVE_PAIRS = [
     ("ооп c# backend", "asp.net core backend engineer"),
     ("asp.net", "c#"),
     ("asp.net backend", "c# backend developer"),
+    ("asp.net backend developr", "c# backend"),
     ("asp.net core", "c# developer"),
     ("asp.net mvc", "c# mvc developer"),
     ("asp.net web api", "c# web api"),
@@ -82,6 +90,10 @@ NEGATIVES = [
 ]
 
 HARD_NEGATIVES = [
+    "c++ game developer",
+    "c engineer",
+    "embedded c developer",
+    "draft backend developer",
     "java spring backend developer",
     "python django backend developer",
     "php laravel backend developer",
@@ -109,22 +121,42 @@ CORE_BIDIRECTIONAL_PAIRS = [
     ("разработчик asp.net core", "backend разработчик c#"),
 ]
 
+STABILITY_PAIRS = [
+    ("python backend developer", "django backend developer"),
+    ("java backend developer", "spring backend developer"),
+    ("react frontend developer", "frontend react engineer"),
+    ("c++ game developer", "game developer c++"),
+    ("php laravel backend", "laravel backend developer"),
+]
+
 
 def build_demo_triplets() -> list[InputExample]:
     triplets: list[InputExample] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    def add_triplet(anchor: str, positive: str, negative: str) -> None:
+        key = (anchor.strip(), positive.strip(), negative.strip())
+        if key in seen or positive.strip() == negative.strip():
+            return
+        seen.add(key)
+        triplets.append(InputExample(texts=[anchor, positive, negative]))
 
     for anchor, positive in CORE_BIDIRECTIONAL_PAIRS:
         for negative in HARD_NEGATIVES:
-            triplets.append(InputExample(texts=[anchor, positive, negative]))
+            add_triplet(anchor, positive, negative)
 
     for idx, (anchor, positive) in enumerate(POSITIVE_PAIRS):
         first_negative = NEGATIVES[idx % len(NEGATIVES)]
         second_negative = NEGATIVES[(idx + 7) % len(NEGATIVES)]
         hard_negative = HARD_NEGATIVES[idx % len(HARD_NEGATIVES)]
 
-        triplets.append(InputExample(texts=[anchor, positive, first_negative]))
-        triplets.append(InputExample(texts=[anchor, positive, second_negative]))
-        triplets.append(InputExample(texts=[anchor, positive, hard_negative]))
+        add_triplet(anchor, positive, first_negative)
+        add_triplet(anchor, positive, second_negative)
+        add_triplet(anchor, positive, hard_negative)
+
+    for idx, (anchor, positive) in enumerate(STABILITY_PAIRS):
+        negative = NEGATIVES[idx % len(NEGATIVES)]
+        add_triplet(anchor, positive, negative)
 
     return triplets
 
@@ -152,8 +184,18 @@ def deploy_model(model: SentenceTransformer) -> None:
     print("Demo model deployed.")
 
 
+def resolve_model_source() -> str:
+    if not FORCE_CLEAN_BASE and os.path.exists(BASE_MODEL_DIR):
+        return BASE_MODEL_DIR
+
+    if os.path.exists(CLEAN_MODEL_DIR):
+        return CLEAN_MODEL_DIR
+
+    return BASE_MODEL_NAME
+
+
 def train_demo_model() -> None:
-    model_source = BASE_MODEL_DIR if os.path.exists(BASE_MODEL_DIR) else BASE_MODEL_NAME
+    model_source = resolve_model_source()
     print(f"Loading model from: {model_source}")
     model = SentenceTransformer(model_source)
 
@@ -163,18 +205,25 @@ def train_demo_model() -> None:
         batch_size=BATCH_SIZE
     )
 
-    train_loss = losses.TripletLoss(model)
+    warmup_steps = max(1, int(len(train_loader) * EPOCHS * WARMUP_RATIO))
+    train_loss = losses.TripletLoss(
+        model=model,
+        distance_metric=losses.TripletDistanceMetric.COSINE,
+        triplet_margin=TRIPLET_MARGIN
+    )
 
     print(f"Triplets count: {len(DEMO_TRIPLETS)}")
     print(f"Batch size: {BATCH_SIZE}")
     print(f"Epochs: {EPOCHS}")
     print(f"Learning rate: {LR}")
+    print(f"Warmup steps: {warmup_steps}")
+    print(f"Triplet margin: {TRIPLET_MARGIN}")
 
     model.fit(
         train_objectives=[(train_loader, train_loss)],
         epochs=EPOCHS,
         optimizer_params={"lr": LR},
-        warmup_steps=WARMUP_STEPS,
+        warmup_steps=warmup_steps,
         use_amp=True,
         show_progress_bar=True
     )

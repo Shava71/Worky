@@ -19,6 +19,7 @@ BASE_MODEL_NAME = "sentence-transformers/all-mpnet-base-v2"
 
 MODELS_DIR = os.path.expanduser("~/Desktop/ml/volume/models")
 BASE_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet")
+CLEAN_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet_clean")
 TMP_MODEL_DIR = os.path.join(MODELS_DIR, "base_mpnet_tmp")
 BACKUP_PREFIX = "base_mpnet_old_"
 
@@ -39,12 +40,16 @@ DB_CONFIG = {
     "password": "searchpass"
 }
 
-BATCH_SIZE = 32
-EPOCHS = 1
-LR = 2e-5
+BATCH_SIZE = 16
+EPOCHS = 2
+LR = 1e-5
 VALIDATION_SPLIT = 0.1
-NEGATIVES_PER_POSITIVE = 3
+NEGATIVES_PER_POSITIVE = 2
 MIN_DWELL_MS = 5000
+TRIPLET_MARGIN = 0.25
+WARMUP_RATIO = 0.1
+MIN_TRIPLETS_TO_TRAIN = 20
+FORCE_CLEAN_BASE = os.getenv("FORCE_CLEAN_BASE", "0") == "1"
 
 
 # ==============================
@@ -156,6 +161,7 @@ def build_triplets(rows) -> List[InputExample]:
     print(f"Total unique queries with negatives: {len(negatives_by_query)}")
 
     triplets: List[InputExample] = []
+    seen = set()
 
     # открываем log-файл
     log_file_path = os.path.join(os.getcwd(), "triplets.log")
@@ -178,9 +184,15 @@ def build_triplets(rows) -> List[InputExample]:
             )
 
             for _, neg_text in sampled:
-                triplets.append(
-                    InputExample(texts=[anchor_query, positive_text, neg_text])
-                )
+                if not neg_text or neg_text == positive_text:
+                    continue
+
+                key = (anchor_query.strip(), positive_text.strip(), neg_text.strip())
+                if key in seen:
+                    continue
+
+                seen.add(key)
+                triplets.append(InputExample(texts=[anchor_query, positive_text, neg_text]))
 
                 # записываем в log
                 log_f.write("Anchor: {}\n".format(anchor_query))
@@ -236,18 +248,24 @@ def reindex_elasticsearch():
     print("Reindex triggered.")
 
 
+def resolve_model_source() -> str:
+    if not FORCE_CLEAN_BASE and os.path.exists(BASE_MODEL_DIR):
+        return BASE_MODEL_DIR
+
+    if os.path.exists(CLEAN_MODEL_DIR):
+        return CLEAN_MODEL_DIR
+
+    return BASE_MODEL_NAME
+
+
 # ==============================
 # TRAIN
 # ==============================
 
 def train():
-    print("Loading base model...")
-
-    # если есть base_mpnet — дообучаем её
-    if os.path.exists(BASE_MODEL_DIR):
-        model = SentenceTransformer(BASE_MODEL_DIR)
-    else:
-        model = SentenceTransformer(BASE_MODEL_NAME)
+    model_source = resolve_model_source()
+    print(f"Loading base model from: {model_source}")
+    model = SentenceTransformer(model_source)
 
     print("Loading training data...")
     rows = load_training_data()
@@ -262,6 +280,13 @@ def train():
         print("No triplets generated.")
         return
 
+    if len(triplets) < MIN_TRIPLETS_TO_TRAIN:
+        print(
+            f"Not enough triplets to train safely: {len(triplets)} < {MIN_TRIPLETS_TO_TRAIN}. "
+            "Skipping deploy to avoid degrading semantic search."
+        )
+        return
+
     train_size = int((1 - VALIDATION_SPLIT) * len(triplets))
     val_size = len(triplets) - train_size
 
@@ -273,14 +298,26 @@ def train():
         batch_size=BATCH_SIZE
     )
 
-    train_loss = losses.TripletLoss(model)
+    warmup_steps = max(1, int(len(train_loader) * EPOCHS * WARMUP_RATIO))
+    train_loss = losses.TripletLoss(
+        model=model,
+        distance_metric=losses.TripletDistanceMetric.COSINE,
+        triplet_margin=TRIPLET_MARGIN
+    )
 
     print("Training started...")
+    print(f"Triplets count: {len(triplets)}")
+    print(f"Batch size: {BATCH_SIZE}")
+    print(f"Epochs: {EPOCHS}")
+    print(f"Learning rate: {LR}")
+    print(f"Warmup steps: {warmup_steps}")
+    print(f"Triplet margin: {TRIPLET_MARGIN}")
 
     model.fit(
         train_objectives=[(train_loader, train_loss)],
         epochs=EPOCHS,
         optimizer_params={"lr": LR},
+        warmup_steps=warmup_steps,
         use_amp=True,
         show_progress_bar=True
     )
