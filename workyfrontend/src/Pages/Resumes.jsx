@@ -18,6 +18,7 @@ import {
     Slider,
     CircularProgress,
     TextField, ButtonGroup,
+    Pagination,
 } from '@mui/material';
 import dayjs from 'dayjs';
 import qs from "qs";
@@ -50,6 +51,9 @@ export default function ResumesPage() {
     const [availableFilters, setAvailableFilters] = useState([]);
     const [educationList, setEducationList] = useState([]);
     const [sessionId, setSessionId] = useState(null);
+    const [total, setTotal] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(20);
 
     // Загрузка вакансий, фильтров и образования один раз
     useEffect(() => {
@@ -86,6 +90,9 @@ export default function ResumesPage() {
                 });
                 setResumes(response.data.items.map(x => x.document) || []);
                 setSessionId(response.data.sessionId);
+                setTotal(response.data.total || 0);
+                setCurrentPage(response.data.page || 1);
+                setPageSize(response.data.pageSize || 20);
             } catch (err) {
                 console.error('Ошибка при загрузке резюме:', err);
                 showSnackbar('Не удалось загрузить список резюме', 'error');
@@ -124,7 +131,12 @@ export default function ResumesPage() {
     };
 
     const applyFilters = () => {
-        setAppliedFilters(filters); // <-- обновляем appliedFilters при нажатии
+        const nextFilters = {
+            ...filters,
+            Page: "1",
+        };
+        setFilters(nextFilters);
+        setAppliedFilters(nextFilters);
     };
 
     const resetFilters = () => {
@@ -145,6 +157,18 @@ export default function ResumesPage() {
         };
         setFilters(reset);
         setAppliedFilters(reset); // сразу применяем
+    };
+
+    const handlePageChange = (event, page) => {
+        const nextFilters = {
+            ...appliedFilters,
+            Page: String(page),
+        };
+        setFilters(prev => ({
+            ...prev,
+            Page: String(page),
+        }));
+        setAppliedFilters(nextFilters);
     };
 
     const handleFilterChange = (e) => {
@@ -487,6 +511,23 @@ export default function ResumesPage() {
                             );
                         })}
                     </Stack>
+
+                    {total > 0 && (
+                        <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5 }}>
+                            <Typography variant="body2" color="text.secondary">
+                                Всего резюме: {total}. Страница {currentPage} из {Math.max(1, Math.ceil(total / pageSize))}
+                            </Typography>
+                            <Pagination
+                                count={Math.max(1, Math.ceil(total / pageSize))}
+                                page={currentPage}
+                                onChange={handlePageChange}
+                                color="primary"
+                                shape="rounded"
+                                showFirstButton
+                                showLastButton
+                            />
+                        </Box>
+                    )}
                 </Grid>
             </Grid>
 

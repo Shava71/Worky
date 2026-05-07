@@ -18,6 +18,7 @@ import {
     Snackbar,
     Alert,
     CircularProgress, ButtonGroup,
+    Pagination,
 } from '@mui/material';
 import dayjs from 'dayjs';
 import qs from 'qs';
@@ -45,6 +46,9 @@ export default function VacanciesPage() {
     const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
     const [educationList, setEducationList] = useState([]);
     const [availableFilters, setAvailableFilters] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize, setPageSize] = useState(20);
     const userRole = localStorage.getItem('role');
 
     const [myResumes, setMyResumes] = useState([]);
@@ -75,6 +79,9 @@ export default function VacanciesPage() {
                 });
                 setVacancies(response.data.items.map(x => x.document) || []);
                 setSessionId(response.data.sessionId);
+                setTotal(response.data.total || 0);
+                setCurrentPage(response.data.page || 1);
+                setPageSize(response.data.pageSize || 20);
                 fetchEducation();
             } catch (err) {
                 console.error('Ошибка при загрузке вакансий:', err);
@@ -149,7 +156,12 @@ export default function VacanciesPage() {
 
     // Применить фильтры — обновляем appliedFilters
     const applyFilters = () => {
-        setAppliedFilters(filters);
+        const nextFilters = {
+            ...filters,
+            Page: "1",
+        };
+        setFilters(nextFilters);
+        setAppliedFilters(nextFilters);
     };
 
     const resetFilters = () => {
@@ -169,6 +181,18 @@ export default function VacanciesPage() {
         };
         setFilters(reset);
         setAppliedFilters(reset); // обновляем сразу appliedFilters
+    };
+
+    const handlePageChange = (event, page) => {
+        const nextFilters = {
+            ...appliedFilters,
+            Page: String(page),
+        };
+        setFilters(prev => ({
+            ...prev,
+            Page: String(page),
+        }));
+        setAppliedFilters(nextFilters);
     };
 
     const handleRespond = async (selectedResume, vacancyId) => {
@@ -486,6 +510,23 @@ export default function VacanciesPage() {
                             </Paper>
                         ))}
                     </Stack>
+
+                    {total > 0 && (
+                        <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1.5 }}>
+                            <Typography variant="body2" color="text.secondary">
+                                Всего вакансий: {total}. Страница {currentPage} из {Math.max(1, Math.ceil(total / pageSize))}
+                            </Typography>
+                            <Pagination
+                                count={Math.max(1, Math.ceil(total / pageSize))}
+                                page={currentPage}
+                                onChange={handlePageChange}
+                                color="primary"
+                                shape="rounded"
+                                showFirstButton
+                                showLastButton
+                            />
+                        </Box>
+                    )}
                 </Grid>
             </Grid>
 

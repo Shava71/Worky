@@ -37,7 +37,7 @@ export default function CompanyFeedbackPage() {
         try {
             const res = await api.get(API.feedback.get,{
                 params:{
-                    vacancyId: selectedVacancyId || undefined
+                    Id: selectedVacancyId || undefined
                 }
             });
             setFeedbacks(res.data || []);
@@ -91,13 +91,17 @@ export default function CompanyFeedbackPage() {
             //     }
             // });
             if(newStatus === 'Accepted') {
-                await api.post(API.feedback.accept, {
-                    feedbackId: feedbackId,
+                await api.post(API.feedback.accept, null, {
+                    params: {
+                        feedbackId,
+                    }
                 });
             }
             else if(newStatus === 'Cancelled') {
-                await api.post(API.feedback.cancel, {
-                    feedbackId: feedbackId,
+                await api.post(API.feedback.reject, null, {
+                    params: {
+                        feedbackId,
+                    }
                 });
             }
 
@@ -136,14 +140,6 @@ export default function CompanyFeedbackPage() {
     };
 
     // Загрузка начальных данных
-    useEffect(() => {
-        const fetchData = async () => {
-            await Promise.all([fetchFeedbacks(), fetchVacancies()]);
-            setLoading(false);
-        };
-        fetchData();
-    }, [selectedVacancyId]);
-
     useEffect(() => {
         const fetchData = async () => {
             await Promise.all([fetchFeedbacks(), fetchVacancies()]);
