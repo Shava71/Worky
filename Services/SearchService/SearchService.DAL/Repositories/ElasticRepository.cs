@@ -1,4 +1,6 @@
 using Elastic.Clients.Elasticsearch;
+using Elastic.Clients.Elasticsearch.Core.Search;
+using Elastic.Clients.Elasticsearch.QueryDsl;
 using SearchService.DAL.Repositories.Interfaces;
 
 namespace SearchService.DAL.Repositories.Implementations;
@@ -7,6 +9,12 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
 {
     protected readonly ElasticsearchClient _client;
     protected readonly string _indexName;
+    protected const int DefaultRrfRankConstant = 60;
+    protected const int DefaultMinimumRankWindow = 100;
+    protected const int DefaultKnnCandidateMultiplier = 4;
+    protected const int DefaultMaxRescoreWindow = 200;
+    protected const double DefaultOriginalQueryWeight = 0.35;
+    protected const double DefaultRescoreQueryWeight = 1.4;
 
     public ElasticRepository(ElasticsearchClient client, string indexName)
     {
@@ -48,4 +56,101 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
 
         return response.Source;
     }
+
+    protected SearchRequestDescriptor<T> CreateBrowseSearchDescriptor(
+        int from,
+        int size,
+        IReadOnlyCollection<Query> filters)
+    {
+        Query query = filters.Count > 0
+            ? new BoolQuery { Filter = filters.ToList() }
+            : new MatchAllQuery();
+
+        return new SearchRequestDescriptor<T>()
+            .Indices(_indexName)
+            .From(from)
+            .Size(size)
+            .Query(query)
+            .TrackTotalHits(true)
+            .Source(src => src.Filter(f => f.Excludes("vector")));
+    }
+
+    protected SearchRequestDescriptor<T> CreateHybridSearchDescriptor(
+        int from,
+        int size,
+        IReadOnlyCollection<Query> filters,
+        Query lexicalQuery,
+        float[] queryVector)
+    {
+        var requestedWindow = Math.Max(from + size, size);
+        var rankWindowSize = Math.Max(DefaultMinimumRankWindow, requestedWindow * 4);
+        var knnK = rankWindowSize;
+        var numCandidates = Math.Max(DefaultMinimumRankWindow, knnK * DefaultKnnCandidateMultiplier);
+        var rescoreWindowSize = Math.Min(rankWindowSize, DefaultMaxRescoreWindow);
+
+        return new SearchRequestDescriptor<T>()
+            .Indices(_indexName)
+            .From(from)
+            .Size(size)
+            .Retriever(new Retriever
+            {
+                Rrf = new RRFRetriever
+                {
+                    RankConstant = DefaultRrfRankConstant,
+                    RankWindowSize = rankWindowSize,
+                    Retrievers =
+                    [
+                        new Retriever
+                        {
+                            Standard = new StandardRetriever
+                            {
+                                Query = lexicalQuery,
+                                Filter = filters.ToList()
+                            }
+                        },
+                        new Retriever
+                        {
+                            Knn = new KnnRetriever
+                            {
+                                Field = "vector",
+                                QueryVector = queryVector,
+                                K = knnK,
+                                NumCandidates = numCandidates,
+                                Filter = filters.ToList()
+                            }
+                        }
+                    ]
+                }
+            })
+            .Rescore(
+            [
+                new Rescore
+                {
+                    WindowSize = rescoreWindowSize,
+                    Query = new RescoreQuery
+                    {
+                        Query = BuildSemanticRescoreQuery(queryVector),
+                        QueryWeight = DefaultOriginalQueryWeight,
+                        RescoreQueryWeight = DefaultRescoreQueryWeight,
+                        ScoreMode = ScoreMode.Total
+                    }
+                }
+            ])
+            .TrackTotalHits(true)
+            .Source(src => src.Filter(f => f.Excludes("vector")));
+    }
+
+    protected static ScriptScoreQuery BuildSemanticRescoreQuery(float[] queryVector) =>
+        new()
+        {
+            Query = new MatchAllQuery(),
+            Script = new Script
+            {
+                Source = "cosineSimilarity(params.vector, 'vector') + 1.0",
+                Params = new Dictionary<string, object>
+                {
+                    { "vector", queryVector }
+                }
+            }
+        };
 }

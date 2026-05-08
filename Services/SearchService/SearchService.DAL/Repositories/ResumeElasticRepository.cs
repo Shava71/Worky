@@ -1,6 +1,5 @@
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.QueryDsl;
-using Elastic.Clients.Elasticsearch.Core.Bulk;
 using Microsoft.Extensions.Logging;
 using SearchService.BLL.Services.Interfaces;
 using SearchService.Contract;
@@ -45,71 +44,31 @@ public class ResumeElasticRepository
     public async Task<Contract.SearchResponse<ResumeSearchResultDto>> SearchAsync(GetResumesRequest request)
     {
         var from = (request.Page - 1) * request.PageSize;
-
-        var mustFilters = BuildStaticFilters(request);
+        var filters = BuildStaticFilters(request);
 
         float[]? queryVector = null;
         if (!string.IsNullOrWhiteSpace(request.AISearch))
             queryVector = await _embeddingService.GetEmbedding(request.AISearch);
+        
+        SearchRequestDescriptor<ResumeDocument> requestDescriptor = queryVector is not null
+            ? CreateHybridSearchDescriptor(
+                from,
+                request.PageSize,
+                filters,
+                BuildLexicalQuery(request.AISearch!),
+                queryVector)
+            : CreateBrowseSearchDescriptor(from, request.PageSize, filters);
 
-        Query finalQuery;
-
-        if (queryVector != null)
+        if (queryVector is null)
         {
-            finalQuery = new ScriptScoreQuery
-            {
-                Query = new BoolQuery
-                {
-                    Filter = mustFilters,
-                    Should = new List<Query>
-                    {
-                        new MultiMatchQuery
-                        {
-                            Query = request.AISearch,
-                            Fields = new Field[]
-                            {
-                                "post^4",
-                                "skill^3"
-                            },
-                            Type = TextQueryType.BestFields,
-                            Fuzziness = new Fuzziness("AUTO")
-                        }
-                    },
-                    MinimumShouldMatch = 1
-                },
-                Script = new Script
-                {
-                    Source = """
-                        double bm25 = _score;
-                        double cosine = cosineSimilarity(params.vector, 'vector');
-                        return params.alpha * bm25 + params.beta * cosine;
-                    """,
-                    Params = new Dictionary<string, object>
-                    {
-                        { "alpha", 0.6 },
-                        { "beta", 0.4 },
-                        { "vector", queryVector }
-                    }
-                }
-            };
+            ApplySorting(requestDescriptor, request);
         }
-        else
+        else if (!string.IsNullOrWhiteSpace(request.SortItem))
         {
-            finalQuery = new BoolQuery
-            {
-                Must = mustFilters
-            };
+            _logger.LogInformation(
+                "Explicit sort {SortItem} ignored for hybrid resume search to preserve RRF relevance",
+                request.SortItem);
         }
-
-        SearchRequestDescriptor<ResumeDocument> requestDescriptor = new SearchRequestDescriptor<ResumeDocument>()
-            .Index(_indexName)
-            .From(from)
-            .Size(request.PageSize)
-            .Query(finalQuery)
-            .TrackTotalHits(true)
-            .Source(src => src
-                .Filter(f => f.Excludes(e => e.vector)));
-        ApplySorting(requestDescriptor, request);
 
         var response = await _client.SearchAsync<ResumeDocument>(requestDescriptor);
 
@@ -130,6 +89,47 @@ public class ResumeElasticRepository
                 Document = h.Source!,
                 Score = h.Score ?? 0
             }).ToList()
+        };
+    }
+
+    private Query BuildLexicalQuery(string searchText)
+    {
+        var should = new List<Query>
+        {
+            new MultiMatchQuery
+            {
+                Query = searchText,
+                Fields = new Field[]
+                {
+                    "post^6",
+                    "skill^4",
+                    "workerFullName^2",
+                    "city_search^1.5"
+                },
+                Type = TextQueryType.BestFields,
+                Fuzziness = new Fuzziness("AUTO")
+            },
+            new NestedQuery
+            {
+                Path = "activities",
+                Query = new MultiMatchQuery
+                {
+                    Query = searchText,
+                    Fields = new Field[]
+                    {
+                        "activities.direction^2",
+                        "activities.type^1.5"
+                    },
+                    Type = TextQueryType.BestFields,
+                    Fuzziness = new Fuzziness("AUTO")
+                }
+            }
+        };
+
+        return new BoolQuery
+        {
+            Should = should,
+            MinimumShouldMatch = 1
         };
     }
 

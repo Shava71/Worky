@@ -1,5 +1,3 @@
-using System.Globalization;
-using System.Text.RegularExpressions;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.QueryDsl;
 using Microsoft.Extensions.Logging;
@@ -9,7 +7,6 @@ using SearchService.Contract;
 using SearchService.DAL.Dto;
 using SearchService.DAL.Entities;
 using SearchService.DAL.Repositories.Interfaces;
-using SearchService.ML;
 
 
 namespace SearchService.DAL.Repositories.Implementations;
@@ -48,73 +45,31 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
     {
         var from = (request.Page - 1) * request.PageSize;
 
-        var mustFilters = BuildStaticFilters(request);
+        var filters = BuildStaticFilters(request);
 
         float[]? queryVector = null;
         if (!string.IsNullOrWhiteSpace(request.AISearch))
             queryVector = await _embeddingService.GetEmbedding(request.AISearch);
+        
+        SearchRequestDescriptor<VacancyDocument> searchDescriptor = queryVector is not null
+            ? CreateHybridSearchDescriptor(
+                from,
+                request.PageSize,
+                filters,
+                BuildLexicalQuery(request.AISearch!),
+                queryVector)
+            : CreateBrowseSearchDescriptor(from, request.PageSize, filters);
 
-        Query finalQuery;
-
-        if (queryVector != null)
+        if (queryVector is null)
         {
-            finalQuery = new ScriptScoreQuery
-            {
-                Query = new BoolQuery
-                {
-                    Filter = mustFilters,
-                    Should = new List<Query>
-                    {
-                        new MultiMatchQuery
-                        {
-                            Query = request.AISearch,
-                            Fields = new Field[]
-                            {
-                                "post^5",
-                                "description^3",
-                                "company.name^2",
-                                "activities.direction^2",
-                                "activities.type^2"
-                            },
-                            Type = TextQueryType.BestFields,
-                            Fuzziness = new Fuzziness("AUTO")
-                        }
-                    },
-                    MinimumShouldMatch = 1
-                },
-                Script = new Script
-                {
-                    Source = """
-                                 double bm25 = _score;
-                                 double cosine = cosineSimilarity(params.vector, 'vector');
-                                 return params.alpha * bm25 + params.beta * cosine;
-                             """,
-                    Params = new Dictionary<string, object>
-                    {
-                        { "alpha", 0.6 },
-                        { "beta", 0.4 },
-                        { "vector", queryVector }
-                    }
-                }
-            };
+            ApplySorting(searchDescriptor, request);
         }
-        else
+        else if (!string.IsNullOrWhiteSpace(request.SortItem))
         {
-            finalQuery = new BoolQuery
-            {
-                Must = mustFilters
-            };
+            _logger.LogInformation(
+                "Explicit sort {SortItem} ignored for hybrid vacancy search to preserve RRF relevance",
+                request.SortItem);
         }
-
-        SearchRequestDescriptor<VacancyDocument> searchDescriptor = new SearchRequestDescriptor<VacancyDocument>()
-            .Index(_indexName)
-            .From(from)
-            .Size(request.PageSize)
-            .Query(finalQuery)
-            .TrackTotalHits(true)
-            .Source(src => src
-                .Filter(f => f.Excludes(e => e.vector)));
-        ApplySorting(searchDescriptor, request);
         var response = await _client.SearchAsync<VacancyDocument>(searchDescriptor);
         
         Guid sessionId = Guid.Empty;
@@ -137,6 +92,56 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                     Score = h.Score ?? 0
                 })
                 .ToList()
+        };
+    }
+
+    private Query BuildLexicalQuery(string searchText)
+    {
+        var should = new List<Query>
+        {
+            new MultiMatchQuery
+            {
+                Query = searchText,
+                Fields = new Field[]
+                {
+                    "post^6",
+                    "description^3",
+                    "company.name^2"
+                },
+                Type = TextQueryType.BestFields,
+                Fuzziness = new Fuzziness("AUTO")
+            },
+            new MultiMatchQuery
+            {
+                Query = searchText,
+                Fields = new Field[]
+                {
+                    "post.code^9",
+                    "description.code^6"
+                },
+                Type = TextQueryType.BestFields
+            },
+            new NestedQuery
+            {
+                Path = "activities",
+                Query = new MultiMatchQuery
+                {
+                    Query = searchText,
+                    Fields = new Field[]
+                    {
+                        "activities.direction^2",
+                        "activities.type^1.5"
+                    },
+                    Type = TextQueryType.BestFields,
+                    Fuzziness = new Fuzziness("AUTO")
+                }
+            }
+        };
+
+        return new BoolQuery
+        {
+            Should = should,
+            MinimumShouldMatch = 1
         };
     }
 
