@@ -62,9 +62,16 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
         int size,
         IReadOnlyCollection<Query> filters)
     {
-        Query query = filters.Count > 0
-            ? new BoolQuery { Filter = filters.ToList() }
-            : new MatchAllQuery();
+        return CreateBrowseSearchDescriptor(from, size, filters, null);
+    }
+
+    protected SearchRequestDescriptor<T> CreateBrowseSearchDescriptor(
+        int from,
+        int size,
+        IReadOnlyCollection<Query> filters,
+        Query? lexicalQuery)
+    {
+        Query query = BuildFilteredQuery(filters, lexicalQuery);
 
         return new SearchRequestDescriptor<T>()
             .Indices(_indexName)
@@ -92,34 +99,23 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
             .Indices(_indexName)
             .From(from)
             .Size(size)
-            .Retriever(new Retriever
+            .Query(BuildFilteredQuery(filters, lexicalQuery))
+            .Knn([
+                new KnnSearch
+                {
+                    Field = "vector",
+                    QueryVector = queryVector,
+                    K = knnK,
+                    NumCandidates = numCandidates,
+                    Filter = filters.ToList()
+                }
+            ])
+            .Rank(new Rank
             {
-                Rrf = new RRFRetriever
+                Rrf = new RrfRank
                 {
                     RankConstant = DefaultRrfRankConstant,
-                    RankWindowSize = rankWindowSize,
-                    Retrievers =
-                    [
-                        new Retriever
-                        {
-                            Standard = new StandardRetriever
-                            {
-                                Query = lexicalQuery,
-                                Filter = filters.ToList()
-                            }
-                        },
-                        new Retriever
-                        {
-                            Knn = new KnnRetriever
-                            {
-                                Field = "vector",
-                                QueryVector = queryVector,
-                                K = knnK,
-                                NumCandidates = numCandidates,
-                                Filter = filters.ToList()
-                            }
-                        }
-                    ]
+                    RankWindowSize = rankWindowSize
                 }
             })
             .Rescore(
@@ -138,6 +134,22 @@ public class ElasticRepository<T> : IElasticRepository<T> where T : class
             ])
             .TrackTotalHits(true)
             .Source(src => src.Filter(f => f.Excludes("vector")));
+    }
+
+    protected static Query BuildFilteredQuery(
+        IReadOnlyCollection<Query> filters,
+        Query? lexicalQuery)
+    {
+        if (filters.Count == 0)
+            return lexicalQuery ?? new MatchAllQuery();
+
+        return lexicalQuery is null
+            ? new BoolQuery { Filter = filters.ToList() }
+            : new BoolQuery
+            {
+                Must = [lexicalQuery],
+                Filter = filters.ToList()
+            };
     }
 
     protected static ScriptScoreQuery BuildSemanticRescoreQuery(float[] queryVector) =>

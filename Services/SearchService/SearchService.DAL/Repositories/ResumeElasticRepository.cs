@@ -72,6 +72,24 @@ public class ResumeElasticRepository
 
         var response = await _client.SearchAsync<ResumeDocument>(requestDescriptor);
 
+        if (!response.IsValidResponse)
+        {
+            _logger.LogWarning(
+                "Hybrid resume search returned invalid response. Falling back to lexical query. Debug: {DebugInformation}",
+                response.DebugInformation);
+
+            var fallbackDescriptor = CreateBrowseSearchDescriptor(
+                from,
+                request.PageSize,
+                filters,
+                BuildLexicalQuery(request.AISearch!));
+
+            response = await _client.SearchAsync<ResumeDocument>(fallbackDescriptor);
+        }
+
+        if (!response.IsValidResponse)
+            throw new InvalidOperationException($"Resume search failed: {response.DebugInformation}");
+
         Guid sessionId = Guid.Empty;
         if(!string.IsNullOrWhiteSpace(request.AISearch))
         {

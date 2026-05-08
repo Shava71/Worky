@@ -71,6 +71,24 @@ public class VacancyElasticRepository : ElasticRepository<VacancyDocument>, IVac
                 request.SortItem);
         }
         var response = await _client.SearchAsync<VacancyDocument>(searchDescriptor);
+
+        if (!response.IsValidResponse)
+        {
+            _logger.LogWarning(
+                "Hybrid vacancy search returned invalid response. Falling back to lexical query. Debug: {DebugInformation}",
+                response.DebugInformation);
+
+            var fallbackDescriptor = CreateBrowseSearchDescriptor(
+                from,
+                request.PageSize,
+                filters,
+                BuildLexicalQuery(request.AISearch!));
+
+            response = await _client.SearchAsync<VacancyDocument>(fallbackDescriptor);
+        }
+
+        if (!response.IsValidResponse)
+            throw new InvalidOperationException($"Vacancy search failed: {response.DebugInformation}");
         
         Guid sessionId = Guid.Empty;
         if(!string.IsNullOrWhiteSpace(request.AISearch))
